@@ -27,7 +27,7 @@ describe('jest integration test', () => {
             "FAIL for-integration-test/example1.test.ts
               ● Some test › Test that should fail
 
-                To open in Screenplay viewer, run: npx screenplay show d3f0048d4d0ecd76f6f6b8ebf7051c4a
+                To open in Root Cause viewer, run: npx root-cause show d3f0048d4d0ecd76f6f6b8ebf7051c4a
                  Error: No node found for selector: #not-found-element
 
                   130 |                     try {
