@@ -12,6 +12,7 @@
     "prepublishOnly": "./scripts/prepublishOnly.sh"
   },
   "main": "./index",
+  "license": "AGPL-3.0-only",
   "typesVersions": {
     "<3.8": {
       "*": [

@@ -13,6 +13,7 @@
   "engines": {
     "node": ">= 10.0.0"
   },
+  "license": "AGPL-3.0-only",
   "scripts": {
     "build": "tsc",
     "generate-settings-json-schema": "npx ts-json-schema-generator -e all --no-type-check -t PossibleUserSettings -p src/userSettings/interfaces.ts -o src/userSettings/schemas.json",

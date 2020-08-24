@@ -15,6 +15,7 @@
     "build-storybook": "build-storybook -s public",
     "prepublishOnly": "./scripts/prepublishOnly.sh"
   },
+  "license": "AGPL-3.0-only",
   "eslintConfig": {
     "extends": "react-app"
   },
