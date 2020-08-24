@@ -18,5 +18,5 @@
     "resolveJsonModule": true,
     "rootDir": "."
   },
-  "include": ["index", "src"]
+  "include": ["./index.ts", "src"]
 }
