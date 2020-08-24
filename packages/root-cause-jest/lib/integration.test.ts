@@ -35,8 +35,8 @@ describe('jest integration test', () => {
                 > 132 |                         const result = await method.apply(target, args);
                       |                                        ^
                   133 | 
-                  134 |                         try {
-                  135 |                             for (const afterHook of afterHooks) {
+                  134 |                         for (const afterHook of afterHooks) {
+                  135 |                             try {
 
                   at Object.exports.assert (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
                   at DOMWorld.click (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
