@@ -1,6 +1,6 @@
 {
   "name": "@testim/root-cause-types",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "author": "Testim.io <dev@testim.io>",
   "main": "index",
   "engines": {
