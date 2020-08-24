@@ -1,0 +1,6 @@
+{
+    "features": {
+        "networkLogs": true,
+        "jestAssertions": true
+    }
+}

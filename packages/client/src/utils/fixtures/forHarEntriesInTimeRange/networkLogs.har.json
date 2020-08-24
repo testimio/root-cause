@@ -1,0 +1,848 @@
+{
+  "log": {
+    "version": "1.2",
+    "creator": {
+      "name": "Testim",
+      "version": "1.0",
+      "comment": "Created during a text executed by Testim."
+    },
+    "pages": [
+      {
+        "id": "page_1",
+        "startedDateTime": "2020-08-08T13:43:54.127Z",
+        "title": "http://jsbin.testim.io/ces",
+        "pageTimings": {
+          "onContentLoad": 1239.787,
+          "onLoad": 1569.765
+        }
+      }
+    ],
+    "entries": [
+      {
+        "cache": {},
+        "startedDateTime": "2020-08-08T13:43:54.128Z",
+        "_requestId": "FA7435593F0C2761ABA4EE213F60B037",
+        "_initialPriority": "VeryHigh",
+        "_priority": "VeryHigh",
+        "pageref": "page_1",
+        "request": {
+          "method": "GET",
+          "url": "http://jsbin.testim.io/ces",
+          "queryString": [],
+          "headersSize": 403,
+          "bodySize": 0,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Host",
+              "value": "jsbin.testim.io"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Upgrade-Insecure-Requests",
+              "value": "1"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate"
+            }
+          ],
+          "httpVersion": "http/1.1"
+        },
+        "time": 603.934,
+        "_initiator": {
+          "type": "other"
+        },
+        "_initiator_type": "other",
+        "_resourceType": "document",
+        "response": {
+          "httpVersion": "http/1.1",
+          "redirectURL": "",
+          "status": 200,
+          "statusText": "OK",
+          "content": {
+            "mimeType": "text/html",
+            "size": 0
+          },
+          "headersSize": 700,
+          "bodySize": 647,
+          "cookies": [
+            {
+              "name": "jsbin",
+              "value": "",
+              "path": "/",
+              "expires": "1970-01-01T00:00:00.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "session",
+              "value": "eyJ2ZXJzaW9uIjoiNC4xLjQiLCJjc3JmU2VjcmV0IjoiQVFvTHd0ZXVJd2pta3IzZnhjWDZfZHZPIn0=",
+              "path": "/",
+              "domain": "jsbin.testim.io",
+              "expires": "2021-08-08T13:43:54.000Z",
+              "httpOnly": true,
+              "secure": false
+            },
+            {
+              "name": "session.sig",
+              "value": "cy4We1VuRFVFakH1200Tpp7wlE0",
+              "path": "/",
+              "domain": "jsbin.testim.io",
+              "expires": "2021-08-08T13:43:54.000Z",
+              "httpOnly": true,
+              "secure": false
+            }
+          ],
+          "headers": [
+            {
+              "name": "Content-Encoding",
+              "value": "gzip"
+            },
+            {
+              "name": "Content-Type",
+              "value": "text/html; charset=utf-8"
+            },
+            {
+              "name": "Date",
+              "value": "Sat, 08 Aug 2020 13:43:54 GMT"
+            },
+            {
+              "name": "ETag",
+              "value": "W/\"5fb-HliubzZS9WGVbWNHGpsWf44FUqg\""
+            },
+            {
+              "name": "Server",
+              "value": "nginx"
+            },
+            {
+              "name": "Set-Cookie",
+              "value": "jsbin=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT\nsession=eyJ2ZXJzaW9uIjoiNC4xLjQiLCJjc3JmU2VjcmV0IjoiQVFvTHd0ZXVJd2pta3IzZnhjWDZfZHZPIn0=; path=/; expires=Sun, 08 Aug 2021 13:43:54 GMT; domain=.jsbin.testim.io; httponly\nsession.sig=cy4We1VuRFVFakH1200Tpp7wlE0; path=/; expires=Sun, 08 Aug 2021 13:43:54 GMT; domain=.jsbin.testim.io; httponly"
+            },
+            {
+              "name": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "name": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "name": "X-Robots-Tag",
+              "value": "nofollow"
+            },
+            {
+              "name": "X-route",
+              "value": "node"
+            },
+            {
+              "name": "Content-Length",
+              "value": "647"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "_transferSize": 1347
+        },
+        "connection": "13",
+        "serverIPAddress": "52.35.252.195",
+        "timings": {
+          "blocked": 0.584,
+          "dns": 24.105,
+          "connect": 239.442,
+          "send": 0.1,
+          "wait": 335.693,
+          "receive": 4.01,
+          "ssl": -1,
+          "_queued": 0.681
+        },
+        "_requestTime": 1008197.908
+      },
+      {
+        "cache": {},
+        "startedDateTime": "2020-08-08T13:43:54.741Z",
+        "_requestId": "59980.2",
+        "_initialPriority": "High",
+        "_priority": "High",
+        "pageref": "page_1",
+        "request": {
+          "method": "GET",
+          "url": "http://jsbin-static.testim.io/js/render/edit.js?4.1.4",
+          "queryString": [
+            {
+              "name": "4.1.4",
+              "value": ""
+            }
+          ],
+          "headersSize": 248,
+          "bodySize": 0,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Referer",
+              "value": "http://jsbin.testim.io/ces"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36"
+            }
+          ],
+          "httpVersion": "http/1.1"
+        },
+        "time": 623.5,
+        "_initiator": {
+          "type": "parser",
+          "url": "http://jsbin.testim.io/ces",
+          "lineNumber": 46
+        },
+        "_initiator_type": "parser",
+        "_resourceType": "script",
+        "_initiator_line": 47,
+        "response": {
+          "httpVersion": "http/1.1",
+          "redirectURL": "",
+          "status": 200,
+          "statusText": "OK",
+          "content": {
+            "mimeType": "application/javascript",
+            "size": 0
+          },
+          "headersSize": 352,
+          "bodySize": 623,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Date",
+              "value": "Sat, 08 Aug 2020 13:43:55 GMT"
+            },
+            {
+              "name": "Content-Encoding",
+              "value": "gzip"
+            },
+            {
+              "name": "Last-Modified",
+              "value": "Mon, 08 Oct 2018 17:31:08 GMT"
+            },
+            {
+              "name": "Server",
+              "value": "nginx"
+            },
+            {
+              "name": "ETag",
+              "value": "W/\"5bbb945c-4ad\""
+            },
+            {
+              "name": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/javascript"
+            },
+            {
+              "name": "Cache-Control",
+              "value": "max-age=31536000, public"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Content-Length",
+              "value": "608"
+            },
+            {
+              "name": "Expires",
+              "value": "Sun, 08 Aug 2021 13:43:55 GMT"
+            }
+          ],
+          "_transferSize": 975
+        },
+        "connection": "22",
+        "serverIPAddress": "52.35.252.195",
+        "timings": {
+          "blocked": 0.216,
+          "dns": 0.647,
+          "connect": 252.891,
+          "send": 0.146,
+          "wait": 368.55,
+          "receive": 1.05,
+          "ssl": -1,
+          "_queued": 0.497
+        },
+        "_requestTime": 1008198.521
+      },
+      {
+        "cache": {},
+        "startedDateTime": "2020-08-08T13:43:55.367Z",
+        "_requestId": "59980.4",
+        "_initialPriority": "VeryHigh",
+        "_priority": "VeryHigh",
+        "pageref": "page_1",
+        "request": {
+          "method": "GET",
+          "url": "http://jsbin-static.testim.io/css/edit.css",
+          "queryString": [],
+          "headersSize": 237,
+          "bodySize": 0,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Referer",
+              "value": "http://jsbin.testim.io/ces"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36"
+            }
+          ],
+          "httpVersion": "http/1.1"
+        },
+        "time": 282.355,
+        "_initiator": {
+          "type": "script",
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "jsbinShowEdit",
+                "scriptId": "6",
+                "url": "http://jsbin-static.testim.io/js/render/edit.js?4.1.4",
+                "lineNumber": 21,
+                "columnNumber": 22
+              },
+              {
+                "functionName": "",
+                "scriptId": "7",
+                "url": "http://jsbin.testim.io/ces",
+                "lineNumber": 47,
+                "columnNumber": 25
+              }
+            ]
+          }
+        },
+        "_initiator_type": "script",
+        "_resourceType": "stylesheet",
+        "_initiator_line": 22,
+        "_initiator_column": 23,
+        "_initiator_function_name": "jsbinShowEdit",
+        "_initiator_script_id": "6",
+        "response": {
+          "httpVersion": "http/1.1",
+          "redirectURL": "",
+          "status": 200,
+          "statusText": "OK",
+          "content": {
+            "mimeType": "text/css",
+            "size": 0
+          },
+          "headersSize": 338,
+          "bodySize": 434,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Date",
+              "value": "Sat, 08 Aug 2020 13:43:55 GMT"
+            },
+            {
+              "name": "Content-Encoding",
+              "value": "gzip"
+            },
+            {
+              "name": "Last-Modified",
+              "value": "Mon, 08 Oct 2018 17:31:08 GMT"
+            },
+            {
+              "name": "Server",
+              "value": "nginx"
+            },
+            {
+              "name": "ETag",
+              "value": "W/\"5bbb945c-336\""
+            },
+            {
+              "name": "Vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "name": "Content-Type",
+              "value": "text/css"
+            },
+            {
+              "name": "Cache-Control",
+              "value": "max-age=31536000, public"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Content-Length",
+              "value": "419"
+            },
+            {
+              "name": "Expires",
+              "value": "Sun, 08 Aug 2021 13:43:55 GMT"
+            }
+          ],
+          "_transferSize": 772
+        },
+        "connection": "22",
+        "serverIPAddress": "52.35.252.195",
+        "timings": {
+          "blocked": 0.529,
+          "dns": -1,
+          "connect": -1,
+          "send": 0.093,
+          "wait": 280.657,
+          "receive": 1.076,
+          "ssl": -1,
+          "_queued": 0.462
+        },
+        "_requestTime": 1008199.147
+      },
+      {
+        "cache": {},
+        "startedDateTime": "2020-08-08T13:43:55.367Z",
+        "_requestId": "59980.5",
+        "_initialPriority": "Low",
+        "_priority": "High",
+        "pageref": "page_1",
+        "request": {
+          "method": "GET",
+          "url": "http://jsbin-static.testim.io/images/favicon.png",
+          "queryString": [],
+          "headersSize": 243,
+          "bodySize": 0,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Referer",
+              "value": "http://jsbin.testim.io/ces"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36"
+            }
+          ],
+          "httpVersion": "http/1.1"
+        },
+        "time": 329.382,
+        "_initiator": {
+          "type": "parser",
+          "url": "http://jsbin.testim.io/ces",
+          "lineNumber": 47
+        },
+        "_initiator_type": "parser",
+        "_resourceType": "image",
+        "_initiator_line": 48,
+        "response": {
+          "httpVersion": "http/1.1",
+          "redirectURL": "",
+          "status": 200,
+          "statusText": "OK",
+          "content": {
+            "mimeType": "image/png",
+            "size": 0
+          },
+          "headersSize": 312,
+          "bodySize": 3485,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Date",
+              "value": "Sat, 08 Aug 2020 13:43:55 GMT"
+            },
+            {
+              "name": "Last-Modified",
+              "value": "Mon, 08 Oct 2018 17:31:08 GMT"
+            },
+            {
+              "name": "Server",
+              "value": "nginx"
+            },
+            {
+              "name": "ETag",
+              "value": "\"5bbb945c-d8e\""
+            },
+            {
+              "name": "Content-Type",
+              "value": "image/png"
+            },
+            {
+              "name": "Cache-Control",
+              "value": "max-age=2592000, public"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Accept-Ranges",
+              "value": "bytes"
+            },
+            {
+              "name": "Content-Length",
+              "value": "3470"
+            },
+            {
+              "name": "Expires",
+              "value": "Mon, 07 Sep 2020 13:43:55 GMT"
+            }
+          ],
+          "_transferSize": 3797
+        },
+        "connection": "24",
+        "serverIPAddress": "52.35.252.195",
+        "timings": {
+          "blocked": 0.357,
+          "dns": -1,
+          "connect": -1,
+          "send": 0.147,
+          "wait": 302.729,
+          "receive": 26.149,
+          "ssl": -1,
+          "_queued": 0.435
+        },
+        "_requestTime": 1008199.147
+      },
+      {
+        "cache": {},
+        "startedDateTime": "2020-08-08T13:43:55.962Z",
+        "_requestId": "59980.6",
+        "_initialPriority": "High",
+        "_priority": "High",
+        "pageref": "page_1",
+        "request": {
+          "method": "GET",
+          "url": "https://postman-echo.com/status/200",
+          "queryString": [],
+          "headersSize": -1,
+          "bodySize": 0,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Referer",
+              "value": "http://jsbin.testim.io/ces"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36"
+            }
+          ],
+          "httpVersion": "h2"
+        },
+        "time": 486.141,
+        "_initiator": {
+          "type": "script",
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "",
+                "scriptId": "5",
+                "url": "http://jsbin.testim.io/ces",
+                "lineNumber": 30,
+                "columnNumber": 2
+              }
+            ]
+          }
+        },
+        "_initiator_type": "script",
+        "_resourceType": "fetch",
+        "_initiator_line": 31,
+        "_initiator_column": 3,
+        "_initiator_function_name": "",
+        "_initiator_script_id": "5",
+        "response": {
+          "httpVersion": "h2",
+          "redirectURL": "",
+          "status": 200,
+          "statusText": "",
+          "content": {
+            "mimeType": "application/json",
+            "size": 0
+          },
+          "headersSize": -1,
+          "bodySize": -1,
+          "cookies": [],
+          "headers": [],
+          "_transferSize": 209,
+          "_error": "net::ERR_ABORTED"
+        },
+        "connection": "39",
+        "serverIPAddress": "",
+        "timings": {
+          "blocked": 0.171,
+          "dns": 24.331,
+          "connect": 316.209,
+          "send": 0.266,
+          "wait": 145.164,
+          "receive": 0,
+          "ssl": 172.292,
+          "_queued": 0.417
+        },
+        "_requestTime": 1008199.742,
+        "_transferSize": 0,
+        "comment": "Error: net::ERR_ABORTED"
+      },
+      {
+        "cache": {},
+        "startedDateTime": "2020-08-08T13:43:57.042Z",
+        "_requestId": "59980.7",
+        "_initialPriority": "High",
+        "_priority": "High",
+        "pageref": "page_1",
+        "request": {
+          "method": "GET",
+          "url": "https://postman-echo.com/status/404",
+          "queryString": [],
+          "headersSize": -1,
+          "bodySize": 0,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Referer",
+              "value": "http://jsbin.testim.io/ces"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36"
+            }
+          ],
+          "httpVersion": "h2"
+        },
+        "time": 147.07500000000002,
+        "_initiator": {
+          "type": "script",
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "",
+                "scriptId": "5",
+                "url": "http://jsbin.testim.io/ces",
+                "lineNumber": 34,
+                "columnNumber": 2
+              }
+            ]
+          }
+        },
+        "_initiator_type": "script",
+        "_resourceType": "fetch",
+        "_initiator_line": 35,
+        "_initiator_column": 3,
+        "_initiator_function_name": "",
+        "_initiator_script_id": "5",
+        "response": {
+          "httpVersion": "h2",
+          "redirectURL": "",
+          "status": 404,
+          "statusText": "",
+          "content": {
+            "mimeType": "application/json",
+            "size": 0
+          },
+          "headersSize": -1,
+          "bodySize": -1,
+          "cookies": [],
+          "headers": [],
+          "_transferSize": 211,
+          "_error": "net::ERR_ABORTED"
+        },
+        "connection": "39",
+        "serverIPAddress": "",
+        "timings": {
+          "blocked": 0.321,
+          "dns": -1,
+          "connect": -1,
+          "send": 0.163,
+          "wait": 146.591,
+          "receive": 0,
+          "ssl": -1,
+          "_queued": 0.441
+        },
+        "_requestTime": 1008200.822,
+        "_transferSize": 0,
+        "comment": "Error: net::ERR_ABORTED"
+      },
+      {
+        "cache": {},
+        "startedDateTime": "2020-08-08T13:43:58.112Z",
+        "_requestId": "59980.8",
+        "_initialPriority": "High",
+        "_priority": "High",
+        "pageref": "page_1",
+        "request": {
+          "method": "POST",
+          "url": "https://postman-echo.com/post",
+          "queryString": [],
+          "headersSize": -1,
+          "bodySize": 0,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Referer",
+              "value": "http://jsbin.testim.io/ces"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36"
+            }
+          ],
+          "httpVersion": "h2"
+        },
+        "time": 145.54500000000002,
+        "_initiator": {
+          "type": "script",
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "",
+                "scriptId": "5",
+                "url": "http://jsbin.testim.io/ces",
+                "lineNumber": 43,
+                "columnNumber": 2
+              }
+            ]
+          }
+        },
+        "_initiator_type": "script",
+        "_resourceType": "fetch",
+        "_initiator_line": 44,
+        "_initiator_column": 3,
+        "_initiator_function_name": "",
+        "_initiator_script_id": "5",
+        "response": {
+          "httpVersion": "h2",
+          "redirectURL": "",
+          "status": 200,
+          "statusText": "",
+          "content": {
+            "mimeType": "application/json",
+            "size": 0
+          },
+          "headersSize": -1,
+          "bodySize": -1,
+          "cookies": [],
+          "headers": [],
+          "_transferSize": 217,
+          "_error": "net::ERR_ABORTED"
+        },
+        "connection": "39",
+        "serverIPAddress": "",
+        "timings": {
+          "blocked": 0.297,
+          "dns": -1,
+          "connect": -1,
+          "send": 0.198,
+          "wait": 145.05,
+          "receive": 0,
+          "ssl": -1,
+          "_queued": 1.124
+        },
+        "_requestTime": 1008201.892,
+        "_transferSize": 0,
+        "comment": "Error: net::ERR_ABORTED"
+      },
+      {
+        "cache": {},
+        "startedDateTime": "2020-08-08T13:43:59.191Z",
+        "_requestId": "59980.9",
+        "_initialPriority": "High",
+        "_priority": "High",
+        "pageref": "page_1",
+        "request": {
+          "method": "POST",
+          "url": "https://postman-echo.com/status/404",
+          "queryString": [],
+          "headersSize": -1,
+          "bodySize": 0,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "Referer",
+              "value": "http://jsbin.testim.io/ces"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36"
+            }
+          ],
+          "httpVersion": "h2"
+        },
+        "time": 153.048,
+        "_initiator": {
+          "type": "script",
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "",
+                "scriptId": "5",
+                "url": "http://jsbin.testim.io/ces",
+                "lineNumber": 39,
+                "columnNumber": 2
+              }
+            ]
+          }
+        },
+        "_initiator_type": "script",
+        "_resourceType": "fetch",
+        "_initiator_line": 40,
+        "_initiator_column": 3,
+        "_initiator_function_name": "",
+        "_initiator_script_id": "5",
+        "response": {
+          "httpVersion": "h2",
+          "redirectURL": "",
+          "status": 404,
+          "statusText": "",
+          "content": {
+            "mimeType": "",
+            "size": 0
+          },
+          "headersSize": -1,
+          "bodySize": -1,
+          "cookies": [],
+          "headers": [
+            {
+              "name": "status",
+              "value": "404"
+            },
+            {
+              "name": "date",
+              "value": "Sat, 08 Aug 2020 13:43:59 GMT"
+            }
+          ],
+          "_transferSize": 131,
+          "_error": "net::ERR_ABORTED"
+        },
+        "connection": "39",
+        "serverIPAddress": "",
+        "timings": {
+          "blocked": 0.253,
+          "dns": -1,
+          "connect": -1,
+          "send": 0.174,
+          "wait": 152.621,
+          "receive": 0,
+          "ssl": -1,
+          "_queued": 0.353
+        },
+        "_requestTime": 1008202.971,
+        "_transferSize": 0,
+        "comment": "Error: net::ERR_ABORTED"
+      }
+    ]
+  }
+}

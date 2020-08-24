@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the jUnit reporter for cloud executions generates a report with failed tests if a test failed 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\" standalone=\\"yes\\"?><testsuites disabled='0'>	<testsuite name=\\"some test\\" tests=\\"0\\" failure=\\"0\\" failures=\\"0\\" timestamp=\\"Thu, 01 Jan 1970 00:00:00 GMT\\">
+                 
+             </testsuite>
+         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/screenplay/run/1</system-out>
+    </testsuites>"
+`;
+
+exports[`the jUnit reporter for cloud executions generates a report with one test if the execution contains a single test 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\" standalone=\\"yes\\"?><testsuites disabled='0'>	<testsuite name=\\"some test\\" tests=\\"0\\" failure=\\"0\\" failures=\\"0\\" timestamp=\\"Thu, 01 Jan 1970 00:00:00 GMT\\">
+                 
+             </testsuite>
+         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/screenplay/run/1</system-out>
+    </testsuites>"
+`;
+
+exports[`the jUnit reporter for cloud executions generates a report with several tests if the execution contains several tests 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\" standalone=\\"yes\\"?><testsuites disabled='0'>	<testsuite name=\\"some test\\" tests=\\"0\\" failure=\\"0\\" failures=\\"0\\" timestamp=\\"Thu, 01 Jan 1970 00:00:00 GMT\\">
+                 
+             </testsuite>
+         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/screenplay/run/1</system-out>
+    </testsuites>"
+`;
+
+exports[`the jUnit reporter for cloud executions generates an empty report if there are no tests 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\" standalone=\\"yes\\"?><testsuites disabled='0'>
+         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/screenplay/run/1</system-out>
+    </testsuites>"
+`;

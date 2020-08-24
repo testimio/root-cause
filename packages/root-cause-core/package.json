@@ -1,0 +1,100 @@
+{
+  "name": "@testim/root-cause-core",
+  "version": "0.0.6",
+  "description": "Core component of Testim Root Cause",
+  "main": "index",
+  "typesVersions": {
+    "<3.8": {
+      "*": [
+        "ts3.4/*"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "bin": {
+    "root-cause": "lib/cli.js",
+    "rc": "lib/cli.js"
+  },
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "prepublishOnly": "./scripts/prepublishOnly.sh",
+    "test": "jest",
+    "generate-settings-json-schema": "npx ts-json-schema-generator -e all --no-type-check -t PossibleUserSettings -p lib/userSettings/interfaces.ts -o lib/userSettings/schemas.json"
+  },
+  "author": "testim.io <dev@testim.io>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/testimio/root-cause.git"
+  },
+  "bugs": {
+    "url": "https://github.com/testimio/root-cause/issues"
+  },
+  "homepage": "https://help.testim.io/docs/testim-root-cause-overview",
+  "dependencies": {
+    "abort-controller": "^3.0.0",
+    "ajv": "^6.12.3",
+    "better-ajv-errors": "^0.6.7",
+    "chalk": "^4.1.0",
+    "chrome-har": "git+https://github.com/testimio/chrome-har.git#v0.11.3-testim",
+    "commander": "^5.1.0",
+    "cors": "^2.8.5",
+    "cosmiconfig": "^7.0.0",
+    "debug": "^4.1.1",
+    "escape-string-regexp": "^4.0.0",
+    "express": "^4.17.1",
+    "form-data": "^3.0.0",
+    "fs-extra": "^9.0.0",
+    "glob": "^7.1.6",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.0",
+    "open": "^7.0.4",
+    "ora": "^4.0.4",
+    "p-filter": "^2.1.0",
+    "p-map": "^4.0.0",
+    "prompts": "^2.3.2",
+    "untildify": "^4.0.0",
+    "uuid": "^8.2.0",
+    "yaml": "^1.10.0"
+  },
+  "peerDependencies": {
+    "playwright": ">= 1.1.1 < 2",
+    "puppeteer": "^3.0.4 | ^4.0.0 | ^5.0.0"
+  },
+  "devDependencies": {
+    "@jest/reporters": "^26.2.2",
+    "@jest/types": "^26.0.1",
+    "@testim/root-cause-types": "^0.0.6",
+    "@testim/testim-cli": "^3.72.0",
+    "@types/concurrently": "^5.2.1",
+    "@types/cors": "^2.8.6",
+    "@types/debug": "^4.1.5",
+    "@types/express": "^4.17.6",
+    "@types/fs-extra": "^9.0.1",
+    "@types/har-format": "^1.2.4",
+    "@types/jest": "^26.0.8",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/ms": "^0.7.31",
+    "@types/node": "^12",
+    "@types/node-fetch": "^2.5.7",
+    "@types/ora": "^3.2.0",
+    "@types/p-map": "^2.0.0",
+    "@types/prompts": "^2.0.8",
+    "@types/uuid": "^8.0.0",
+    "concurrently": "^5.2.0",
+    "devtools-protocol": "^0.0.772852",
+    "downlevel-dts": "^0.5.0",
+    "fs-extra": "^9.0.0",
+    "jest": "^26.2.2",
+    "ms": "^2.1.2",
+    "pretty-format": "^26.1.0",
+    "strip-ansi": "^6.0.0",
+    "ts-json-schema-generator": "^0.70.2",
+    "typescript": "^3.9.3"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  }
+}

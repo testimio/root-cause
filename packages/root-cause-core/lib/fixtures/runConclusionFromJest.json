@@ -1,0 +1,35 @@
+{
+    "runId": "1594896453149",
+    "timestamp": 1594896454398,
+    "tests": [
+      {
+        "id": "34428e5e621b9df3045a8e67e059f74d",
+        "suiteFilePath": "with-jest-puppeteer/example1.test.ts",
+        "name": "Go to wikipedia and fail",
+        "fullName": "ui tests Go to wikipedia and fail",
+        "success": false,
+        "reason": "Error: No node found for selector: #none-exiting-element"
+      },
+      {
+        "id": "413b3012dacaf41a19d96fb54a5a4807",
+        "suiteFilePath": "with-playwright-manual-integration/click-click-reset-file-1.test.ts",
+        "name": "Test two",
+        "fullName": "Click Click reset counter tests file 1 Test two",
+        "success": true
+      },
+      {
+        "id": "433d29e23e0c0fcf4fce51e6bc612a74",
+        "suiteFilePath": "with-playwright-manual-integration/click-click-reset-file-yellow.test.ts",
+        "name": "Test one",
+        "fullName": "yellow Click Click reset counter tests file 2 Test one",
+        "success": true
+      },
+      {
+        "id": "7eac42e9892b9cd477508b4207c8fe6e",
+        "suiteFilePath": "with-jest-puppeteer/example1.test.ts",
+        "name": "Wikipedia talk page test",
+        "fullName": "ui tests Wikipedia talk page test",
+        "success": true
+      }
+    ]
+  }

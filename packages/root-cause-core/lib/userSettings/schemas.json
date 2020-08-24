@@ -1,0 +1,71 @@
+{
+  "$ref": "#/definitions/PossibleUserSettings",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "FeaturesSettings": {
+      "additionalProperties": false,
+      "properties": {
+        "console": {
+          "default": true,
+          "description": "Record the browser's console",
+          "type": "boolean"
+        },
+        "jestAssertions": {
+          "description": "When using jest integration, record jest expect calls as assertion steps",
+          "type": "boolean"
+        },
+        "networkLogs": {
+          "description": "Record network activity, make it available in the UI and as har file",
+          "type": "boolean"
+        },
+        "screenshots": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ScreenshotsSettings"
+            }
+          ],
+          "description": "Take screenshot for every step\n\nDefault to true, with jpeg 85"
+        }
+      },
+      "type": "object"
+    },
+    "PossibleUserSettings": {
+      "additionalProperties": false,
+      "properties": {
+        "features": {
+          "$ref": "#/definitions/FeaturesSettings"
+        }
+      },
+      "type": "object"
+    },
+    "ScreenshotsSettings": {
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "enum": [
+            "png",
+            "jpeg"
+          ],
+          "type": "string"
+        },
+        "fullPage": {
+          "default": false,
+          "description": "When true, takes a screenshot of the full scrollable page, instead of the currently visible",
+          "type": "boolean"
+        },
+        "quality": {
+          "default": 85,
+          "description": "Quality of jpeg image, from 1 to 100",
+          "type": "number"
+        }
+      },
+      "required": [
+        "format"
+      ],
+      "type": "object"
+    }
+  }
+}

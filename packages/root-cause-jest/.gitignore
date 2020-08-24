@@ -1,0 +1,6 @@
+*.js
+!jest.config.js
+!jest-integration.config.js
+*.d.ts
+*.tsbuildinfo
+ts3.4

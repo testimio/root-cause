@@ -1,0 +1,15 @@
+{
+  "name": "@testim/internal-self-tests-helpers",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index",
+  "devDependencies": {
+    "@types/har-format": "^1.2.4",
+    "@types/jest": "^26.0.10",
+    "@types/node": "^12",
+    "escape-string-regexp": "^4.0.0",
+    "pretty-format": "^26.4.0",
+    "strip-ansi": "^6.0.0",
+    "typescript": "^3.9.7"
+  }
+}

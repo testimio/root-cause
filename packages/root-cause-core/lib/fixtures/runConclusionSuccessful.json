@@ -1,0 +1,18 @@
+{
+    "runId": "no_run_id",
+    "timestamp": 1592823688574,
+    "tests": [
+      {
+        "id": "6cd724f6d8c2ec01b4aa56f98b635ec6",
+        "name": "test name",
+        "fullName": "test full name",
+        "success": true
+      },
+      {
+        "id": "6cd724f6d8c2ec01b4aa56f98b635ec7",
+        "name": "other name",
+        "fullName": "test full name ",
+        "success": true
+      }
+    ]
+  }

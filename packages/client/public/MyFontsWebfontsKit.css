@@ -1,0 +1,52 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3809522, 2019-09-20T08:20:30-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Mont-Regular by Fontfabric
+ * URL: https://www.myfonts.com/fonts/font-fabric/mont/regular/
+ * 
+ * Webfont: Mont-SemiBold by Fontfabric
+ * URL: https://www.myfonts.com/fonts/font-fabric/mont/semi-bold/
+ * 
+ * Webfont: Mont-Light by Fontfabric
+ * URL: https://www.myfonts.com/fonts/font-fabric/mont/light/
+ * 
+ * Webfont: Mont-Book by Fontfabric
+ * URL: https://www.myfonts.com/fonts/font-fabric/mont/book/
+ * 
+ * Webfont: Mont-Bold by Fontfabric
+ * URL: https://www.myfonts.com/fonts/font-fabric/mont/bold/
+ * 
+ * 
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3809522
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Modern and elegant sans serif font family.
+ * 
+ * © 2019 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/3a20f2");
+
+  
+@font-face {font-family: 'Mont-Regular';src: url('webfonts/3A20F2_0_0.eot');src: url('webfonts/3A20F2_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A20F2_0_0.woff2') format('woff2'),url('webfonts/3A20F2_0_0.woff') format('woff'),url('webfonts/3A20F2_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Mont-SemiBold';src: url('webfonts/3A20F2_1_0.eot');src: url('webfonts/3A20F2_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A20F2_1_0.woff2') format('woff2'),url('webfonts/3A20F2_1_0.woff') format('woff'),url('webfonts/3A20F2_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Mont-Light';src: url('webfonts/3A20F2_2_0.eot');src: url('webfonts/3A20F2_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A20F2_2_0.woff2') format('woff2'),url('webfonts/3A20F2_2_0.woff') format('woff'),url('webfonts/3A20F2_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Mont-Book';src: url('webfonts/3A20F2_3_0.eot');src: url('webfonts/3A20F2_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A20F2_3_0.woff2') format('woff2'),url('webfonts/3A20F2_3_0.woff') format('woff'),url('webfonts/3A20F2_3_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Mont-Bold';src: url('webfonts/3A20F2_4_0.eot');src: url('webfonts/3A20F2_4_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A20F2_4_0.woff2') format('woff2'),url('webfonts/3A20F2_4_0.woff') format('woff'),url('webfonts/3A20F2_4_0.ttf') format('truetype');}
+ 

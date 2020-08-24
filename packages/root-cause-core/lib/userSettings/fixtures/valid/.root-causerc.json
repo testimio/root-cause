@@ -1,0 +1,7 @@
+{
+    "features": {
+        "screenshots": false,
+        "networkLogs": true,
+        "jestAssertions": true
+    }
+}

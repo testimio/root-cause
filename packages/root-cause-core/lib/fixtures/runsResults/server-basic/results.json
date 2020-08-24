@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "systemInfo": {
+      "pageViewport": {
+        "width": 800,
+        "height": 600
+      },
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36",
+      "browserVersion": "HeadlessChrome/83.0.4103.0",
+      "modelName": "MacBookPro",
+      "modelVersion": "15.2",
+      "browserPlatform": "MacIntel"
+    }
+  },
+  "steps": [
+    {
+      "index": 1,
+      "startTimestamp": 1591015448386,
+      "name": "1.page-goto",
+      "screenshot": "1.page-goto.png",
+      "consoleEntries": [
+        {
+          "level": "log",
+          "text": "Injected log for:  goto",
+          "line": 2,
+          "column": 24,
+          "url": "__puppeteer_evaluation_script__",
+          "timestamp": 1591015448398
+        }
+      ],
+      "unhandledExceptions": [
+        {
+          "message": "Error: Injected error for: goto\n    at __puppeteer_evaluation_script__:3:23",
+          "timestamp": 1591015448399
+        }
+      ],
+      "endTimestamp": 1591015450013
+    },
+    {
+      "index": 2,
+      "startTimestamp": 1591015450013,
+      "name": "2.page-click",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 40.453125,
+        "height": 21,
+        "top": 8,
+        "right": 48.453125,
+        "bottom": 29,
+        "left": 8
+      },
+      "screenshot": "2.page-click.png",
+      "consoleEntries": [
+        {
+          "level": "log",
+          "text": "Injected log for:  click",
+          "line": 2,
+          "column": 24,
+          "url": "__puppeteer_evaluation_script__",
+          "timestamp": 1591015450025
+        }
+      ],
+      "unhandledExceptions": [
+        {
+          "message": "Error: Injected error for: click\n    at __puppeteer_evaluation_script__:3:23",
+          "timestamp": 1591015450025
+        }
+      ],
+      "endTimestamp": 1591015450269
+    },
+    {
+      "index": 3,
+      "startTimestamp": 1591015450269,
+      "name": "3.page-click",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 40.453125,
+        "height": 21,
+        "top": 8,
+        "right": 48.453125,
+        "bottom": 29,
+        "left": 8
+      },
+      "screenshot": "3.page-click.png",
+      "consoleEntries": [
+        {
+          "level": "log",
+          "text": "Injected log for:  click",
+          "line": 2,
+          "column": 24,
+          "url": "__puppeteer_evaluation_script__",
+          "timestamp": 1591015450283
+        }
+      ],
+      "unhandledExceptions": [
+        {
+          "message": "Error: injected error\n    at __puppeteer_evaluation_script__:3:23",
+          "timestamp": 1591015450271
+        },
+        {
+          "message": "Error: Injected error for: click\n    at __puppeteer_evaluation_script__:3:23",
+          "timestamp": 1591015450283
+        }
+      ],
+      "endTimestamp": 1591015450505
+    },
+    {
+      "index": 4,
+      "startTimestamp": 1591015450506,
+      "name": "4.page-click",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 40.453125,
+        "height": 21,
+        "top": 8,
+        "right": 48.453125,
+        "bottom": 29,
+        "left": 8
+      },
+      "screenshot": "4.page-click.png",
+      "consoleEntries": [
+        {
+          "level": "log",
+          "text": "Injected log for:  click",
+          "line": 2,
+          "column": 24,
+          "url": "__puppeteer_evaluation_script__",
+          "timestamp": 1591015450518
+        }
+      ],
+      "unhandledExceptions": [
+        {
+          "message": "Error: Injected error for: click\n    at __puppeteer_evaluation_script__:3:23",
+          "timestamp": 1591015450518
+        }
+      ],
+      "endTimestamp": 1591015450740
+    },
+    {
+      "index": 5,
+      "startTimestamp": 1591015450740,
+      "name": "5.page-click",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 40.453125,
+        "height": 21,
+        "top": 8,
+        "right": 48.453125,
+        "bottom": 29,
+        "left": 8
+      },
+      "screenshot": "5.page-click.png",
+      "consoleEntries": [
+        {
+          "level": "warning",
+          "text": "injected console",
+          "line": 2,
+          "column": 24,
+          "url": "__puppeteer_evaluation_script__",
+          "timestamp": 1591015450742
+        },
+        {
+          "level": "log",
+          "text": "Injected log for:  click",
+          "line": 2,
+          "column": 24,
+          "url": "__puppeteer_evaluation_script__",
+          "timestamp": 1591015450753
+        }
+      ],
+      "unhandledExceptions": [
+        {
+          "message": "Error: Injected error for: click\n    at __puppeteer_evaluation_script__:3:23",
+          "timestamp": 1591015450753
+        }
+      ],
+      "endTimestamp": 1591015450971
+    },
+    {
+      "index": 6,
+      "startTimestamp": 1591015450971,
+      "name": "6.page-$",
+      "rect": {
+        "x": 8,
+        "y": 29,
+        "width": 784,
+        "height": 18,
+        "top": 29,
+        "right": 792,
+        "bottom": 47,
+        "left": 8
+      },
+      "screenshot": "6.page-$.png",
+      "consoleEntries": [
+        {
+          "level": "log",
+          "text": "Injected log for:  $",
+          "line": 2,
+          "column": 24,
+          "url": "__puppeteer_evaluation_script__",
+          "timestamp": 1591015450982
+        }
+      ],
+      "unhandledExceptions": [
+        {
+          "message": "Error: Injected error for: $\n    at __puppeteer_evaluation_script__:3:23",
+          "timestamp": 1591015450982
+        }
+      ],
+      "endTimestamp": 1591015451196
+    },
+    {
+      "index": 7,
+      "startTimestamp": 1591015451199,
+      "name": "7.page-click",
+      "rect": {
+        "x": 52.453125,
+        "y": 8,
+        "width": 50.828125,
+        "height": 21,
+        "top": 8,
+        "right": 103.28125,
+        "bottom": 29,
+        "left": 52.453125
+      },
+      "screenshot": "7.page-click.png",
+      "consoleEntries": [
+        {
+          "level": "log",
+          "text": "Injected log for:  click",
+          "line": 2,
+          "column": 24,
+          "url": "__puppeteer_evaluation_script__",
+          "timestamp": 1591015451210
+        }
+      ],
+      "unhandledExceptions": [
+        {
+          "message": "Error: Injected error for: click\n    at __puppeteer_evaluation_script__:3:23",
+          "timestamp": 1591015451212
+        }
+      ],
+      "endTimestamp": 1591015451438
+    }
+  ]
+}

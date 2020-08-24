@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`harEntriesBetweenTimes First step from fixture goto http://jsbin.testim.io/ces 1`] = `
+Array [
+  Object {
+    "method": "GET",
+    "startTime": "2020-08-08T13:43:54.128Z",
+    "status": 200,
+    "statusText": "OK",
+    "url": "http://jsbin.testim.io/ces",
+  },
+  Object {
+    "method": "GET",
+    "startTime": "2020-08-08T13:43:54.741Z",
+    "status": 200,
+    "statusText": "OK",
+    "url": "http://jsbin-static.testim.io/js/render/edit.js?4.1.4",
+  },
+  Object {
+    "method": "GET",
+    "startTime": "2020-08-08T13:43:55.367Z",
+    "status": 200,
+    "statusText": "OK",
+    "url": "http://jsbin-static.testim.io/css/edit.css",
+  },
+  Object {
+    "method": "GET",
+    "startTime": "2020-08-08T13:43:55.367Z",
+    "status": 200,
+    "statusText": "OK",
+    "url": "http://jsbin-static.testim.io/images/favicon.png",
+  },
+]
+`;
+
+exports[`harEntriesBetweenTimes click [data-job=GET_404] 1`] = `
+Array [
+  Object {
+    "method": "GET",
+    "startTime": "2020-08-08T13:43:57.042Z",
+    "status": 404,
+    "statusText": "",
+    "url": "https://postman-echo.com/status/404",
+  },
+]
+`;
+
+exports[`harEntriesBetweenTimes click [data-job=GET_OK] 1`] = `
+Array [
+  Object {
+    "method": "GET",
+    "startTime": "2020-08-08T13:43:55.962Z",
+    "status": 200,
+    "statusText": "",
+    "url": "https://postman-echo.com/status/200",
+  },
+]
+`;
+
+exports[`harEntriesBetweenTimes click [data-job=POST_404] 1`] = `
+Array [
+  Object {
+    "method": "POST",
+    "startTime": "2020-08-08T13:43:59.191Z",
+    "status": 404,
+    "statusText": "",
+    "url": "https://postman-echo.com/status/404",
+  },
+]
+`;
+
+exports[`harEntriesBetweenTimes click [data-job=POST_OK] 1`] = `
+Array [
+  Object {
+    "method": "POST",
+    "startTime": "2020-08-08T13:43:58.112Z",
+    "status": 200,
+    "statusText": "",
+    "url": "https://postman-echo.com/post",
+  },
+]
+`;

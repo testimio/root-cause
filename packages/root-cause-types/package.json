@@ -1,0 +1,33 @@
+{
+  "name": "@testim/root-cause-types",
+  "version": "0.0.6",
+  "author": "Testim.io <dev@testim.io>",
+  "main": "index",
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/testimio/root-cause.git"
+  },
+  "bugs": {
+    "url": "https://github.com/testimio/root-cause/issues"
+  },
+  "homepage": "https://help.testim.io/docs/testim-root-cause-overview",
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  },
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "*.md",
+    "package.json",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,6 @@
+.infoTab { font-family: 'Source Code Pro', monospace;white-space: pre; }
+.infoTab .cursors { color:red;  }
+.infoTab .lineNumbers { color:grey;  }
+.infoTab .theCode { overflow: auto;  }
+.infoTab .stackTrace { color:grey; white-space: normal;  }
+.infoTab .selected { background: #fcdfe2; }

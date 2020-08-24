@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig",
+    "compilerOptions": {
+      "emitDeclarationOnly": true,
+      "noEmit": false,
+      "declaration": true,
+      "outDir": "./packageToPublish",
+      "isolatedModules": false,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "moduleResolution": "node"
+    },
+    "include": ["src/main.ts", "src/react-app-env.d.ts"],
+  }

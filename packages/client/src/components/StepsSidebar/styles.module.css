@@ -1,0 +1,35 @@
+
+
+
+.stepItem { height: 122px; width: 224px; position: relative; cursor: pointer; margin-bottom: 3px; }
+.stepItem:hover .border { outline: solid 1px black; }
+.stepItem:hover .title { outline: solid 1px black; }
+.stepItem:hover .stepIcon { border: solid 1px black; }
+
+.stepItem .border { position: absolute; left: 31px; top: 9px; bottom: 12px; right: 15px; outline: solid 1px #D8DAE5; contain: layout; }
+.stepItem .contents { position: absolute; left: 31px; top: 9px; bottom: 53px; right: 15px; display: flex; align-items: center; font-size: 14px; contain: layout;}
+
+/* todo(benji) padding: 8px 10px 0; that I removed from .contents) */
+.stepItem .title { position: absolute; left: 31px; bottom: 12px; right: 15px; height: 40px; outline: solid 1px #D8DAE5; display: flex; align-items: center; padding-left: 13px; padding-right: 13px; font-size: 12px; background: white; }
+.stepItem .title span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stepItem .stepIcon { left: 20px; position: absolute; z-index: 1; box-sizing: border-box; height: 35px; width: 35px; border: 1px solid #ffffff; border-radius: 100px; background: linear-gradient(150.8deg, #9decc5 0%, #39c0b0 100%); display: flex; align-items: center; justify-content: center; }
+
+.stepItem.stepFailed .stepIcon { background: #ef6478; }
+
+.stepItem.selected { background-color: #eef3ff; }
+.stepItem.selected .border { outline: 2px solid #3d5afe; }
+.stepItem.selected .title { outline: 2px solid #3d5afe; }
+.stepItem.selected .stepIcon { border: 2px solid #3d5afe; }
+
+.sideBar { width: 244px; position: absolute; left:0; top: 51px; /* bottom: 50px; */ bottom: 0; border-right: solid 1px #D8DAE5; padding-top:20px; overflow-y: scroll; padding-bottom: 100px; }
+
+.highlight { display: inline-block; position: absolute; width: 178px; height: 60px; left: 31px; top: 9px; box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.2); }
+
+.thumbnailContainer { width: 100%; height: 100%; overflow: hidden; }
+
+.arrowIconSvg { background-image: url("../../globalAssets/arrow.svg"); width: 8px; height: 12px; }
+.chromeIconSvg { background-image: url("../../globalAssets/chrome.svg"); width: 19px; height: 19px; }
+.clickIconSvg { background-image: url("../../globalAssets/click.svg"); width: 11px; height: 15px; }
+.keyboardIconSvg { background-image: url("../../globalAssets/keyboard.svg"); width: 17px; height: 14px; }
+.keyboardIconSvg { background-image: url("../../globalAssets/keyboard.svg"); width: 17px; height: 14px; }
+.assertionIconSvg { background-image: url("../../globalAssets/validation.svg"); width: 18px; height: 18px; background-size: 100% 100%; }

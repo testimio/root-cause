@@ -1,0 +1,230 @@
+{
+  "metadata": {
+    "testName": "with har record",
+    "testFullName": "with har record with har record",
+    "timestamp": 1596894233825,
+    "endedTimestamp": 1596894240007,
+    "systemInfo": {
+      "automationFramework": "puppeteer",
+      "browser": "chromium",
+      "pageViewport": {
+        "width": 800,
+        "height": 600
+      },
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/83.0.4103.0 Safari/537.36",
+      "browserVersion": "HeadlessChrome/83.0.4103.0",
+      "modelName": "MacBookPro",
+      "modelVersion": "11.3",
+      "browserPlatform": "MacIntel"
+    },
+    "fileName": "/Users/bnaya/dev/clients/testim.io/dev-first/screenplay-tree-2/packages/screenplay/src/assortedHooks.ts",
+    "branchInfo": {
+      "branchName": "TES-6362-download-har-per-step",
+      "commitHash": "04ea745b5dfccc297515b2958a040c404fa8524d"
+    },
+    "hasNetworkLogs": true,
+    "testEndStatus": {
+      "success": true
+    }
+  },
+  "steps": [
+    {
+      "index": 1,
+      "startTimestamp": 1596894233893,
+      "codeError": {
+        "errorLines": [
+          "        } = attachController;",
+          "        // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test",
+          "        // Still, it might be flaky",
+          "        await playedPage.goto('http://jsbin.testim.io/ces');",
+          "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });"
+        ],
+        "fromRowNumber": 85,
+        "toRowNumber": 91,
+        "row": 88,
+        "column": 9
+      },
+      "screenshot": "1.page-goto.png",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "fnName": "goto",
+      "text": "http://jsbin.testim.io/ces",
+      "endTimestamp": 1596894235698,
+      "name": "goto \"http://jsbin.testim.io/ces\""
+    },
+    {
+      "index": 2,
+      "startTimestamp": 1596894235700,
+      "codeError": {
+        "errorLines": [
+          "        // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test",
+          "        // Still, it might be flaky",
+          "        await playedPage.goto('http://jsbin.testim.io/ces');",
+          "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_404]', { delay: 800 });"
+        ],
+        "fromRowNumber": 86,
+        "toRowNumber": 92,
+        "row": 89,
+        "column": 9
+      },
+      "rect": {
+        "x": 8,
+        "y": 79.875,
+        "width": 66.375,
+        "height": 21,
+        "top": 79.875,
+        "right": 74.375,
+        "bottom": 100.875,
+        "left": 8,
+        "screenWidth": 800,
+        "screenHeight": 600,
+        "devicePixelRatio": 1
+      },
+      "screenshot": "2.page-click.png",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "selector": "[data-job=GET_OK]",
+      "fnName": "click",
+      "endTimestamp": 1596894236792,
+      "name": "click \"[data-job=GET_OK]\""
+    },
+    {
+      "index": 3,
+      "startTimestamp": 1596894236792,
+      "codeError": {
+        "errorLines": [
+          "        // Still, it might be flaky",
+          "        await playedPage.goto('http://jsbin.testim.io/ces');",
+          "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_404]', { delay: 800 });",
+          ""
+        ],
+        "fromRowNumber": 87,
+        "toRowNumber": 93,
+        "row": 90,
+        "column": 9
+      },
+      "rect": {
+        "x": 78.375,
+        "y": 79.875,
+        "width": 69.359375,
+        "height": 21,
+        "top": 79.875,
+        "right": 147.734375,
+        "bottom": 100.875,
+        "left": 78.375,
+        "screenWidth": 800,
+        "screenHeight": 600,
+        "devicePixelRatio": 1
+      },
+      "screenshot": "3.page-click.png",
+      "consoleEntries": [
+        {
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://postman-echo.com/status/404",
+          "timestamp": 1596894237193,
+          "args": []
+        }
+      ],
+      "unhandledExceptions": [],
+      "selector": "[data-job=GET_404]",
+      "fnName": "click",
+      "endTimestamp": 1596894237846,
+      "name": "click \"[data-job=GET_404]\""
+    },
+    {
+      "index": 4,
+      "startTimestamp": 1596894237847,
+      "codeError": {
+        "errorLines": [
+          "        await playedPage.goto('http://jsbin.testim.io/ces');",
+          "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_404]', { delay: 800 });",
+          "",
+          "        await endTest({"
+        ],
+        "fromRowNumber": 88,
+        "toRowNumber": 94,
+        "row": 91,
+        "column": 9
+      },
+      "rect": {
+        "x": 151.734375,
+        "y": 79.875,
+        "width": 75.265625,
+        "height": 21,
+        "top": 79.875,
+        "right": 227,
+        "bottom": 100.875,
+        "left": 151.734375,
+        "screenWidth": 800,
+        "screenHeight": 600,
+        "devicePixelRatio": 1
+      },
+      "screenshot": "4.page-click.png",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "selector": "[data-job=POST_OK]",
+      "fnName": "click",
+      "endTimestamp": 1596894238920,
+      "name": "click \"[data-job=POST_OK]\""
+    },
+    {
+      "index": 5,
+      "startTimestamp": 1596894238921,
+      "codeError": {
+        "errorLines": [
+          "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_404]', { delay: 800 });",
+          "",
+          "        await endTest({",
+          "            success: true,"
+        ],
+        "fromRowNumber": 89,
+        "toRowNumber": 95,
+        "row": 92,
+        "column": 9
+      },
+      "rect": {
+        "x": 231,
+        "y": 79.875,
+        "width": 78.25,
+        "height": 21,
+        "top": 79.875,
+        "right": 309.25,
+        "bottom": 100.875,
+        "left": 231,
+        "screenWidth": 800,
+        "screenHeight": 600,
+        "devicePixelRatio": 1
+      },
+      "screenshot": "5.page-click.png",
+      "consoleEntries": [
+        {
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://postman-echo.com/status/404",
+          "timestamp": 1596894239346,
+          "args": []
+        }
+      ],
+      "unhandledExceptions": [],
+      "selector": "[data-job=POST_404]",
+      "fnName": "click",
+      "endTimestamp": 1596894239996,
+      "name": "click \"[data-job=POST_404]\""
+    }
+  ]
+}

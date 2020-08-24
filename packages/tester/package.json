@@ -1,0 +1,21 @@
+{
+  "name": "tester",
+  "version": "0.0.3",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "test": "./testers-sanity-run.sh"
+  },
+  "author": "",
+  "dependencies": {
+    "@testim/root-cause": "*",
+    "playwright": "^1.2.1",
+    "puppeteer": "^5.0.0",
+    "ts-node": "^8.10.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.5"
+  }
+}

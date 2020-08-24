@@ -1,0 +1,461 @@
+{
+    "metadata": {
+      "testName": "/Users/bnaya/dev/clients/testim.io/dev-first/screenplay/packages/tester/launchFunctionTesterLogsPage.ts",
+      "testFullName": "1594203491368-/Users/bnaya/dev/clients/testim.io/dev-first/screenplay/packages/tester/launchFunctionTesterLogsPage.ts",
+      "systemInfo": {
+        "automationFramework": "playwright",
+        "browser": "chromium",
+        "pageViewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4165.0 Safari/537.36",
+        "browserVersion": "N/A",
+        "modelName": "MacBookPro",
+        "modelVersion": "11.3",
+        "browserPlatform": "MacIntel"
+      },
+      "testEndStatus": {
+        "success": true
+      }
+    },
+    "steps": [
+      {
+        "index": 1,
+        "startTimestamp": 1594203491383,
+        "codeError": {
+          "errorLines": [
+            "        browserOptions: { browser: 'chromium', headless: false },",
+            "    },",
+            "    async (page) => {",
+            "        await page.goto('http://jsbin.testim.io/tog/1');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forwarning');",
+            "        await page.click('#forlog');"
+          ],
+          "fromRowNumber": 8,
+          "toRowNumber": 14,
+          "row": 11,
+          "column": 20
+        },
+        "screenshot": "1.page-goto.png",
+        "consoleEntries": [],
+        "unhandledExceptions": [],
+        "fnName": "goto",
+        "text": "http://jsbin.testim.io/tog/1",
+        "endTimestamp": 1594203493041,
+        "name": "goto \"http://jsbin.testim.io/tog/1\""
+      },
+      {
+        "index": 2,
+        "startTimestamp": 1594203493042,
+        "codeError": {
+          "errorLines": [
+            "    },",
+            "    async (page) => {",
+            "        await page.goto('http://jsbin.testim.io/tog/1');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forwarning');",
+            "        await page.click('#forlog');",
+            "        await page.click('#forerror');"
+          ],
+          "fromRowNumber": 9,
+          "toRowNumber": 15,
+          "row": 12,
+          "column": 20
+        },
+        "rect": {
+          "x": 8,
+          "y": 8,
+          "width": 81.921875,
+          "height": 21,
+          "top": 8,
+          "right": 89.921875,
+          "bottom": 29,
+          "left": 8,
+          "screenWidth": 1280,
+          "screenHeight": 720,
+          "devicePixelRatio": 1
+        },
+        "screenshot": "2.page-click.png",
+        "consoleEntries": [],
+        "unhandledExceptions": [
+          {
+            "message": "Heya error",
+            "timestamp": 1594203493389,
+            "stack": "Error: Heya error\n    at makeError (http://jsbin.testim.io/tog/1:27:9)\n    at HTMLButtonElement.oneMoreStep (http://jsbin.testim.io/tog/1:49:5)"
+          }
+        ],
+        "selector": "#forerror",
+        "fnName": "click",
+        "endTimestamp": 1594203493389,
+        "name": "click \"#forerror\""
+      },
+      {
+        "index": 3,
+        "startTimestamp": 1594203493390,
+        "codeError": {
+          "errorLines": [
+            "    async (page) => {",
+            "        await page.goto('http://jsbin.testim.io/tog/1');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forwarning');",
+            "        await page.click('#forlog');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forviolation');"
+          ],
+          "fromRowNumber": 10,
+          "toRowNumber": 16,
+          "row": 13,
+          "column": 20
+        },
+        "rect": {
+          "x": 93.921875,
+          "y": 8,
+          "width": 101.453125,
+          "height": 21,
+          "top": 8,
+          "right": 195.375,
+          "bottom": 29,
+          "left": 93.921875,
+          "screenWidth": 1280,
+          "screenHeight": 720,
+          "devicePixelRatio": 1
+        },
+        "screenshot": "3.page-click.png",
+        "consoleEntries": [
+          {
+            "level": "warning",
+            "text": "Some warning here",
+            "line": 30,
+            "column": 10,
+            "url": "http://jsbin.testim.io/tog/1",
+            "timestamp": 1594203493720,
+            "args": [
+              "\"Some warning here\""
+            ]
+          }
+        ],
+        "unhandledExceptions": [],
+        "selector": "#forwarning",
+        "fnName": "click",
+        "endTimestamp": 1594203493721,
+        "name": "click \"#forwarning\""
+      },
+      {
+        "index": 4,
+        "startTimestamp": 1594203493721,
+        "codeError": {
+          "errorLines": [
+            "        await page.goto('http://jsbin.testim.io/tog/1');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forwarning');",
+            "        await page.click('#forlog');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forviolation');",
+            "        await page.click('#assertbad');"
+          ],
+          "fromRowNumber": 11,
+          "toRowNumber": 17,
+          "row": 14,
+          "column": 20
+        },
+        "rect": {
+          "x": 199.375,
+          "y": 8,
+          "width": 70.09375,
+          "height": 21,
+          "top": 8,
+          "right": 269.46875,
+          "bottom": 29,
+          "left": 199.375,
+          "screenWidth": 1280,
+          "screenHeight": 720,
+          "devicePixelRatio": 1
+        },
+        "screenshot": "4.page-click.png",
+        "consoleEntries": [
+          {
+            "level": "log",
+            "text": "Some console log here",
+            "line": 34,
+            "column": 10,
+            "url": "http://jsbin.testim.io/tog/1",
+            "timestamp": 1594203494017,
+            "args": [
+              "\"Some console log here\""
+            ]
+          }
+        ],
+        "unhandledExceptions": [],
+        "selector": "#forlog",
+        "fnName": "click",
+        "endTimestamp": 1594203494018,
+        "name": "click \"#forlog\""
+      },
+      {
+        "index": 5,
+        "startTimestamp": 1594203494019,
+        "codeError": {
+          "errorLines": [
+            "        await page.click('#forerror');",
+            "        await page.click('#forwarning');",
+            "        await page.click('#forlog');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forviolation');",
+            "        await page.click('#assertbad');",
+            "        await page.click('#sometable');"
+          ],
+          "fromRowNumber": 12,
+          "toRowNumber": 18,
+          "row": 15,
+          "column": 20
+        },
+        "rect": {
+          "x": 8,
+          "y": 8,
+          "width": 81.921875,
+          "height": 21,
+          "top": 8,
+          "right": 89.921875,
+          "bottom": 29,
+          "left": 8,
+          "screenWidth": 1280,
+          "screenHeight": 720,
+          "devicePixelRatio": 1
+        },
+        "screenshot": "5.page-click.png",
+        "consoleEntries": [],
+        "unhandledExceptions": [
+          {
+            "message": "Heya error",
+            "timestamp": 1594203494315,
+            "stack": "Error: Heya error\n    at makeError (http://jsbin.testim.io/tog/1:27:9)\n    at HTMLButtonElement.oneMoreStep (http://jsbin.testim.io/tog/1:49:5)"
+          }
+        ],
+        "selector": "#forerror",
+        "fnName": "click",
+        "endTimestamp": 1594203494316,
+        "name": "click \"#forerror\""
+      },
+      {
+        "index": 6,
+        "startTimestamp": 1594203494317,
+        "codeError": {
+          "errorLines": [
+            "        await page.click('#forwarning');",
+            "        await page.click('#forlog');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forviolation');",
+            "        await page.click('#assertbad');",
+            "        await page.click('#sometable');",
+            ""
+          ],
+          "fromRowNumber": 13,
+          "toRowNumber": 19,
+          "row": 16,
+          "column": 20
+        },
+        "rect": {
+          "x": 273.46875,
+          "y": 8,
+          "width": 101.21875,
+          "height": 21,
+          "top": 8,
+          "right": 374.6875,
+          "bottom": 29,
+          "left": 273.46875,
+          "screenWidth": 1280,
+          "screenHeight": 720,
+          "devicePixelRatio": 1
+        },
+        "screenshot": "6.page-click.png",
+        "consoleEntries": [],
+        "unhandledExceptions": [],
+        "selector": "#forviolation",
+        "fnName": "click",
+        "endTimestamp": 1594203495119,
+        "name": "click \"#forviolation\""
+      },
+      {
+        "index": 7,
+        "startTimestamp": 1594203495120,
+        "codeError": {
+          "errorLines": [
+            "        await page.click('#forlog');",
+            "        await page.click('#forerror');",
+            "        await page.click('#forviolation');",
+            "        await page.click('#assertbad');",
+            "        await page.click('#sometable');",
+            "",
+            "        await page.evaluate(() => {"
+          ],
+          "fromRowNumber": 14,
+          "toRowNumber": 20,
+          "row": 17,
+          "column": 20
+        },
+        "rect": {
+          "x": 378.6875,
+          "y": 8,
+          "width": 146.40625,
+          "height": 21,
+          "top": 8,
+          "right": 525.09375,
+          "bottom": 29,
+          "left": 378.6875,
+          "screenWidth": 1280,
+          "screenHeight": 720,
+          "devicePixelRatio": 1
+        },
+        "screenshot": "7.page-click.png",
+        "consoleEntries": [
+          {
+            "level": "assert",
+            "text": "the word is %s foo",
+            "line": 67,
+            "column": 10,
+            "url": "http://jsbin.testim.io/tog/1",
+            "timestamp": 1594203495417,
+            "args": [
+              "\"the word is %s\"",
+              "\"foo\""
+            ]
+          }
+        ],
+        "unhandledExceptions": [],
+        "selector": "#assertbad",
+        "fnName": "click",
+        "endTimestamp": 1594203495418,
+        "name": "click \"#assertbad\""
+      },
+      {
+        "index": 8,
+        "startTimestamp": 1594203495419,
+        "codeError": {
+          "errorLines": [
+            "        await page.click('#forerror');",
+            "        await page.click('#forviolation');",
+            "        await page.click('#assertbad');",
+            "        await page.click('#sometable');",
+            "",
+            "        await page.evaluate(() => {",
+            "            for (const el of document.querySelectorAll('button')) {"
+          ],
+          "fromRowNumber": 15,
+          "toRowNumber": 21,
+          "row": 18,
+          "column": 20
+        },
+        "rect": {
+          "x": 529.09375,
+          "y": 8,
+          "width": 84.171875,
+          "height": 21,
+          "top": 8,
+          "right": 613.265625,
+          "bottom": 29,
+          "left": 529.09375,
+          "screenWidth": 1280,
+          "screenHeight": 720,
+          "devicePixelRatio": 1
+        },
+        "screenshot": "8.page-click.png",
+        "consoleEntries": [
+          {
+            "level": "table",
+            "text": "JSHandle@array",
+            "line": 77,
+            "column": 8,
+            "url": "http://jsbin.testim.io/tog/1",
+            "timestamp": 1594203495741,
+            "args": [
+              "[{\"id\":6,\"name\":\"Apple\"},{\"id\":10,\"name\":\"Banana\"}]"
+            ]
+          }
+        ],
+        "unhandledExceptions": [],
+        "selector": "#sometable",
+        "fnName": "click",
+        "endTimestamp": 1594203495744,
+        "name": "click \"#sometable\""
+      },
+      {
+        "index": 9,
+        "startTimestamp": 1594203495744,
+        "codeError": {
+          "errorLines": [
+            "        await page.click('#assertbad');",
+            "        await page.click('#sometable');",
+            "",
+            "        await page.evaluate(() => {",
+            "            for (const el of document.querySelectorAll('button')) {",
+            "                el.click();",
+            "            }"
+          ],
+          "fromRowNumber": 17,
+          "toRowNumber": 23,
+          "row": 20,
+          "column": 20
+        },
+        "screenshot": "9.page-evaluate.png",
+        "consoleEntries": [
+          {
+            "level": "warning",
+            "text": "Some warning here",
+            "line": 30,
+            "column": 10,
+            "url": "http://jsbin.testim.io/tog/1",
+            "timestamp": 1594203496007,
+            "args": [
+              "\"Some warning here\""
+            ]
+          },
+          {
+            "level": "log",
+            "text": "Some console log here",
+            "line": 34,
+            "column": 10,
+            "url": "http://jsbin.testim.io/tog/1",
+            "timestamp": 1594203496007,
+            "args": [
+              "\"Some console log here\""
+            ]
+          },
+          {
+            "level": "assert",
+            "text": "the word is %s foo",
+            "line": 67,
+            "column": 10,
+            "url": "http://jsbin.testim.io/tog/1",
+            "timestamp": 1594203496508,
+            "args": [
+              "\"the word is %s\"",
+              "\"foo\""
+            ]
+          },
+          {
+            "level": "table",
+            "text": "JSHandle@array",
+            "line": 77,
+            "column": 8,
+            "url": "http://jsbin.testim.io/tog/1",
+            "timestamp": 1594203496508,
+            "args": [
+              "[{\"id\":6,\"name\":\"Apple\"},{\"id\":10,\"name\":\"Banana\"}]"
+            ]
+          }
+        ],
+        "unhandledExceptions": [
+          {
+            "message": "Heya error",
+            "timestamp": 1594203496007,
+            "stack": "Error: Heya error\n    at makeError (http://jsbin.testim.io/tog/1:27:9)\n    at HTMLButtonElement.oneMoreStep (http://jsbin.testim.io/tog/1:49:5)\n    at eval (__playwright_evaluation_script__220:3:16)\n    at UtilityScript.callFunction (__playwright_evaluation_script__6:156:24)\n    at UtilityScript.<anonymous> (__playwright_evaluation_script__221:1:44)"
+          }
+        ],
+        "fnName": "evaluate",
+        "endTimestamp": 1594203497508,
+        "name": "evaluate"
+      }
+    ]
+  }

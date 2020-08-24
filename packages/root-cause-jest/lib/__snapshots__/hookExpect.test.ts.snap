@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hookExpect simple resolves modifier failure with rejected promise 1`] = `
+"expect(received).resolves.toEqual()
+
+Received promise rejected instead of resolved
+Rejected to value: {\\"value\\": \\"someValue\\"}"
+`;
+
+exports[`hookExpect simple resolves modifier failure with wrong value 1`] = `
+"expect(received).resolves.toEqual(expected) // deep equality
+
+- Expected  - 1
++ Received  + 1
+
+  Object {
+-   \\"value\\": \\"wrong value\\",
++   \\"value\\": \\"someValue\\",
+  }"
+`;

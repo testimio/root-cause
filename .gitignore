@@ -1,0 +1,17 @@
+node_modules
+/.vscode/*
+# hint about recommendations
+!/.vscode/extensions.json
+.root-cause
+!**/fixtures/**/.root-cause
+.DS_Store
+dist
+/**/package-lock.json
+testim-headless.zip
+/reporters-output/*
+!/reporters-output/.gitignore
+yarn-error.log
+
+packages/root-cause/api-reference
+verdaccio/verdaccio-storage
+lerna-debug.log
