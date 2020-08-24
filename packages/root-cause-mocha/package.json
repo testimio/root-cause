@@ -40,12 +40,6 @@
     "fs-extra": "^9.0.1",
     "uuid": "^8.3.0"
   },
-  "files": [
-    "*.js",
-    "*.md",
-    "package.json",
-    "README.md"
-  ],
   "publishConfig": {
     "directory": "dist",
     "access": "public"

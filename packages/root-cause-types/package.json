@@ -26,7 +26,8 @@
     "*.d.ts",
     "*.md",
     "package.json",
-    "README.md"
+    "README.md",
+    "lib"
   ],
   "publishConfig": {
     "access": "public"
