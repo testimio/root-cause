@@ -120,7 +120,7 @@ export async function launchImpl<T extends AutomationLibrary>(
                 testResultDirFromStartParams(startTestParams)
             );
             // eslint-disable-next-line no-console
-            console.log(chalk.blue(`Screenplay viewer: ${url}`));
+            console.log(chalk.blue(`Root Cause viewer: ${url}`));
 
             open(url);
 
