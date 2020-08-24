@@ -1,7 +1,7 @@
 {
   "name": "@testim/root-cause-mocha",
   "license": "AGPL-3.0-only",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Testim.io <dev@testim.io>",
   "engines": {
     "node": ">= 10.0.0"
