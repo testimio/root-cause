@@ -5,3 +5,4 @@ packages/client/packageToPublish
 client-static
 packages/root-cause-jest/index.js
 *.d.ts
+integration-examples
