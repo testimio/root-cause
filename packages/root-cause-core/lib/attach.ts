@@ -20,7 +20,7 @@ import {
     AssertionReport,
     ActiveFeatures,
 } from './attachInterfaces';
-import { FALLBACK_RUN_ID } from './consts';
+import { FALLBACK_RUN_ID, IS_NODE_10 } from './consts';
 import { stacktraceHook } from './stacktraceHook';
 import { RootCausePage } from './interfaces';
 import { persist } from './persist';
@@ -90,7 +90,9 @@ export async function attach<TPage extends RootCausePage>(
         instrumentor.registerBeforeAllHook(networkLogsBeforeAllHook);
     }
 
-    instrumentor.registerBeforeHook(stacktraceHook);
+    if (!IS_NODE_10) {
+        instrumentor.registerBeforeHook(stacktraceHook);
+    }
 
     instrumentor.registerAfterHook(errorInStepHook);
     instrumentor.registerAfterHook(puppeteerMetadata);

@@ -119,34 +119,34 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
 
                 return async function screenplayWrappedFunction(...args: any[]) {
                     testContext.stepStarted();
-                    try {
-                        for (const beforeHook of beforeHooks) {
+                    for (const beforeHook of beforeHooks) {
+                        try {
                             await beforeHook(testContext, prop.toString(), proxiedObject, rootPage, args);
+                        } catch (err) {
+                            loggerError(err);
                         }
-                    } catch (err) {
-                        loggerError(err);
                     }
 
                     try {
                         const method = reflectedProperty;
                         const result = await method.apply(target, args);
 
-                        try {
-                            for (const afterHook of afterHooks) {
+                        for (const afterHook of afterHooks) {
+                            try {
                                 await afterHook(testContext, prop.toString(), proxiedObject, rootPage, args, { success: true, data: result });
+                            } catch (err) {
+                                loggerError(err);
                             }
-                        } catch (err) {
-                            loggerError(err);
                         }
 
                         return result;
                     } catch (err) {
-                        try {
-                            for (const afterHook of afterHooks) {
+                        for (const afterHook of afterHooks) {
+                            try {
                                 await afterHook(testContext, prop.toString(), proxiedObject, rootPage, args, { success: false, error: err });
+                            } catch (err) {
+                                loggerError(err);
                             }
-                        } catch (err) {
-                            loggerError(err);
                         }
 
                         throw err;
