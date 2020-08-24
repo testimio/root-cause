@@ -1,6 +1,6 @@
 {
   "name": "@testim/root-cause-core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Core component of Testim Root Cause",
   "main": "index",
   "typesVersions": {
@@ -65,7 +65,7 @@
   "devDependencies": {
     "@jest/reporters": "^26.2.2",
     "@jest/types": "^26.0.1",
-    "@testim/root-cause-types": "^0.0.6",
+    "@testim/root-cause-types": "^0.0.7",
     "@testim/testim-cli": "^3.72.0",
     "@types/concurrently": "^5.2.1",
     "@types/cors": "^2.8.6",
