@@ -118,8 +118,8 @@ workflows:
                       tags:
                           only:
                               - /^canary-publish-.+/
-                      # branches:
-                          # ignore: /.*/
+                      branches:
+                          ignore: main
 
 commands:
     yarn-install-and-ensure-dedup:
