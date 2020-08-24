@@ -37,7 +37,7 @@ export async function persist(runId: string, {
         if (!Array.isArray(resultLabel)) {
             resultLabel = [];
         }
-        resultLabel.push('rootCause');
+        resultLabel.push('RootCause');
         const { testimFormat } = await api.screenplayExecutions.createExecution(path, {
             projectId: credentials.projectId,
             resultLabels: resultLabel,

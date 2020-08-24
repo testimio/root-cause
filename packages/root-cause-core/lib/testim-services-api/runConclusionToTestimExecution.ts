@@ -119,7 +119,7 @@ export function runConclusionToTestimExecution(conclusion: RunConclusionFile, te
         // So append a GUID to it
         runId: conclusion.runId + guidImpl(),
         projectId: testimUserMetadata.projectId,
-        labels: `Testim Screenplay Run ${new Date().toLocaleString()}`,
+        labels: `Testim Root Cause Run ${new Date().toLocaleString()}`,
         startTime: conclusion.timestamp,
         endTime: Date.now(),
         execution: convertExecution(conclusion, testimUserMetadata, gitMetadata, guidImpl),

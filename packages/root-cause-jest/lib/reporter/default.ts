@@ -1,8 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { DefaultReporter, SummaryReporter } from '@jest/reporters';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { formatResultsErrors } from 'jest-message-util';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import chalk from 'chalk';
 
 import type {
