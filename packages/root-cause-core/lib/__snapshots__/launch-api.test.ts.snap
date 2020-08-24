@@ -25,7 +25,7 @@ Object {
         "name": "AssertionError",
         "stack": "AssertionError [ERR_ASSERTION]: '1' == '2'
     at noise_removed/packages/root-cause-core/lib/launch-api.test.ts:129:24
-    at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:97:9)
+    at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:118:9)
     at waitForActual (assert.js:692:5)
     at Function.rejects (assert.js:801:25)
     at Object.<anonymous> (noise_removed/packages/root-cause-core/lib/launch-api.test.ts:100:9)",
@@ -415,7 +415,7 @@ Object {
         "name": "AssertionError",
         "stack": "AssertionError [ERR_ASSERTION]: '1' == '2'
     at noise_removed/packages/root-cause-core/lib/launch-api.test.ts:129:24
-    at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:97:9)
+    at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:118:9)
     at waitForActual (assert.js:692:5)
     at Function.rejects (assert.js:801:25)
     at Object.<anonymous> (noise_removed/packages/root-cause-core/lib/launch-api.test.ts:100:9)",
