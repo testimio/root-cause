@@ -37,7 +37,7 @@ export async function persist(runId: string, {
         if (!Array.isArray(resultLabel)) {
             resultLabel = [];
         }
-        resultLabel.push('screenplay');
+        resultLabel.push('rootCause');
         const { testimFormat } = await api.screenplayExecutions.createExecution(path, {
             projectId: credentials.projectId,
             resultLabels: resultLabel,
@@ -50,13 +50,12 @@ export async function persist(runId: string, {
         });
         spinner.succeed('Execution Created Successfully');
         try {
-            if (!jUnitReportPath) {
-                return;
+            if (jUnitReportPath) {
+                await saveJunitReport({
+                    jUnitReportPath, testimExecution: testimFormat, projectId: credentials.projectId,
+                });
+                console.log('Report file saved at ', jUnitReportPath);
             }
-            await saveJunitReport({
-                jUnitReportPath, testimExecution: testimFormat, projectId: credentials.projectId,
-            });
-            console.log('Report file saved at ', jUnitReportPath);
         } catch (e) {
             console.error('Error generating jUnit Report', e);
         }

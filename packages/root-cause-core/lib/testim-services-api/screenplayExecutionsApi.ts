@@ -42,7 +42,7 @@ export class ScreenplayExecutionsApi {
         let done = 0;
         const filePromises = filesToUpload.map((file) => this.testimAssetsApi.uploadAsset({
             // @todo sync server and client
-            pathInsideBucket: `.screenplay/${conclusion.runId}/${path.relative(conclusionFolderPath, file)}`,
+            pathInsideBucket: `.root-cause/${conclusion.runId}/${path.relative(conclusionFolderPath, file)}`,
             projectId: testimUserMetadata.projectId,
             asset: createReadStream(file.endsWith('results.json') ? `${file.substr(0, file.length - 5)}_tmp.json` : file),
             signal,

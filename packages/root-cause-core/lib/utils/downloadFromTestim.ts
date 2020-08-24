@@ -21,7 +21,7 @@ export async function getCloudAsset(path: string) {
 
     const response = await testim.assets.getAsset({
         projectId: testim.projectId,
-        pathInsideBucket: `.screenplay/${path}`,
+        pathInsideBucket: `.root-cause/${path}`,
     });
     return response;
 }
