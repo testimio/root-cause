@@ -98,8 +98,6 @@ workflows:
         jobs:
             - build-and-test:
                   filters:
-                      branches:
-                          ignore: main
                       tags:
                           ignore: /.*/
 
