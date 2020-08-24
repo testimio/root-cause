@@ -3,7 +3,7 @@ executors:
     node-executor:
         docker:
             - image: circleci/node:12.17-stretch-browsers
-        machine: xlarge
+        resource_class: xlarge
         environment:
             # TESTIM_PERSIST_RESULTS_TO_CLOUD: 'true'
             TESTIM_PROJECT_JUNIT_PATH: ~/reporters-output/root-cause-junit-report.xml
