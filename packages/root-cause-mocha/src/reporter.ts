@@ -7,7 +7,7 @@ import {
     runConclusionInterfaces,
     persist,
     utilGuid,
-} from '@testim/root-cause';
+} from '@testim/root-cause-core';
 import type {
     Runner,
     MochaOptions,
