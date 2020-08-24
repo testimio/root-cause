@@ -63,7 +63,7 @@ describe('user settings', () => {
               "features": Object {
                 "console": true,
                 "jestAssertions": false,
-                "networkLogs": true,
+                "networkLogs": false,
                 "screenshots": Object {
                   "format": "jpeg",
                   "fullPage": false,
@@ -115,6 +115,32 @@ describe('user settings', () => {
               Array [
                 "Found config file",
                 "noise_removed/packages/root-cause-core/lib/userSettings/fixtures/valid/.root-causerc.json",
+              ],
+            ]
+        `);
+
+        expect(mockedConsoleLog).not.toBeCalled();
+        expect(mockedConsoleWarn).not.toBeCalled();
+    });
+
+    test('Network logs off in config', async () => {
+        expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid-network-logs-off')))
+            .toMatchInlineSnapshot(`
+            Object {
+              "features": Object {
+                "console": true,
+                "jestAssertions": true,
+                "networkLogs": false,
+                "screenshots": false,
+              },
+            }
+        `);
+
+        expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
+            Array [
+              Array [
+                "Found config file",
+                "noise_removed/packages/root-cause-core/lib/userSettings/fixtures/valid-network-logs-off/.root-causerc.json",
               ],
             ]
         `);

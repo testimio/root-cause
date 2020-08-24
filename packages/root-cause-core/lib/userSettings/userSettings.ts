@@ -62,8 +62,7 @@ export async function readUserConfigFromFile(startFrom?: string): Promise<Possib
 
 export function resolveSettings(input: PossibleUserSettings): ResolvedSettings {
     const screenshots = resolveScreenshots(input.features?.screenshots);
-    // const networkLogs = resolveNetworkLogs(input.features?.networkLogs);
-    const networkLogs = input.features?.networkLogs ?? true;
+    const networkLogs = input.features?.networkLogs ?? false;
 
     const features: ResolvedSettings['features'] = {
         screenshots,

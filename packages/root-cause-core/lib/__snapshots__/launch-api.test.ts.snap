@@ -6,7 +6,6 @@ Object {
     "branchInfo": "noise_removed:branchInfo",
     "endedTimestamp": 26,
     "fileName": "noise_removed/packages/root-cause-core/lib/assortedHooks.ts",
-    "hasNetworkLogs": true,
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
@@ -433,7 +432,6 @@ Object {
     "branchInfo": "noise_removed:branchInfo",
     "endedTimestamp": 24,
     "fileName": "noise_removed/packages/root-cause-core/lib/assortedHooks.ts",
-    "hasNetworkLogs": true,
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
