@@ -1,13 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { attach } from '../../root-cause-core/lib/index';
+import { attach, utils, updateHistoryFromScreenplayResultsOnly } from '@testim/root-cause-core';
 import { getCleanAllPathsPrettyFormatPlugin, getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin } from '@testim/internal-self-tests-helpers';
 import puppeteer from 'puppeteer';
 import fs from 'fs-extra';
 import path from 'path';
-import { utils } from '@testim/root-cause-core';
-
-import { guid } from '../../root-cause-core/lib/testim-services-api/guid';
-import { updateHistoryFromScreenplayResultsOnly } from '../../root-cause-core/lib/updateHistoryFromScreenplayResultsOnly';
 import { registerJasmineReporterToGlobal, makeHookExpect } from './helpers';
 import { getJasmineCurrentTest } from './expectedToBeCalledFromInsideJasmineJestTest';
 import { TestResultFile } from '@testim/root-cause-types';
@@ -49,7 +45,7 @@ describe('Sanity integration test', () => {
     test('with jest assertions', async () => {
         const currentTest = getJasmineCurrentTest();
 
-        const localRunId = guid();
+        const localRunId = new Date().toString();
 
         const startTestParams = {
             runId: localRunId,
