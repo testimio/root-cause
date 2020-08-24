@@ -1,0 +1,16 @@
+{
+  "name": "jest-and-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {},
+  "devDependencies": {
+    "@testim/root-cause-jest": "^0.1.8",
+    "jest": "^26.0.1",
+    "jest-playwright-preset": "^1.2.1",
+    "playwright": "^1.1.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": []
+}
