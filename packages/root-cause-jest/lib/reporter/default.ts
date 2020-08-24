@@ -1,10 +1,3 @@
-// The following dependencies are jest dependencies
-// And as this is a jest reporter it's save to assume they will be available
-// One possible issue, is that on different jest versions, we will have a bit different api
-// The api for jest 24-27 is expected to stay similar enough to work.
-// Ideally we would have several sub packages for screenplay.
-// See https://github.com/testimio/screenplay/issues/5 for more context
-
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { DefaultReporter, SummaryReporter } from '@jest/reporters';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -31,9 +24,9 @@ import { CONSTS, utils, runConclusionUtils, persist } from '@testim/root-cause-c
 /*
  * This reporter is a mix of jest built-in DefaultReporter & SummaryReporter,
  * which are included by default with jest,
- * And the screenplay run conclusion
+ * And the root cause run conclusion
  *
- * We use it to inject our message of 'To open in Screenplay viewer, run: screenplay show ID'
+ * We use it to inject our message of 'To open in Root Cause viewer, run: root-cause show ID'
  */
 class EnhancedDefault implements Reporter {
     private rootDir = process.cwd();
@@ -50,7 +43,7 @@ class EnhancedDefault implements Reporter {
     async onTestResult(test: Test, testResult: TestResult, aggregatedResult: AggregatedResult) {
         /*
             What we do here in hight level
-            If the jest test has screenplay result associated with it,
+            If the jest test has Root Cause result associated with it,
             We inject our message into the first failureMessages,
             And them we re-run formatResultsErrors and overwriting the failureMessage of the test file.
 
@@ -67,7 +60,7 @@ class EnhancedDefault implements Reporter {
             const screenplayTestId = utils.testUniqueIdentifierFromStartParams({ projectRoot: this.rootDir, fullSuitePath: testResult.testFilePath, fullName: r.fullName });
 
             if (screenplayResults.has(screenplayTestId) && r.failureMessages[0]) {
-                r.failureMessages[0] = `${chalk.blue(`To open in Screenplay viewer, run: ${chalk.underline(`npx screenplay show ${screenplayTestId}`)}`)}\n ${r.failureMessages[0]}'`;
+                r.failureMessages[0] = `${chalk.blue(`To open in Root Cause viewer, run: ${chalk.underline(`npx root-cause show ${screenplayTestId}`)}`)}\n ${r.failureMessages[0]}'`;
             }
 
             return r;
