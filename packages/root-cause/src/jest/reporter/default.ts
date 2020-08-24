@@ -1,1 +1,2 @@
-export * from '@testim/root-cause-jest/lib/reporter/default';
+import reporter = require('@testim/root-cause-jest/lib/reporter/default');
+module.exports = reporter;
