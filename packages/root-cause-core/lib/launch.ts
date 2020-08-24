@@ -21,6 +21,7 @@ interface LaunchOptionsBase<TAutomationLibrary extends AutomationLibrary> {
     browserOptions?: LaunchOptionsOptionsMap[TAutomationLibrary];
     noServer?: boolean;
     automationLibrary: TAutomationLibrary;
+    headless?: boolean;
     // for Testing proposes
     _runId?: string;
 }
@@ -69,14 +70,34 @@ export async function launchImpl<T extends AutomationLibrary>(
     const userSettings = await loadSettings();
 
     if (options.automationLibrary === 'playwright') {
-        browser = await launchPlaywrightByOptions(options.browserOptions as PlaywrightBrowserOptions || { browser: 'chromium' });
+        // @ts-expect-error
+        const playwrightBrowserOptions: PlaywrightBrowserOptions = options.browserOptions ? options.browserOptions : { browser: 'chromium' };
+
+        // playwrightBrowserOptions.headless takes precedents over options.headless
+        if ('headless' in options && !('headless' in playwrightBrowserOptions)) {
+            playwrightBrowserOptions.headless = options.headless;
+        }
+
+        browser = await launchPlaywrightByOptions(playwrightBrowserOptions);
     } else {
+        const puppeteerOpts = {
+        } as any;
+
+        if (options.browserOptions?.browserArgs) {
+            puppeteerOpts.args = options.browserOptions?.browserArgs;
+        }
+
+        if ('headless' in options) {
+            puppeteerOpts.headless = options.headless;
+        }
+
+        if (options.browserOptions && 'headless' in options.browserOptions) {
+            puppeteerOpts.headless = options.browserOptions.headless;
+        }
+
         // The user might not have puppeteer installed
         // we use require here and not the top import to no crash if the user don't have it installed
-        browser = await require('puppeteer').launch({
-            args: options.browserOptions?.browserArgs,
-            headless: options.browserOptions?.headless,
-        });
+        browser = await require('puppeteer').launch(puppeteerOpts);
     }
 
     const realPage = await browser.newPage();

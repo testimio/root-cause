@@ -3,9 +3,7 @@ import { launch } from '@testim/root-cause';
 launch(
     {
         testName: 'Test launch function 5',
-        noServer: true,
-        automationLibrary: 'playwright',
-        browserOptions: { browser: 'chromium', headless: false },
+        headless: false,
     },
     async (page) => {
         await page.goto('https://example.com');
