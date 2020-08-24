@@ -99,7 +99,7 @@ workflows:
             - build-and-test:
                   filters:
                       branches:
-                          ignore: master
+                          ignore: main
                       tags:
                           ignore: /.*/
 
@@ -109,7 +109,7 @@ workflows:
                   filters:
                       branches:
                           only:
-                            - master
+                            - main
                       tags:
                           ignore: /.*/
 
