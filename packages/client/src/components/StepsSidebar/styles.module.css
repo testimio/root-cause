@@ -21,7 +21,7 @@
 .stepItem.selected .title { outline: 2px solid #3d5afe; }
 .stepItem.selected .stepIcon { border: 2px solid #3d5afe; }
 
-.sideBar { width: 244px; position: absolute; left:0; top: 51px; /* bottom: 50px; */ bottom: 0; border-right: solid 1px #D8DAE5; padding-top:20px; overflow-y: scroll; padding-bottom: 100px; }
+.sideBar { font-family: Mont-SemiBold; width: 244px; position: absolute; left:0; top: 51px; /* bottom: 50px; */ bottom: 0; border-right: solid 1px #D8DAE5; padding-top:20px; overflow-y: auto; padding-bottom: 100px; }
 
 .highlight { display: inline-block; position: absolute; width: 178px; height: 60px; left: 31px; top: 9px; box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.2); }
 

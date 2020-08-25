@@ -38,7 +38,7 @@
 
 .arrowIconSvg { background-image: url("./globalAssets/arrow.svg"); width: 8px; height: 12px; }
 
-/* #root { font-family: Mont-Regular, sans-serif; color: #1b2331; } */
+#root { font-family: Mont-Regular, sans-serif; color: #1b2331; }
 
 .app { position: absolute; width: 100%; height: 100%; background: white;}
 .app:focus { outline: none; }

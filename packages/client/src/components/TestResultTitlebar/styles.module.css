@@ -1,5 +1,5 @@
 .titleBar {height: 50px;position: absolute;top: 0;left: 0;right: 0;border-bottom: solid 1px #D8DAE5; border-top: solid 1px #D8DAE5; padding: 0 21px; min-width: 720px; z-index: 2; display: flex; align-items: center; }
-.titleBar .logo { margin-top: 10px; margin-left: 0; align-items: center; display: flex; font-size: 18px; line-height: 20px;  }
+.titleBar .logo { margin-top: -1px; margin-left: 0; align-items: center; display: flex; font-size: 18px; line-height: 20px;  }
 .titleBar .logo span { display: inline-block; }
 .titleBar .logo span:nth-child(2) { margin-left: 10px; font-family: Mont-SemiBold; }
 .titleBar .logo span:nth-child(3) { margin-left: 15px; color: #7A838E; border-left: solid 1px #D8DAE5; padding-left: 15px; font-family: Mont-SemiBold ; white-space: nowrap; }
