@@ -1,4 +1,4 @@
-.titleBar {height: 50px;position: absolute;top: 0;left: 0;right: 0;border-bottom: solid 1px #D8DAE5; border-top: solid 1px #D8DAE5; padding-left: 21px; min-width: 720px;}
+.titleBar {height: 50px;position: absolute;top: 0;left: 0;right: 0;border-bottom: solid 1px #D8DAE5; border-top: solid 1px #D8DAE5; padding: 0 21px; min-width: 720px; z-index: 2; display: flex; align-items: center; }
 .titleBar .logo { margin-top: 10px; margin-left: 0; align-items: center; display: flex; font-size: 18px; line-height: 20px;  }
 .titleBar .logo span { display: inline-block; }
 .titleBar .logo span:nth-child(2) { margin-left: 10px; font-family: Mont-SemiBold; }
@@ -6,18 +6,18 @@
 
 .titleBar .clickimTitle { color: black !important; }
 
-.titleBar .testStatus { position: absolute; top: 11px; right: 20px; display: flex; font-size: 11px; font-family: Mont-SemiBold; letter-spacing: 1.3px; }
+.titleBar .testStatus { display: flex; font-size: 11px; font-family: Mont-SemiBold; letter-spacing: 1.3px; margin-left: auto; }
 .titleBar .testStatus > div { margin-left: 5px; border-radius: 4px; height: 26px; min-width: 26px; display: flex; align-items: center; justify-content: center; }
 .titleBar .testStatus .fail { background: #fedfe2; color: #f95f6c; padding-left: 10px; padding-right: 8px; line-height: 13px; }
 
 .titleBar .testStatus .info { cursor: pointer; position: relative; background: #fedfe2; display: none; }
-.titleBar .testStatus .info.failed { display: none;}
+.titleBar .testStatus .info.failed { display: flex; }
 /* .titleBar .testStatus .info.failed { } */
 .titleBar .testStatus .info:hover { background: #ecc4c8; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1); }
-.titleBar .testStatus .info .whiteBackground{ background: white; position: absolute; width: 10px; height: 10px; z-index: 0; }
+.titleBar .testStatus .info .whiteBackground { background: white; position: absolute; width: 10px; height: 10px; z-index: 0; }
 /* .titleBar .testStatus .info .tooltip-error-svg { z-index: 1; } */
 
-.titleBar .testStatus .info .popup { position: absolute; width: 500px; border: solid 1px #dbdfe3; box-shadow: 4px 6px 12px 0 rgba(0, 0, 0, 0.1); z-index: 2; background: white; top: 37px; right: -2px; display: none; }
+.titleBar .testStatus .info .popup { position: absolute; width: 500px; border: solid 1px #dbdfe3; box-shadow: 4px 6px 12px 0 rgba(0, 0, 0, 0.1); z-index: 2; background: white; top: 34px; right: -2px; display: none; }
 .titleBar .testStatus .info:hover .popup { display: block; }
 .titleBar .testStatus .info .popup .triangle { position: absolute; width: 10px; height: 10px; border-top: solid 1px #dbdfe3; border-right: solid 1px #dbdfe3; background: white; transform: rotate(-45deg); right: 8px; top: -6px; }
 .titleBar .testStatus .info .popup .title { font-size: 12px; margin: 20px; padding: 5px; }
@@ -35,3 +35,40 @@
 
 .logoSvg { background-image: url("./logo.svg"); width: 30px; height: 30px; }
 .tooltipErrorSvg { background-image: url("./tooltipError.svg"); width: 14px; height: 14px; z-index: 1; }
+.titleBar div.moreVertMenu {
+    background-image: url("./menu@3x.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 26px;
+    width: 26px;
+    border-radius: 3px;
+    background-color: #DBDFE3;
+    transition: background-color 150ms;
+    position: relative;
+}
+
+.titleBar div.moreVertMenu:hover {
+    background-color: #E0E9FF;
+    cursor: pointer;
+}
+
+.titleBar div.moreVertMenu:hover .moreMenuContent {
+ display: block;
+}
+
+.moreMenuContent {
+    display: none;
+    position: absolute;
+    padding-top: 100%;
+    top: 100%;
+    right: 0;
+    z-index: 2;
+}
+
+.statusMenuSeparator {
+    box-sizing: border-box;
+    height: 20px;
+    width: 1px;
+    border: 1px solid #DBDFE3;
+    margin: 0 15px;
+}

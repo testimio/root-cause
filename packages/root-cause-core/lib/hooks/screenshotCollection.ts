@@ -41,7 +41,7 @@ export async function puppeteerScreenshot(testContext: TestContext, fnName: stri
     await rootPage.screenshot({
         path: path.join(testContext.testArtifactsFolder, filename),
         type: testContext.featuresSettings.screenshots.format,
-        quality: testContext.featuresSettings.screenshots.quality,
+        quality: testContext.featuresSettings.screenshots.format === 'jpeg' ? testContext.featuresSettings.screenshots.quality : undefined,
         fullPage: testContext.featuresSettings.screenshots.fullPage,
 
     });
