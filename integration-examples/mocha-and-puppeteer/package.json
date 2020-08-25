@@ -7,7 +7,7 @@
   },
   "keywords": [],
   "devDependencies": {
-    "@testim/root-cause-mocha": "^0.1.8",
+    "@testim/root-cause-mocha": "^0.1.13",
     "mocha": "^8.0.1",
     "puppeteer": "^5.0.0"
   }

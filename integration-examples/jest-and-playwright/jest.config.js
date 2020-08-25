@@ -10,7 +10,9 @@ module.exports = {
     reporters: [
         ['@testim/root-cause-jest/lib/reporter/default', { runId }],
     ],
-    setupFilesAfterEnv: [...playwrightPreset.setupFilesAfterEnv, '@testim/root-cause-jest/lib/forSetupFilesAfterEnv'],
+    setupFilesAfterEnv: [
+        ...playwrightPreset.setupFilesAfterEnv, '@testim/root-cause-jest/lib/forSetupFilesAfterEnv'
+    ],
     globals: {
         runId,
     },

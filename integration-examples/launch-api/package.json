@@ -8,7 +8,7 @@
   },
   "private": true,
   "devDependencies": {
-    "@testim/root-cause": "^0.1.8",
+    "@testim/root-cause": "^0.1.13",
     "@types/puppeteer": "^3.0.0",
     "playwright": "^1.1.1",
     "puppeteer": "^4.0.0",
