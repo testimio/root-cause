@@ -91,7 +91,7 @@ export const TestResultTitlebar = React.memo(function TestResultTitlebar({
                                         }
 
                                         aElement.href = href;
-                                        aElement.download = 'networklogs.har';
+                                        aElement.download = 'networkLogs.har';
                                         aElement.click();
                                     } else if (slug === 'download_log_file') {
                                         // not available yet
