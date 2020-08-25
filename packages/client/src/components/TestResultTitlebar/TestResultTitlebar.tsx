@@ -83,7 +83,7 @@ export const TestResultTitlebar = React.memo(function TestResultTitlebar({
                                 onItemClick={(slug) => {
                                     if (slug === 'download_har_file') {
                                         const aElement = document.createElement('a');
-                                        const href = getExternalResourceUrl('networklogs.har');
+                                        const href = getExternalResourceUrl('networkLogs.har');
                                         console.log({ href });
 
                                         if (!href) {
