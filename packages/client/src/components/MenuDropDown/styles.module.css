@@ -1,0 +1,36 @@
+.menuDropDownWrapper {
+    border: 1px solid #DBDFE3;
+    background-color: #FFFFFF;
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.15);
+    display: inline-block;
+}
+
+.menuItemWrapper {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 200px;
+    user-select: none;
+    transition: background-color 150ms;
+    white-space: nowrap;
+    letter-spacing: normal;
+}
+
+.menuItemWrapper:hover {
+    background-color: #ECEEEF;
+    cursor: pointer;
+}
+
+.menuItemWrapper .text {
+    font-family: "Mont-Regular";
+    font-size: 14px;
+}
+
+
+.menuItemWrapper .iconBox {
+    width: 56px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
