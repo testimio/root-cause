@@ -1,6 +1,6 @@
 {
   "name": "@testim/root-cause-client-bundled",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "private": false,
   "proxy": "http://localhost:9876/",
   "author": "testim.io <dev@testim.io>",
