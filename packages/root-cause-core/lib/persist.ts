@@ -79,7 +79,7 @@ export function generateJunitReport({
     const actualTests = Object.values(testimExecution.execution).filter(test => !test.isTestsContainer);
     const dateValue = new Date(testimExecution.startTime).toUTCString();
     const files = Object.values(testimExecution.execution).filter(test => test.isTestsContainer);
-    const baseUrl = `https://app.testim.io/#/project/${projectId}/branch/master/screenplay/run/${testimExecution.runId}`;
+    const baseUrl = `https://app.testim.io/#/project/${projectId}/branch/master/root-cause/run/${testimExecution.runId}`;
     const attr = (str: string) => `"${str.replace(/"/g, '&quot').replace(/&/g, '&amp').replace(/</, '&lt;')}"`;
     // Includes the right values (from) https://llg.cubic.org/docs/junit/ with the battle tested ones (our cli jUnitReporter)
     const report = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><testsuites disabled='0'>${files.map(file => {

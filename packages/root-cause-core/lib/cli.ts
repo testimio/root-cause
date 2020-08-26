@@ -147,7 +147,7 @@ function getVersion() {
 }
 
 function login() {
-    const loginUrl = 'https://app.testim.io/#/signin?fromScreenplay=true';
+    const loginUrl = 'https://app.testim.io/#/signin?fromRootCause=true';
     open(loginUrl);
 }
 

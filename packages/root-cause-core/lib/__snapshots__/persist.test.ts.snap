@@ -4,7 +4,7 @@ exports[`the jUnit reporter for cloud executions generates a report with failed 
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\" standalone=\\"yes\\"?><testsuites disabled='0'>	<testsuite name=\\"some test\\" tests=\\"0\\" failure=\\"0\\" failures=\\"0\\" timestamp=\\"Thu, 01 Jan 1970 00:00:00 GMT\\">
                  
              </testsuite>
-         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/screenplay/run/1</system-out>
+         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/root-cause/run/1</system-out>
     </testsuites>"
 `;
 
@@ -12,7 +12,7 @@ exports[`the jUnit reporter for cloud executions generates a report with one tes
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\" standalone=\\"yes\\"?><testsuites disabled='0'>	<testsuite name=\\"some test\\" tests=\\"0\\" failure=\\"0\\" failures=\\"0\\" timestamp=\\"Thu, 01 Jan 1970 00:00:00 GMT\\">
                  
              </testsuite>
-         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/screenplay/run/1</system-out>
+         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/root-cause/run/1</system-out>
     </testsuites>"
 `;
 
@@ -20,12 +20,12 @@ exports[`the jUnit reporter for cloud executions generates a report with several
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\" standalone=\\"yes\\"?><testsuites disabled='0'>	<testsuite name=\\"some test\\" tests=\\"0\\" failure=\\"0\\" failures=\\"0\\" timestamp=\\"Thu, 01 Jan 1970 00:00:00 GMT\\">
                  
              </testsuite>
-         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/screenplay/run/1</system-out>
+         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/root-cause/run/1</system-out>
     </testsuites>"
 `;
 
 exports[`the jUnit reporter for cloud executions generates an empty report if there are no tests 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\" standalone=\\"yes\\"?><testsuites disabled='0'>
-         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/screenplay/run/1</system-out>
+         <system-out>Suite Run URL: https://app.testim.io/#/project/brave-dog/branch/master/root-cause/run/1</system-out>
     </testsuites>"
 `;
