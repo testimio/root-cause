@@ -1,18 +1,21 @@
 # Testim Root Cause
 
-This is the Testim Root Cause monorepo.
+This is the [Testim Root Cause](https://www.testim.io/root-cause/) monorepo. Please check out [the documentation](https://help.testim.io/docs/root-cause).
 
-This monorepo is managed by yarn with workspaces.  
-We also use lerna for publishing.
 
-## Publish workflow
-We have [lerna canary publish](https://github.com/lerna/lerna/tree/master/commands/publish#--canary) for PR's.  
+![Root Cause](https://user-images.githubusercontent.com/1315533/91361835-d129a480-e801-11ea-96c7-a22b8ee98046.gif)
 
-To release prod packages, we use [lerna from-git workflow](https://github.com/lerna/lerna/tree/master/commands/publish#bump-from-git).  
-You need to run `lerna version` locally on master branch. it will create version commit, tags and push it to the git remote
+Please see the [contributing guide](CONTRIBUTING.md) and note this project has a [Code Of Conduct](CODE_OF_CONDUCT.md)
 
-Our versioning strategy is `dependent` and not `independent`. means all of the released packages will have the same version.
+## Testim Root Cause
 
-## We are not semver compatible yet! keep version number below 1.0
+Root Cause is a tool for troubleshooting Puppeteer and Playwright tests.
 
-For all the other details, look at [.circleci/config.yml](.circleci/config.yml)
+We believe modern automation frameworks like Puppeteer, Playwright and Selenium are pretty fast and useful but maintaining and debugging tests is hard.
+
+Root Cause adds features to simplify root cause analysis of Puppeteer and Playwright test runs. Root Cause captures screenshots, network HAR files, and console logs from each test run and saves them to a local drive. The screenshots highlight the action taken at each step and are easily viewed in succession through an intuitive UI to demonstrate the test flow or to identify where a test failed. Additionally, the console logs are parsed to each test step and network HAR is available to deep-dive into failed steps.
+
+Note that this project is a yarn workspace and packages inside have specific READMEs.
+
+
+
