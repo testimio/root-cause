@@ -7,6 +7,11 @@ This is the [Testim Root Cause](https://www.testim.io/root-cause/) monorepo. Ple
 
 Please see the [contributing guide](CONTRIBUTING.md) and note this project has a [Code Of Conduct](CODE_OF_CONDUCT.md)
 
+## Getting Started
+
+Please check out the getting started guide with [Jest](https://help.testim.io/docs/root-cause-jest-integration-guide), [Mocha](https://help.testim.io/docs/root-cause-mocha-integration) or [without Jest or Mocha](https://help.testim.io/docs/getting-started-with-root-cause).
+
+
 ## Testim Root Cause
 
 Root Cause is a tool for troubleshooting Puppeteer and Playwright tests.
@@ -17,5 +22,12 @@ Root Cause adds features to simplify root cause analysis of Puppeteer and Playwr
 
 Note that this project is a yarn workspace and packages inside have specific READMEs.
 
+### Testim.io
 
+![Testim Logo](https://www.testim.io/wp-content/uploads/2019/11/testim-logo.svg)
 
+This project is maintained and supported with ❤️ by [Testim.io](https://testim.io).
+
+# License
+
+[AGPL](LICENSE).
