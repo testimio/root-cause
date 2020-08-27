@@ -1,6 +1,6 @@
 ### Contributing Guide 
 
-## Warnig
+## Warning
 
 We are currently in the process of ironing out the legal stuff regarding doing our very first (strategic) open source project.
 
