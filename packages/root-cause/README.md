@@ -18,7 +18,7 @@ npm install @testim/root-cause
 
 ## Documentation
 
-Please visit our [Root Cause docs](https://help.testim.io/docs/testim-root-cause-overview) for getting started, usage guides, integration guides and more. 
+Please visit our [Root Cause docs](https://help.testim.io/docs/testim-root-cause) for getting started, usage guides, integration guides and more. 
 
 Read more about what Root Cause does on our [webpage](https://www.testim.io/root-cause/).
 
