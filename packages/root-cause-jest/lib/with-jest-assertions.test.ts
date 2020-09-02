@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { attach, utils, updateHistoryFromScreenplayResultsOnly } from '@testim/root-cause-core';
+import { attach, utils, updateHistoryFromRootCauseResultsOnly } from '@testim/root-cause-core';
 import { getCleanAllPathsPrettyFormatPlugin, getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin } from '@testim/internal-self-tests-helpers';
 import puppeteer from 'puppeteer';
 import fs from 'fs-extra';
@@ -112,7 +112,7 @@ describe('Sanity integration test', () => {
             error: { message: 'mocked error test failed' },
         });
 
-        updateHistoryFromScreenplayResultsOnly(localRunId);
+        updateHistoryFromRootCauseResultsOnly(localRunId);
 
         unhookExpect();
 

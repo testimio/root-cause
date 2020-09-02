@@ -10,7 +10,7 @@ describe('Mocha integration test', () => {
     expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
     expect.addSnapshotSerializer(getMochaTestTimeZeroPrettyFormatPlugin());
 
-    test('Validate mocha run output and screenplay ls', async () => {
+    test('Validate mocha run output and root cause ls', async () => {
         const { stdout: mochaPath } = await execResults('yarn bin mocha');
 
         const mochaRunResult = await execResults(
@@ -45,7 +45,7 @@ describe('Mocha integration test', () => {
                   at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
                   at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
                   at processTicksAndRejections (internal/process/task_queues.js:97:5)
-                  at Proxy.screenplayWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
+                  at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
                   at Context.<anonymous> (src/example-tests/for-parallel.test.ts:20:9)
 
               2) Some mocha test
@@ -54,7 +54,7 @@ describe('Mocha integration test', () => {
                   at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
                   at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
                   at processTicksAndRejections (internal/process/task_queues.js:97:5)
-                  at Proxy.screenplayWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
+                  at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
                   at Context.<anonymous> (src/example-tests/some.test.ts:23:9)
 
 
@@ -63,7 +63,7 @@ describe('Mocha integration test', () => {
             }
         `);
 
-        const screenplayLs = await execResults(
+        const rootCauseLs = await execResults(
             'node -r ts-node/register ../root-cause-core/lib/cli.ts ls',
             {
                 cwd: path.resolve(__dirname, '../'),
@@ -71,16 +71,13 @@ describe('Mocha integration test', () => {
             }
         );
 
-        screenplayLs.stdout = screenplayLs.stdout.replace(
-            /Run id: [^\n]+/,
-            'Run id: noise removed'
-        );
-        screenplayLs.stdout = screenplayLs.stdout.replace(
+        rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run id: [^\n]+/, 'Run id: noise removed');
+        rootCauseLs.stdout = rootCauseLs.stdout.replace(
             /Run time: [^\n]+/,
             'Run time: noise removed'
         );
 
-        expect(screenplayLs).toMatchInlineSnapshot(`
+        expect(rootCauseLs).toMatchInlineSnapshot(`
             Object {
               "error": null,
               "stderr": "",

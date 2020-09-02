@@ -46,18 +46,18 @@ class JestReporter implements Reporter {
 
     async onRunComplete(contexts: Set<Context>, results: AggregatedResult) {
         // console.log('onRunComplete start');
-        const screenplayPath = utils.constructScreenplayResultDir(this.rootDir);
-        const screenplayRunResultsPath = utils.constructTestInvocationResultDir(this.rootDir, this.runId);
-        if (!fs.pathExists(screenplayRunResultsPath)) {
+        const rootCausePath = utils.constructResultDir(this.rootDir);
+        const rootCauseRunResultsPath = utils.constructTestInvocationResultDir(this.rootDir, this.runId);
+        if (!fs.pathExists(rootCauseRunResultsPath)) {
             return;
         }
-        // it's very possible that there won't be complete intersection between screenplay & jest results
-        // not all jest tests might have screenplay attached, and maybe there are screenplay results in run dir from prev run
+        // it's very possible that there won't be complete intersection between root cause & jest results
+        // not all jest tests might have root cause attached, and maybe there are root cause results in run dir from prev run
 
-        const screenplayResults = await runConclusionUtils.readRunResultsDirToMap(screenplayRunResultsPath);
+        const rootCauseResults = await runConclusionUtils.readRunResultsDirToMap(rootCauseRunResultsPath);
         const jestSide = jestResultsToIdMap(results.testResults, this.rootDir);
-        const finalResults = runConclusionUtils.intersectRunnerAndScreenplay(screenplayResults, jestSide);
-        await runConclusionUtils.concludeRun(this.runId, screenplayPath, results.startTime, finalResults);
+        const finalResults = runConclusionUtils.intersectRunnerAndRootCause(rootCauseResults, jestSide);
+        await runConclusionUtils.concludeRun(this.runId, rootCausePath, results.startTime, finalResults);
 
         if (process.env.TESTIM_PERSIST_RESULTS_TO_CLOUD) {
             await persist(this.runId, {

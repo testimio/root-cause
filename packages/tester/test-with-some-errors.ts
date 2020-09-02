@@ -1,5 +1,5 @@
 import * as puppeteer from 'puppeteer';
-import * as screenplay from '@testim/root-cause';
+import * as rootCause from '@testim/root-cause';
 import * as path from 'path';
 
 (async () => {
@@ -12,7 +12,7 @@ import * as path from 'path';
     };
 
     const browser = await puppeteer.launch({ headless: true });
-    const { page } = await screenplay.attach({ page: await browser.newPage(), startTestParams });
+    const { page } = await rootCause.attach({ page: await browser.newPage(), startTestParams });
 
     try {
         await page.goto('http://demo.testim.io/');

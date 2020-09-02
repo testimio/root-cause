@@ -14,7 +14,7 @@ import { RootCauseRunResultEntry } from './interfaces';
 
 export async function concludeRun(runId: string, rootCausePath: string, timestamp: number, finalResults: Map<string, {
     runner: RunnerResultEntry;
-    rootcause: RootCauseRunResultEntry;
+    rootCause: RootCauseRunResultEntry;
 }>) {
     const conclusion = prepareRunConclusion(runId, timestamp, finalResults);
     await writeRunConclusion(rootCausePath, runId, conclusion);
@@ -64,7 +64,7 @@ export async function readRunConclusion(rootCauseDirPath: string, runId: string)
 
 export function prepareRunConclusion(runId: string, timestamp: number, data: Map<string, {
     runner: RunnerResultEntry;
-    rootcause: RootCauseRunResultEntry;
+    rootCause: RootCauseRunResultEntry;
 }>): RunConclusionFile {
     const conclusion: RunConclusionFile = {
         runId,
@@ -75,9 +75,9 @@ export function prepareRunConclusion(runId: string, timestamp: number, data: Map
             name: entry.runner.testResult.title,
             fullName: entry.runner.testResult.fullName,
             success: entry.runner.testResult.status === 'passed',
-            timestamp: entry.rootcause.testData.metadata.timestamp,
-            endedTimestamp: entry.rootcause.testData.metadata.endedTimestamp,
-            reason: entry.rootcause.testData.metadata.testEndStatus?.success === false ? (entry.rootcause.testData.metadata.testEndStatus?.error as any)?.message : undefined,
+            timestamp: entry.rootCause.testData.metadata.timestamp,
+            endedTimestamp: entry.rootCause.testData.metadata.endedTimestamp,
+            reason: entry.rootCause.testData.metadata.testEndStatus?.success === false ? (entry.rootCause.testData.metadata.testEndStatus?.error as any)?.message : undefined,
         })),
     };
 
@@ -87,7 +87,7 @@ export function prepareRunConclusion(runId: string, timestamp: number, data: Map
 export function intersectRunnerAndRootCause(rootCauseSide: Map<string, RootCauseRunResultEntry>, runnerSide: Map<string, RunnerResultEntry>) {
     const finalMap = new Map<string, {
         runner: RunnerResultEntry;
-        rootcause: RootCauseRunResultEntry;
+        rootCause: RootCauseRunResultEntry;
     }>();
 
     for (const [testId, rootCauseEntry] of rootCauseSide) {
@@ -97,7 +97,7 @@ export function intersectRunnerAndRootCause(rootCauseSide: Map<string, RootCause
         if (rootCauseEntry && runnerEntry && (runnerEntry.testResult.status === 'passed' || runnerEntry.testResult.status === 'failed')) {
             finalMap.set(testId, {
                 runner: runnerEntry,
-                rootcause: rootCauseEntry,
+                rootCause: rootCauseEntry,
             });
         }
         // if we have issues with computing correct id, we will find it here

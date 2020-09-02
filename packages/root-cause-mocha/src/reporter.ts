@@ -125,7 +125,7 @@ export default class RootCauseMochaReporter implements reporters.Base {
                 reporterInstance.testsWithRootCauseResults
                     .map((test): {
                         runner: RunnerResultEntry;
-                        screenplay: runConclusionInterfaces.RootCauseRunResultEntry;
+                        rootCause: runConclusionInterfaces.RootCauseRunResultEntry;
                     } | null => {
                         utils.assertNotNullOrUndefined(test.mochaTest.file);
                         utils.assertNotNullOrUndefined(test.mochaTest.state);
@@ -151,19 +151,19 @@ export default class RootCauseMochaReporter implements reporters.Base {
                                     fullName: test.addonData.startTestParams.fullName,
                                 },
                             },
-                            screenplay: rootCause,
+                            rootCause,
                         };
                     })
                     .filter(utils.nonNullable)
                     .map((e) => [e.runner.id, e])
             );
 
-            const screenplayPath = utils.constructScreenplayResultDir(reporterInstance.rootDir);
+            const rootCausePath = utils.constructResultDir(reporterInstance.rootDir);
 
             const startTime = runner.stats?.start;
             utils.assertNotNullOrUndefined(startTime);
 
-            await runConclusionUtils.concludeRun(reporterInstance.runId, screenplayPath, startTime.getTime(), inputForPrepareRunConclusion);
+            await runConclusionUtils.concludeRun(reporterInstance.runId, rootCausePath, startTime.getTime(), inputForPrepareRunConclusion);
 
             if (process.env.TESTIM_PERSIST_RESULTS_TO_CLOUD) {
                 await persist(reporterInstance.runId, {
