@@ -9,7 +9,7 @@ const runConclusionFromJest = require('../fixtures/runConclusionFromJest.json') 
 const testimMetadata: TestimUserMetadata = {
     projectId: 'ilan-loves-loacker-more-than-life-itself',
     companyId: 'dogs-that-lose-weight-are-healthier',
-    resultLabels: ['screenplay'],
+    resultLabels: ['rootCause'],
 };
 
 let i = 0;

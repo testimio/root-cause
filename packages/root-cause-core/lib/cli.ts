@@ -5,9 +5,9 @@ import { program } from 'commander';
 import open from 'open';
 import { openServer } from './server';
 import prompts from 'prompts';
-import { constructScreenplayResultDir, constructTestResultDir } from './utils';
+import { constructResultDir, constructTestResultDir } from './utils';
 import { readRunsHistory, readRunConclusion } from './runConclusion/runConclusionUtils';
-import { readHistoryFallback } from './updateHistoryFromScreenplayResultsOnly';
+import { readHistoryFallback } from './updateHistoryFromRootCauseResultsOnly';
 import { persist } from './persist';
 import type { RunConclusionFile } from '@testim/root-cause-types';
 
@@ -23,8 +23,8 @@ program.version(getVersion());
 
 async function show(testId?: string, { failed: showOnlyFailed = false }: { failed?: boolean } = {}) {
 
-    const screenplayPath = constructScreenplayResultDir(process.cwd());
-    const history = await readRunsHistory(screenplayPath);
+    const resultsDirPath = constructResultDir(process.cwd());
+    const history = await readRunsHistory(resultsDirPath);
 
     let conclusion: RunConclusionFile|null = null;
     let runId = '';
@@ -34,7 +34,7 @@ async function show(testId?: string, { failed: showOnlyFailed = false }: { faile
             runId = conclusion.runId;
         } catch (err) {
             if (history.length === 0) {
-                console.log('No Screenplay runs found');
+                console.log('No Root Cause runs found');
                 console.log('Make sure you have the .root-cause directory in your working directory');
                 return;
             }
@@ -44,7 +44,7 @@ async function show(testId?: string, { failed: showOnlyFailed = false }: { faile
     if (!conclusion) {
         const mostRecentHistory = history[0];
         runId = mostRecentHistory.runId;
-        conclusion = await readRunConclusion(screenplayPath, runId);
+        conclusion = await readRunConclusion(resultsDirPath, runId);
     }
 
     if (testId) {
@@ -83,10 +83,10 @@ async function show(testId?: string, { failed: showOnlyFailed = false }: { faile
 }
 
 async function list({ simple = false, failed: showOnlyFailed = false }: { simple?: boolean; failed?: boolean } = {}) {
-    const screenplayPath = constructScreenplayResultDir(process.cwd());
-    const history = await readRunsHistory(screenplayPath);
+    const resultsDirPath = constructResultDir(process.cwd());
+    const history = await readRunsHistory(resultsDirPath);
     if (history.length === 0) {
-        console.log('No Screenplay runs found');
+        console.log('No Root Cause runs found');
         return;
     }
 
@@ -98,7 +98,7 @@ async function list({ simple = false, failed: showOnlyFailed = false }: { simple
             runId = conclusion.runId;
         } catch (err) {
             if (history.length === 0) {
-                console.log('No Screenplay runs found');
+                console.log('No Root Cause runs found');
                 console.log('Make sure you have the .root-cause directory in your working directory');
                 return;
             }
@@ -108,7 +108,7 @@ async function list({ simple = false, failed: showOnlyFailed = false }: { simple
     if (!conclusion) {
         const mostRecentHistory = history[0];
         runId = mostRecentHistory.runId;
-        conclusion = await readRunConclusion(screenplayPath, runId);
+        conclusion = await readRunConclusion(resultsDirPath, runId);
     }
 
     if (simple) {
@@ -169,7 +169,7 @@ program
     .alias('ls')
     .option('-s, --simple', 'print simple output, as unformatted as possible')
     .option('-f, --failed', 'show only failed tests')
-    .description('list all screenplay runs')
+    .description('list all Root Cause tests in the last run')
     .action(list);
 
 program

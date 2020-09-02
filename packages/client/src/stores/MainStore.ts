@@ -19,7 +19,6 @@ export function useMainStore() {
     return useContext(MainStoreContext);
 }
 
-type ScreenplayStepResult = StepResult;
 interface ILoadTestResult {
     (): Promise<any>;
 };
@@ -31,7 +30,7 @@ export class MainStore {
     ) {
     }
 
-    @computed get steps(): ScreenplayStepResult[] {
+    @computed get steps(): StepResult[] {
         if (this.resultsFile) {
             return this.resultsFile.steps;
         }

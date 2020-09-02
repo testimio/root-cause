@@ -12,7 +12,7 @@ import {
     getPostmanEchoWorkaround2PrettyFormatPlugin,
 } from '@testim/internal-self-tests-helpers';
 import { guid } from './testim-services-api/guid';
-import { updateHistoryFromScreenplayResultsOnly } from './updateHistoryFromScreenplayResultsOnly';
+import { updateHistoryFromRootCauseResultsOnly } from './updateHistoryFromRootCauseResultsOnly';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { registerJasmineReporterToGlobal, getJasmineCurrentTest } from '@testim/root-cause-jest';
 
@@ -100,7 +100,7 @@ describe('with har record', () => {
             success: true,
         });
 
-        updateHistoryFromScreenplayResultsOnly(localRunId);
+        updateHistoryFromRootCauseResultsOnly(localRunId);
 
         const expectedResultsPath = path.resolve(process.cwd(), '.root-cause', 'runs', localRunId, testUniqueIdentifierFromStartParams(startTestParams));
         const testResults: TestResultFile = JSON.parse(await fs.readFile(path.resolve(expectedResultsPath, 'results.json'), 'utf-8'), jsonReduceNoiseReviver);

@@ -41,8 +41,8 @@ async function codelessTestRun() {
                 --tunnel-host-header "http://localhost:3000" \
                 --tunnel-use-http-address \
                 --options-file codelessProjectConfig.json \
-                --suite "Screenplay local client ui" \
-                --report-file reporters-output/screenplay-ui.xml
+                --suite "root-cause local client ui" \
+                --report-file reporters-output/root-cause-ui.xml
                 `,
         },
     ], {

@@ -5,7 +5,7 @@ import type playwright from 'playwright';
 import { attach } from './attach';
 import { StartTestParams } from './attachInterfaces';
 import { FALLBACK_RUN_ID } from './consts';
-import { updateHistoryFromScreenplayResultsOnly } from './updateHistoryFromScreenplayResultsOnly';
+import { updateHistoryFromRootCauseResultsOnly } from './updateHistoryFromRootCauseResultsOnly';
 import open from 'open';
 import chalk from 'chalk';
 import { openServer, closeServer } from './server';
@@ -128,7 +128,7 @@ export async function launchImpl<T extends AutomationLibrary>(
 
         throw error;
     } finally {
-        await updateHistoryFromScreenplayResultsOnly(
+        await updateHistoryFromRootCauseResultsOnly(
             startTestParams.runId,
             startTestParams.projectRoot,
             dateConstructor

@@ -12,23 +12,23 @@ import {
 } from '../consts';
 import { RootCauseRunResultEntry } from './interfaces';
 
-export async function concludeRun(runId: string, screenplayPath: string, timestamp: number, finalResults: Map<string, {
+export async function concludeRun(runId: string, rootCausePath: string, timestamp: number, finalResults: Map<string, {
     runner: RunnerResultEntry;
-    screenplay: RootCauseRunResultEntry;
+    rootcause: RootCauseRunResultEntry;
 }>) {
     const conclusion = prepareRunConclusion(runId, timestamp, finalResults);
-    await writeRunConclusion(screenplayPath, runId, conclusion);
-    const history = await readRunsHistory(screenplayPath);
+    await writeRunConclusion(rootCausePath, runId, conclusion);
+    const history = await readRunsHistory(rootCausePath);
     // We may here also actually delete old files
     updateRunsHistory(history, conclusion, HISTORY_RUNS_TO_RETAIN);
-    await writeRunsHistory(screenplayPath, history);
+    await writeRunsHistory(rootCausePath, history);
 }
 
-export async function readRunsHistory(screenplayDirPath: string): Promise<RunHistoryRecord[]> {
+export async function readRunsHistory(rootCauseDirPath: string): Promise<RunHistoryRecord[]> {
     try {
         // final may not be exits yet
         // we may want to handle other errors differently
-        return JSON.parse(await fs.readFile(path.resolve(screenplayDirPath, HISTORY_FILE_NAME), 'utf8'));
+        return JSON.parse(await fs.readFile(path.resolve(rootCauseDirPath, HISTORY_FILE_NAME), 'utf8'));
     } catch (e) {
         return [];
     }
@@ -50,21 +50,21 @@ export function updateRunsHistory(history: RunHistoryRecord[], conclusion: RunCo
     history.splice(historyToKeep);
 }
 
-export async function writeRunsHistory(screenplayDirPath: string, history: RunHistoryRecord[]): Promise<void> {
-    return fs.writeFile(path.resolve(screenplayDirPath, HISTORY_FILE_NAME), JSON.stringify(history, null, 2));
+export async function writeRunsHistory(rootCauseDirPath: string, history: RunHistoryRecord[]): Promise<void> {
+    return fs.writeFile(path.resolve(rootCauseDirPath, HISTORY_FILE_NAME), JSON.stringify(history, null, 2));
 }
 
-export async function writeRunConclusion(screenplayDirPath: string, runId: string, conclusion: RunConclusionFile): Promise<void> {
-    return fs.writeFile(path.resolve(screenplayDirPath, RUNS_DIR_NAME, runId, RUN_CONCLUSION_FILE_NAME), JSON.stringify(conclusion, null, 2));
+export async function writeRunConclusion(rootCauseDirPath: string, runId: string, conclusion: RunConclusionFile): Promise<void> {
+    return fs.writeFile(path.resolve(rootCauseDirPath, RUNS_DIR_NAME, runId, RUN_CONCLUSION_FILE_NAME), JSON.stringify(conclusion, null, 2));
 }
 
-export async function readRunConclusion(screenplayDirPath: string, runId: string): Promise<RunConclusionFile> {
-    return JSON.parse(await fs.readFile(path.resolve(screenplayDirPath, RUNS_DIR_NAME, runId, RUN_CONCLUSION_FILE_NAME), 'utf8'));
+export async function readRunConclusion(rootCauseDirPath: string, runId: string): Promise<RunConclusionFile> {
+    return JSON.parse(await fs.readFile(path.resolve(rootCauseDirPath, RUNS_DIR_NAME, runId, RUN_CONCLUSION_FILE_NAME), 'utf8'));
 }
 
 export function prepareRunConclusion(runId: string, timestamp: number, data: Map<string, {
     runner: RunnerResultEntry;
-    screenplay: RootCauseRunResultEntry;
+    rootcause: RootCauseRunResultEntry;
 }>): RunConclusionFile {
     const conclusion: RunConclusionFile = {
         runId,
@@ -75,29 +75,29 @@ export function prepareRunConclusion(runId: string, timestamp: number, data: Map
             name: entry.runner.testResult.title,
             fullName: entry.runner.testResult.fullName,
             success: entry.runner.testResult.status === 'passed',
-            timestamp: entry.screenplay.testData.metadata.timestamp,
-            endedTimestamp: entry.screenplay.testData.metadata.endedTimestamp,
-            reason: entry.screenplay.testData.metadata.testEndStatus?.success === false ? (entry.screenplay.testData.metadata.testEndStatus?.error as any)?.message : undefined,
+            timestamp: entry.rootcause.testData.metadata.timestamp,
+            endedTimestamp: entry.rootcause.testData.metadata.endedTimestamp,
+            reason: entry.rootcause.testData.metadata.testEndStatus?.success === false ? (entry.rootcause.testData.metadata.testEndStatus?.error as any)?.message : undefined,
         })),
     };
 
     return conclusion;
 }
 
-export function intersectRunnerAndScreenplay(screenplaySide: Map<string, RootCauseRunResultEntry>, runnerSide: Map<string, RunnerResultEntry>) {
+export function intersectRunnerAndRootCause(rootCauseSide: Map<string, RootCauseRunResultEntry>, runnerSide: Map<string, RunnerResultEntry>) {
     const finalMap = new Map<string, {
         runner: RunnerResultEntry;
-        screenplay: RootCauseRunResultEntry;
+        rootcause: RootCauseRunResultEntry;
     }>();
 
-    for (const [testId, screenplayEntry] of screenplaySide) {
+    for (const [testId, rootCauseEntry] of rootCauseSide) {
         const runnerEntry = runnerSide.get(testId);
 
         // for simplicity we ignore tests with other end status
-        if (screenplayEntry && runnerEntry && (runnerEntry.testResult.status === 'passed' || runnerEntry.testResult.status === 'failed')) {
+        if (rootCauseEntry && runnerEntry && (runnerEntry.testResult.status === 'passed' || runnerEntry.testResult.status === 'failed')) {
             finalMap.set(testId, {
                 runner: runnerEntry,
-                screenplay: screenplayEntry,
+                rootcause: rootCauseEntry,
             });
         }
         // if we have issues with computing correct id, we will find it here
@@ -118,7 +118,7 @@ export async function readRunResultsDirToMap(inputDir: string): Promise<Map<stri
             return false;
         }
 
-        // Skip directories without results SCREENPLAY_RESULTS_FILE_NAME inside them
+        // Skip directories without results TEST_RESULTS_FILE_NAME inside them
         return fs.pathExists(path.resolve(inputDir, maybeDirPath, TEST_RESULTS_FILE_NAME));
     },
     { concurrency: 4 }

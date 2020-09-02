@@ -21,14 +21,14 @@ export function testResultDirFromStartParams(startParams: StartTestParams) {
 }
 
 export function constructTestInvocationResultDir(projectRoot: string, runId: string) {
-    return path.resolve(constructScreenplayResultDir(projectRoot), RUNS_DIR_NAME, runId);
+    return path.resolve(constructResultDir(projectRoot), RUNS_DIR_NAME, runId);
 }
 
 export function constructTestResultDir(projectRoot: string, runId: string, testId: string) {
-    return path.resolve(constructScreenplayResultDir(projectRoot), RUNS_DIR_NAME, runId, testId);
+    return path.resolve(constructResultDir(projectRoot), RUNS_DIR_NAME, runId, testId);
 }
 
-export function constructScreenplayResultDir(projectRoot: string) {
+export function constructResultDir(projectRoot: string) {
     return path.resolve(projectRoot, RESULTS_DIR_NAME);
 }
 

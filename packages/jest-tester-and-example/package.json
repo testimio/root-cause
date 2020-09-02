@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "test": "jest",
-        "local-screenplay-cli": "node ../screenplay/dist/src/cli.js"
+        "local-rc-cli": "node ../root-cause-core/dist/lib/cli.js"
     },
     "author": "",
     "devDependencies": {
