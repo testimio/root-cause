@@ -234,7 +234,7 @@ exports[`with har record with har record: har file content 1`] = `
 Object {
   "log": Object {
     "creator": Object {
-      "comment": "Created during a text executed by Testim.",
+      "comment": "Created during a test executed by Testim.",
       "name": "Testim",
       "version": "1.0",
     },
