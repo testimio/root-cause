@@ -1,7 +1,7 @@
 {
     "metadata": {
-      "testName": "/Users/bnaya/dev/clients/testim.io/dev-first/screenplay/packages/tester/launchFunctionTesterLogsPage.ts",
-      "testFullName": "1594203491368-/Users/bnaya/dev/clients/testim.io/dev-first/screenplay/packages/tester/launchFunctionTesterLogsPage.ts",
+      "testName": "/home/testim.io/dev-first/root-cause/packages/tester/launchFunctionTesterLogsPage.ts",
+      "testFullName": "1594203491368-/home/testim.io/dev-first/root-cause/packages/tester/launchFunctionTesterLogsPage.ts",
       "systemInfo": {
         "automationFramework": "playwright",
         "browser": "chromium",

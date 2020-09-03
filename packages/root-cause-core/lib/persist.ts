@@ -1,7 +1,7 @@
 import { TestimApi } from './testim-services-api';
 import { getTestimCredentials } from './testim-credentials-manager';
 import { resolve as pathResolve } from 'path';
-import { constructScreenplayResultDir } from './utils';
+import { constructResultDir } from './utils';
 import fs from 'fs-extra';
 import ora from 'ora';
 import untildify from 'untildify';
@@ -25,7 +25,7 @@ export async function persist(runId: string, {
     }
     const api = new TestimApi(process.env.SERVICES_URL);
     await api.authenticate(credentials.projectId, credentials.ciToken);
-    const dir = constructScreenplayResultDir(projectRoot || process.cwd());
+    const dir = constructResultDir(projectRoot || process.cwd());
     const path = pathResolve(dir, 'runs', runId);
 
     if (!await fs.pathExists(path)) {
@@ -38,7 +38,7 @@ export async function persist(runId: string, {
             resultLabel = [];
         }
         resultLabel.push('RootCause');
-        const { testimFormat } = await api.screenplayExecutions.createExecution(path, {
+        const { testimFormat } = await api.executionsApi.createExecution(path, {
             projectId: credentials.projectId,
             resultLabels: resultLabel,
             // TODO(Benji) discuss with Elad, companyId is only used for
@@ -86,7 +86,7 @@ export function generateJunitReport({
         const tests = actualTests.filter(x => x.parentResultId === file.resultId);
         const failed = tests.filter(x => !x.success);
         return `\t<testsuite name=${attr(file.name)} tests="${tests.length}" failure="${failed.length}" failures="${failed.length}" timestamp="${dateValue}">
-                 ${tests.map(test => `<testcase name=${attr(test.name)} classname="screenplay.test"><system-out>${baseUrl}/test/${test.testId}</system-out></testcase>`).join('\n\t\t\t\t')}
+                 ${tests.map(test => `<testcase name=${attr(test.name)} classname="rootcause.test"><system-out>${baseUrl}/test/${test.testId}</system-out></testcase>`).join('\n\t\t\t\t')}
              </testsuite>`;
     }).join('\n\t\t\t')}
          <system-out>Suite Run URL: ${baseUrl}</system-out>

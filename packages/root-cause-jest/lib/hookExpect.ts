@@ -41,9 +41,9 @@ export function hookExpect(expectStartHandler: ExpectStartHandler) {
     const originalExpect = global.expect;
 
     // @ts-ignore
-    global.expect = function screenplayExpect(...args: any[]) {
+    global.expect = function rootCauseExpect(...args: any[]) {
         const forStackTrace = { stack: '' };
-        Error.captureStackTrace(forStackTrace, screenplayExpect);
+        Error.captureStackTrace(forStackTrace, rootCauseExpect);
         const matcherStartHandler = expectStartHandler(args, forStackTrace.stack);
         return wrapExpectReturnOrModifier(originalExpect(...args), matcherStartHandler);
     };

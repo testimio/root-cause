@@ -50,15 +50,15 @@ class EnhancedDefault implements Reporter {
             We are using the same `formatResultsErrors` function
         */
 
-        const screenplayRunResultsPath = utils.constructTestInvocationResultDir(this.rootDir, this.runId);
+        const runResultsPath = utils.constructTestInvocationResultDir(this.rootDir, this.runId);
 
-        const screenplayResults = await runConclusionUtils.readRunResultsDirToMap(screenplayRunResultsPath);
+        const rootCauseResults = await runConclusionUtils.readRunResultsDirToMap(runResultsPath);
 
         testResult.testResults = testResult.testResults.map((r) => {
-            const screenplayTestId = utils.testUniqueIdentifierFromStartParams({ projectRoot: this.rootDir, fullSuitePath: testResult.testFilePath, fullName: r.fullName });
+            const rootCauseTestId = utils.testUniqueIdentifierFromStartParams({ projectRoot: this.rootDir, fullSuitePath: testResult.testFilePath, fullName: r.fullName });
 
-            if (screenplayResults.has(screenplayTestId) && r.failureMessages[0]) {
-                r.failureMessages[0] = `${chalk.blue(`To open in Root Cause viewer, run: ${chalk.underline(`npx root-cause show ${screenplayTestId}`)}`)}\n ${r.failureMessages[0]}'`;
+            if (rootCauseResults.has(rootCauseTestId) && r.failureMessages[0]) {
+                r.failureMessages[0] = `${chalk.blue(`To open in Root Cause viewer, run: ${chalk.underline(`npx root-cause show ${rootCauseTestId}`)}`)}\n ${r.failureMessages[0]}'`;
             }
 
             return r;
@@ -92,19 +92,19 @@ class EnhancedDefault implements Reporter {
         this.summaryReporter.onRunComplete(contexts, results);
 
         // console.log('onRunComplete start');
-        const screenplayPath = utils.constructScreenplayResultDir(this.rootDir);
-        const screenplayRunResultsPath = utils.constructTestInvocationResultDir(this.rootDir, this.runId);
-        if (!await fs.pathExists(screenplayRunResultsPath)) {
+        const rootCausePath = utils.constructResultDir(this.rootDir);
+        const rootCauseRunResultsPath = utils.constructTestInvocationResultDir(this.rootDir, this.runId);
+        if (!await fs.pathExists(rootCauseRunResultsPath)) {
             return;
         }
-        // it's very possible that there won't be complete intersection between screenplay & jest results
-        // not all jest tests might have screenplay attached, and maybe there are screenplay results in run dir from prev run
+        // it's very possible that there won't be complete intersection between root cause & jest results
+        // not all jest tests might have root cause attached, and maybe there are root cause results in run dir from prev run
 
-        const screenplayResults = await runConclusionUtils.readRunResultsDirToMap(screenplayRunResultsPath);
+        const rootCauseResults = await runConclusionUtils.readRunResultsDirToMap(rootCauseRunResultsPath);
         const jestSide = jestResultsToIdMap(results.testResults, this.rootDir);
-        const finalResults = runConclusionUtils.intersectRunnerAndScreenplay(screenplayResults, jestSide);
+        const finalResults = runConclusionUtils.intersectRunnerAndRootCause(rootCauseResults, jestSide);
 
-        await runConclusionUtils.concludeRun(this.runId, screenplayPath, results.startTime, finalResults);
+        await runConclusionUtils.concludeRun(this.runId, rootCausePath, results.startTime, finalResults);
 
         if (process.env.TESTIM_PERSIST_RESULTS_TO_CLOUD) {
             await persist(this.runId, {

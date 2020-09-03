@@ -36,9 +36,6 @@ export async function openServer(port: number, testPath: string): Promise<string
 
     app.use('/results', express.static(testPath));
 
-
-    // TODO(Benji) - we need to figure out how to bundle the dependencies from the monorepo
-    // in the screenplay publish
     app.get('/test/', async (req: express.Request, res: express.Response) => {
         try {
             const results = JSON.parse((await fs.readFile(path.resolve(testPath, 'results.json'), 'utf-8')));
@@ -63,9 +60,7 @@ export async function openServer(port: number, testPath: string): Promise<string
 
             const url = `http://localhost:${port}`;
 
-            loggerDebug(`screenplay available at: ${url}`);
-            /* eslint-disable-next-line no-console */
-            // console.log(`screenplay available at: ${url}`);
+            loggerDebug(`root cause available at: ${url}`);
             resolve(url);
         });
 

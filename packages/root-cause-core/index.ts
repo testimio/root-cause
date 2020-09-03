@@ -4,7 +4,7 @@ export type {
     EndTestFunction, AttachParams, AttachReturn, StartTestParams, AssertionReport,
 } from './lib/attachInterfaces';
 export type { RootCausePage } from './lib/interfaces';
-export { updateHistoryFromScreenplayResultsOnly } from './lib/updateHistoryFromScreenplayResultsOnly';
+export { updateHistoryFromRootCauseResultsOnly } from './lib/updateHistoryFromRootCauseResultsOnly';
 
 // todo: figure out packages and code sharing
 // These ones should also be splited to other packages

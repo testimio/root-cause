@@ -117,7 +117,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
                     return reflectedProperty;
                 }
 
-                return async function screenplayWrappedFunction(...args: any[]) {
+                return async function rootCauseWrappedFunction(...args: any[]) {
                     testContext.stepStarted();
                     for (const beforeHook of beforeHooks) {
                         try {

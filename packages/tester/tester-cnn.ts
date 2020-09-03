@@ -64,7 +64,7 @@ import * as path from 'path';
         endTest({ success: false, error });
         process.exit(1);
     } finally {
-        rootcause.updateHistoryFromScreenplayResultsOnly();
+        rootcause.updateHistoryFromRootCauseResultsOnly();
         await browser.close();
         process.exit(0);
     }

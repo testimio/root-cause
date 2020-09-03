@@ -84,7 +84,7 @@ function getDetaultTestConfig(conclusion: RunConclusionFile, testimUserMetadata:
     return {
         parallel: 1,
         browser: 'chrome',
-        runnerVersion: 'none(screenplay)',
+        runnerVersion: 'none(rootCause)',
         testimBranch: 'master',
         canaryMode: false,
         gitBranch: gitMetadata?.gitBranch ?? undefined,
@@ -102,14 +102,14 @@ function getDetaultTestConfig(conclusion: RunConclusionFile, testimUserMetadata:
         newBrowserWaitTimeout: 3e5,
         tunnelPort: '80',
         runnerMode: 'n/a',
-        sessionType: 'screenplay',
+        sessionType: 'rootCause',
         companyId: testimUserMetadata.companyId,
         testConfig: {},
     };
 }
 
-export async function getRunConclusionFiles(screenplayRunDir: string): Promise<string[]> {
-    const files = await promisify(cb => glob(`${screenplayRunDir}/**/*`, { nodir: true }, cb))() as string[];
+export async function getRunConclusionFiles(rootCauseRunDir: string): Promise<string[]> {
+    const files = await promisify(cb => glob(`${rootCauseRunDir}/**/*`, { nodir: true }, cb))() as string[];
     return files;
 }
 

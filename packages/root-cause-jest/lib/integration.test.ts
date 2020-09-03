@@ -5,7 +5,7 @@ import { getCleanAllPathsPrettyFormatPlugin } from '@testim/internal-self-tests-
 describe('jest integration test', () => {
     expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
 
-    test('Validate jest run output and screenplay ls', async () => {
+    test('Validate jest run output and root cause ls', async () => {
         const jestRunResult = await execResults(
             'yarn jest -c for-integration-test/jest.config.js',
             {
@@ -40,7 +40,7 @@ describe('jest integration test', () => {
 
                   at Object.exports.assert (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
                   at DOMWorld.click (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
-                  at Proxy.screenplayWrappedFunction (../../root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
+                  at Proxy.rootCauseWrappedFunction (../../root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
                   at Object.<anonymous> (example1.test.ts:10:9)'
 
             Test Suites: 1 failed, 1 total
@@ -52,23 +52,20 @@ describe('jest integration test', () => {
             "
         `);
 
-        const screenplayLs = await execResults(
+        const rootCauseLs = await execResults(
             'node -r ts-node/register ../root-cause-core/lib/cli.ts ls',
             {
                 cwd: path.resolve(__dirname, '../../jest-tester-and-example'),
             }
         );
 
-        screenplayLs.stdout = screenplayLs.stdout.replace(
-            /Run id: [^\n]+/,
-            'Run id: noise removed'
-        );
-        screenplayLs.stdout = screenplayLs.stdout.replace(
+        rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run id: [^\n]+/, 'Run id: noise removed');
+        rootCauseLs.stdout = rootCauseLs.stdout.replace(
             /Run time: [^\n]+/,
             'Run time: noise removed'
         );
 
-        expect(screenplayLs).toMatchInlineSnapshot(`
+        expect(rootCauseLs).toMatchInlineSnapshot(`
             Object {
               "error": null,
               "stderr": "",

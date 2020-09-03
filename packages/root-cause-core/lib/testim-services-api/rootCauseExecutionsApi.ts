@@ -11,7 +11,7 @@ import { RunConclusionFile, TestResultFile } from '@testim/root-cause-types';
 
 type ProgressCallback = (progress: number) => void;
 
-export class ScreenplayExecutionsApi {
+export class RootCauseExecutionsApi {
     constructor(
         private testimExecutionsApi: TestimExecutionsApi = new TestimExecutionsApi(),
         private testimAssetsApi: TestimAssetsApi = new TestimAssetsApi()) {
@@ -54,7 +54,7 @@ export class ScreenplayExecutionsApi {
         }));
         await Promise.all(filePromises);
         await removeTempResultFiles(filesToUpload);
-        return { screenplayConclusion: conclusion, testimFormat: execution };
+        return { rootCauseConclusion: conclusion, testimFormat: execution };
     }
 }
 

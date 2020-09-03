@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import * as screenplay from '@testim/root-cause';
+import * as rootCause from '@testim/root-cause';
 import * as path from 'path';
 
 (async () => {
@@ -12,7 +12,7 @@ import * as path from 'path';
     };
 
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-    const { page: thePage, endTest } = await screenplay.attach({ page: await browser.newPage(), startTestParams });
+    const { page: thePage, endTest } = await rootCause.attach({ page: await browser.newPage(), startTestParams });
 
     try {
         await thePage.goto('http://jsbin.testim.io/zegacafuwa/edit?output');
@@ -45,7 +45,7 @@ import * as path from 'path';
         endTest({ success: false, error });
         process.exit(1);
     } finally {
-        screenplay.updateHistoryFromScreenplayResultsOnly();
+        rootCause.updateHistoryFromRootCauseResultsOnly();
         await browser.close();
         process.exit(0);
     }
