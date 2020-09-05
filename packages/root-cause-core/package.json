@@ -85,13 +85,11 @@
     "@types/uuid": "^8.0.0",
     "concurrently": "^5.3.0",
     "devtools-protocol": "^0.0.802093",
-    "downlevel-dts": "^0.6.0",
     "fs-extra": "^9.0.0",
     "jest": "^26.4.2",
     "ms": "^2.1.2",
     "pretty-format": "^26.4.2",
     "strip-ansi": "^6.0.0",
-    "ts-json-schema-generator": "^0.73.0",
     "typescript": "^3.9.3"
   },
   "publishConfig": {
