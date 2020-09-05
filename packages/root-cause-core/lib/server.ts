@@ -49,15 +49,8 @@ export async function openServer(port: number, testPath: string): Promise<string
 
     app.get('/new-steps/:laststep', (req, res) => res.send('OK'));
 
-    return new Promise((resolve, reject) => {
-        server = app.listen(port, err => {
-            if (err) {
-                loggerError(err);
-                /* eslint-disable-next-line no-console */
-                console.error(err);
-                reject(err);
-            }
-
+    return new Promise((resolve) => {
+        server = app.listen(port, () => {
             const url = `http://localhost:${port}`;
 
             loggerDebug(`root cause available at: ${url}`);
