@@ -34,6 +34,7 @@
         "no-param-reassign": "off",
         "arrow-parens": "off",
         "implicit-arrow-linebreak": "off",
+        "linebreak-style": ["error", "windows"],
         "import/no-dynamic-require": "warn",
         "spaced-comment": "off",
         "prefer-promise-reject-errors": "warn",
