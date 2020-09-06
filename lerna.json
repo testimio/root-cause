@@ -5,8 +5,17 @@
   "version": "0.1.16",
   "npmClient": "yarn",
   "command": {
+    "publish": {
+      "conventionalCommits": true
+    },
     "version": {
-      "private": false
+      "private": false,
+      "conventionalCommits": true,
+      "push": true,
+      "gitTagVersion": true,
+      "createRelease": "github",
+      "allowBranch": "master",
+      "message": "chore(release): publish new version"
     }
   },
   "useWorkspaces": true
