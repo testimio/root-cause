@@ -1,7 +1,7 @@
 import { TestContext } from './TestContext';
 import type { RootCausePage } from './interfaces';
 import type { InstrumentedFunctionResult, StepError } from '@testim/root-cause-types';
-import { getSystemInfoForPage } from './utils';
+import { getSystemInfoForPage, captureStacktraceDetails, extractCodeLocationDetailsSync } from './utils';
 import { TestEndStatus } from './attachInterfaces';
 import { platform } from 'os';
 import { exec } from 'child_process';
@@ -96,11 +96,28 @@ function unknownErrorToOurRepresentation(error: unknown): StepError {
 }
 
 export async function testEndHook(testContext: TestContext, testEndStatus: TestEndStatus<unknown, unknown>) {
-    const error = testEndStatus.success ? undefined : unknownErrorToOurRepresentation(testEndStatus.error);
-    testContext.addTestMetadata({
-        testEndStatus: {
-            success: testEndStatus.success,
-            error,
-        },
-    });
+    if (testEndStatus.success) {
+        testContext.addTestMetadata({
+            testEndStatus: {
+                success: true,
+            },
+        });
+    } else {
+        const error = unknownErrorToOurRepresentation(testEndStatus.error);
+        let codeLocationDetails;
+
+        try {
+            codeLocationDetails = extractCodeLocationDetailsSync(testContext.testFilePath);
+        } catch (e) {
+            // extractCodeLocationDetailsSync is best effort here, ignore that
+        }
+
+        testContext.addTestMetadata({
+            testEndStatus: {
+                success: testEndStatus.success,
+                error,
+                codeLocationDetails,
+            },
+        });
+    }
 }

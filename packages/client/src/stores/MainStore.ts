@@ -34,6 +34,7 @@ export class MainStore {
         if (this.resultsFile) {
             // if test failed, we add here another step box with the test failure info
             // we no longer add that in the instrumentation side on test end
+            // todo: maybe move that to inside the react component
             if (this.resultsFile.metadata.testEndStatus && this.resultsFile.metadata.testEndStatus.success === false) {
                 const testFailError = this.resultsFile.metadata.testEndStatus.error;
                 const testFailStep: StepResult = {
@@ -45,6 +46,7 @@ export class MainStore {
                     fnName: 'test failed',
                     name: testFailError.message,
                     text: 'test failed',
+                    stepCodeLocation: this.resultsFile.metadata.testEndStatus.codeLocationDetails,
                 }
 
                 const lastRealStep: StepResult | undefined = this.resultsFile.steps[this.resultsFile.steps.length - 1];

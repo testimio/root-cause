@@ -4,7 +4,7 @@ exports[`Sanity integration test with jest assertions 1`] = `
 Object {
   "metadata": Object {
     "branchInfo": "noise_removed:branchInfo",
-    "endedTimestamp": 30,
+    "endedTimestamp": 28,
     "fileName": "noise_removed/packages/root-cause-jest/lib/with-jest-assertions.test.ts",
     "hasNetworkLogs": true,
     "systemInfo": Object {
@@ -21,6 +21,22 @@ Object {
       "userAgent": "noise_removed:userAgent",
     },
     "testEndStatus": Object {
+      "codeLocationDetails": Object {
+        "codeLines": Array [
+          "",
+          "        expect(allButtons).toHaveLength(2);",
+          "",
+          "        await endTest({",
+          "            success: false,",
+          "            error: { message: 'mocked error test failed' },",
+          "        });",
+        ],
+        "column": 9,
+        "fromRowNumber": 107,
+        "row": 110,
+        "sourceFileRelativePath": "lib/with-jest-assertions.test.ts",
+        "toRowNumber": 113,
+      },
       "error": Object {
         "message": "mocked error test failed",
         "name": "",
@@ -473,23 +489,6 @@ Object {
         "sourceFileRelativePath": "lib/with-jest-assertions.test.ts",
         "toRowNumber": 111,
       },
-    },
-    Object {
-      "endTimestamp": 29,
-      "fnName": "Assertion Error",
-      "index": 16,
-      "name": "Assertion Error \\"mocked error test failed\\"",
-      "rect": Object {
-        "error": "possible noise removed",
-      },
-      "screenshot": null,
-      "startTimestamp": 28,
-      "stepError": Object {
-        "message": "mocked error test failed",
-        "name": "",
-        "stack": "",
-      },
-      "text": "mocked error test failed",
     },
   ],
 }

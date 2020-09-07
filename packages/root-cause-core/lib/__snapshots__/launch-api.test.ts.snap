@@ -4,7 +4,7 @@ exports[`Launch api test Launch api test = failing 1`] = `
 Object {
   "metadata": Object {
     "branchInfo": "noise_removed:branchInfo",
-    "endedTimestamp": 26,
+    "endedTimestamp": 24,
     "fileName": "noise_removed/packages/root-cause-core/lib/launch-api.test.ts",
     "systemInfo": Object {
       "automationFramework": "puppeteer",
@@ -20,6 +20,22 @@ Object {
       "userAgent": "noise_removed:userAgent",
     },
     "testEndStatus": Object {
+      "codeLocationDetails": Object {
+        "codeLines": Array [
+          "",
+          "        const localRunId = guid();",
+          "",
+          "        await assert.rejects(() => launchImpl(",
+          "            {",
+          "                testName: testInfo.fullName,",
+          "                noServer: true,",
+        ],
+        "column": 9,
+        "fromRowNumber": 97,
+        "row": 100,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 103,
+      },
       "error": Object {
         "message": "'1' == '2'",
         "name": "AssertionError",
@@ -409,28 +425,6 @@ Object {
         "toRowNumber": 129,
       },
       "unhandledExceptions": Array [],
-    },
-    Object {
-      "endTimestamp": 25,
-      "fnName": "Assertion Error",
-      "index": 11,
-      "name": "Assertion Error \\"'1' == '2'\\"",
-      "rect": Object {
-        "error": "possible noise removed",
-      },
-      "screenshot": null,
-      "startTimestamp": 24,
-      "stepError": Object {
-        "message": "'1' == '2'",
-        "name": "AssertionError",
-        "stack": "AssertionError [ERR_ASSERTION]: '1' == '2'
-    at noise_removed/packages/root-cause-core/lib/launch-api.test.ts:129:24
-    at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:120:9)
-    at waitForActual (assert.js:692:5)
-    at Function.rejects (assert.js:801:25)
-    at Object.<anonymous> (noise_removed/packages/root-cause-core/lib/launch-api.test.ts:100:9)",
-      },
-      "text": "'1' == '2'",
     },
   ],
 }

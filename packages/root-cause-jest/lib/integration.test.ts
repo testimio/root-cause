@@ -41,7 +41,7 @@ describe('jest integration test', () => {
                   at Object.exports.assert (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
                   at DOMWorld.click (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
                   at Proxy.rootCauseWrappedFunction (../../root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
-                  at Object.<anonymous> (example1.test.ts:10:9)'
+                  at Object.<anonymous> (example1.test.ts:12:9)'
 
             Test Suites: 1 failed, 1 total
             Tests:       1 failed, 1 passed, 2 total

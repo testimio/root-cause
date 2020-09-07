@@ -4,7 +4,7 @@ exports[`Sanity integration test Sanity integration test 1 1`] = `
 Object {
   "metadata": Object {
     "branchInfo": "noise_removed:branchInfo",
-    "endedTimestamp": 27,
+    "endedTimestamp": 25,
     "fileName": "noise_removed/packages/root-cause-core/lib/sanity-integration.test.ts",
     "hasNetworkLogs": true,
     "systemInfo": Object {
@@ -21,6 +21,22 @@ Object {
       "userAgent": "noise_removed:userAgent",
     },
     "testEndStatus": Object {
+      "codeLocationDetails": Object {
+        "codeLines": Array [
+          "",
+          "        assert.equal(allButtons.length, 2);",
+          "",
+          "        await endTest({",
+          "            success: false,",
+          "            error: { message: 'mocked error test failed' },",
+          "        });",
+        ],
+        "column": 9,
+        "fromRowNumber": 107,
+        "row": 110,
+        "sourceFileRelativePath": "lib/sanity-integration.test.ts",
+        "toRowNumber": 113,
+      },
       "error": Object {
         "message": "mocked error test failed",
         "name": "",
@@ -382,23 +398,6 @@ Object {
         "toRowNumber": 107,
       },
       "unhandledExceptions": Array [],
-    },
-    Object {
-      "endTimestamp": 26,
-      "fnName": "Assertion Error",
-      "index": 11,
-      "name": "Assertion Error \\"mocked error test failed\\"",
-      "rect": Object {
-        "error": "possible noise removed",
-      },
-      "screenshot": null,
-      "startTimestamp": 25,
-      "stepError": Object {
-        "message": "mocked error test failed",
-        "name": "",
-        "stack": "",
-      },
-      "text": "mocked error test failed",
     },
   ],
 }
