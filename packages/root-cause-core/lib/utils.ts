@@ -345,7 +345,7 @@ export function puppeteerAddEventReturnDisposer<TEventName extends keyof Puppete
 
 const moreNodeBuiltin = ['assert.js', 'internal/process'];
 
-export function getSelfCallSiteFromStacktrace(howManyBack = 1): CallSite {
+export function getSelfCallSiteFromStacktrace(howManyBack = 1): CallSite | null {
     const noneInternalLines = stackUtils.capture(getSelfCallSiteFromStacktrace).filter(line => {
         if (line.isNative()) {
             return false;
@@ -355,6 +355,14 @@ export function getSelfCallSiteFromStacktrace(howManyBack = 1): CallSite {
 
         return moreNodeBuiltin.every(builtin => !fileName.includes(builtin));
     });
+
+    if (howManyBack >= noneInternalLines.length) {
+
+        // Note:
+        // In case that the caller dose not have 'await', async stack trace will not be added, and in node 10.
+        // that can case issues, so we return null
+        return null;
+    }
 
     return noneInternalLines[howManyBack];
 }

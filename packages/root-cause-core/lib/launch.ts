@@ -103,7 +103,7 @@ export async function launchImpl<T extends AutomationLibrary>(
     const realPage = await browser.newPage();
 
     const callSite = getSelfCallSiteFromStacktrace();
-    const fullSuitePath = callSite.getFileName() || 'no_suite_available';
+    const fullSuitePath = callSite?.getFileName() || 'no_suite_available';
 
     const startTestParams: StartTestParams = {
         runId: options._runId ? options._runId : FALLBACK_RUN_ID,

@@ -50,14 +50,14 @@ export async function attach<TPage extends RootCausePage>(
 ): Promise<AttachReturn<TPage>> {
     const resolvedActiveFeatures = activeFeatures || getDefaultActiveFeatures();
 
-    // We may make this a bit smarter by trying to sniff call stack
-    // Any how it's not very real usecase, but mostly for backward compat
+    const callSite = getSelfCallSiteFromStacktrace();
+
     const defaultTestName = dateConstructor.now().toString();
     const defaultStartTestParams = {
         runId: FALLBACK_RUN_ID,
         fullName: `fullName ${defaultTestName}`,
         description: defaultTestName,
-        fullSuitePath: getSelfCallSiteFromStacktrace().getFileName() || 'pseudo fullSuitePath',
+        fullSuitePath: callSite?.getFileName() || 'pseudo fullSuitePath',
         projectRoot: process.cwd(),
     };
 
