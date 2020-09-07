@@ -24,3 +24,29 @@
     outline: 2px solid #70d5ff;
     /* box-shadow: 0 0 4px 4px #c734d1; */
 }
+
+.emptyStateWrapper {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    margin: 7px;
+    height: 100%;
+    justify-content: center;
+}
+
+.emptyStateWrapper img {
+    margin-bottom: 48px;
+}
+
+.emptyStateWrapper h3 {
+    text-align: center;
+    color: #7A838E;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 14px;
+    font-family: 'Mont-Regular', sans-serif;
+}
