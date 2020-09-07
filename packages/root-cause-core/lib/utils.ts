@@ -1,14 +1,14 @@
 import type { AbortSignal } from 'abort-controller';
 import type { DevtoolsProtocolResponseMap } from './nicerChromeDevToolsTypes';
 import type { RootCausePage } from './interfaces';
-import { StartTestParams } from './attachInterfaces';
+import type { StartTestParams } from './attachInterfaces';
 import crypto from 'crypto';
 import path from 'path';
 import { RESULTS_DIR_NAME, RUNS_DIR_NAME } from './consts';
 import fs from 'fs-extra';
 import type { Page as PuppeteerPage, PageEventObj as PuppeteerPageEventObj } from 'puppeteer';
 import type { Page as PlaywrightPage, ChromiumBrowserContext, BrowserContext, ChromiumBrowser } from 'playwright';
-import type { TestSystemInfo, CodeLocationDetails } from '@testim/root-cause-types';
+import type { TestSystemInfo, CodeLocationDetails, StepError } from '@testim/root-cause-types';
 import type { StackLineData, CallSite } from 'stack-utils';
 import StackUtils from 'stack-utils';
 
@@ -221,6 +221,34 @@ export class AbortError extends Error {
 
 export function isAbortError(maybeAbortError: unknown): maybeAbortError is AbortError {
     return maybeAbortError instanceof Error && maybeAbortError.name === 'AbortError';
+}
+
+export function unknownValueThatIsProbablyErrorToStepError(probablyError: unknown): StepError {
+    let errorToReturn: StepError;
+
+    if (probablyError instanceof Error) {
+        errorToReturn = {
+            name: probablyError.name,
+            message: probablyError.message,
+            stack: probablyError.stack,
+        };
+    } else if (typeof probablyError === 'object' && probablyError !== null && 'message' in probablyError && 'name' in probablyError) {
+        errorToReturn = {
+            // @ts-expect-error
+            name: probablyError.name,
+            // @ts-expect-error
+            message: probablyError.message,
+            // @ts-expect-error
+            stack: probablyError.stack ?? undefined,
+        };
+    } else {
+        errorToReturn = {
+            name: 'Unknown error',
+            message: 'Unknown error',
+        };
+    }
+
+    return errorToReturn;
 }
 
 /**

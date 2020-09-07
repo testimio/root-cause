@@ -103,26 +103,4 @@ export async function testEndHook(testContext: TestContext, testEndStatus: TestE
             error,
         },
     });
-
-    if (!testEndStatus.success) {
-
-        if (testContext.currentStep?.stepError) {
-            const metadata = {
-                stepError: error,
-            };
-            testContext.addStepMetadata(metadata);
-        } else {
-            testContext.stepStarted();
-            const metadata = {
-                stepError: error,
-                fnName: 'Assertion Error',
-                rect: { error: 'Assertion Error' },
-                screenshot: null,
-                text: error && error.message,
-            };
-            testContext.addStepMetadata(metadata);
-            await testContext.stepEnded();
-        }
-
-    }
 }
