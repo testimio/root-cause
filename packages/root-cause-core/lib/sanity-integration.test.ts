@@ -49,7 +49,7 @@ describe('Sanity integration test', () => {
             projectRoot: path.resolve(__dirname, 'testsResults'),
             fullName: currentTestInfo.fullName,
             description: currentTestInfo.description,
-            fullSuitePath: 'FAKE_PATH',
+            fullSuitePath: __filename,
         };
 
         const mockedDateConstructor: typeof Date = Object.create(Date);

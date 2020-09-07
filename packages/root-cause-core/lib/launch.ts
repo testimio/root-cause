@@ -10,7 +10,7 @@ import open from 'open';
 import chalk from 'chalk';
 import { openServer, closeServer } from './server';
 import { TEST_API_PORT } from './envVarsWrapper';
-import { testResultDirFromStartParams } from './utils';
+import { testResultDirFromStartParams, getSelfCallSiteFromStacktrace } from './utils';
 import { persist } from './persist';
 import { loadSettings } from './userSettings/userSettings';
 
@@ -102,13 +102,15 @@ export async function launchImpl<T extends AutomationLibrary>(
 
     const realPage = await browser.newPage();
 
+    const callSite = getSelfCallSiteFromStacktrace();
+    const fullSuitePath = callSite.getFileName() || 'no_suite_available';
+
     const startTestParams: StartTestParams = {
         runId: options._runId ? options._runId : FALLBACK_RUN_ID,
         fullName: `${dateConstructor.now()}-${options.testName}`,
         description: options.testName,
         projectRoot: process.cwd(),
-        // extract file from call stack?
-        fullSuitePath: 'no_suite_available',
+        fullSuitePath,
     };
 
     const { page, endTest } = await attach({ page: realPage, startTestParams, activeFeatures: userSettings.features }, dateConstructor);

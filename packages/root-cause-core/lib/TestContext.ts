@@ -13,6 +13,7 @@ export class TestContext {
     private stepIndex = 0;
     private stepResults: StepResult[] = [];
     private testMetadata: TestMetadata = {
+        fileName: this.testFilePath,
         testName: this.testName,
         testFullName: this.testFullName,
         timestamp: 0,
@@ -23,7 +24,18 @@ export class TestContext {
     public consoleEntries: ConsoleMessage[] = []
     public unhandledExceptions: ConsoleException[] = [];
 
-    constructor(public testArtifactsFolder: string, private testName: string, private testFullName: string, public featuresSettings: ActiveFeatures, public dateConstructor: typeof Date = Date) {
+    constructor(
+        public testArtifactsFolder: string,
+        private testName: string,
+        private testFullName: string,
+        /**
+         * full path to the test/suite file,
+         * not relative to working directory
+         */
+        public testFilePath: string,
+        public featuresSettings: ActiveFeatures,
+        public dateConstructor: typeof Date = Date
+    ) {
         this.testMetadata.timestamp = dateConstructor.now();
     }
 
