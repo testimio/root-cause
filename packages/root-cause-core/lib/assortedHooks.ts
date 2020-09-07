@@ -22,26 +22,6 @@ export async function errorInStepHook(
     }
 }
 
-//TODO(Benji) when we have a monorepo share this code with errorExtractor in clickim
-function getFileNameFromErrorStack() {
-    const stack = new Error().stack;
-    const relevantLine = stack?.split('\n')
-        .filter(x => x.match(/:(\d+):(\d+)/))
-        .find(x => !x.includes('@testim/root-cause/'));
-
-    if (!relevantLine) {
-        return null;
-    }
-    try {
-        //@ts-ignore incorrect type for `match`
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const [full, fileName, line, column] = relevantLine.match(/\((.*):(\d+):(\d+)\)/);
-        return fileName;
-    } catch (e) {
-        return null;
-    }
-}
-
 async function getBranchInfo(): Promise<{ commitHash: string; branchName: string }> {
     function getEnvironmentGitBranch() {
         return process.env.GIT_BRANCH ?? process.env.CIRCLE_BRANCH ?? process.env.TRAVIS_BRANCH ?? process.env.CI_BRANCH;
@@ -82,10 +62,8 @@ export async function testSystemInfoHook(testContext: TestContext, proxyContext:
         getSystemInfoForPage(rootPage),
         getBranchInfo(),
     ]);
-    const fileName = getFileNameFromErrorStack();
     testContext.addTestMetadata({
         systemInfo,
-        fileName,
         branchInfo,
     });
 }

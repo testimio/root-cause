@@ -7,7 +7,7 @@ import {
     logsBeforeEachHook,
     logsAfterEachHook,
 } from './consoleLogsCollection';
-import { testResultDirFromStartParams } from './utils';
+import { testResultDirFromStartParams, getSelfCallSiteFromStacktrace } from './utils';
 import { errorInStepHook, testSystemInfoHook, testEndHook } from './assortedHooks';
 import { puppeteerScreenshot } from './hooks/screenshotCollection';
 import { puppeteerMetadata } from './hooks/step-metadata-collection';
@@ -57,7 +57,7 @@ export async function attach<TPage extends RootCausePage>(
         runId: FALLBACK_RUN_ID,
         fullName: `fullName ${defaultTestName}`,
         description: defaultTestName,
-        fullSuitePath: 'pseudo fullSuitePath',
+        fullSuitePath: getSelfCallSiteFromStacktrace().getFileName() || 'pseudo fullSuitePath',
         projectRoot: process.cwd(),
     };
 
@@ -71,6 +71,7 @@ export async function attach<TPage extends RootCausePage>(
         resultsDirFullPath,
         resolvedStartTestParams.description,
         resolvedStartTestParams.fullName,
+        resolvedStartTestParams.fullSuitePath,
         resolvedActiveFeatures,
         dateConstructor
     );

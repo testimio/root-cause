@@ -5,7 +5,7 @@ Object {
   "metadata": Object {
     "branchInfo": "noise_removed:branchInfo",
     "endedTimestamp": 15,
-    "fileName": "noise_removed/packages/root-cause-core/lib/assortedHooks.ts",
+    "fileName": "noise_removed/packages/root-cause-core/lib/with-har-record.test.ts",
     "hasNetworkLogs": true,
     "systemInfo": Object {
       "automationFramework": "puppeteer",
@@ -29,9 +29,15 @@ Object {
   },
   "steps": Array [
     Object {
-      "codeError": Object {
-        "column": 9,
-        "errorLines": Array [
+      "consoleEntries": Array [],
+      "endTimestamp": 4,
+      "fnName": "goto",
+      "index": 1,
+      "name": "goto \\"http://jsbin.testim.io/ces\\"",
+      "screenshot": "1.page-goto.jpg",
+      "startTimestamp": 3,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
           "        } = attachController;",
           "        // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test",
           "        // Still, it might be flaky",
@@ -40,36 +46,16 @@ Object {
           "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
           "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
         ],
+        "column": 9,
         "fromRowNumber": 90,
         "row": 93,
+        "sourceFileRelativePath": "lib/with-har-record.test.ts",
         "toRowNumber": 96,
       },
-      "consoleEntries": Array [],
-      "endTimestamp": 4,
-      "fnName": "goto",
-      "index": 1,
-      "name": "goto \\"http://jsbin.testim.io/ces\\"",
-      "screenshot": "1.page-goto.jpg",
-      "startTimestamp": 3,
       "text": "http://jsbin.testim.io/ces",
       "unhandledExceptions": Array [],
     },
     Object {
-      "codeError": Object {
-        "column": 9,
-        "errorLines": Array [
-          "        // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test",
-          "        // Still, it might be flaky",
-          "        await playedPage.goto('http://jsbin.testim.io/ces');",
-          "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
-          "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
-          "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
-          "        await playedPage.click('[data-job=POST_404]', { delay: 800 });",
-        ],
-        "fromRowNumber": 91,
-        "row": 94,
-        "toRowNumber": 97,
-      },
       "consoleEntries": Array [],
       "endTimestamp": 6,
       "fnName": "click",
@@ -91,24 +77,25 @@ Object {
       "screenshot": "2.page-click.jpg",
       "selector": "[data-job=GET_OK]",
       "startTimestamp": 5,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 9,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "        // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test",
           "        // Still, it might be flaky",
           "        await playedPage.goto('http://jsbin.testim.io/ces');",
           "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
           "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
           "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
           "        await playedPage.click('[data-job=POST_404]', { delay: 800 });",
-          "",
         ],
-        "fromRowNumber": 92,
-        "row": 95,
-        "toRowNumber": 98,
+        "column": 9,
+        "fromRowNumber": 91,
+        "row": 94,
+        "sourceFileRelativePath": "lib/with-har-record.test.ts",
+        "toRowNumber": 97,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [
         Object {
           "args": Array [],
@@ -138,24 +125,25 @@ Object {
       "screenshot": "3.page-click.jpg",
       "selector": "[data-job=GET_404]",
       "startTimestamp": 7,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 9,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "        // Still, it might be flaky",
           "        await playedPage.goto('http://jsbin.testim.io/ces');",
           "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
           "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
           "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
           "        await playedPage.click('[data-job=POST_404]', { delay: 800 });",
           "",
-          "        await endTest({",
         ],
-        "fromRowNumber": 93,
-        "row": 96,
-        "toRowNumber": 99,
+        "column": 9,
+        "fromRowNumber": 92,
+        "row": 95,
+        "sourceFileRelativePath": "lib/with-har-record.test.ts",
+        "toRowNumber": 98,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 11,
       "fnName": "click",
@@ -177,24 +165,25 @@ Object {
       "screenshot": "4.page-click.jpg",
       "selector": "[data-job=POST_OK]",
       "startTimestamp": 10,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 9,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "        await playedPage.goto('http://jsbin.testim.io/ces');",
           "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
           "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
           "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
           "        await playedPage.click('[data-job=POST_404]', { delay: 800 });",
           "",
           "        await endTest({",
-          "            success: true,",
         ],
-        "fromRowNumber": 94,
-        "row": 97,
-        "toRowNumber": 100,
+        "column": 9,
+        "fromRowNumber": 93,
+        "row": 96,
+        "sourceFileRelativePath": "lib/with-har-record.test.ts",
+        "toRowNumber": 99,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [
         Object {
           "args": Array [],
@@ -224,6 +213,22 @@ Object {
       "screenshot": "5.page-click.jpg",
       "selector": "[data-job=POST_404]",
       "startTimestamp": 12,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_OK]', { delay: 800 });",
+          "        await playedPage.click('[data-job=POST_404]', { delay: 800 });",
+          "",
+          "        await endTest({",
+          "            success: true,",
+        ],
+        "column": 9,
+        "fromRowNumber": 94,
+        "row": 97,
+        "sourceFileRelativePath": "lib/with-har-record.test.ts",
+        "toRowNumber": 100,
+      },
       "unhandledExceptions": Array [],
     },
   ],
