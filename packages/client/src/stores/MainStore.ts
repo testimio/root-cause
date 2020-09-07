@@ -26,12 +26,40 @@ export class MainStore {
 
     constructor(
         private loadTestResultExternal: ILoadTestResult | null,
-        private externalResourceUrl: (resource: string |undefined) => undefined | string
+        private externalResourceUrl: (resource: string | undefined) => undefined | string
     ) {
     }
 
     @computed get steps(): StepResult[] {
         if (this.resultsFile) {
+            // if test failed, we add here another step box with the test failure info
+            // we no longer add that in the instrumentation side on test end
+            if (this.resultsFile.metadata.testEndStatus && this.resultsFile.metadata.testEndStatus.success === false) {
+                const testFailError = this.resultsFile.metadata.testEndStatus.error;
+                const testFailStep: StepResult = {
+                    // fake index :(
+                    index: this.resultsFile.steps.length + 1,
+                    stepError: testFailError,
+                    startTimestamp: this.resultsFile.metadata.endedTimestamp,
+                    endTimestamp: this.resultsFile.metadata.endedTimestamp,
+                    fnName: 'test failed',
+                    name: testFailError.message,
+                    text: 'test failed',
+                }
+
+                const lastRealStep: StepResult | undefined = this.resultsFile.steps[this.resultsFile.steps.length - 1];
+                const newArray = this.resultsFile.steps.slice();
+
+                // for backward compat, detect and remove injected last failure step
+                if (lastRealStep && lastRealStep.stepError && lastRealStep.stepError.message === testFailError.message && lastRealStep.stepError.stack === testFailError.stack) {
+                    newArray.pop();
+                }
+
+                newArray.push(testFailStep);
+
+                return newArray;
+            }
+
             return this.resultsFile.steps;
         }
 
@@ -122,7 +150,7 @@ export class MainStore {
     @action.bound
     goToPreviousStep() {
         let newStepIndex = this.selectedStepIndex;
-        newStepIndex --;
+        newStepIndex--;
         if (newStepIndex < 0) newStepIndex = 0;
         this._selectedStepIndex = newStepIndex;
 
@@ -131,8 +159,8 @@ export class MainStore {
     @action.bound
     goToNextStep() {
         let newStepIndex = this.selectedStepIndex;
-        newStepIndex ++;
-        if (newStepIndex === this.steps.length) newStepIndex --;
+        newStepIndex++;
+        if (newStepIndex === this.steps.length) newStepIndex--;
         this._selectedStepIndex = newStepIndex;
 
     }

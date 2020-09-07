@@ -195,7 +195,7 @@ export interface TestMetadata {
      */
     testFullName: string;
     systemInfo?: TestSystemInfo;
-    testEndStatus?: TestEndStatus<unknown, unknown>;
+    testEndStatus?: TestEndStatus<unknown, StepError>;
     fileName: string;
     branchInfo?: {
         commitHash: string;
