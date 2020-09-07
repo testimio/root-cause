@@ -1,6 +1,6 @@
 export type InstrumentedFunctionResult<T, E> =
     | { success: true; data?: T }
-    | { success: false; error: E };
+    | { success: false; error: E; codeLocationDetails?: CodeLocationDetails };
 
 export type TestEndStatus<T, E> = InstrumentedFunctionResult<T, E>;
 

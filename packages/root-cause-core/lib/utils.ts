@@ -329,6 +329,7 @@ export function extractCodeLocationDetailsSync(userTestFile: string): CodeLocati
 
     // User code might have more than one lines in the stack
     // we assume that the first line is the actual test code and not helper function
+    // That's might be not true in some cases
     const userTestCodeLine = callSitesInUserCode[0];
 
     assertNotNullOrUndefined(userTestCodeLine.line);
