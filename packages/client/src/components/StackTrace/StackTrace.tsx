@@ -2,6 +2,7 @@ import * as React from "react";
 import type { StepResult } from "@testim/root-cause-types";
 import classnames from "classnames";
 import styles from './styles.module.css';
+import stripAnsi from "strip-ansi";
 
 export const StackTrace = React.memo(function StackTrace({ step }: { step: StepResult }) {
 
@@ -11,7 +12,7 @@ export const StackTrace = React.memo(function StackTrace({ step }: { step: StepR
 
     return (
         <div className={styles.infoTab}>
-            <div className={styles.errorMessage}>{step.stepError?.message}</div>
+            <div className={styles.errorMessage}>{stripAnsi(step.stepError?.message || "")}</div>
             <div className={styles.theCode}>
                 {step.stepCodeLocation.codeLines.map((l, idx) => {
                     if (!step.stepCodeLocation) {
@@ -37,7 +38,7 @@ export const StackTrace = React.memo(function StackTrace({ step }: { step: StepR
             <div className={styles.stackTraceArea}>
                 {step.stepError?.stack && <div className={styles.stackTrace}>
                     {step.stepError.stack.split('\n').slice(1).map((l, idx) => (
-                        <div key={idx}>{l}</div>
+                        <div key={idx}>{stripAnsi(l)}</div>
                     ))}
                 </div>}
                 {!step.stepError?.stack && step.stepCodeLocation && <div className={styles.stackTrace}>
