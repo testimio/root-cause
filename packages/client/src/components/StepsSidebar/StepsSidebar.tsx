@@ -6,6 +6,7 @@ import { apiUrl, useMainStore } from '../../stores/MainStore';
 import { useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Screenshot } from '../Screenshots/Screenshots';
+import stripAnsi from "strip-ansi";
 
 export const StepsSidebar = observer(() => {
 
@@ -27,19 +28,19 @@ export const StepsSidebar = observer(() => {
 
     return <div id="sidebar" className={styles.sideBar} ref={sideBarRef}>
         {steps.map((step, i) => (
-            <div  className={classnames(styles.stepItem, {
-                    [styles.selected]: step === selectedStep,
-                    [styles.stepFailed]: "stepError" in step,
-                })} key={i} onClick={() => setSelectedStep(i)} >
+            <div className={classnames(styles.stepItem, {
+                [styles.selected]: step === selectedStep,
+                [styles.stepFailed]: "stepError" in step,
+            })} key={i} onClick={() => setSelectedStep(i)} >
                 <div className={styles.border}></div>
                 <div className={styles.contents}>
-                    { step.screenshot ? <Screenshot step={step} apiUrl={apiUrl} className={styles.thumbnailContainer} imageStretchBehavior='zoom' /> : calculateText(step)}
+                    {step.screenshot ? <Screenshot step={step} apiUrl={apiUrl} className={styles.thumbnailContainer} imageStretchBehavior='zoom' /> : calculateText(step)}
                 </div>
                 <div className={styles.stepIcon}>
                     <div className={getIcon(step)}></div>
                 </div>
-            <div className={styles.title}><span>{step.name}</span></div>
-        </div>
+                <div className={styles.title}><span>{step.name ? stripAnsi(step.name) : undefined}</span></div>
+            </div>
         ))}
     </div>
 });
@@ -67,7 +68,7 @@ const icons = {
 } as const;
 
 function getIcon(step: StepResult): string {
-    switch(step.fnName) {
+    switch (step.fnName) {
         case 'addScriptTag': return icons.chrome;
         case 'addStyleTag': return icons.chrome;
         case 'authenticate': return icons.chrome;

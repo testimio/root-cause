@@ -67,6 +67,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-test-renderer": "^16.13.1",
+    "strip-ansi": "^6.0.0",
     "typescript": "^3.9.3"
   },
   "publishConfig": {
