@@ -1,0 +1,9 @@
+{
+    "name": "root-cause",
+    "version": "0.1.16",
+    "description": "Root Cause bare",
+    "scripts": {},
+    "keywords": [],
+    "author": "Dev <dev@testim.io>",
+    "license": "AGPL-3.0-only"
+}
