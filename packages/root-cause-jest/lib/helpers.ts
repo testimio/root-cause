@@ -143,7 +143,7 @@ export async function forAfterEachEndTest(localEndTest: EndTestFunction) {
 
 export function makeHookExpect<T extends RootCausePage>(attachController: AttachReturn<T>, userTestFile: string) {
     return hookExpect((expectArgs, stacktrace) => {
-        attachController.pauseStepsRecording();
+        // attachController.pauseStepsRecording();
 
         return function matcherStartHandler(matcherName, matcherArgs, modifier) {
             return {
@@ -175,7 +175,7 @@ export function makeHookExpect<T extends RootCausePage>(attachController: Attach
                         attachController.reportAssertion(report);
                     }
 
-                    attachController.resumeStepsRecording();
+                    // attachController.resumeStepsRecording();
                 },
                 async async(matcherResultAsync) {
                     if (matcherResultAsync.success) {
@@ -203,7 +203,7 @@ export function makeHookExpect<T extends RootCausePage>(attachController: Attach
                         attachController.reportAssertion(report);
                     }
 
-                    attachController.resumeStepsRecording();
+                    // attachController.resumeStepsRecording();
                 },
             };
         };

@@ -1,4 +1,4 @@
-describe('Some test', () => {
+describe.skip('Some test', () => {
     it('First Test pass', async () => {
         await page.goto('http://jsbin.testim.io/tog');
         await page.click('#forwarning');

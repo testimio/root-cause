@@ -351,6 +351,7 @@ export function extractCodeLocationDetailsSync(userTestFile: string): CodeLocati
         toRowNumber,
         row: userTestCodeLine.line,
         column: userTestCodeLine.column,
+        stackLines,
     };
 }
 

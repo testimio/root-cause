@@ -167,6 +167,7 @@ export interface CodeLocationDetails {
     toRowNumber: number;
     row: number;
     column: number;
+    stackLines: StackLineData[];
 }
 
 export interface TestMetadata {
@@ -325,4 +326,21 @@ export interface AgnosticResultEntry {
     title: string;
     fullName: string;
     status: 'passed' | 'failed' | 'skipped' | 'pending' | 'todo' | 'disabled';
+}
+
+export interface StackLineData extends StackData {
+    evalLine?: number;
+    evalColumn?: number;
+    evalFile?: string;
+}
+
+export interface StackData {
+    line?: number;
+    column?: number;
+    file?: string;
+    constructor?: boolean;
+    evalOrigin?: string;
+    native?: boolean;
+    function?: string;
+    method?: string;
 }
