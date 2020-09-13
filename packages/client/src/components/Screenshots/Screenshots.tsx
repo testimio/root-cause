@@ -27,16 +27,19 @@ export function Screenshot(
 
     //TODO(Benji) when navigating to a page without a highlight - don't show the highlight
     return <div className={className}>
-        <div ref={container} style={{ ...screenshotDimensions, ...getBackgroundStyle(imageOffset) }} className={classNames(styles.screenshot, screenshotClassName)} >
-            <img
-                ref={image}
-                loading='lazy'
-                alt={step?.screenshot ?? ""}
-                src={screenshotResource}
-            />
-            {highlightCoordinates && <div className={styles.screenshotHighlight} style={highlightCoordinates}></div>}
-            {showHighlightRect && <div className={styles.highlightRect} style={highlightCoordinates ? adjustHighlightToHighlightRect(highlightCoordinates) : {}}></div>}
-        </div></div>;
+        <div ref={container} className={classNames(styles.screenshot, screenshotClassName)}>
+            <div style={{ ...screenshotDimensions, ...getBackgroundStyle(imageOffset) }} className={classNames(styles.screenshotInner)} >
+                <img
+                    ref={image}
+                    loading='lazy'
+                    alt={step?.screenshot ?? ""}
+                    src={screenshotResource}
+                />
+                {highlightCoordinates && <div className={styles.screenshotHighlight} style={highlightCoordinates}></div>}
+                {showHighlightRect && <div className={styles.highlightRect} style={highlightCoordinates ? adjustHighlightToHighlightRect(highlightCoordinates) : {}}></div>}
+            </div>
+        </div>
+    </div>;
 }
 
 function getBackgroundStyle(imageOffset: { left: number; top: number } | undefined) {

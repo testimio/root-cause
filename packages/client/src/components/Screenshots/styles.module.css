@@ -8,6 +8,12 @@
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.11);
 }
 
+.screenshotInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 .screenshot img {
     height:100%;
     width: 100%;
