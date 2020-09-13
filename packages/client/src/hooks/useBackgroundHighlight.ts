@@ -14,7 +14,7 @@ export function useBackgroundHighlight(step: HasRectangle, image: React.RefObjec
 
     return useMemo(() => {
 
-        if (!containerDimensions || ! imageDimensions) {
+        if (!containerDimensions || !imageDimensions) {
             return [undefined, undefined, undefined] as const;
         }
 
@@ -40,7 +40,7 @@ export function useBackgroundHighlight(step: HasRectangle, image: React.RefObjec
         // "weird Oren logic" copied from clickim :(
         // https://images-na.ssl-images-amazon.com/images/I/81shzdivO%2BL._AC_UL1500_.jpg
 
-        let ratioBetweenRectangleAndImage = Math.max(screenshotSize.width, screenshotSize.height) /  Math.max(rect.width, rect.height);
+        let ratioBetweenRectangleAndImage = Math.max(screenshotSize.width, screenshotSize.height) / Math.max(rect.width, rect.height);
 
         if (rect.width > 50) {
             // small Oren logic copied from clickim we rely on
