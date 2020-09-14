@@ -9,6 +9,8 @@ import http, { ServerResponse, IncomingMessage } from 'http';
 const loggerDebug = debug('root-cause:debug');
 const loggerError = debug('root-cause:error');
 
+const asd = require.resolve('@testim/root-cause-viewer-client/build');
+
 let server: http.Server;
 
 

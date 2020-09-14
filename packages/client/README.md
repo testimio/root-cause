@@ -1,3 +1,7 @@
+# @testim/root-cause-viewer-client
+This published package contains the built output of the CRA project, to be served using express/other simple static
+
+---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
