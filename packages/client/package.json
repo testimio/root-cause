@@ -4,7 +4,6 @@
     "private": false,
     "proxy": "http://localhost:9876/",
     "author": "testim.io <dev@testim.io>",
-    "main": "./main",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",

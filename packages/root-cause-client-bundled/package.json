@@ -3,6 +3,7 @@
     "version": "0.1.17",
     "private": false,
     "author": "testim.io <dev@testim.io>",
+    "main": "main",
     "scripts": {
         "build": "rm -fr ./packageToPublish && yarn workspace @testim/root-cause-viewer-client build-craco-lib && mkdir -p ./packageToPublish && cp -r ../client/packageToPublish ./",
         "prepublishOnly": "./scripts/prepublishOnly.sh"
