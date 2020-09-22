@@ -1,12 +1,10 @@
 ### Contributing Guide 
 
-## Warning
+## Signing the CLA
 
-We are currently in the process of ironing out the legal stuff regarding doing our very first (strategic) open source project.
+In order to contribute code you need to sign [the CLA](https://docs.google.com/document/d/1X-EoFIW1PMe8H-DJyZDScsTolPKm22-9P1JgSuiFNfE/edit?usp=sharing) which makes it possible for us to release this code as AGPL but consume it internally in a different license.
 
-In particular we are still missing a contributor license agreement and automatic tooling to make sure PRs sign it.
-
-If you would like to contribute in the meantime please contact us (benji@testim.io / bnaya@testim.io) directly.
+If you have any issues wit hthe CLA or signing it please contact us (benji@testim.io / bnaya@testim.io) directly.
 
 
 
