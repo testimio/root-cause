@@ -9,7 +9,9 @@
     "test": "jest -c jest.config.js",
     "test:integration": "jest -c jest-integration.config.js",
     "build": "tsc && npx downlevel-dts ./dist/ ./dist/ts3.4",
-    "prepublishOnly": "./scripts/prepublishOnly.sh"
+    "prepublishOnly": "./scripts/prepublishOnly.sh",
+    "root-cause": "ts-node ../root-cause-core/lib/cli",
+    "rc": "ts-node ../root-cause-core/lib/cli"
   },
   "main": "./index",
   "license": "AGPL-3.0-only",

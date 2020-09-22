@@ -5,7 +5,8 @@
     "private": true,
     "scripts": {
         "test": "jest",
-        "local-rc-cli": "node ../root-cause-core/dist/lib/cli.js"
+        "root-cause": "ts-node ../root-cause-core/lib/cli",
+        "rc": "ts-node ../root-cause-core/lib/cli"
     },
     "author": "",
     "devDependencies": {

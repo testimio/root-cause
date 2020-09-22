@@ -14,7 +14,9 @@
   "scripts": {
     "test": "jest -c integration-test/jest.config.js",
     "build": "tsc",
-    "prepublishOnly": "./scripts/prepublishOnly.sh"
+    "prepublishOnly": "./scripts/prepublishOnly.sh",
+    "root-cause": "ts-node ../root-cause-core/lib/cli",
+    "rc": "ts-node ../root-cause-core/lib/cli"
   },
   "repository": {
     "type": "git",

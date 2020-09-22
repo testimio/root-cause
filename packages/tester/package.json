@@ -6,7 +6,9 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "test": "./testers-sanity-run.sh"
+    "test": "./testers-sanity-run.sh",
+    "root-cause": "ts-node ../root-cause-core/lib/cli",
+    "rc": "ts-node ../root-cause-core/lib/cli"
   },
   "author": "",
   "dependencies": {
