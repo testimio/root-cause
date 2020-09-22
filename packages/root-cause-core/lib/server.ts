@@ -9,6 +9,9 @@ import http, { ServerResponse, IncomingMessage } from 'http';
 const loggerDebug = debug('root-cause:debug');
 const loggerError = debug('root-cause:error');
 
+const staticsPackageDirName = path.dirname(require.resolve('@testim/root-cause-viewer-client/package.json'));
+const staticsPath = path.resolve(staticsPackageDirName, 'build');
+
 let server: http.Server;
 
 
@@ -17,7 +20,8 @@ export async function openServer(port: number, testPath: string): Promise<string
 
     loggerDebug('testPath', testPath);
 
-    if (!await fs.pathExists(path.resolve(__dirname, '../client-static/index.html')) && !await fs.pathExists(path.resolve(__dirname, '../dist/client-static/index.html'))) {
+    if (!await fs.pathExists(path.resolve(staticsPath, 'index.html'))) {
+        console.error({ staticsPath });
         throw new Error('missing client static');
     }
 
@@ -31,8 +35,7 @@ export async function openServer(port: number, testPath: string): Promise<string
     // We want to prevent caching of index.html
     // The server is local so it's not very important
     app.use(noCacheMiddleware);
-    app.use(express.static(path.resolve(__dirname, '../client-static'))); // deploy-time
-    app.use(express.static(path.resolve(__dirname, '../dist/client-static'))); // dev-time
+    app.use(express.static(staticsPath)); // deploy-time
 
     app.use('/results', express.static(testPath));
 
