@@ -1,7 +1,11 @@
 import { TestContext } from './TestContext';
 import type { RootCausePage } from './interfaces';
 import type { InstrumentedFunctionResult, StepError } from '@testim/root-cause-types';
-import { getSystemInfoForPage, captureStacktraceDetails, extractCodeLocationDetailsSync } from './utils';
+import {
+  getSystemInfoForPage,
+  captureStacktraceDetails,
+  extractCodeLocationDetailsSync,
+} from './utils';
 import { TestEndStatus } from './attachInterfaces';
 import { platform } from 'os';
 import { exec } from 'child_process';
@@ -24,7 +28,12 @@ export async function errorInStepHook(
 
 async function getBranchInfo(): Promise<{ commitHash: string; branchName: string }> {
   function getEnvironmentGitBranch() {
-    return process.env.GIT_BRANCH ?? process.env.CIRCLE_BRANCH ?? process.env.TRAVIS_BRANCH ?? process.env.CI_BRANCH;
+    return (
+      process.env.GIT_BRANCH ??
+      process.env.CIRCLE_BRANCH ??
+      process.env.TRAVIS_BRANCH ??
+      process.env.CI_BRANCH
+    );
   }
   async function getCodeGitBranch() {
     // https://github.com/JPeer264/node-current-git-branch/blob/master/index.js
@@ -57,8 +66,15 @@ async function getBranchInfo(): Promise<{ commitHash: string; branchName: string
   const commitHash = (getEnvironmentGitCommit() ?? (await getGitCommitExec()))?.trim();
   return { branchName, commitHash };
 }
-export async function testSystemInfoHook(testContext: TestContext, proxyContext: any, rootPage: RootCausePage) {
-  const [systemInfo, branchInfo] = await Promise.all([getSystemInfoForPage(rootPage), getBranchInfo()]);
+export async function testSystemInfoHook(
+  testContext: TestContext,
+  proxyContext: any,
+  rootPage: RootCausePage
+) {
+  const [systemInfo, branchInfo] = await Promise.all([
+    getSystemInfoForPage(rootPage),
+    getBranchInfo(),
+  ]);
   testContext.addTestMetadata({
     systemInfo,
     branchInfo,
@@ -92,7 +108,10 @@ function unknownErrorToOurRepresentation(error: unknown): StepError {
   };
 }
 
-export async function testEndHook(testContext: TestContext, testEndStatus: TestEndStatus<unknown, unknown>) {
+export async function testEndHook(
+  testContext: TestContext,
+  testEndStatus: TestEndStatus<unknown, unknown>
+) {
   if (testEndStatus.success) {
     testContext.addTestMetadata({
       testEndStatus: {

@@ -51,7 +51,10 @@ function convertExecution(
     tests.forEach((test) => {
       execution[testIdToResultIds.get(test.id)].parentResultId = resultId;
     });
-    const lastTestEnd = Math.max(...conclusion.tests.map((x) => x.endedTimestamp), conclusion.timestamp);
+    const lastTestEnd = Math.max(
+      ...conclusion.tests.map((x) => x.endedTimestamp),
+      conclusion.timestamp
+    );
     execution[resultId] = {
       resultId,
       name: container,
@@ -117,7 +120,9 @@ function getDetaultTestConfig(
 }
 
 export async function getRunConclusionFiles(rootCauseRunDir: string): Promise<string[]> {
-  const files = (await promisify((cb) => glob(`${rootCauseRunDir}/**/*`, { nodir: true }, cb))()) as string[];
+  const files = (await promisify((cb) =>
+    glob(`${rootCauseRunDir}/**/*`, { nodir: true }, cb)
+  )()) as string[];
   return files;
 }
 

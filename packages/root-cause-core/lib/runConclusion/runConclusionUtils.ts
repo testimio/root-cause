@@ -1,4 +1,9 @@
-import type { TestResultFile, RunHistoryRecord, RunConclusionFile, RunnerResultEntry } from '@testim/root-cause-types';
+import type {
+  TestResultFile,
+  RunHistoryRecord,
+  RunConclusionFile,
+  RunnerResultEntry,
+} from '@testim/root-cause-types';
 import fs from 'fs-extra';
 import pMap from 'p-map';
 import pFilter from 'p-filter';
@@ -42,7 +47,11 @@ export async function readRunsHistory(rootCauseDirPath: string): Promise<RunHist
   }
 }
 
-export function updateRunsHistory(history: RunHistoryRecord[], conclusion: RunConclusionFile, historyToKeep: number) {
+export function updateRunsHistory(
+  history: RunHistoryRecord[],
+  conclusion: RunConclusionFile,
+  historyToKeep: number
+) {
   // When we don't have real runId, but the default one, that happens
   const runIdAlreadyInUse = history.findIndex((h) => h.runId === conclusion.runId);
   if (runIdAlreadyInUse > -1) {
@@ -57,8 +66,14 @@ export function updateRunsHistory(history: RunHistoryRecord[], conclusion: RunCo
   history.splice(historyToKeep);
 }
 
-export async function writeRunsHistory(rootCauseDirPath: string, history: RunHistoryRecord[]): Promise<void> {
-  return fs.writeFile(path.resolve(rootCauseDirPath, HISTORY_FILE_NAME), JSON.stringify(history, null, 2));
+export async function writeRunsHistory(
+  rootCauseDirPath: string,
+  history: RunHistoryRecord[]
+): Promise<void> {
+  return fs.writeFile(
+    path.resolve(rootCauseDirPath, HISTORY_FILE_NAME),
+    JSON.stringify(history, null, 2)
+  );
 }
 
 export async function writeRunConclusion(
@@ -72,9 +87,15 @@ export async function writeRunConclusion(
   );
 }
 
-export async function readRunConclusion(rootCauseDirPath: string, runId: string): Promise<RunConclusionFile> {
+export async function readRunConclusion(
+  rootCauseDirPath: string,
+  runId: string
+): Promise<RunConclusionFile> {
   return JSON.parse(
-    await fs.readFile(path.resolve(rootCauseDirPath, RUNS_DIR_NAME, runId, RUN_CONCLUSION_FILE_NAME), 'utf8')
+    await fs.readFile(
+      path.resolve(rootCauseDirPath, RUNS_DIR_NAME, runId, RUN_CONCLUSION_FILE_NAME),
+      'utf8'
+    )
   );
 }
 
@@ -143,7 +164,9 @@ export function intersectRunnerAndRootCause(
 }
 
 // maybe turn into async iterator if there's big number of tests in current run
-export async function readRunResultsDirToMap(inputDir: string): Promise<Map<string, RootCauseRunResultEntry>> {
+export async function readRunResultsDirToMap(
+  inputDir: string
+): Promise<Map<string, RootCauseRunResultEntry>> {
   if (!(await fs.pathExists(inputDir))) {
     return new Map();
   }

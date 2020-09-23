@@ -28,8 +28,15 @@ export type AfterHook = (
   instrumentedFunctionResult: InstrumentedFunctionResult<any, any>
 ) => Promise<void>;
 
-export type BeforeAllHook = (testContext: TestContext, proxyContext: any, rootPage: RootCausePage) => Promise<void>;
-export type AfterAllHook = (testContext: TestContext, endStatus: TestEndStatus<unknown, unknown>) => Promise<void>;
+export type BeforeAllHook = (
+  testContext: TestContext,
+  proxyContext: any,
+  rootPage: RootCausePage
+) => Promise<void>;
+export type AfterAllHook = (
+  testContext: TestContext,
+  endStatus: TestEndStatus<unknown, unknown>
+) => Promise<void>;
 
 export interface IAutomationFrameworkInstrumentor {
   // register additional hooks on a context, this is implemented for

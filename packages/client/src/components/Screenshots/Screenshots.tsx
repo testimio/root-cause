@@ -53,11 +53,15 @@ export function Screenshot({
           className={classNames(styles.screenshotInner)}
         >
           <img ref={image} loading="lazy" alt={step?.screenshot ?? ''} src={screenshotResource} />
-          {highlightCoordinates && <div className={styles.screenshotHighlight} style={highlightCoordinates}></div>}
+          {highlightCoordinates && (
+            <div className={styles.screenshotHighlight} style={highlightCoordinates}></div>
+          )}
           {showHighlightRect && (
             <div
               className={styles.highlightRect}
-              style={highlightCoordinates ? adjustHighlightToHighlightRect(highlightCoordinates) : {}}
+              style={
+                highlightCoordinates ? adjustHighlightToHighlightRect(highlightCoordinates) : {}
+              }
             ></div>
           )}
         </div>

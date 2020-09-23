@@ -29,14 +29,21 @@ export class TestimAssetsApi {
   }): Promise<ReturnType<typeof nodeFetch>> {
     const headers = new Headers();
     this.testimAuthApi.addAuthorizationHeader(headers);
-    const response = await this.fetch(`${this.baseUrl}/storage/${this.bucket}/${projectId}/${pathInsideBucket}`, {
-      headers,
-    });
+    const response = await this.fetch(
+      `${this.baseUrl}/storage/${this.bucket}/${projectId}/${pathInsideBucket}`,
+      {
+        headers,
+      }
+    );
     if (response.status === 404) {
       throw new TestimNotFoundError(`File ${pathInsideBucket} not found in bucket ${this.bucket}`);
     }
     if (!response.ok) {
-      throw new TestimApiError(new Error(await response.text()), 'failed to get resource', 'E_UPLOAD_REQUEST_FAILED');
+      throw new TestimApiError(
+        new Error(await response.text()),
+        'failed to get resource',
+        'E_UPLOAD_REQUEST_FAILED'
+      );
     }
     return response;
   }
@@ -56,12 +63,15 @@ export class TestimAssetsApi {
     //TODO(Benji) - detect that the content we're uploading would benefit from gzip and gzip
 
     //TODO(Benji) - concurrency?
-    const response = await this.fetch(`${this.baseUrl}/storage/${this.bucket}/${projectId}/${pathInsideBucket}`, {
-      headers,
-      body: data,
-      method: 'POST',
-      signal: signal as any,
-    });
+    const response = await this.fetch(
+      `${this.baseUrl}/storage/${this.bucket}/${projectId}/${pathInsideBucket}`,
+      {
+        headers,
+        body: data,
+        method: 'POST',
+        signal: signal as any,
+      }
+    );
     if (!response.ok) {
       const text = await response.text();
       throw new TestimApiError(new Error(text), response.statusText, 'E_UPLOAD_REQUEST_FAILED');

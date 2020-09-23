@@ -1,7 +1,10 @@
 import React, { useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
 import { apiUrl, MainStore, MainStoreContext } from './stores/MainStore';
-import { GetExternalResourceUrlContext, defaultExternalResourceUrl } from './stores/ExternalResourceUrlContext';
+import {
+  GetExternalResourceUrlContext,
+  defaultExternalResourceUrl,
+} from './stores/ExternalResourceUrlContext';
 import { Screenshot } from './components/Screenshots/Screenshots';
 import { StackTrace } from './components/StackTrace/StackTrace';
 import { Logs } from './components/Logs/Logs';
@@ -27,7 +30,9 @@ const AppComponent = ({
     return new MainStore(loadTestResult, getResourceUrl);
   }, [getResourceUrl, loadTestResult]);
 
-  const [selectedTab, selectTab] = React.useState<'screenshots' | 'stacktrace' | 'logs' | 'network'>('screenshots');
+  const [selectedTab, selectTab] = React.useState<
+    'screenshots' | 'stacktrace' | 'logs' | 'network'
+  >('screenshots');
 
   const { selectedStep } = mainStore;
 
@@ -67,7 +72,11 @@ const AppComponent = ({
   return (
     <GetExternalResourceUrlContext.Provider value={getResourceUrl}>
       <MainStoreContext.Provider value={mainStore}>
-        <div className={styles.app} onKeyDown={(e) => mainStore.handleKeypress(e.keyCode)} tabIndex={0}>
+        <div
+          className={styles.app}
+          onKeyDown={(e) => mainStore.handleKeypress(e.keyCode)}
+          tabIndex={0}
+        >
           {mainStore.resultsFile.metadata.systemInfo && (
             <TestResultTitlebar
               isClickimMode={!!isClickimMode}

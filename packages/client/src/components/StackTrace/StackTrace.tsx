@@ -22,17 +22,24 @@ export const StackTrace = React.memo(function StackTrace({ step }: { step: StepR
             <div key={idx}>
               <div
                 className={classnames({
-                  [styles.selected]: step.stepCodeLocation.fromRowNumber + idx === step.stepCodeLocation.row,
+                  [styles.selected]:
+                    step.stepCodeLocation.fromRowNumber + idx === step.stepCodeLocation.row,
                 })}
               >
                 <span className={styles.cursors}>
-                  {step.stepCodeLocation.fromRowNumber + idx === step.stepCodeLocation.row ? '> ' : '  '}
+                  {step.stepCodeLocation.fromRowNumber + idx === step.stepCodeLocation.row
+                    ? '> '
+                    : '  '}
                 </span>
-                <span className={styles.lineNumbers}>{(step.stepCodeLocation.fromRowNumber + idx).toString()} |</span>
+                <span className={styles.lineNumbers}>
+                  {(step.stepCodeLocation.fromRowNumber + idx).toString()} |
+                </span>
                 {l}
               </div>
               {step.stepCodeLocation.fromRowNumber + idx === step.stepCodeLocation.row && (
-                <div className={styles.cursors}>{'\u00A0'.repeat(step.stepCodeLocation.column + indentation - 1)}^</div>
+                <div className={styles.cursors}>
+                  {'\u00A0'.repeat(step.stepCodeLocation.column + indentation - 1)}^
+                </div>
               )}
             </div>
           );
@@ -52,7 +59,8 @@ export const StackTrace = React.memo(function StackTrace({ step }: { step: StepR
         {!step.stepError?.stack && step.stepCodeLocation && (
           <div className={styles.stackTrace}>
             <div>
-              {step.stepCodeLocation.sourceFileRelativePath}:{step.stepCodeLocation.row}:{step.stepCodeLocation.column}
+              {step.stepCodeLocation.sourceFileRelativePath}:{step.stepCodeLocation.row}:
+              {step.stepCodeLocation.column}
             </div>
           </div>
         )}

@@ -84,9 +84,10 @@ describe('Launch api test', () => {
 
     for (const stepResult of testResults.steps) {
       if (stepResult.screenshot) {
-        // eslint-disable-next-line no-await-in-loop
         assert.equal(
-          await fs.pathExists(path.resolve(runResultsDir, allResultsInDir[0], stepResult.screenshot)),
+          await fs.pathExists(
+            path.resolve(runResultsDir, allResultsInDir[0], stepResult.screenshot)
+          ),
           true,
           `${stepResult.screenshot} is missing`
         );
@@ -112,7 +113,10 @@ describe('Launch api test', () => {
           testName: testInfo.fullName,
           noServer: true,
           automationLibrary: 'puppeteer',
-          browserOptions: { headless: true, browserArgs: ['--no-sandbox', '--disable-setuid-sandbox'] },
+          browserOptions: {
+            headless: true,
+            browserArgs: ['--no-sandbox', '--disable-setuid-sandbox'],
+          },
           _runId: localRunId,
         },
         async (page) => {
@@ -154,9 +158,10 @@ describe('Launch api test', () => {
 
     for (const stepResult of testResults.steps) {
       if (stepResult.screenshot) {
-        // eslint-disable-next-line no-await-in-loop
         assert.equal(
-          await fs.pathExists(path.resolve(runResultsDir, allResultsInDir[0], stepResult.screenshot)),
+          await fs.pathExists(
+            path.resolve(runResultsDir, allResultsInDir[0], stepResult.screenshot)
+          ),
           true,
           `${stepResult.screenshot} is missing`
         );

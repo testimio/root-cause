@@ -24,10 +24,17 @@ Clickim have complex logs-from-cdp parsing logic at src/background/debuggerEvent
 I don't see quick way to be compatible here, so for now i choose to go with interfaces similar to puppeteer.
 */
 
-export async function logsBeforeAllHook(testContext: TestContext, proxyContext: any, rootPage: RootCausePage) {
+export async function logsBeforeAllHook(
+  testContext: TestContext,
+  proxyContext: any,
+  rootPage: RootCausePage
+) {
   async function onConsole(message: PuppeteerConsoleMessage) {
     testContext.consoleEntries.push(
-      await puppeteerOrPlaywrightConsoleMessageToOurRepresentation(message, testContext.dateConstructor.now())
+      await puppeteerOrPlaywrightConsoleMessageToOurRepresentation(
+        message,
+        testContext.dateConstructor.now()
+      )
     );
   }
 
@@ -39,7 +46,10 @@ export async function logsBeforeAllHook(testContext: TestContext, proxyContext: 
 
   async function onConsolePlaywright(message: PlaywrightConsoleMessage) {
     testContext.consoleEntries.push(
-      await puppeteerOrPlaywrightConsoleMessageToOurRepresentation(message, testContext.dateConstructor.now())
+      await puppeteerOrPlaywrightConsoleMessageToOurRepresentation(
+        message,
+        testContext.dateConstructor.now()
+      )
     );
   }
 
@@ -73,16 +83,28 @@ export async function logsAfterAllHook(testContext: TestContext) {
   runAllDisposers(testContext, DISPOSERS_TOPIC);
 }
 
-export async function logsBeforeEachHook(testContext: TestContext, proxyContext: any, rootPage: RootCausePage) {}
+export async function logsBeforeEachHook(
+  testContext: TestContext,
+  proxyContext: any,
+  rootPage: RootCausePage
+) {}
 
-export async function logsAfterEachHook(testContext: TestContext, proxyContext: any, rootPage: RootCausePage) {
+export async function logsAfterEachHook(
+  testContext: TestContext,
+  proxyContext: any,
+  rootPage: RootCausePage
+) {
   const stepContext = testContext.currentStep;
   if (!stepContext) {
     return;
   }
 
-  const consoleEntries = testContext.consoleEntries.filter((e) => e.timestamp > stepContext.startTimestamp);
-  const unhandledExceptions = testContext.unhandledExceptions.filter((e) => e.timestamp > stepContext.startTimestamp);
+  const consoleEntries = testContext.consoleEntries.filter(
+    (e) => e.timestamp > stepContext.startTimestamp
+  );
+  const unhandledExceptions = testContext.unhandledExceptions.filter(
+    (e) => e.timestamp > stepContext.startTimestamp
+  );
   testContext.addStepMetadata({ consoleEntries, unhandledExceptions });
 }
 

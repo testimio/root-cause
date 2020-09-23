@@ -43,19 +43,19 @@ describe('hookExpect', () => {
     expect(matcherEndHandler.sync).toBeCalledTimes(1);
 
     expect(expectStartHandler.mock.calls[0]).toMatchInlineSnapshot(`
-            Array [
-              Array [
-                1,
-              ],
-              Error: 
-                at Object.<anonymous> (noise_removed/packages/root-cause-jest/lib/hookExpect.test.ts:36:9)
-                at Object.asyncJestTest (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
-                at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:45:12
-                at new Promise (<anonymous>)
-                at mapper (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-                at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:75:41,
-            ]
-        `);
+      Array [
+        Array [
+          1,
+        ],
+        Error: 
+          at Object.<anonymous> (noise_removed/packages/root-cause-jest/lib/hookExpect.test.ts:36:5)
+          at Object.asyncJestTest (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+          at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+          at new Promise (<anonymous>)
+          at mapper (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+          at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:75:41,
+      ]
+    `);
     expect(matcherStartHandler.mock.calls[0]).toMatchInlineSnapshot(`
             Array [
               "toBe",
@@ -91,19 +91,19 @@ describe('hookExpect', () => {
     expect(matcherEndHandler.sync).toBeCalledTimes(1);
 
     expect(expectStartHandler.mock.calls[0]).toMatchInlineSnapshot(`
-            Array [
-              Array [
-                1,
-              ],
-              Error: 
-                at Object.<anonymous> (noise_removed/packages/root-cause-jest/lib/hookExpect.test.ts:81:13)
-                at Object.asyncJestTest (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
-                at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:45:12
-                at new Promise (<anonymous>)
-                at mapper (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-                at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:75:41,
-            ]
-        `);
+      Array [
+        Array [
+          1,
+        ],
+        Error: 
+          at Object.<anonymous> (noise_removed/packages/root-cause-jest/lib/hookExpect.test.ts:81:7)
+          at Object.asyncJestTest (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+          at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+          at new Promise (<anonymous>)
+          at mapper (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+          at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:75:41,
+      ]
+    `);
     expect(matcherStartHandler.mock.calls[0]).toMatchInlineSnapshot(`
             Array [
               "toBe",
@@ -141,19 +141,19 @@ describe('hookExpect', () => {
     expect(matcherEndHandler.sync).toBeCalledTimes(0);
 
     expect(expectStartHandler.mock.calls[0]).toMatchInlineSnapshot(`
-            Array [
-              Array [
-                Promise {},
-              ],
-              Error: 
-                at Object.<anonymous> (noise_removed/packages/root-cause-jest/lib/hookExpect.test.ts:132:15)
-                at Object.asyncJestTest (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
-                at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:45:12
-                at new Promise (<anonymous>)
-                at mapper (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-                at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:75:41,
-            ]
-        `);
+      Array [
+        Array [
+          Promise {},
+        ],
+        Error: 
+          at Object.<anonymous> (noise_removed/packages/root-cause-jest/lib/hookExpect.test.ts:132:11)
+          at Object.asyncJestTest (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+          at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+          at new Promise (<anonymous>)
+          at mapper (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+          at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:75:41,
+      ]
+    `);
     expect(matcherStartHandler.mock.calls[0]).toMatchInlineSnapshot(`
             Array [
               "toEqual",
@@ -189,19 +189,19 @@ describe('hookExpect', () => {
     expect(matcherEndHandler.sync).toBeCalledTimes(0);
 
     expect(expectStartHandler.mock.calls[0]).toMatchInlineSnapshot(`
-            Array [
-              Array [
-                Promise {},
-              ],
-              Error: 
-                at Object.<anonymous> (noise_removed/packages/root-cause-jest/lib/hookExpect.test.ts:180:15)
-                at Object.asyncJestTest (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
-                at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:45:12
-                at new Promise (<anonymous>)
-                at mapper (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-                at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:75:41,
-            ]
-        `);
+      Array [
+        Array [
+          Promise {},
+        ],
+        Error: 
+          at Object.<anonymous> (noise_removed/packages/root-cause-jest/lib/hookExpect.test.ts:180:11)
+          at Object.asyncJestTest (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+          at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+          at new Promise (<anonymous>)
+          at mapper (noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+          at noise_removed/node_modules/@jest/core/node_modules/jest-jasmine2/build/queueRunner.js:75:41,
+      ]
+    `);
     expect(matcherStartHandler.mock.calls[0]).toMatchInlineSnapshot(`
             Array [
               "toMatchObject",

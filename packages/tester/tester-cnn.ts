@@ -3,7 +3,10 @@ import * as rootcause from '@testim/root-cause';
 import * as path from 'path';
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
 
   const startTestParams = {
     runId: 'mock_invocation_id',
@@ -13,7 +16,10 @@ import * as path from 'path';
     fullSuitePath: __filename,
   };
 
-  const { page, endTest } = await rootcause.attach({ page: await browser.newPage(), startTestParams });
+  const { page, endTest } = await rootcause.attach({
+    page: await browser.newPage(),
+    startTestParams,
+  });
 
   try {
     const navigationPromise = page.waitForNavigation();
@@ -24,8 +30,12 @@ import * as path from 'path';
 
     await navigationPromise;
 
-    await page.waitForSelector('.Flex-sc-1sqrs56-0 > .sc-gzVnrw > .sc-htoDjs > .sc-dnqmqq:nth-child(4) > .sc-bZQynM');
-    await page.click('.Flex-sc-1sqrs56-0 > .sc-gzVnrw > .sc-htoDjs > .sc-dnqmqq:nth-child(4) > .sc-bZQynM');
+    await page.waitForSelector(
+      '.Flex-sc-1sqrs56-0 > .sc-gzVnrw > .sc-htoDjs > .sc-dnqmqq:nth-child(4) > .sc-bZQynM'
+    );
+    await page.click(
+      '.Flex-sc-1sqrs56-0 > .sc-gzVnrw > .sc-htoDjs > .sc-dnqmqq:nth-child(4) > .sc-bZQynM'
+    );
 
     await navigationPromise;
 
@@ -41,7 +51,9 @@ import * as path from 'path';
     await page.waitForSelector(
       '.search-corp-nav > #advanced-search-form-5e13dc669e #advanced-search-keyword-5e13dc669e'
     );
-    await page.click('.search-corp-nav > #advanced-search-form-5e13dc669e #advanced-search-keyword-5e13dc669e');
+    await page.click(
+      '.search-corp-nav > #advanced-search-form-5e13dc669e #advanced-search-keyword-5e13dc669e'
+    );
 
     await page.waitForSelector('.header-search-container #advanced-search-submit-5e13dc669e');
     await page.click('.header-search-container #advanced-search-submit-5e13dc669e');
@@ -53,15 +65,21 @@ import * as path from 'path';
 
     await navigationPromise;
 
-    await page.waitForSelector('.main-footer-wrapper > #content > #main-content-wrapper > .job-description > .top');
-    await page.click('.main-footer-wrapper > #content > #main-content-wrapper > .job-description > .top');
+    await page.waitForSelector(
+      '.main-footer-wrapper > #content > #main-content-wrapper > .job-description > .top'
+    );
+    await page.click(
+      '.main-footer-wrapper > #content > #main-content-wrapper > .job-description > .top'
+    );
 
     await navigationPromise;
 
     await page.waitForSelector(
       '.buttonsFooterAccentWrapper > .buttonsFooterAccent > div > #applyFromDetailBtn > .ladda-label'
     );
-    await page.click('.buttonsFooterAccentWrapper > .buttonsFooterAccent > div > #applyFromDetailBtn > .ladda-label');
+    await page.click(
+      '.buttonsFooterAccentWrapper > .buttonsFooterAccent > div > #applyFromDetailBtn > .ladda-label'
+    );
 
     await page.waitForSelector('.MainDiv #loginField');
     await page.click('.MainDiv #loginField');

@@ -36,7 +36,9 @@ describe('Sanity UI test', () => {
     await page.goto('http://localhost:9876');
     await page.waitForSelector('#sidebar > div', { timeout: 10000 });
     // await new Promise(res => {});
-    const numberOfSteps = await page.evaluate(() => document.querySelectorAll('#sidebar > div').length);
+    const numberOfSteps = await page.evaluate(
+      () => document.querySelectorAll('#sidebar > div').length
+    );
 
     assert.equal(numberOfSteps, 7);
 

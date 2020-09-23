@@ -3,7 +3,11 @@ import playwright from 'playwright';
 import fs from 'fs-extra';
 import path from 'path';
 import assert from 'assert';
-import { assertNotNullOrUndefined, testUniqueIdentifierFromStartParams, jsonReduceNoiseReviver } from './utils';
+import {
+  assertNotNullOrUndefined,
+  testUniqueIdentifierFromStartParams,
+  jsonReduceNoiseReviver,
+} from './utils';
 import {
   getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin,
   getCleanAllPathsPrettyFormatPlugin,
@@ -27,7 +31,9 @@ describe('Sanity integration test playwright', () => {
     // https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
     // Not optimal, but didn't work on circle on circleci/node:12.17-stretch-browsers without it
     // Need to revisit
-    browser = await playwright.chromium.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    browser = await playwright.chromium.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
   });
 
   afterAll(async () => {
@@ -137,7 +143,6 @@ describe('Sanity integration test playwright', () => {
     for (const stepResult of testResults.steps) {
       // Do also images blob comparison? TBH
       if (stepResult.screenshot) {
-        // eslint-disable-next-line no-await-in-loop
         assert.equal(
           await fs.pathExists(path.resolve(expectedResults, stepResult.screenshot)),
           true,

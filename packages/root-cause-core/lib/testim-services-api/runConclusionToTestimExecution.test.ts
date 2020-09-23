@@ -1,4 +1,8 @@
-import { runConclusionToTestimExecution, TestimUserMetadata, GitMetadata } from './runConclusionToTestimExecution';
+import {
+  runConclusionToTestimExecution,
+  TestimUserMetadata,
+  GitMetadata,
+} from './runConclusionToTestimExecution';
 import type { RunConclusionFile } from '@testim/root-cause-types';
 
 const runConclusionFailed = require('../fixtures/runConclusionFailed.json') as RunConclusionFile;
@@ -32,14 +36,22 @@ describe('the run conclusion file conversion', () => {
     Date.prototype.toLocaleString = toLocaleString;
   });
   it('converts an empty runConclusions file to a testim execution', () => {
-    expect(runConclusionToTestimExecution(runConclusionEmpty, testimMetadata, undefined, guid)).toMatchSnapshot();
+    expect(
+      runConclusionToTestimExecution(runConclusionEmpty, testimMetadata, undefined, guid)
+    ).toMatchSnapshot();
   });
   it('converts a runConclusions file of several test to a testim execution', () => {
-    expect(runConclusionToTestimExecution(runConclusionFailed, testimMetadata, undefined, guid)).toMatchSnapshot();
-    expect(runConclusionToTestimExecution(runConclusionSuccessful, testimMetadata, undefined, guid)).toMatchSnapshot();
+    expect(
+      runConclusionToTestimExecution(runConclusionFailed, testimMetadata, undefined, guid)
+    ).toMatchSnapshot();
+    expect(
+      runConclusionToTestimExecution(runConclusionSuccessful, testimMetadata, undefined, guid)
+    ).toMatchSnapshot();
   });
   it('converts a runConclusions file of a jest test suite to a testim execution', () => {
-    expect(runConclusionToTestimExecution(runConclusionFromJest, testimMetadata, undefined, guid)).toMatchSnapshot();
+    expect(
+      runConclusionToTestimExecution(runConclusionFromJest, testimMetadata, undefined, guid)
+    ).toMatchSnapshot();
   });
   it('converts a runConclusions file of a jest test suite to a testim execution with git metadata', () => {
     const gitMetadata: GitMetadata = {
@@ -47,6 +59,8 @@ describe('the run conclusion file conversion', () => {
       gitCommit: '3123364',
       gitRepoUrl: '#doglivesmatter#ingoldawetrust',
     };
-    expect(runConclusionToTestimExecution(runConclusionFromJest, testimMetadata, gitMetadata, guid)).toMatchSnapshot();
+    expect(
+      runConclusionToTestimExecution(runConclusionFromJest, testimMetadata, gitMetadata, guid)
+    ).toMatchSnapshot();
   });
 });

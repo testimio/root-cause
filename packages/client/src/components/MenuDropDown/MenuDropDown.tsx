@@ -7,7 +7,13 @@ export interface MenuItem {
   icon: string;
 }
 
-export function MenuDropDown({ items, onItemClick }: { items: MenuItem[]; onItemClick(slug: string): void }) {
+export function MenuDropDown({
+  items,
+  onItemClick,
+}: {
+  items: MenuItem[];
+  onItemClick(slug: string): void;
+}) {
   return (
     <div className={styles.menuDropDownWrapper}>
       {items.map((item) => {
@@ -26,7 +32,15 @@ export function MenuDropDown({ items, onItemClick }: { items: MenuItem[]; onItem
   );
 }
 
-function MenuDropDownItem({ text, icon, onClick }: { text: string; icon?: string; onClick(): void }) {
+function MenuDropDownItem({
+  text,
+  icon,
+  onClick,
+}: {
+  text: string;
+  icon?: string;
+  onClick(): void;
+}) {
   return (
     <div className={styles.menuItemWrapper} onClick={onClick}>
       <div className={styles.iconBox}>{icon ? <img src={icon} alt={`${text} icon`} /> : null}</div>

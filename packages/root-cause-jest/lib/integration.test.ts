@@ -49,9 +49,12 @@ describe('jest integration test', () => {
             "
         `);
 
-    const rootCauseLs = await execResults('node -r ts-node/register ../root-cause-core/lib/cli.ts ls', {
-      cwd: path.resolve(__dirname, '../../jest-tester-and-example'),
-    });
+    const rootCauseLs = await execResults(
+      'node -r ts-node/register ../root-cause-core/lib/cli.ts ls',
+      {
+        cwd: path.resolve(__dirname, '../../jest-tester-and-example'),
+      }
+    );
 
     rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run id: [^\n]+/, 'Run id: noise removed');
     rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run time: [^\n]+/, 'Run time: noise removed');

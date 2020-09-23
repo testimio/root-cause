@@ -11,8 +11,14 @@ import * as path from 'path';
     fullSuitePath: __filename,
   };
 
-  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-  const { page: thePage, endTest } = await rootCause.attach({ page: await browser.newPage(), startTestParams });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+  const { page: thePage, endTest } = await rootCause.attach({
+    page: await browser.newPage(),
+    startTestParams,
+  });
 
   try {
     await thePage.goto('http://jsbin.testim.io/zegacafuwa/edit?output');

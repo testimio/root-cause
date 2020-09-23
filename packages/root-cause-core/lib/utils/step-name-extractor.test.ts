@@ -2,16 +2,29 @@ import { extractStepName } from './step-name-extractor';
 import { strictEqual } from 'assert';
 import type { StepResult } from '@testim/root-cause-types';
 
-const result = (part: Partial<StepResult>) => Object.assign({ index: 1, startTimestamp: Date.now() }, part);
+const result = (part: Partial<StepResult>) =>
+  Object.assign({ index: 1, startTimestamp: Date.now() }, part);
 
 describe("Figuring out a step's name", () => {
   it('Uses the selector and action name', () => {
-    strictEqual(extractStepName(result({ fnName: 'click', selector: '.myClass' })), 'click ".myClass"');
-    strictEqual(extractStepName(result({ fnName: 'dblclick', selector: '.myClass' })), 'dblclick ".myClass"');
-    strictEqual(extractStepName(result({ fnName: 'dblclick', selector: '#myId' })), 'dblclick "#myId"');
+    strictEqual(
+      extractStepName(result({ fnName: 'click', selector: '.myClass' })),
+      'click ".myClass"'
+    );
+    strictEqual(
+      extractStepName(result({ fnName: 'dblclick', selector: '.myClass' })),
+      'dblclick ".myClass"'
+    );
+    strictEqual(
+      extractStepName(result({ fnName: 'dblclick', selector: '#myId' })),
+      'dblclick "#myId"'
+    );
     strictEqual(extractStepName(result({ fnName: 'select', selector: '#myId' })), 'select "#myId"');
     strictEqual(extractStepName(result({ fnName: 'tap', selector: '#myId' })), 'tap "#myId"');
-    strictEqual(extractStepName(result({ fnName: 'waitForSelector', selector: '#myId' })), 'waitForSelector "#myId"');
+    strictEqual(
+      extractStepName(result({ fnName: 'waitForSelector', selector: '#myId' })),
+      'waitForSelector "#myId"'
+    );
   });
 
   it('Uses the step text when there is step text', () => {

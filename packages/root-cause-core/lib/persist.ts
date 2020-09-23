@@ -18,13 +18,20 @@ export async function persist(
     project,
     token,
     jUnitReportPath,
-  }: { projectRoot?: string; resultLabel: string[]; project?: string; token?: string; jUnitReportPath?: string }
+  }: {
+    projectRoot?: string;
+    resultLabel: string[];
+    project?: string;
+    token?: string;
+    jUnitReportPath?: string;
+  }
 ) {
   if (!runId) {
     console.log('Please pass a valid runId');
     return;
   }
-  const credentials = project && token ? { projectId: project, ciToken: token } : await getTestimCredentials();
+  const credentials =
+    project && token ? { projectId: project, ciToken: token } : await getTestimCredentials();
   if (!jUnitReportPath && process.env.TESTIM_PROJECT_JUNIT_PATH) {
     jUnitReportPath = untildify(process.env.TESTIM_PROJECT_JUNIT_PATH);
   }
@@ -106,23 +113,28 @@ export function generateJunitReport({
   testimExecution: TestimBackendExecutionFormatSubsetForReporting;
   projectId: string;
 }) {
-  const actualTests = Object.values(testimExecution.execution).filter((test) => !test.isTestsContainer);
+  const actualTests = Object.values(testimExecution.execution).filter(
+    (test) => !test.isTestsContainer
+  );
   const dateValue = new Date(testimExecution.startTime).toUTCString();
   const files = Object.values(testimExecution.execution).filter((test) => test.isTestsContainer);
   const baseUrl = `https://app.testim.io/#/project/${projectId}/branch/master/root-cause/run/${testimExecution.runId}`;
-  const attr = (str: string) => `"${str.replace(/"/g, '&quot').replace(/&/g, '&amp').replace(/</, '&lt;')}"`;
+  const attr = (str: string) =>
+    `"${str.replace(/"/g, '&quot').replace(/&/g, '&amp').replace(/</, '&lt;')}"`;
   // Includes the right values (from) https://llg.cubic.org/docs/junit/ with the battle tested ones (our cli jUnitReporter)
   const report = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><testsuites disabled='0'>${files
     .map((file) => {
       const tests = actualTests.filter((x) => x.parentResultId === file.resultId);
       const failed = tests.filter((x) => !x.success);
-      return `\t<testsuite name=${attr(file.name)} tests="${tests.length}" failure="${failed.length}" failures="${
+      return `\t<testsuite name=${attr(file.name)} tests="${tests.length}" failure="${
         failed.length
-      }" timestamp="${dateValue}">
+      }" failures="${failed.length}" timestamp="${dateValue}">
                  ${tests
                    .map(
                      (test) =>
-                       `<testcase name=${attr(test.name)} classname="rootcause.test"><system-out>${baseUrl}/test/${
+                       `<testcase name=${attr(
+                         test.name
+                       )} classname="rootcause.test"><system-out>${baseUrl}/test/${
                          test.testId
                        }</system-out></testcase>`
                    )

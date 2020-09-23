@@ -121,7 +121,13 @@ export const TestResultTitlebar = React.memo(function TestResultTitlebar({
   );
 });
 
-function TestInfoPopupFields({ fields, totalTime }: { fields: Array<[string, string]>; totalTime: number }) {
+function TestInfoPopupFields({
+  fields,
+  totalTime,
+}: {
+  fields: Array<[string, string]>;
+  totalTime: number;
+}) {
   return (
     <div className={styles.fields}>
       <div className={styles.headField}>TEST FAILED - {ms(totalTime, { long: true })}</div>

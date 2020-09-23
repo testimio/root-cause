@@ -7,7 +7,12 @@ import path from 'path';
 import { RESULTS_DIR_NAME, RUNS_DIR_NAME } from './consts';
 import fs from 'fs-extra';
 import type { Page as PuppeteerPage, PageEventObj as PuppeteerPageEventObj } from 'puppeteer';
-import type { Page as PlaywrightPage, ChromiumBrowserContext, BrowserContext, ChromiumBrowser } from 'playwright';
+import type {
+  Page as PlaywrightPage,
+  ChromiumBrowserContext,
+  BrowserContext,
+  ChromiumBrowser,
+} from 'playwright';
 import type { TestSystemInfo, CodeLocationDetails, StepError } from '@testim/root-cause-types';
 import type { StackLineData, CallSite } from 'stack-utils';
 import StackUtils from 'stack-utils';
@@ -40,7 +45,10 @@ declare const window: any;
 export function testResultDirFromStartParams(startParams: StartTestParams) {
   const uniqueTestId = testUniqueIdentifierFromStartParams(startParams);
 
-  return path.resolve(constructTestInvocationResultDir(startParams.projectRoot, startParams.runId), uniqueTestId);
+  return path.resolve(
+    constructTestInvocationResultDir(startParams.projectRoot, startParams.runId),
+    uniqueTestId
+  );
 }
 
 export function constructTestInvocationResultDir(projectRoot: string, runId: string) {
@@ -75,7 +83,9 @@ export function isNotPlaywrightPage(page: RootCausePage): page is PuppeteerPage 
   return !('exposeBinding' in page);
 }
 
-export function isPlaywrightChromiumBrowserContext(context: BrowserContext): context is ChromiumBrowserContext {
+export function isPlaywrightChromiumBrowserContext(
+  context: BrowserContext
+): context is ChromiumBrowserContext {
   // https://github.com/microsoft/playwright/blob/807dc1f3248571f5dcb13731c14b349e47c6e868/docs/api.md#chromiumbrowsercontextnewcdpsessionpage
   return 'newCDPSession' in context;
 }
@@ -88,7 +98,9 @@ export async function getSystemInfoForPage(page: RootCausePage): Promise<TestSys
   return getSystemInfoForPlaywrightPage(page);
 }
 
-export async function getSystemInfoForPlaywrightPage(page: PlaywrightPage): Promise<TestSystemInfo> {
+export async function getSystemInfoForPlaywrightPage(
+  page: PlaywrightPage
+): Promise<TestSystemInfo> {
   const context = page.context();
 
   if (isPlaywrightChromiumBrowserContext(context)) {
@@ -192,7 +204,9 @@ export function guessOperatingSystemUserAgent(): { name: string; version: string
   };
 }
 
-export function assertNotNullOrUndefined<T>(value: T): asserts value is Exclude<T, undefined | null | void> {
+export function assertNotNullOrUndefined<T>(
+  value: T
+): asserts value is Exclude<T, undefined | null | void> {
   if (value === undefined || value === null) {
     throw new Error('value is nullable');
   }
@@ -276,7 +290,13 @@ export function unknownValueThatIsProbablyErrorToStepError(probablyError: unknow
 /**
  * Very crud, but effective way to get rid of values that we don't mock and might change between envs running the test
  */
-const noiseKeys = new Set(['userAgent', 'modelName', 'modelVersion', 'browserPlatform', 'branchInfo']);
+const noiseKeys = new Set([
+  'userAgent',
+  'modelName',
+  'modelVersion',
+  'browserPlatform',
+  'branchInfo',
+]);
 export function jsonRemoveNoiseReviver(key: string, value: any) {
   if (noiseKeys.has(key)) {
     return `noise_removed:${key}`;
@@ -338,7 +358,10 @@ export function arrayFlat<T>(arr: T[][]): T[] {
   }, []);
 }
 
-export function extractCodeLocationDetailsSync(userTestFile: string, workingDirectory: string): CodeLocationDetails {
+export function extractCodeLocationDetailsSync(
+  userTestFile: string,
+  workingDirectory: string
+): CodeLocationDetails {
   const { stackLines, stacktrace } = captureStacktraceDetails();
 
   stacktrace.toString();
@@ -366,7 +389,10 @@ export function extractCodeLocationDetailsSync(userTestFile: string, workingDire
   const userTestFileContent = fs.readFileSync(userTestFile, 'utf8');
   const userTestFileCodeLines = userTestFileContent.split(/\r?\n/);
   const fromRowNumber = Math.max(userTestCodeLine.line - USER_CODE_BEFORE_AFTER_TO_SHOW, 1);
-  const toRowNumber = Math.min(userTestCodeLine.line + USER_CODE_BEFORE_AFTER_TO_SHOW, userTestFileCodeLines.length);
+  const toRowNumber = Math.min(
+    userTestCodeLine.line + USER_CODE_BEFORE_AFTER_TO_SHOW,
+    userTestFileCodeLines.length
+  );
 
   const codeLines = userTestFileCodeLines.slice(fromRowNumber - 1, toRowNumber);
 

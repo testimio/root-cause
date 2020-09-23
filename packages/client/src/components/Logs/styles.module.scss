@@ -88,8 +88,8 @@ $color-d5: #9ea0ab;
     --error-border-color: hsl(0, 100%, 92%);
     --error-text-color: red;
     font-size: 12px;
-    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono,
-      Courier New, monospace, monospace;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+      Bitstream Vera Sans Mono, Courier New, monospace, monospace;
     line-height: 1.2;
   }
 
@@ -382,7 +382,9 @@ $color-d5: #9ea0ab;
     color: blue;
   }
 
-  &.-theme-with-dark-background .console-verbose-level:not(.console-warning-level) .console-message-text,
+  &.-theme-with-dark-background
+    .console-verbose-level:not(.console-warning-level)
+    .console-message-text,
   &.-theme-with-dark-background .console-system-type.console-info-level {
     color: hsl(220, 100%, 65%) !important;
   }

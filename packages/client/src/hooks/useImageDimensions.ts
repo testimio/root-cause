@@ -9,7 +9,10 @@ export function useImageDimensions(imageRef: React.RefObject<HTMLImageElement>) 
       }
       await imageLoaded(imageRef.current);
       if (imageRef.current) {
-        setImageSize({ width: imageRef.current.naturalWidth, height: imageRef.current.naturalHeight });
+        setImageSize({
+          width: imageRef.current.naturalWidth,
+          height: imageRef.current.naturalHeight,
+        });
       }
     })();
   }, [imageRef]);

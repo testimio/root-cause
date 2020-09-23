@@ -121,11 +121,15 @@ describe('with har record', () => {
       // Do also images blob comparison? TBH
       if (stepResult.screenshot) {
         // eslint-disable-next-line no-await-in-loop
-        expect(fs.pathExists(path.resolve(expectedResultsPath, stepResult.screenshot))).resolves.toBe(true);
+        expect(
+          fs.pathExists(path.resolve(expectedResultsPath, stepResult.screenshot))
+        ).resolves.toBe(true);
       }
     }
 
-    const harFileContent = JSON.parse(await fs.readFile(path.resolve(expectedResultsPath, 'networkLogs.har'), 'utf8'));
+    const harFileContent = JSON.parse(
+      await fs.readFile(path.resolve(expectedResultsPath, 'networkLogs.har'), 'utf8')
+    );
     expect(interestingPartsOfHar(harFileContent)).toMatchSnapshot('har file content');
   });
 });

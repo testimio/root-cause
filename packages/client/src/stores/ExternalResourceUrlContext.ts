@@ -8,9 +8,9 @@ export function defaultExternalResourceUrl(resource: string | undefined) {
   return `/results/${resource}`;
 }
 
-export const GetExternalResourceUrlContext = createContext<(url: string | undefined) => string | undefined>(
-  defaultExternalResourceUrl
-);
+export const GetExternalResourceUrlContext = createContext<
+  (url: string | undefined) => string | undefined
+>(defaultExternalResourceUrl);
 
 export function useExternalResourceUrl() {
   return useContext(GetExternalResourceUrlContext);

@@ -45,17 +45,23 @@ describe('test javascriptValueToVisualTextualRepresentation', () => {
     ).toMatchInlineSnapshot('"Lorem ipsum dolor sit amet, co...gestas."');
   });
   test('Short text', () => {
-    expect(javascriptValueToVisualTextualRepresentation('Lorem ipsum')).toMatchInlineSnapshot('"Lorem ipsum"');
+    expect(javascriptValueToVisualTextualRepresentation('Lorem ipsum')).toMatchInlineSnapshot(
+      '"Lorem ipsum"'
+    );
   });
 
   test('undefined', () => {
-    expect(javascriptValueToVisualTextualRepresentation(undefined)).toMatchInlineSnapshot('"undefined"');
+    expect(javascriptValueToVisualTextualRepresentation(undefined)).toMatchInlineSnapshot(
+      '"undefined"'
+    );
   });
   test('null', () => {
     expect(javascriptValueToVisualTextualRepresentation(null)).toMatchInlineSnapshot('"null"');
   });
   test('bigint', () => {
-    expect(javascriptValueToVisualTextualRepresentation(BigInt(100))).toMatchInlineSnapshot('"100"');
+    expect(javascriptValueToVisualTextualRepresentation(BigInt(100))).toMatchInlineSnapshot(
+      '"100"'
+    );
   });
 
   test('symbol', () => {
@@ -79,22 +85,26 @@ describe('test javascriptValueToVisualTextualRepresentation', () => {
   });
 
   test('Array', () => {
-    expect(javascriptValueToVisualTextualRepresentation([1, 2, 3])).toMatchInlineSnapshot('"Array(length=3)"');
+    expect(javascriptValueToVisualTextualRepresentation([1, 2, 3])).toMatchInlineSnapshot(
+      '"Array(length=3)"'
+    );
   });
 
   test('Promise', () => {
-    expect(javascriptValueToVisualTextualRepresentation(Promise.resolve('SOME VALUE'))).toMatchInlineSnapshot(
-      '"Promise"'
-    );
+    expect(
+      javascriptValueToVisualTextualRepresentation(Promise.resolve('SOME VALUE'))
+    ).toMatchInlineSnapshot('"Promise"');
   });
 
   test('object with constructor', () => {
-    expect(javascriptValueToVisualTextualRepresentation(expect.arrayContaining([1]))).toMatchInlineSnapshot(
-      '"instanceof(ArrayContaining)"'
-    );
+    expect(
+      javascriptValueToVisualTextualRepresentation(expect.arrayContaining([1]))
+    ).toMatchInlineSnapshot('"instanceof(ArrayContaining)"');
   });
 
   test('plain object / fallback', () => {
-    expect(javascriptValueToVisualTextualRepresentation({ a: 1 })).toMatchInlineSnapshot('"object"');
+    expect(javascriptValueToVisualTextualRepresentation({ a: 1 })).toMatchInlineSnapshot(
+      '"object"'
+    );
   });
 });

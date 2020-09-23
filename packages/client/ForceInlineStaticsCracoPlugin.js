@@ -1,5 +1,10 @@
 module.exports = {
-  overrideWebpackConfig: ({ webpackConfig, cracoConfig, pluginOptions, context: { env, paths } }) => {
+  overrideWebpackConfig: ({
+    webpackConfig,
+    cracoConfig,
+    pluginOptions,
+    context: { env, paths },
+  }) => {
     const probablyTheEntryWeLookFor = webpackConfig.module.rules.find((rule) => {
       return 'oneOf' in rule && Array.isArray(rule.oneOf);
     });

@@ -1,7 +1,13 @@
 // https://github.com/mochajs/mocha/pull/1360#issuecomment-407404831
 
 import fs from 'fs-extra';
-import { utils, runConclusionUtils, runConclusionInterfaces, persist, utilGuid } from '@testim/root-cause-core';
+import {
+  utils,
+  runConclusionUtils,
+  runConclusionInterfaces,
+  persist,
+  utilGuid,
+} from '@testim/root-cause-core';
 import type { Runner, MochaOptions, Test, Stats } from 'mocha';
 import Mocha, { reporters } from 'mocha';
 import type { RootCauseTestAddonData } from './interfaces';
@@ -27,7 +33,9 @@ export default class RootCauseMochaReporter implements reporters.Base {
   constructor(public runner: Runner, options: MochaOptions) {
     let ReporterClassToUse: typeof reporters.Base = reporters.Spec;
 
-    const thisForMochaReporterFind: { _reporter?: typeof reporters.Base; options: {} } = { options: {} };
+    const thisForMochaReporterFind: { _reporter?: typeof reporters.Base; options: {} } = {
+      options: {},
+    };
 
     // we do that to use the internal behavior of mocha to load the inner reporter
     // https://github.com/mochajs/mocha/blob/v8.1.1/lib/mocha.js#L265-L316
@@ -79,7 +87,11 @@ export default class RootCauseMochaReporter implements reporters.Base {
             // unexpected
             // we don't have good recovery from this error
             // debug log it, and ignore
-            debugLogger('Error moving test result to final path', rootCauseData.startTestParams, moveError);
+            debugLogger(
+              'Error moving test result to final path',
+              rootCauseData.startTestParams,
+              moveError
+            );
           }
         })()
       );
@@ -102,7 +114,9 @@ export default class RootCauseMochaReporter implements reporters.Base {
       await Promise.all(reporterInstance.testsResultsMovesCompleted);
       debugLogger(`Results copied (${reporterInstance.testsResultsMovesCompleted.length})`);
 
-      const rootCauseRunResults = await runConclusionUtils.readRunResultsDirToMap(reporterInstance.runTestResultsDir);
+      const rootCauseRunResults = await runConclusionUtils.readRunResultsDirToMap(
+        reporterInstance.runTestResultsDir
+      );
 
       const inputForPrepareRunConclusion = new Map(
         reporterInstance.testsWithRootCauseResults

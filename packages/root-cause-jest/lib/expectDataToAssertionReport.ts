@@ -17,14 +17,18 @@ export interface ExpectData {
  * We are not inspecting inside promises here, as it will force us to become async
  * We can consider adding async mode for when we have 'rejects' or 'resolves' modifier in the future.
  */
-export function expectDataToAssertionReport(expectData: ExpectData): Omit<AssertionReport, 'codeError'> {
+export function expectDataToAssertionReport(
+  expectData: ExpectData
+): Omit<AssertionReport, 'codeError'> {
   // const name = `expect(expected)${expectData.modifier ? `.${expectData.modifier}` : ''}.${
   //     expectData.matcherName
   // }(actual)`;
 
   const text = `expect(${javascriptValueToVisualTextualRepresentation(expectData.expectArgs[0])})${
     expectData.modifier ? `.${expectData.modifier}` : ''
-  }.${expectData.matcherName}(${javascriptValueToVisualTextualRepresentation(expectData.matcherArgs[0])})`;
+  }.${expectData.matcherName}(${javascriptValueToVisualTextualRepresentation(
+    expectData.matcherArgs[0]
+  )})`;
 
   return {
     name: text,
@@ -71,7 +75,10 @@ export function javascriptValueToVisualTextualRepresentation(
 
   if (typeof value === 'string') {
     if (value.length > bestEffortMaxLength) {
-      const part1 = value.substr(0, bestEffortMaxLength - STRING_TAIL_SEPARATOR.length - stringTailSize);
+      const part1 = value.substr(
+        0,
+        bestEffortMaxLength - STRING_TAIL_SEPARATOR.length - stringTailSize
+      );
       const part2 = value.substr(-stringTailSize);
       return `${part1}${STRING_TAIL_SEPARATOR}${part2}`;
     }

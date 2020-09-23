@@ -24,7 +24,10 @@ class JestReporter implements Reporter {
 
   private runId = this.reporterOptions.runId || CONSTS.FALLBACK_RUN_ID;
 
-  constructor(protected globalConfig: Config.GlobalConfig, protected reporterOptions: ReporterOptions = {}) {
+  constructor(
+    protected globalConfig: Config.GlobalConfig,
+    protected reporterOptions: ReporterOptions = {}
+  ) {
     // see if can use:
     // https://jestjs.io/docs/en/configuration#testenvironmentoptions-object
     // this.globalConfig.testEnvironment
@@ -41,17 +44,27 @@ class JestReporter implements Reporter {
   async onRunComplete(contexts: Set<Context>, results: AggregatedResult) {
     // console.log('onRunComplete start');
     const rootCausePath = utils.constructResultDir(this.rootDir);
-    const rootCauseRunResultsPath = utils.constructTestInvocationResultDir(this.rootDir, this.runId);
+    const rootCauseRunResultsPath = utils.constructTestInvocationResultDir(
+      this.rootDir,
+      this.runId
+    );
     if (!fs.pathExists(rootCauseRunResultsPath)) {
       return;
     }
     // it's very possible that there won't be complete intersection between root cause & jest results
     // not all jest tests might have root cause attached, and maybe there are root cause results in run dir from prev run
 
-    const rootCauseResults = await runConclusionUtils.readRunResultsDirToMap(rootCauseRunResultsPath);
+    const rootCauseResults = await runConclusionUtils.readRunResultsDirToMap(
+      rootCauseRunResultsPath
+    );
     const jestSide = jestResultsToIdMap(results.testResults, this.rootDir);
     const finalResults = runConclusionUtils.intersectRunnerAndRootCause(rootCauseResults, jestSide);
-    await runConclusionUtils.concludeRun(this.runId, rootCausePath, results.startTime, finalResults);
+    await runConclusionUtils.concludeRun(
+      this.runId,
+      rootCausePath,
+      results.startTime,
+      finalResults
+    );
 
     if (process.env.TESTIM_PERSIST_RESULTS_TO_CLOUD) {
       await persist(this.runId, {

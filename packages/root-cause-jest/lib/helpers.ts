@@ -2,7 +2,10 @@ import type { EndTestFunction, AttachReturn, RootCausePage } from '@testim/root-
 import { loadSettings, CONSTS, utils, attach } from '@testim/root-cause-core';
 import { hookExpect } from './hookExpect';
 import { expectDataToAssertionReport } from './expectDataToAssertionReport';
-import { getJasmineCurrentTest, getEndStatusFromJasmineJest } from './expectedToBeCalledFromInsideJasmineJestTest';
+import {
+  getJasmineCurrentTest,
+  getEndStatusFromJasmineJest,
+} from './expectedToBeCalledFromInsideJasmineJestTest';
 
 declare const page: RootCausePage;
 let endTest: EndTestFunction;
@@ -56,10 +59,18 @@ export async function forBeforeEachGivenPage<TPage extends RootCausePage>(page: 
     fullSuitePath: currentTest.testPath,
   };
 
-  const attachController = await attach({ page, startTestParams, activeFeatures: userSettings.features });
+  const attachController = await attach({
+    page,
+    startTestParams,
+    activeFeatures: userSettings.features,
+  });
 
   if (userSettings.features.jestAssertions) {
-    unhookExpect = makeHookExpect(attachController, currentTest.testPath, startTestParams.projectRoot);
+    unhookExpect = makeHookExpect(
+      attachController,
+      currentTest.testPath,
+      startTestParams.projectRoot
+    );
   }
 
   return attachController;
@@ -102,7 +113,11 @@ export async function forBeforeEachOwnGlobals() {
   const { page: wrappedPage, endTest: endTestLocal } = attachController;
 
   if (userSettings.features.jestAssertions) {
-    unhookExpect = makeHookExpect(attachController, currentTest.testPath, startTestParams.projectRoot);
+    unhookExpect = makeHookExpect(
+      attachController,
+      currentTest.testPath,
+      startTestParams.projectRoot
+    );
   }
 
   originalPage = page;
@@ -162,7 +177,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory),
+              stepCodeLocation: utils.extractCodeLocationDetailsSync(
+                userTestFile,
+                workingDirectory
+              ),
             };
             attachController.reportAssertion(report);
           } else {
@@ -173,7 +191,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory),
+              stepCodeLocation: utils.extractCodeLocationDetailsSync(
+                userTestFile,
+                workingDirectory
+              ),
               stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResult.error),
             };
             attachController.reportAssertion(report);
@@ -190,7 +211,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory),
+              stepCodeLocation: utils.extractCodeLocationDetailsSync(
+                userTestFile,
+                workingDirectory
+              ),
             };
             attachController.reportAssertion(report);
           } else {
@@ -201,7 +225,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory),
+              stepCodeLocation: utils.extractCodeLocationDetailsSync(
+                userTestFile,
+                workingDirectory
+              ),
               stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResultAsync.error),
             };
             attachController.reportAssertion(report);

@@ -3,7 +3,11 @@ import puppeteer from 'puppeteer';
 import fs from 'fs-extra';
 import path from 'path';
 import assert from 'assert';
-import { assertNotNullOrUndefined, testUniqueIdentifierFromStartParams, jsonReduceNoiseReviver } from './utils';
+import {
+  assertNotNullOrUndefined,
+  testUniqueIdentifierFromStartParams,
+  jsonReduceNoiseReviver,
+} from './utils';
 import {
   getCleanAllPathsPrettyFormatPlugin,
   getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin,

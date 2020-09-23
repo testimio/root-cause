@@ -56,7 +56,10 @@ import * as path from 'path';
     await page.click("[role='navigation'] > :nth-child(2)");
     await page.setViewport({ width: 1568, height: 569 });
     await page.click('.Hero__cta-button___9VskW');
-    await scrollToElement(page, '.Gallery__items-box___2hOZl > :nth-child(1) .theme__button___1iKuo');
+    await scrollToElement(
+      page,
+      '.Gallery__items-box___2hOZl > :nth-child(1) .theme__button___1iKuo'
+    );
     await page.click('.Gallery__items-box___2hOZl > :nth-child(1) .theme__button___1iKuo');
     await page.click("[type='email']");
     await page.click("[name='promo']");

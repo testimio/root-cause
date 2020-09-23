@@ -23,7 +23,9 @@ export async function updateHistoryFromRootCauseResultsOnly(
   const runResultsPath = constructTestInvocationResultDir(projectRoot, runId);
 
   if (!(await fs.pathExists(resultsDirPath))) {
-    throw new Error('None existing Root Cause path, make sure you use the same projectRoot as your attach call');
+    throw new Error(
+      'None existing Root Cause path, make sure you use the same projectRoot as your attach call'
+    );
   }
 
   if (!(await fs.pathExists(runResultsPath))) {
@@ -33,7 +35,11 @@ export async function updateHistoryFromRootCauseResultsOnly(
   }
 
   const rootCauseResults = await readRunResultsDirToMap(runResultsPath);
-  const conclusion = prepareRunConclusionFromOnlyRootCauseResults(runId, dateConstructor.now(), rootCauseResults);
+  const conclusion = prepareRunConclusionFromOnlyRootCauseResults(
+    runId,
+    dateConstructor.now(),
+    rootCauseResults
+  );
   await writeRunConclusion(resultsDirPath, runId, conclusion);
   const history = await readRunsHistory(resultsDirPath);
   // We may here also actually delete old files
@@ -50,7 +56,9 @@ export async function readHistoryFallback(
   const rootCauseRunResultsPath = constructTestInvocationResultDir(projectRoot, runId);
 
   if (!(await fs.pathExists(rootCausePath))) {
-    throw new Error('None existing Root Cause path, make sure you use the same projectRoot as your attach call');
+    throw new Error(
+      'None existing Root Cause path, make sure you use the same projectRoot as your attach call'
+    );
   }
 
   if (!(await fs.pathExists(rootCauseRunResultsPath))) {
@@ -60,7 +68,11 @@ export async function readHistoryFallback(
   }
 
   const rootCauseResults = await readRunResultsDirToMap(rootCauseRunResultsPath);
-  const conclusion = prepareRunConclusionFromOnlyRootCauseResults(runId, dateConstructor.now(), rootCauseResults);
+  const conclusion = prepareRunConclusionFromOnlyRootCauseResults(
+    runId,
+    dateConstructor.now(),
+    rootCauseResults
+  );
 
   return conclusion;
 }

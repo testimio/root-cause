@@ -1,10 +1,16 @@
 {
-  "extends": ["airbnb-base", "prettier"],
+  "extends": [
+    "airbnb-base",
+    "prettier"
+  ],
   "env": {
     "node": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint/eslint-plugin", "no-only-tests"],
+  "plugins": [
+    "@typescript-eslint/eslint-plugin",
+    "no-only-tests"
+  ],
   "rules": {
     "no-only-tests/no-only-tests": "error",
     "no-useless-constructor": "off",
@@ -38,7 +44,10 @@
     "import/order": "off",
     "prefer-destructuring": "off",
     "no-return-await": "off",
-    "no-return-assign": ["error", "except-parens"],
+    "no-return-assign": [
+      "error",
+      "except-parens"
+    ],
     "func-names": "off",
     "no-tabs": "off",
     "no-prototype-builtins": "off",
@@ -53,6 +62,7 @@
     "padded-blocks": "off",
     "consistent-return": "off",
     "consistent-returns": "off",
+    "no-await-in-loop": "off",
     "no-restricted-syntax": [
       "error",
       {
@@ -68,7 +78,10 @@
         "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
       }
     ],
-    "generator-star-spacing": ["error", "after"],
+    "generator-star-spacing": [
+      "error",
+      "after"
+    ],
     "no-continue": "off",
     "no-multiple-empty-lines": [
       "error",
@@ -94,8 +107,14 @@
   },
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
       "rules": {
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-var-requires": "off",
@@ -114,7 +133,10 @@
       }
     },
     {
-      "files": ["*.test.js", "*.test.ts"],
+      "files": [
+        "*.test.js",
+        "*.test.ts"
+      ],
       "env": {
         "mocha": true
       },

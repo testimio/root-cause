@@ -134,7 +134,11 @@ export async function launchImpl<T extends AutomationLibrary>(
 
     throw error;
   } finally {
-    await updateHistoryFromRootCauseResultsOnly(startTestParams.runId, startTestParams.projectRoot, dateConstructor);
+    await updateHistoryFromRootCauseResultsOnly(
+      startTestParams.runId,
+      startTestParams.projectRoot,
+      dateConstructor
+    );
     await browser.close();
 
     if (!options.noServer) {

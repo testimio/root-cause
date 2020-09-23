@@ -48,7 +48,8 @@ export function useBackgroundHighlight(
       // small Oren logic copied from clickim we rely on
       ratioBetweenRectangleAndImage = 2;
     }
-    const backgroundScaleFactor = imageStretchBehavior === 'zoom' ? ratioBetweenRectangleAndImage : 1;
+    const backgroundScaleFactor =
+      imageStretchBehavior === 'zoom' ? ratioBetweenRectangleAndImage : 1;
 
     screenshotSize.width *= backgroundScaleFactor;
     screenshotSize.height *= backgroundScaleFactor;

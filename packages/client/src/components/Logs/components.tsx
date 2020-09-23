@@ -93,13 +93,23 @@ export function LogEntry({ entry }: { entry: NormalizedLog }) {
                 return (
                   <span
                     key={index}
-                    className={classnames(styles['console-message-text'], styles[`object-value-${part.type}`], {
-                      [styles['hasPrefix']]: hasPrefix(entry, part),
-                    })}
+                    className={classnames(
+                      styles['console-message-text'],
+                      styles[`object-value-${part.type}`],
+                      {
+                        [styles['hasPrefix']]: hasPrefix(entry, part),
+                      }
+                    )}
                   >
-                    {hasPrefix(entry, part) && <span className={getPrefixClass(part)}>{prefixContent(part)}</span>}
-                    <span className={styles['actual-message-text']}>{getConsoleMessage(entry, part)}</span>
-                    {hasPostfix(entry, part) && <span className={getPostfixClass(part)}>{postfixContent(part)}</span>}
+                    {hasPrefix(entry, part) && (
+                      <span className={getPrefixClass(part)}>{prefixContent(part)}</span>
+                    )}
+                    <span className={styles['actual-message-text']}>
+                      {getConsoleMessage(entry, part)}
+                    </span>
+                    {hasPostfix(entry, part) && (
+                      <span className={getPostfixClass(part)}>{postfixContent(part)}</span>
+                    )}
                     &nbsp;
                   </span>
                 );
@@ -113,7 +123,9 @@ export function LogEntry({ entry }: { entry: NormalizedLog }) {
                   {entry.stackTrace?.map((frame, index) => {
                     return (
                       <tr key={index}>
-                        <td className={styles['function-name']}>{frame.functionName || '(anonymous)'}</td>
+                        <td className={styles['function-name']}>
+                          {frame.functionName || '(anonymous)'}
+                        </td>
                         <td className={styles['stacktrace-separator']}>@</td>
                         <td className={styles['function-origin']}>
                           {frame.url}:{frame.lineNumber}:{frame.columnNumber}

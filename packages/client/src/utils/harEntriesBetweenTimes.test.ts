@@ -24,7 +24,9 @@ describe('harEntriesInTimeRange', () => {
 
     const startDate = new Date(startTimestamp);
     const endDate = new Date(endTimestamp);
-    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(entryInterestingParts);
+    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(
+      entryInterestingParts
+    );
 
     expect(r).toMatchSnapshot();
   });
@@ -36,7 +38,9 @@ describe('harEntriesInTimeRange', () => {
 
     const startDate = new Date(startTimestamp);
     const endDate = new Date(endTimestamp);
-    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(entryInterestingParts);
+    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(
+      entryInterestingParts
+    );
 
     expect(r).toMatchSnapshot();
   });
@@ -48,7 +52,9 @@ describe('harEntriesInTimeRange', () => {
 
     const startDate = new Date(startTimestamp);
     const endDate = new Date(endTimestamp);
-    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(entryInterestingParts);
+    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(
+      entryInterestingParts
+    );
 
     expect(r).toMatchSnapshot();
   });
@@ -60,7 +66,9 @@ describe('harEntriesInTimeRange', () => {
 
     const startDate = new Date(startTimestamp);
     const endDate = new Date(endTimestamp);
-    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(entryInterestingParts);
+    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(
+      entryInterestingParts
+    );
 
     expect(r).toMatchSnapshot();
   });
@@ -72,7 +80,9 @@ describe('harEntriesInTimeRange', () => {
 
     const startDate = new Date(startTimestamp);
     const endDate = new Date(endTimestamp);
-    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(entryInterestingParts);
+    const r = harEntriesInTimeRange(harContentWithType, startDate, endDate).map(
+      entryInterestingParts
+    );
 
     expect(r).toMatchSnapshot();
   });

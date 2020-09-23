@@ -75,7 +75,11 @@ describe('Sanity integration test', () => {
 
     const { page: playedPage, endTest } = attachController;
 
-    const unhookExpect = makeHookExpect(attachController, currentTest.testPath, startTestParams.projectRoot);
+    const unhookExpect = makeHookExpect(
+      attachController,
+      currentTest.testPath,
+      startTestParams.projectRoot
+    );
 
     await playedPage.goto('http://jsbin.testim.io/ner/1');
     await playedPage.click('#test');
@@ -137,7 +141,9 @@ describe('Sanity integration test', () => {
       // Do also images blob comparison? TBH
       if (stepResult.screenshot) {
         // eslint-disable-next-line no-await-in-loop
-        expect(fs.pathExists(path.resolve(expectedResultsPath, stepResult.screenshot))).resolves.toBe(true);
+        expect(
+          fs.pathExists(path.resolve(expectedResultsPath, stepResult.screenshot))
+        ).resolves.toBe(true);
       }
     }
   });

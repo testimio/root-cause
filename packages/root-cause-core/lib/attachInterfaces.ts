@@ -1,4 +1,9 @@
-import type { DOMRect, InstrumentedFunctionResult, CodeLocationDetails, StepError } from '@testim/root-cause-types';
+import type {
+  DOMRect,
+  InstrumentedFunctionResult,
+  CodeLocationDetails,
+  StepError,
+} from '@testim/root-cause-types';
 import type { RootCausePage } from './interfaces';
 import { ResolvedSettings } from './userSettings/interfaces';
 

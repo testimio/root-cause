@@ -1,7 +1,12 @@
 const path = require('path');
 
 module.exports = {
-  overrideWebpackConfig: ({ webpackConfig, cracoConfig, pluginOptions, context: { env, paths } }) => {
+  overrideWebpackConfig: ({
+    webpackConfig,
+    cracoConfig,
+    pluginOptions,
+    context: { env, paths },
+  }) => {
     paths.appBuild = path.resolve(__dirname, './packageToPublish');
     if (env === 'production' && process.env.library) {
       webpackConfig.entry = [path.resolve(__dirname, './src/main.ts')];
@@ -29,9 +34,13 @@ module.exports = {
         'MiniCssExtractPlugin',
       ]);
 
-      webpackConfig.plugins = webpackConfig.plugins.filter((p) => pluginsToKeep.has(p.constructor.name));
+      webpackConfig.plugins = webpackConfig.plugins.filter((p) =>
+        pluginsToKeep.has(p.constructor.name)
+      );
 
-      const miniCssExtractPlugin = webpackConfig.plugins.find((p) => p.constructor.name === 'MiniCssExtractPlugin');
+      const miniCssExtractPlugin = webpackConfig.plugins.find(
+        (p) => p.constructor.name === 'MiniCssExtractPlugin'
+      );
       miniCssExtractPlugin.options.filename = '[name].css';
       miniCssExtractPlugin.options.chunkFilename = undefined;
     }

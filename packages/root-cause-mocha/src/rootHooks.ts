@@ -81,7 +81,11 @@ async function rootCauseAttachBeforeEach() {
   const settings = await loadSettings();
 
   // @ts-ignore
-  global.attachController = await attach<any>({ page, startTestParams, activeFeatures: settings.features });
+  global.attachController = await attach<any>({
+    page,
+    startTestParams,
+    activeFeatures: settings.features,
+  });
   // @ts-ignore
   global.origPage = page;
   // @ts-ignore
@@ -127,7 +131,9 @@ const mochaHooks: RootHookObject = {
   beforeEach: LAUNCH_PUPPETEER_OURSELF
     ? [beforeEachLaunchPuppeteer, rootCauseAttachBeforeEach]
     : rootCauseAttachBeforeEach,
-  afterEach: LAUNCH_PUPPETEER_OURSELF ? [afterEachLaunchPuppeteer, rootCauseAttachAfterEach] : rootCauseAttachAfterEach,
+  afterEach: LAUNCH_PUPPETEER_OURSELF
+    ? [afterEachLaunchPuppeteer, rootCauseAttachAfterEach]
+    : rootCauseAttachAfterEach,
   afterAll: LAUNCH_PUPPETEER_OURSELF ? afterAllLaunchPuppeteer : undefined,
 };
 

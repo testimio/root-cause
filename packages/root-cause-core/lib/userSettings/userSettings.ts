@@ -3,7 +3,12 @@ import { CONFIG_MODULE_NAME } from '../consts';
 import Ajv from 'ajv';
 import betterAjvErrors from 'better-ajv-errors';
 
-import { PossibleUserSettings, ResolvedSettings, FeaturesSettings, ScreenshotsSettings } from './interfaces';
+import {
+  PossibleUserSettings,
+  ResolvedSettings,
+  FeaturesSettings,
+  ScreenshotsSettings,
+} from './interfaces';
 import debug from 'debug';
 // The schema is generated from ts interfaces by running yarn generate-settings-json-schema
 import userSettingsSchema from './schemas.json';
@@ -17,7 +22,9 @@ export async function loadSettings(startFrom?: string): Promise<ResolvedSettings
   return resolveSettings(configFromFile || {});
 }
 
-export async function readUserConfigFromFile(startFrom?: string): Promise<PossibleUserSettings | null> {
+export async function readUserConfigFromFile(
+  startFrom?: string
+): Promise<PossibleUserSettings | null> {
   const ajvInstance = new Ajv({ allErrors: true, jsonPointers: true });
   try {
     const result = await cosmiconfig(CONFIG_MODULE_NAME, {
@@ -71,7 +78,9 @@ export function resolveSettings(input: PossibleUserSettings): ResolvedSettings {
   };
 }
 
-function resolveScreenshots(input: FeaturesSettings['screenshots']): false | Required<ScreenshotsSettings> {
+function resolveScreenshots(
+  input: FeaturesSettings['screenshots']
+): false | Required<ScreenshotsSettings> {
   if (input === true || input === undefined) {
     return {
       format: 'jpeg',

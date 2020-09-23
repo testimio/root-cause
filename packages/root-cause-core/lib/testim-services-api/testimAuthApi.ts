@@ -19,7 +19,10 @@ const FIVE_MIN_IN_MS = 5 * 60 * 1000;
 export class TestimAuthApi {
   tokenState?: ServerTokenState;
 
-  constructor(private baseUrl: string = 'https://services.testim.io', private fetch: typeof nodeFetch = nodeFetch) {
+  constructor(
+    private baseUrl: string = 'https://services.testim.io',
+    private fetch: typeof nodeFetch = nodeFetch
+  ) {
     this.getToken = (ensureOnlyOneRequestAtATime(
       this.getToken.bind(this)
     ) as unknown) as typeof TestimAuthApi.prototype.getToken;
@@ -39,18 +42,25 @@ export class TestimAuthApi {
   }
   public addAuthorizationHeader(headers: Headers) {
     if (!this.tokenState?.serverToken || !headers) {
-      throw new TypeError('Attempted to add authorizaiton header without authorizing first or without headers');
+      throw new TypeError(
+        'Attempted to add authorizaiton header without authorizing first or without headers'
+      );
     }
     headers.set('Authorization', `Bearer ${this.tokenState?.serverToken}`);
   }
-  private async obtainTokenFromCiTokenIfNeeded(projectId: string, token: string, signal?: AbortSignal) {
+  private async obtainTokenFromCiTokenIfNeeded(
+    projectId: string,
+    token: string,
+    signal?: AbortSignal
+  ) {
     if (!this.tokenState?.serverTokenExpiryMilliseconds) {
       return this.obtainTokenFromCiToken(projectId, token, signal);
     }
     if (token !== this.tokenState?.projectId) {
       return this.obtainTokenFromCiToken(projectId, token, signal);
     }
-    const hasTokenExpired = this.tokenState?.serverTokenExpiryMilliseconds > Date.now() + FIVE_MIN_IN_MS;
+    const hasTokenExpired =
+      this.tokenState?.serverTokenExpiryMilliseconds > Date.now() + FIVE_MIN_IN_MS;
     if (hasTokenExpired) {
       try {
         return this.refreshTokenFromObtainedToken(signal);
@@ -66,7 +76,10 @@ export class TestimAuthApi {
     }
     const response: any = await this.fetch(`${this.baseUrl}/auth/refreshToken`, {
       method: 'POST',
-      body: JSON.stringify({ token: this.tokenState?.serverToken, refreshToken: this.tokenState?.refreshToken }),
+      body: JSON.stringify({
+        token: this.tokenState?.serverToken,
+        refreshToken: this.tokenState?.refreshToken,
+      }),
       headers: {
         'content-type': 'application/json',
       },
@@ -81,7 +94,7 @@ export class TestimAuthApi {
     const throwUnauthorizedError = (e: Error) => {
       throw new TestimApiError(
         e,
-        'Error trying to retrieve CLI token. ' + 'Your CLI token and project might not match. ',
+        `Error trying to retrieve CLI token. Your CLI token and project might not match. `,
         'E_CREDENTIALS_DONT_MATCH'
       );
     };

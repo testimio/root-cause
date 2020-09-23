@@ -98,7 +98,8 @@ describe('user settings', () => {
   });
 
   test('When settings file is valid, merge with defaults', async () => {
-    expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid'))).toMatchInlineSnapshot(`
+    expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid')))
+      .toMatchInlineSnapshot(`
             Object {
               "features": Object {
                 "console": true,
@@ -123,7 +124,8 @@ describe('user settings', () => {
   });
 
   test('Network logs off in config', async () => {
-    expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid-network-logs-off'))).toMatchInlineSnapshot(`
+    expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid-network-logs-off')))
+      .toMatchInlineSnapshot(`
             Object {
               "features": Object {
                 "console": true,
@@ -148,7 +150,8 @@ describe('user settings', () => {
   });
 
   test('When settings file is malformed', async () => {
-    expect(await readUserConfigFromFile(path.resolve(__dirname, './fixtures', 'malformed'))).toMatchInlineSnapshot(`
+    expect(await readUserConfigFromFile(path.resolve(__dirname, './fixtures', 'malformed')))
+      .toMatchInlineSnapshot(`
             Object {
               "features": Object {
                 "another wrong prop": null,

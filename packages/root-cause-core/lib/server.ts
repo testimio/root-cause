@@ -39,7 +39,9 @@ export async function openServer(port: number, testPath: string): Promise<string
 
   app.get('/test/', async (req: express.Request, res: express.Response) => {
     try {
-      const results = JSON.parse(await fs.readFile(path.resolve(testPath, 'results.json'), 'utf-8'));
+      const results = JSON.parse(
+        await fs.readFile(path.resolve(testPath, 'results.json'), 'utf-8')
+      );
       res.json(results);
     } catch (e) {
       console.error({ testPath });

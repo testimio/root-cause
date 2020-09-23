@@ -4,7 +4,12 @@ import { TEST_RESULTS_FILE_NAME } from './consts';
 import path from 'path';
 
 import debug from 'debug';
-import type { StepResult, TestMetadata, ConsoleMessage, ConsoleException } from '@testim/root-cause-types';
+import type {
+  StepResult,
+  TestMetadata,
+  ConsoleMessage,
+  ConsoleException,
+} from '@testim/root-cause-types';
 import { ActiveFeatures } from './attachInterfaces';
 
 const loggerError = debug('root-cause:error');

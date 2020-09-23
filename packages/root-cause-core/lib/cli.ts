@@ -21,7 +21,10 @@ const serverPort = 9876;
 
 program.version(getVersion());
 
-async function show(testId?: string, { failed: showOnlyFailed = false }: { failed?: boolean } = {}) {
+async function show(
+  testId?: string,
+  { failed: showOnlyFailed = false }: { failed?: boolean } = {}
+) {
   const resultsDirPath = constructResultDir(process.cwd());
   const history = await readRunsHistory(resultsDirPath);
 
@@ -82,7 +85,10 @@ async function show(testId?: string, { failed: showOnlyFailed = false }: { faile
   }
 }
 
-async function list({ simple = false, failed: showOnlyFailed = false }: { simple?: boolean; failed?: boolean } = {}) {
+async function list({
+  simple = false,
+  failed: showOnlyFailed = false,
+}: { simple?: boolean; failed?: boolean } = {}) {
   const resultsDirPath = constructResultDir(process.cwd());
   const history = await readRunsHistory(resultsDirPath);
   if (history.length === 0) {

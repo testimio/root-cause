@@ -4,8 +4,9 @@ import { ConsoleException } from '@testim/root-cause-types';
 
 describe('helpers test', () => {
   test('normalizeConsoleEntry', () => {
-    expect(normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[0]))
-      .toMatchInlineSnapshot(`
+    expect(
+      normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[0])
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "warning",
               "level": "warning",
@@ -19,8 +20,9 @@ describe('helpers test', () => {
             }
         `);
 
-    expect(normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[1]))
-      .toMatchInlineSnapshot(`
+    expect(
+      normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[1])
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "log",
               "level": "log",
@@ -34,8 +36,9 @@ describe('helpers test', () => {
             }
         `);
 
-    expect(normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[2]))
-      .toMatchInlineSnapshot(`
+    expect(
+      normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[2])
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "assert",
               "level": "assert",
@@ -49,8 +52,9 @@ describe('helpers test', () => {
             }
         `);
 
-    expect(normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[3]))
-      .toMatchInlineSnapshot(`
+    expect(
+      normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[3])
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "table",
               "level": "table",
@@ -67,7 +71,10 @@ describe('helpers test', () => {
 
   test('normalizeError', () => {
     expect(
-      normalizeError(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].unhandledExceptions[0] as ConsoleException)
+      normalizeError(
+        resultsFromTestWithManyKindsOfConsoleEntries.steps[8]
+          .unhandledExceptions[0] as ConsoleException
+      )
     ).toMatchInlineSnapshot(`
             Object {
               "command": "error",

@@ -1,14 +1,25 @@
 /* eslint-disable no-await-in-loop */
 import fs from 'fs-extra';
 import debug from 'debug';
-import { logsBeforeAllHook, logsAfterAllHook, logsBeforeEachHook, logsAfterEachHook } from './consoleLogsCollection';
+import {
+  logsBeforeAllHook,
+  logsAfterAllHook,
+  logsBeforeEachHook,
+  logsAfterEachHook,
+} from './consoleLogsCollection';
 import { testResultDirFromStartParams, getSelfCallSiteFromStacktrace } from './utils';
 import { errorInStepHook, testSystemInfoHook, testEndHook } from './assortedHooks';
 import { puppeteerScreenshot } from './hooks/screenshotCollection';
 import { puppeteerMetadata } from './hooks/step-metadata-collection';
 import { TestContext } from './TestContext';
 import { PuppeteerPageHooker } from './PuppeteerPageHooker';
-import { AttachParams, AttachReturn, TestEndStatus, AssertionReport, ActiveFeatures } from './attachInterfaces';
+import {
+  AttachParams,
+  AttachReturn,
+  TestEndStatus,
+  AssertionReport,
+  ActiveFeatures,
+} from './attachInterfaces';
 import { FALLBACK_RUN_ID, IS_NODE_10 } from './consts';
 import { stacktraceHook } from './stacktraceHook';
 import { RootCausePage } from './interfaces';

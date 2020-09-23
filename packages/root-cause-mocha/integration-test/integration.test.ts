@@ -63,10 +63,13 @@ describe('Mocha integration test', () => {
             }
         `);
 
-    const rootCauseLs = await execResults('node -r ts-node/register ../root-cause-core/lib/cli.ts ls', {
-      cwd: path.resolve(__dirname, '../'),
-      env: { ...process.env, LAUNCH_PUPPETEER: '1' },
-    });
+    const rootCauseLs = await execResults(
+      'node -r ts-node/register ../root-cause-core/lib/cli.ts ls',
+      {
+        cwd: path.resolve(__dirname, '../'),
+        env: { ...process.env, LAUNCH_PUPPETEER: '1' },
+      }
+    );
 
     rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run id: [^\n]+/, 'Run id: noise removed');
     rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run time: [^\n]+/, 'Run time: noise removed');

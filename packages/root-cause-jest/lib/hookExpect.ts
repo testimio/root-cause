@@ -66,7 +66,10 @@ export function hookExpect(expectStartHandler: ExpectStartHandler) {
   };
 }
 
-function wrapExpectReturnOrModifier(expectReturnResult: ExpectReturnType, matcherStartHandler: MatcherStartHandler) {
+function wrapExpectReturnOrModifier(
+  expectReturnResult: ExpectReturnType,
+  matcherStartHandler: MatcherStartHandler
+) {
   return new Proxy(expectReturnResult, new ExpectReturnProxyHandler('root', matcherStartHandler));
 }
 

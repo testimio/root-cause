@@ -40,7 +40,11 @@ function getMessagesForTestContextMap(textContext: TestContext) {
 
 const DISPOSERS_TOPIC = 'network-logs';
 
-export async function networkLogsBeforeAllHook(testContext: TestContext, proxyContext: any, rootPage: RootCausePage) {
+export async function networkLogsBeforeAllHook(
+  testContext: TestContext,
+  proxyContext: any,
+  rootPage: RootCausePage
+) {
   if (isNotPlaywrightPage(rootPage)) {
     return networkLogsBeforeAllHookPuppeteer(testContext, rootPage);
   }

@@ -55,7 +55,9 @@ export function getMochaTestTimeZeroPrettyFormatPlugin(): jest.SnapshotSerialize
   return plugin;
 }
 
-export function getCleanAllPathsPrettyFormatPlugin(processCwd: string): jest.SnapshotSerializerPlugin {
+export function getCleanAllPathsPrettyFormatPlugin(
+  processCwd: string
+): jest.SnapshotSerializerPlugin {
   let resolvedProjectRoot = processCwd;
 
   // We are running in one of the packages
@@ -124,14 +126,17 @@ export function getPostmanEchoWorkaround1PrettyFormatPlugin(): jest.SnapshotSeri
 export function getPostmanEchoWorkaround2PrettyFormatPlugin(): jest.SnapshotSerializerPlugin {
   const plugin: Plugin = {
     test(val) {
-      if (val === 'Failed to load resource: the server responded with a status of 404 (Not Found)') {
+      if (
+        val === 'Failed to load resource: the server responded with a status of 404 (Not Found)'
+      ) {
         return true;
       }
 
       return false;
     },
     serialize(valueToSerialize: string, config, indentation, depth, refs, printer) {
-      const afterValueToSerialize = 'Failed to load resource: the server responded with a status of 404 ()';
+      const afterValueToSerialize =
+        'Failed to load resource: the server responded with a status of 404 ()';
       return printer(afterValueToSerialize, config, indentation, depth, refs, false);
     },
   };
@@ -146,7 +151,10 @@ export function getPostmanEchoWorkaround2PrettyFormatPlugin(): jest.SnapshotSeri
 export function getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin(): jest.SnapshotSerializerPlugin {
   const plugin: Plugin = {
     test(val) {
-      if (typeof val === 'string' && val.includes('at processTicksAndRejections (internal/process/task_queues.js')) {
+      if (
+        typeof val === 'string' &&
+        val.includes('at processTicksAndRejections (internal/process/task_queues.js')
+      ) {
         return true;
       }
 
@@ -165,7 +173,9 @@ export function getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin():
   return plugin;
 }
 
-export function getStackCleanStackTracePrettyFormatPlugin(processCwd: string): jest.SnapshotSerializerPlugin {
+export function getStackCleanStackTracePrettyFormatPlugin(
+  processCwd: string
+): jest.SnapshotSerializerPlugin {
   let resolvedProjectRoot = processCwd;
 
   // We are running in one of the packages
