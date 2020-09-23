@@ -29,7 +29,7 @@ To run the whole test suite:
 ```sh
 yarn test
 ```
-On a clean clone, the test are expected to pass. if they don't, please let us know!
+On a clean clone, the tests are supposed to pass. If they don't, please let us know!
 
 You can also run per package tests:
 ```sh
