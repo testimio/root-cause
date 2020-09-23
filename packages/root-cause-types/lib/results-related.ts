@@ -1,3 +1,5 @@
+import type { StackLineData } from './stacktrace-related';
+
 export type InstrumentedFunctionResult<T, E> =
     | { success: true; data?: T }
     | { success: false; error: E; codeLocationDetails?: CodeLocationDetails };
@@ -167,6 +169,7 @@ export interface CodeLocationDetails {
     toRowNumber: number;
     row: number;
     column: number;
+    callstack: StackLineData[];
 }
 
 export interface TestMetadata {

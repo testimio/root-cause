@@ -72,7 +72,7 @@ describe('Sanity integration test', () => {
             page: playedPage, endTest,
         } = attachController;
 
-        const unhookExpect = makeHookExpect(attachController, currentTest.testPath);
+        const unhookExpect = makeHookExpect(attachController, currentTest.testPath, startTestParams.projectRoot);
 
         await playedPage.goto('http://jsbin.testim.io/ner/1');
         await playedPage.click('#test');

@@ -107,7 +107,7 @@ export async function testEndHook(testContext: TestContext, testEndStatus: TestE
         let codeLocationDetails;
 
         try {
-            codeLocationDetails = extractCodeLocationDetailsSync(testContext.testFilePath);
+            codeLocationDetails = extractCodeLocationDetailsSync(testContext.testFilePath, process.cwd());
         } catch (e) {
             // extractCodeLocationDetailsSync is best effort here, ignore that
         }

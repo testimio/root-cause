@@ -312,7 +312,7 @@ export function arrayFlat<T>(arr: T[][]): T[] {
     }, []);
 }
 
-export function extractCodeLocationDetailsSync(userTestFile: string): CodeLocationDetails {
+export function extractCodeLocationDetailsSync(userTestFile: string, workingDirectory: string): CodeLocationDetails {
     const { stackLines, stacktrace } = captureStacktraceDetails();
 
     stacktrace.toString();
@@ -344,6 +344,21 @@ export function extractCodeLocationDetailsSync(userTestFile: string): CodeLocati
 
     const codeLines = userTestFileCodeLines.slice(fromRowNumber - 1, toRowNumber);
 
+    const callstack = stackLines.filter(line => {
+        if (line.function?.includes('extractCodeLocationDetailsSync')) {
+            return false;
+        }
+
+        if (line.function?.includes('stacktraceHook')) {
+            return false;
+        }
+
+        return true;
+    }).map((line) => ({
+        ...line,
+        file: line.file ? path.relative(workingDirectory, line.file) : undefined,
+    }));
+
     return {
         sourceFileRelativePath: userTestFile.substring(process.cwd().length + 1),
         codeLines,
@@ -351,6 +366,7 @@ export function extractCodeLocationDetailsSync(userTestFile: string): CodeLocati
         toRowNumber,
         row: userTestCodeLine.line,
         column: userTestCodeLine.column,
+        callstack,
     };
 }
 
