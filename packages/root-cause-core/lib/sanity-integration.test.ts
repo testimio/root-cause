@@ -140,7 +140,6 @@ describe('Sanity integration test', () => {
     for (const stepResult of testResults.steps) {
       // Do also images blob comparison? TBH
       if (stepResult.screenshot) {
-        // eslint-disable-next-line no-await-in-loop
         assert.equal(
           await fs.pathExists(path.resolve(expectedResultsPath, stepResult.screenshot)),
           true,
