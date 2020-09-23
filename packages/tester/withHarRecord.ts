@@ -23,7 +23,6 @@ launch(
         const mousedown = new MouseEvent('mousedown');
         el.dispatchEvent(mousedown);
 
-        // eslint-disable-next-line no-await-in-loop
         await new Promise((res) => {
           setTimeout(res, 100);
         });

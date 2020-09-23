@@ -18,7 +18,7 @@ export class RootCauseExecutionsApi {
   constructor(
     private testimExecutionsApi: TestimExecutionsApi = new TestimExecutionsApi(),
     private testimAssetsApi: TestimAssetsApi = new TestimAssetsApi()
-  ) {}
+  ) { }
   async createExecution(
     conclusionFolderPath: string,
     testimUserMetadata: TestimUserMetadata,
@@ -88,13 +88,11 @@ async function createTempResultFilesWithResultIds(
 
   for (let i = 0; i < files.length; i++) {
     if (files[i].endsWith('results.json')) {
-      // eslint-disable-next-line no-await-in-loop
       const resultFile = await fse.readJSON(files[i]);
       resultFile.resultId = executionResults.find(
         (er) => er.endTime === resultFile.metadata.endedTimestamp
       )?.resultId;
       const tempPath = `${files[i].substr(0, files[i].length - 5)}_tmp.json`;
-      // eslint-disable-next-line no-await-in-loop
       await fse.writeJSON(tempPath, resultFile);
     }
   }
@@ -104,7 +102,6 @@ async function removeTempResultFiles(files: string[]) {
   for (let i = 0; i < files.length; i++) {
     if (files[i].endsWith('results.json')) {
       const tempPath = `${files[i].substr(0, files[i].length - 5)}_tmp.json`;
-      // eslint-disable-next-line no-await-in-loop
       await fse.unlink(tempPath);
     }
   }
