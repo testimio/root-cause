@@ -4,21 +4,66 @@ import path from 'path';
 import fs from 'fs-extra';
 import cors from 'cors';
 import debug from 'debug';
+import childProcess from 'child_process';
 import http, { ServerResponse, IncomingMessage } from 'http';
 
 const loggerDebug = debug('root-cause:debug');
 const loggerError = debug('root-cause:error');
 
+const DEV_STATIC_FILES_LOCATION = path.resolve(__dirname, '../../client/build');
+const PROD_STATIC_FILES_LOCATION = path.resolve(__dirname, '../client-static');
+const STATIC_INDEX_FILE = 'index.html';
+
 let server: http.Server;
 
+async function buildClientStatics() {
+    await new Promise<void>((res, rej) => {
+        childProcess.exec('yarn workspace @testim/root-cause-client-bundled build -s', {
+            windowsHide: true,
+        }, (error, sdtOut, stdErr) => {
+            if (error) {
+                rej(sdtOut);
+            } else {
+                res();
+            }
+        });
+    });
+
+    if (!await fs.pathExists(path.resolve(DEV_STATIC_FILES_LOCATION, STATIC_INDEX_FILE))) {
+        throw new Error('Dev statics are missing after build, this is not expected.');
+    }
+}
+
+function isDevMode() {
+    return __filename.endsWith('.ts');
+}
 
 export async function openServer(port: number, testPath: string): Promise<string> {
     const app = express();
 
     loggerDebug('testPath', testPath);
 
-    if (!await fs.pathExists(path.resolve(__dirname, '../client-static/index.html')) && !await fs.pathExists(path.resolve(__dirname, '../dist/client-static/index.html'))) {
-        throw new Error('missing client static');
+    if (isDevMode()) {
+        console.log('--- Dev mode detected ---');
+        console.log('For better client development experience, you may start the client dev server on a new terminal using:');
+        console.log('yarn workspace @testim/root-cause-client-bundled start');
+        console.log('but keep this server also running');
+
+        if (!await fs.pathExists(path.resolve(DEV_STATIC_FILES_LOCATION, STATIC_INDEX_FILE))) {
+            console.log('Client Static files not found, building client project...');
+            try {
+                await buildClientStatics();
+                console.log('Done building client project');
+            } catch (e) {
+                console.warn(e);
+                console.warn('Building client project failed. you can keep this running, and use the CRA dev server');
+                console.warn('If you keep seeing this message and the CRA start don\'t have any errors, please open an issue');
+            }
+        }
+    } else if (!await fs.pathExists(path.resolve(PROD_STATIC_FILES_LOCATION, STATIC_INDEX_FILE))) {
+        console.error('Missing client static, there\'s an issue with the package integrity');
+        console.error('Please report an issue');
+        throw new Error('Missing client static, there\'s an issue with the package integrity');
     }
 
     if (!await fs.pathExists(path.resolve(testPath, 'results.json'))) {
@@ -31,8 +76,8 @@ export async function openServer(port: number, testPath: string): Promise<string
     // We want to prevent caching of index.html
     // The server is local so it's not very important
     app.use(noCacheMiddleware);
-    app.use(express.static(path.resolve(__dirname, '../client-static'))); // deploy-time
-    app.use(express.static(path.resolve(__dirname, '../dist/client-static'))); // dev-time
+    app.use(express.static(PROD_STATIC_FILES_LOCATION)); // deploy-time
+    app.use(express.static(DEV_STATIC_FILES_LOCATION)); // dev-time
 
     app.use('/results', express.static(testPath));
 
