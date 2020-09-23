@@ -340,10 +340,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 39,
+            "column": 25,
             "file": "lib/helpers.ts",
             "function": "Object.sync",
-            "line": 180,
+            "line": 181,
           },
           Object {
             "column": 29,
@@ -422,10 +422,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 39,
+            "column": 25,
             "file": "lib/helpers.ts",
             "function": "Object.sync",
-            "line": 180,
+            "line": 181,
           },
           Object {
             "column": 29,
@@ -558,10 +558,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 39,
+            "column": 25,
             "file": "lib/helpers.ts",
             "function": "Object.sync",
-            "line": 180,
+            "line": 181,
           },
           Object {
             "column": 29,
@@ -680,10 +680,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 39,
+            "column": 25,
             "file": "lib/helpers.ts",
             "function": "Object.sync",
-            "line": 180,
+            "line": 181,
           },
           Object {
             "column": 29,
@@ -722,10 +722,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 39,
+            "column": 25,
             "file": "lib/helpers.ts",
             "function": "Object.sync",
-            "line": 180,
+            "line": 181,
           },
           Object {
             "column": 29,
