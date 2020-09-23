@@ -22,7 +22,9 @@
     "build": "./scripts/build.sh",
     "prepublishOnly": "./scripts/prepublishOnly.sh",
     "test": "jest",
-    "generate-settings-json-schema": "npx ts-json-schema-generator -e all --no-type-check -t PossibleUserSettings -p lib/userSettings/interfaces.ts -o lib/userSettings/schemas.json"
+    "generate-settings-json-schema": "npx ts-json-schema-generator -e all --no-type-check -t PossibleUserSettings -p lib/userSettings/interfaces.ts -o lib/userSettings/schemas.json",
+    "root-cause": "ts-node lib/cli",
+    "rc": "ts-node lib/cli"
   },
   "author": "testim.io <dev@testim.io>",
   "repository": {

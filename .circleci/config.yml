@@ -70,7 +70,7 @@ jobs:
       - lint-and-build
       - run:
           name: Publish canary version
-          command: yarn lerna publish --canary --preid canary-$CIRCLE_BUILD_NUM --dist-tag canary -y --force-publish
+          command: yarn lerna publish --canary --preid canary-$CIRCLE_BUILD_NUM --dist-tag canary -y --exact --force-publish
           no_output_timeout: 3m
 
   # Not in use, for future reference and dry runs
@@ -87,7 +87,7 @@ jobs:
             set -x;
             yarn verdaccio &
             yarn wait-port --timeout 10000 4873
-            yarn lerna publish --canary --preid canary --dist-tag canary -y --force-publish --registry http://localhost:4873
+            yarn lerna publish --canary --preid canary --dist-tag canary -y --force-publish --exact --registry http://localhost:4873
             killall node
           no_output_timeout: 3m
 
