@@ -18,7 +18,7 @@ export class RootCauseExecutionsApi {
   constructor(
     private testimExecutionsApi: TestimExecutionsApi = new TestimExecutionsApi(),
     private testimAssetsApi: TestimAssetsApi = new TestimAssetsApi()
-  ) { }
+  ) {}
   async createExecution(
     conclusionFolderPath: string,
     testimUserMetadata: TestimUserMetadata,
