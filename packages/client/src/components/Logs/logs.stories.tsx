@@ -1,7 +1,7 @@
 import React from 'react';
-import { Logs } from "./Logs";
+import { Logs } from './Logs';
 import type { TestResultFile } from '@testim/root-cause-types';
-import fixture from "./fixtures/resultsFromTestWithManyKindsOfConsoleEntries.json";
+import fixture from './fixtures/resultsFromTestWithManyKindsOfConsoleEntries.json';
 
 const resultFile: TestResultFile = fixture as TestResultFile;
 
@@ -11,29 +11,28 @@ export default {
 };
 
 export function StepWithManyKinds() {
-    return <Logs step={resultFile.steps[8]} />;
+  return <Logs step={resultFile.steps[8]} />;
 }
 
 export function EmptyState() {
-    return <Logs step={resultFile.steps[0]} />;
+  return <Logs step={resultFile.steps[0]} />;
 }
 
 export function StepWithOneError() {
-    return <Logs step={resultFile.steps[1]} />;
+  return <Logs step={resultFile.steps[1]} />;
 }
 
 export function WithWarning() {
-    return <Logs step={resultFile.steps[2]} />;
+  return <Logs step={resultFile.steps[2]} />;
 }
 
 export function RegularLog() {
-    return <Logs step={resultFile.steps[3]} />;
+  return <Logs step={resultFile.steps[3]} />;
 }
 
 export function StepWithAssertion() {
-    return <Logs step={resultFile.steps[6]} />;
+  return <Logs step={resultFile.steps[6]} />;
 }
 export function StepWithTable() {
-    return <Logs step={resultFile.steps[7]} />;
+  return <Logs step={resultFile.steps[7]} />;
 }
-

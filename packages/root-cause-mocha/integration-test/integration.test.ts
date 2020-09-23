@@ -2,26 +2,26 @@ import childProcess from 'child_process';
 import path from 'path';
 
 import {
-    getCleanAllPathsPrettyFormatPlugin,
-    getMochaTestTimeZeroPrettyFormatPlugin,
+  getCleanAllPathsPrettyFormatPlugin,
+  getMochaTestTimeZeroPrettyFormatPlugin,
 } from '@testim/internal-self-tests-helpers';
 
 describe('Mocha integration test', () => {
-    expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
-    expect.addSnapshotSerializer(getMochaTestTimeZeroPrettyFormatPlugin());
+  expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
+  expect.addSnapshotSerializer(getMochaTestTimeZeroPrettyFormatPlugin());
 
-    test('Validate mocha run output and root cause ls', async () => {
-        const { stdout: mochaPath } = await execResults('yarn bin mocha');
+  test('Validate mocha run output and root cause ls', async () => {
+    const { stdout: mochaPath } = await execResults('yarn bin mocha');
 
-        const mochaRunResult = await execResults(
-            `${mochaPath.trim()} -r ts-node/register -r src/rootHooks.ts src/example-tests/*.test.ts --reporter ./src/reporter.ts`,
-            {
-                cwd: path.resolve(__dirname, '../'),
-                env: { ...process.env, LAUNCH_PUPPETEER: '1', TESTIM_PERSIST_RESULTS_TO_CLOUD: '' },
-            }
-        );
+    const mochaRunResult = await execResults(
+      `${mochaPath.trim()} -r ts-node/register -r src/rootHooks.ts src/example-tests/*.test.ts --reporter ./src/reporter.ts`,
+      {
+        cwd: path.resolve(__dirname, '../'),
+        env: { ...process.env, LAUNCH_PUPPETEER: '1', TESTIM_PERSIST_RESULTS_TO_CLOUD: '' },
+      }
+    );
 
-        expect(mochaRunResult).toMatchInlineSnapshot(`
+    expect(mochaRunResult).toMatchInlineSnapshot(`
             Object {
               "error": null,
               "stderr": "",
@@ -63,21 +63,15 @@ describe('Mocha integration test', () => {
             }
         `);
 
-        const rootCauseLs = await execResults(
-            'node -r ts-node/register ../root-cause-core/lib/cli.ts ls',
-            {
-                cwd: path.resolve(__dirname, '../'),
-                env: { ...process.env, LAUNCH_PUPPETEER: '1' },
-            }
-        );
+    const rootCauseLs = await execResults('node -r ts-node/register ../root-cause-core/lib/cli.ts ls', {
+      cwd: path.resolve(__dirname, '../'),
+      env: { ...process.env, LAUNCH_PUPPETEER: '1' },
+    });
 
-        rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run id: [^\n]+/, 'Run id: noise removed');
-        rootCauseLs.stdout = rootCauseLs.stdout.replace(
-            /Run time: [^\n]+/,
-            'Run time: noise removed'
-        );
+    rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run id: [^\n]+/, 'Run id: noise removed');
+    rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run time: [^\n]+/, 'Run time: noise removed');
 
-        expect(rootCauseLs).toMatchInlineSnapshot(`
+    expect(rootCauseLs).toMatchInlineSnapshot(`
             Object {
               "error": null,
               "stderr": "",
@@ -94,21 +88,21 @@ describe('Mocha integration test', () => {
             ",
             }
         `);
-    }, 30_000);
+  }, 30_000);
 });
 
 async function execResults(command: string, options?: childProcess.ProcessEnvOptions) {
-    return new Promise<{
-        error: childProcess.ExecException | null;
-        stderr: string;
-        stdout: string;
-    }>((res) => {
-        childProcess.exec(command, options, (error, stdout, stderr) => {
-            res({
-                error,
-                stdout: stdout.toString(),
-                stderr: stderr.toString(),
-            });
-        });
+  return new Promise<{
+    error: childProcess.ExecException | null;
+    stderr: string;
+    stdout: string;
+  }>((res) => {
+    childProcess.exec(command, options, (error, stdout, stderr) => {
+      res({
+        error,
+        stdout: stdout.toString(),
+        stderr: stderr.toString(),
+      });
     });
+  });
 }

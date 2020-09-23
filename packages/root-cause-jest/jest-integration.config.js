@@ -6,6 +6,6 @@
  * locally it was passing
  */
 module.exports = {
-    preset: 'ts-jest',
-    testMatch: ['<rootDir>/lib/integration.test.ts'],
+  preset: 'ts-jest',
+  testMatch: ['<rootDir>/lib/integration.test.ts'],
 };

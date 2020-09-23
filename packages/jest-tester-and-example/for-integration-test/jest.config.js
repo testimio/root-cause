@@ -12,14 +12,12 @@ const puppeteerPreset = require('jest-puppeteer-preset/jest-preset.json');
 const runId = global.runId || Date.now().toString();
 
 module.exports = {
-    ...tsJestPreset,
-    ...puppeteerPreset,
-    reporters: [
-        ['./reporter', { runId }],
-    ],
-    setupFilesAfterEnv: ['expect-puppeteer', './forSetupFilesAfterEnv'],
-    transformIgnorePatterns: [],
-    globals: {
-        runId,
-    },
+  ...tsJestPreset,
+  ...puppeteerPreset,
+  reporters: [['./reporter', { runId }]],
+  setupFilesAfterEnv: ['expect-puppeteer', './forSetupFilesAfterEnv'],
+  transformIgnorePatterns: [],
+  globals: {
+    runId,
+  },
 };

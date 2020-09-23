@@ -2,13 +2,11 @@ import { TestContext } from './TestContext';
 import { extractCodeLocationDetailsSync } from './utils';
 
 export const stacktraceHook = async (testContext: TestContext) => {
+  const stepCodeLocation = extractCodeLocationDetailsSync(testContext.testFilePath, process.cwd());
 
-    const stepCodeLocation = extractCodeLocationDetailsSync(testContext.testFilePath, process.cwd());
+  const metadata = {
+    stepCodeLocation,
+  };
 
-    const metadata = {
-        stepCodeLocation,
-    };
-
-    testContext.addStepMetadata(metadata);
+  testContext.addStepMetadata(metadata);
 };
-

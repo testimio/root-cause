@@ -1,74 +1,215 @@
-.titleBar {height: 50px;position: absolute;top: 0;left: 0;right: 0;border-bottom: solid 1px #D8DAE5; border-top: solid 1px #D8DAE5; padding: 0 21px; min-width: 720px; z-index: 2; display: flex; align-items: center; }
-.titleBar .logo { margin-top: -1px; margin-left: 0; align-items: center; display: flex; font-size: 18px; line-height: 20px;  }
-.titleBar .logo span { display: inline-block; }
-.titleBar .logo span:nth-child(2) { margin-left: 10px; font-family: Mont-SemiBold; }
-.titleBar .logo span:nth-child(3) { margin-left: 15px; color: #7A838E; border-left: solid 1px #D8DAE5; padding-left: 15px; font-family: Mont-SemiBold ; white-space: nowrap; }
+.titleBar {
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: solid 1px #d8dae5;
+  border-top: solid 1px #d8dae5;
+  padding: 0 21px;
+  min-width: 720px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.titleBar .logo {
+  margin-top: -1px;
+  margin-left: 0;
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  line-height: 20px;
+}
+.titleBar .logo span {
+  display: inline-block;
+}
+.titleBar .logo span:nth-child(2) {
+  margin-left: 10px;
+  font-family: Mont-SemiBold;
+}
+.titleBar .logo span:nth-child(3) {
+  margin-left: 15px;
+  color: #7a838e;
+  border-left: solid 1px #d8dae5;
+  padding-left: 15px;
+  font-family: Mont-SemiBold;
+  white-space: nowrap;
+}
 
-.titleBar .clickimTitle { color: black !important; }
+.titleBar .clickimTitle {
+  color: black !important;
+}
 
-.titleBar .testStatus { display: flex; font-size: 11px; font-family: Mont-SemiBold; letter-spacing: 1.3px; margin-left: auto; }
-.titleBar .testStatus > div { margin-left: 5px; border-radius: 4px; height: 26px; min-width: 26px; display: flex; align-items: center; justify-content: center; }
-.titleBar .testStatus .fail { background: #fedfe2; color: #f95f6c; padding-left: 10px; padding-right: 8px; line-height: 13px; }
+.titleBar .testStatus {
+  display: flex;
+  font-size: 11px;
+  font-family: Mont-SemiBold;
+  letter-spacing: 1.3px;
+  margin-left: auto;
+}
+.titleBar .testStatus > div {
+  margin-left: 5px;
+  border-radius: 4px;
+  height: 26px;
+  min-width: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.titleBar .testStatus .fail {
+  background: #fedfe2;
+  color: #f95f6c;
+  padding-left: 10px;
+  padding-right: 8px;
+  line-height: 13px;
+}
 
-.titleBar .testStatus .info { cursor: pointer; position: relative; background: #fedfe2; display: none; }
-.titleBar .testStatus .info.failed { display: flex; }
+.titleBar .testStatus .info {
+  cursor: pointer;
+  position: relative;
+  background: #fedfe2;
+  display: none;
+}
+.titleBar .testStatus .info.failed {
+  display: flex;
+}
 /* .titleBar .testStatus .info.failed { } */
-.titleBar .testStatus .info:hover { background: #ecc4c8; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1); }
-.titleBar .testStatus .info .whiteBackground { background: white; position: absolute; width: 10px; height: 10px; z-index: 0; }
+.titleBar .testStatus .info:hover {
+  background: #ecc4c8;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.titleBar .testStatus .info .whiteBackground {
+  background: white;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 0;
+}
 /* .titleBar .testStatus .info .tooltip-error-svg { z-index: 1; } */
 
-.titleBar .testStatus .info .popup { position: absolute; width: 500px; border: solid 1px #dbdfe3; box-shadow: 4px 6px 12px 0 rgba(0, 0, 0, 0.1); z-index: 2; background: white; top: 34px; right: -2px; display: none; }
-.titleBar .testStatus .info:hover .popup { display: block; }
-.titleBar .testStatus .info .popup .triangle { position: absolute; width: 10px; height: 10px; border-top: solid 1px #dbdfe3; border-right: solid 1px #dbdfe3; background: white; transform: rotate(-45deg); right: 8px; top: -6px; }
-.titleBar .testStatus .info .popup .title { font-size: 12px; margin: 20px; padding: 5px; }
-.titleBar .testStatus .info .popup .fields { display: grid; grid-template-columns: 1fr auto; column-gap: 15px; row-gap: 13px; grid-template-rows: auto; letter-spacing: 0; font-size: 12px; padding: 20px; }
+.titleBar .testStatus .info .popup {
+  position: absolute;
+  width: 500px;
+  border: solid 1px #dbdfe3;
+  box-shadow: 4px 6px 12px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  background: white;
+  top: 34px;
+  right: -2px;
+  display: none;
+}
+.titleBar .testStatus .info:hover .popup {
+  display: block;
+}
+.titleBar .testStatus .info .popup .triangle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-top: solid 1px #dbdfe3;
+  border-right: solid 1px #dbdfe3;
+  background: white;
+  transform: rotate(-45deg);
+  right: 8px;
+  top: -6px;
+}
+.titleBar .testStatus .info .popup .title {
+  font-size: 12px;
+  margin: 20px;
+  padding: 5px;
+}
+.titleBar .testStatus .info .popup .fields {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 15px;
+  row-gap: 13px;
+  grid-template-rows: auto;
+  letter-spacing: 0;
+  font-size: 12px;
+  padding: 20px;
+}
 
-.titleBar .testStatus .info .popup .fields .headField { grid-column: 1/3; color: #F95F6C; font-family: Mont-Bold; text-transform: uppercase; letter-spacing: 1.3px; }
-.titleBar .testStatus .info .popup .fields span:nth-child(odd) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.titleBar .testStatus .info .popup .fields span:nth-child(even) { white-space: nowrap; color: #7a838e; }
+.titleBar .testStatus .info .popup .fields .headField {
+  grid-column: 1/3;
+  color: #f95f6c;
+  font-family: Mont-Bold;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+}
+.titleBar .testStatus .info .popup .fields span:nth-child(odd) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.titleBar .testStatus .info .popup .fields span:nth-child(even) {
+  white-space: nowrap;
+  color: #7a838e;
+}
 
-.titleBar .testStatus .success { background: #e4f7ef; color: #48c892; padding-left: 10px; padding-right: 8px; }
-.titleBar .testStatus .downloadHar { background: #e4f7ef; color: #48c892; padding: 2px 10px; text-decoration: none; border-radius: 4px; display: inline-flex; align-items: center; column-gap: 5px; }
-.titleBar .testStatus .downloadHar img { height: 18px; }
+.titleBar .testStatus .success {
+  background: #e4f7ef;
+  color: #48c892;
+  padding-left: 10px;
+  padding-right: 8px;
+}
+.titleBar .testStatus .downloadHar {
+  background: #e4f7ef;
+  color: #48c892;
+  padding: 2px 10px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 5px;
+}
+.titleBar .testStatus .downloadHar img {
+  height: 18px;
+}
 
-
-
-.logoSvg { background-image: url("./logo.svg"); width: 30px; height: 30px; }
-.tooltipErrorSvg { background-image: url("./tooltipError.svg"); width: 14px; height: 14px; z-index: 1; }
+.logoSvg {
+  background-image: url('./logo.svg');
+  width: 30px;
+  height: 30px;
+}
+.tooltipErrorSvg {
+  background-image: url('./tooltipError.svg');
+  width: 14px;
+  height: 14px;
+  z-index: 1;
+}
 .titleBar div.moreVertMenu {
-    background-image: url("./menu@3x.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 26px;
-    width: 26px;
-    border-radius: 3px;
-    background-color: #DBDFE3;
-    transition: background-color 150ms;
-    position: relative;
+  background-image: url('./menu@3x.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 26px;
+  width: 26px;
+  border-radius: 3px;
+  background-color: #dbdfe3;
+  transition: background-color 150ms;
+  position: relative;
 }
 
 .titleBar div.moreVertMenu:hover {
-    background-color: #E0E9FF;
-    cursor: pointer;
+  background-color: #e0e9ff;
+  cursor: pointer;
 }
 
 .titleBar div.moreVertMenu:hover .moreMenuContent {
- display: block;
+  display: block;
 }
 
 .moreMenuContent {
-    display: none;
-    position: absolute;
-    padding-top: 100%;
-    top: 100%;
-    right: 0;
-    z-index: 2;
+  display: none;
+  position: absolute;
+  padding-top: 100%;
+  top: 100%;
+  right: 0;
+  z-index: 2;
 }
 
 .statusMenuSeparator {
-    box-sizing: border-box;
-    height: 20px;
-    width: 1px;
-    border: 1px solid #DBDFE3;
-    margin: 0 15px;
+  box-sizing: border-box;
+  height: 20px;
+  width: 1px;
+  border: 1px solid #dbdfe3;
+  margin: 0 15px;
 }

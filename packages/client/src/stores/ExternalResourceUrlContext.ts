@@ -1,16 +1,17 @@
-
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react';
 
 export function defaultExternalResourceUrl(resource: string | undefined) {
-    if (!resource === undefined) {
-        return undefined;
-    }
+  if (!resource === undefined) {
+    return undefined;
+  }
 
-    return `/results/${resource}`;
+  return `/results/${resource}`;
 }
 
-export const GetExternalResourceUrlContext = createContext<((url: string | undefined) => string | undefined)>(defaultExternalResourceUrl);
+export const GetExternalResourceUrlContext = createContext<(url: string | undefined) => string | undefined>(
+  defaultExternalResourceUrl
+);
 
 export function useExternalResourceUrl() {
-    return useContext(GetExternalResourceUrlContext);
+  return useContext(GetExternalResourceUrlContext);
 }

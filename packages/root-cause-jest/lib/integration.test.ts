@@ -3,27 +3,24 @@ import path from 'path';
 import { getCleanAllPathsPrettyFormatPlugin } from '@testim/internal-self-tests-helpers';
 
 describe('jest integration test', () => {
-    expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
+  expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
 
-    test('Validate jest run output and root cause ls', async () => {
-        const jestRunResult = await execResults(
-            'yarn jest -c for-integration-test/jest.config.js',
-            {
-                cwd: path.resolve(__dirname, '../../jest-tester-and-example'),
-                env: {
-                    ...process.env,
-                    PUPPETEER_WS_ENDPOINT: '',
-                    TESTIM_PERSIST_RESULTS_TO_CLOUD: '',
-                    FORCE_COLOR: '0',
-                },
-            }
-        );
+  test('Validate jest run output and root cause ls', async () => {
+    const jestRunResult = await execResults('yarn jest -c for-integration-test/jest.config.js', {
+      cwd: path.resolve(__dirname, '../../jest-tester-and-example'),
+      env: {
+        ...process.env,
+        PUPPETEER_WS_ENDPOINT: '',
+        TESTIM_PERSIST_RESULTS_TO_CLOUD: '',
+        FORCE_COLOR: '0',
+      },
+    });
 
-        jestRunResult.stderr = jestRunResult.stderr.replace(/Time: .+$/gm, 'Time: NOISE REMOVED');
+    jestRunResult.stderr = jestRunResult.stderr.replace(/Time: .+$/gm, 'Time: NOISE REMOVED');
 
-        jestRunResult.stderr = jestRunResult.stderr.replace(/ ?\([0-9\.]+ m?s\)$/gm, '');
+    jestRunResult.stderr = jestRunResult.stderr.replace(/ ?\([0-9\.]+ m?s\)$/gm, '');
 
-        expect(jestRunResult.stderr).toMatchInlineSnapshot(`
+    expect(jestRunResult.stderr).toMatchInlineSnapshot(`
             "FAIL for-integration-test/example1.test.ts
               ● Some test › Test that should fail
 
@@ -52,20 +49,14 @@ describe('jest integration test', () => {
             "
         `);
 
-        const rootCauseLs = await execResults(
-            'node -r ts-node/register ../root-cause-core/lib/cli.ts ls',
-            {
-                cwd: path.resolve(__dirname, '../../jest-tester-and-example'),
-            }
-        );
+    const rootCauseLs = await execResults('node -r ts-node/register ../root-cause-core/lib/cli.ts ls', {
+      cwd: path.resolve(__dirname, '../../jest-tester-and-example'),
+    });
 
-        rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run id: [^\n]+/, 'Run id: noise removed');
-        rootCauseLs.stdout = rootCauseLs.stdout.replace(
-            /Run time: [^\n]+/,
-            'Run time: noise removed'
-        );
+    rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run id: [^\n]+/, 'Run id: noise removed');
+    rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run time: [^\n]+/, 'Run time: noise removed');
 
-        expect(rootCauseLs).toMatchInlineSnapshot(`
+    expect(rootCauseLs).toMatchInlineSnapshot(`
             Object {
               "error": null,
               "stderr": "",
@@ -80,21 +71,21 @@ describe('jest integration test', () => {
             ",
             }
         `);
-    }, 120_000);
+  }, 120_000);
 });
 
 async function execResults(command: string, options?: childProcess.ProcessEnvOptions) {
-    return new Promise<{
-        error: childProcess.ExecException | null;
-        stderr: string;
-        stdout: string;
-    }>((res) => {
-        childProcess.exec(command, options, (error, stdout, stderr) => {
-            res({
-                error,
-                stdout: stdout.toString(),
-                stderr: stderr.toString(),
-            });
-        });
+  return new Promise<{
+    error: childProcess.ExecException | null;
+    stderr: string;
+    stdout: string;
+  }>((res) => {
+    childProcess.exec(command, options, (error, stdout, stderr) => {
+      res({
+        error,
+        stdout: stdout.toString(),
+        stderr: stderr.toString(),
+      });
     });
+  });
 }

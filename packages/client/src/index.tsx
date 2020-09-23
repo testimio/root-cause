@@ -1,13 +1,13 @@
-import { configure } from "mobx";
+import { configure } from 'mobx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
 configure({
-    reactionRequiresObservable: true,
-    observableRequiresReaction: true
-})
+  reactionRequiresObservable: true,
+  observableRequiresReaction: true,
+});
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,4 +15,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
