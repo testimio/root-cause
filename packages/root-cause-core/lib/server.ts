@@ -11,7 +11,7 @@ const loggerDebug = debug('root-cause:debug');
 const loggerError = debug('root-cause:error');
 
 const DEV_STATIC_FILES_LOCATION = path.resolve(__dirname, '../../client/build');
-const PROD_STATIC_FILES_LOCATION = path.resolve(__dirname, '../dist/client-static');
+const PROD_STATIC_FILES_LOCATION = path.resolve(__dirname, '../client-static');
 const STATIC_INDEX_FILE = 'index.html';
 
 let server: http.Server;
