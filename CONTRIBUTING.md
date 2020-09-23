@@ -18,7 +18,7 @@ It's recommended to have properer IDE integration with the tools in use (eslint,
 - node 12/14 [Installation instructions](https://nodejs.org/en/download/package-manager/)
 
 ## Dependencies install
-The first step for local development would be to install the dependencies
+The first step for local development would be to install dependencies:
 ```sh
 # install dependencies
 yarn
