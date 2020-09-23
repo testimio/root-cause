@@ -10,7 +10,7 @@ If you have any issues with the CLA or signing it please contact us (benji@testi
 ## Technical Know-How
 
 This monorepo is managed with yarn workspaces.  
-The codebase is written with typescript, and linted using eslint.  
+The codebase is written with TypeScript, and linted using ESLint.  
 It's recommended to have properer IDE integration with the tools in use (eslint, editorconfig) before modifying the code
 
 ### Prerequisite
