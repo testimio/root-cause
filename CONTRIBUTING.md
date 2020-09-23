@@ -17,7 +17,7 @@ It's recommended to have properer IDE integration with the tools in use (eslint,
 - yarn [Installation instructions](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
 - node 12/14 [Installation instructions](https://nodejs.org/en/download/package-manager/)
 
-## Dependencies install
+## Installing Dependencies
 The first step for local development would be to install dependencies:
 ```sh
 # install dependencies
