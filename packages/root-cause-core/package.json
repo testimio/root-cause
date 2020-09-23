@@ -1,6 +1,6 @@
 {
   "name": "@testim/root-cause-core",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "license": "AGPL-3.0-only",
   "description": "Core component of Testim Root Cause",
   "main": "index",
@@ -69,7 +69,7 @@
   "devDependencies": {
     "@jest/reporters": "^26.4.1",
     "@jest/types": "^26.0.1",
-    "@testim/root-cause-types": "^0.1.18",
+    "@testim/root-cause-types": "0.1.19",
     "@testim/testim-cli": "^3.94.0",
     "@types/concurrently": "^5.2.1",
     "@types/cors": "^2.8.7",
