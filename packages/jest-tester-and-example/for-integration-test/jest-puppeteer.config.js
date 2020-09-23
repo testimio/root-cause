@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-    launch: {
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    },
+  launch: {
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  },
 };

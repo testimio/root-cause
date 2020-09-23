@@ -1,15 +1,12 @@
-import {
-    normalizeError,
-    normalizeConsoleEntry,
-} from "./helpers";
-import resultsFromTestWithManyKindsOfConsoleEntries from "./fixtures/resultsFromTestWithManyKindsOfConsoleEntries.json";
-import { ConsoleException } from "@testim/root-cause-types";
+import { normalizeError, normalizeConsoleEntry } from './helpers';
+import resultsFromTestWithManyKindsOfConsoleEntries from './fixtures/resultsFromTestWithManyKindsOfConsoleEntries.json';
+import { ConsoleException } from '@testim/root-cause-types';
 
-describe("helpers test", () => {
-    test("normalizeConsoleEntry", () => {
-        expect(
-            normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[0])
-        ).toMatchInlineSnapshot(`
+describe('helpers test', () => {
+  test('normalizeConsoleEntry', () => {
+    expect(
+      normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[0])
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "warning",
               "level": "warning",
@@ -23,9 +20,9 @@ describe("helpers test", () => {
             }
         `);
 
-        expect(
-            normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[1])
-        ).toMatchInlineSnapshot(`
+    expect(
+      normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[1])
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "log",
               "level": "log",
@@ -39,9 +36,9 @@ describe("helpers test", () => {
             }
         `);
 
-        expect(
-            normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[2])
-        ).toMatchInlineSnapshot(`
+    expect(
+      normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[2])
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "assert",
               "level": "assert",
@@ -55,9 +52,9 @@ describe("helpers test", () => {
             }
         `);
 
-        expect(
-            normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[3])
-        ).toMatchInlineSnapshot(`
+    expect(
+      normalizeConsoleEntry(resultsFromTestWithManyKindsOfConsoleEntries.steps[8].consoleEntries[3])
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "table",
               "level": "table",
@@ -70,15 +67,15 @@ describe("helpers test", () => {
               "when": 2020-07-08T10:18:16.508Z,
             }
         `);
-    });
+  });
 
-    test("normalizeError", () => {
-        expect(
-            normalizeError(
-                resultsFromTestWithManyKindsOfConsoleEntries.steps[8]
-                    .unhandledExceptions[0] as ConsoleException
-            )
-        ).toMatchInlineSnapshot(`
+  test('normalizeError', () => {
+    expect(
+      normalizeError(
+        resultsFromTestWithManyKindsOfConsoleEntries.steps[8]
+          .unhandledExceptions[0] as ConsoleException
+      )
+    ).toMatchInlineSnapshot(`
             Object {
               "command": "error",
               "level": "error",
@@ -128,5 +125,5 @@ describe("helpers test", () => {
               "when": 2020-07-08T10:18:16.007Z,
             }
         `);
-    });
+  });
 });

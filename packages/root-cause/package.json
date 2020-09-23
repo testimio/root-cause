@@ -16,7 +16,6 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "tsc",
-    "generate-settings-json-schema": "npx ts-json-schema-generator -e all --no-type-check -t PossibleUserSettings -p src/userSettings/interfaces.ts -o src/userSettings/schemas.json",
     "prepublishOnly": "./scripts/prepublishOnly.sh"
   },
   "author": "testim.io <dev@testim.io>",
@@ -64,7 +63,6 @@
     "pretty-format": "^26.1.0",
     "puppeteer": "^5.0.0",
     "strip-ansi": "^6.0.0",
-    "ts-json-schema-generator": "^0.70.2",
     "typescript": "^3.9.3"
   },
   "publishConfig": {

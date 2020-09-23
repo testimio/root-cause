@@ -1,4 +1,7 @@
 set -ex
 
-concurrently --kill-others-on-fail \
-  "yarn lint"
+concurrently \
+  --names "lint,prettier" \
+  --kill-others-on-fail \
+  "yarn lint" \
+  "yarn prettier-check"

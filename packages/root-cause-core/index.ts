@@ -1,7 +1,11 @@
 export { launch } from './lib/launch';
 export { attach } from './lib/index';
 export type {
-    EndTestFunction, AttachParams, AttachReturn, StartTestParams, AssertionReport,
+  EndTestFunction,
+  AttachParams,
+  AttachReturn,
+  StartTestParams,
+  AssertionReport,
 } from './lib/attachInterfaces';
 export type { RootCausePage } from './lib/interfaces';
 export { updateHistoryFromRootCauseResultsOnly } from './lib/updateHistoryFromRootCauseResultsOnly';

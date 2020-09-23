@@ -5,8 +5,8 @@
 const tsNode = require('ts-node');
 
 tsNode.register({
-    transpileOnly: true,
-    compilerOptions: require('@testim/root-cause-jest/tsconfig').compilerOptions,
+  transpileOnly: true,
+  compilerOptions: require('@testim/root-cause-jest/tsconfig').compilerOptions,
 });
 
 const Reporter = require('@testim/root-cause-jest/lib/reporter/default');

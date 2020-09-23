@@ -1,37 +1,36 @@
 .menuDropDownWrapper {
-    border: 1px solid #DBDFE3;
-    background-color: #FFFFFF;
-    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.15);
-    display: inline-block;
+  border: 1px solid #dbdfe3;
+  background-color: #ffffff;
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.15);
+  display: inline-block;
 }
 
 .menuItemWrapper {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    user-select: none;
-    transition: background-color 150ms;
-    white-space: nowrap;
-    letter-spacing: normal;
-    padding: 0 25px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  user-select: none;
+  transition: background-color 150ms;
+  white-space: nowrap;
+  letter-spacing: normal;
+  padding: 0 25px;
 }
 
 .menuItemWrapper:hover {
-    background-color: #ECEEEF;
-    cursor: pointer;
+  background-color: #eceeef;
+  cursor: pointer;
 }
 
 .menuItemWrapper .text {
-    font-family: "Mont-SemiBold";
-    font-size: 14px;
+  font-family: 'Mont-SemiBold';
+  font-size: 14px;
 }
 
-
 .menuItemWrapper .iconBox {
-    margin-right: 15px;
-    width: 15px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin-right: 15px;
+  width: 15px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

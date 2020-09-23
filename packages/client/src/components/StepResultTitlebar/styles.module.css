@@ -1,26 +1,119 @@
-.stepTitleBar { position: absolute; top: 51px; left: 245px; height: 70px; right:0; box-shadow: 0 2px 4px 0 rgba(0,0,0,0.11); z-index: 1; min-width: 477px; display: flex; align-items: center; background:white; }
-.stepTitleBar .stepTitle { margin-left: 20px; margin-right: 40px; display: flex; flex-direction: column; width: calc(100% - 60px) }
-.stepTitleBar .stepName { font-size: 16px; font-family: Mont-SemiBold; margin-bottom: 5px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width: 100%; position: relative;}
-.stepTitleBar .tooltip { font-size: 16px; font-family: Mont-SemiBold; position: absolute; border-radius: 10px; background-color: rgba(0,0,0,0.75); box-shadow: 0 2px 9px 0 rgba(0,0,0,0.5); padding: 10px 20px; color: white; margin-right: 20px; margin-top: 25px; z-index: 2; }
-.stepTitleBar .stepError { color: #f95f6c; font-size: 12px; }
-.stepTitleBar .tabs { position: absolute; bottom: 0; right: 17px; font-size: 12px; display: flex; font-weight: bold; box-sizing: content-box; }
-.stepTitleBar .tabs > div { cursor: pointer; margin-left: 25px; }
-.stepTitleBar .tabs > div .underline { margin-top: 9px; margin-right: 2px; }
-.stepTitleBar .tabs > div.selected .underline { border-bottom: solid 3px #3d5afe; }
-.stepTitleBar .tabs > div > div { height: 20px; padding-left: 10px; padding-right: 7px; color: #7a838e; padding-top: 4px; margin-bottom: 7px; border-radius: 3px; letter-spacing: 2.39px; }
-.stepTitleBar .tabs > div.selected > div {  color: #3d5afe; }
-.stepTitleBar .tabs > div.downloadHar { padding: 6px 0 0 0; }
-.stepTitleBar .tabs > div.downloadHar:hover { cursor: pointer; }
-.stepTitleBar .tabs > div.downloadHar > a > div { display: flex; align-items: center; gap: 5px; }
-.stepTitleBar .tabs > div.downloadHar a { text-decoration: none; cursor: pointer; }
-.stepTitleBar .tabs > div.downloadHar img { width: 18px; }
-.stepTitleBar .tabs > div:hover { background: #eef3ff}
+.stepTitleBar {
+  position: absolute;
+  top: 51px;
+  left: 245px;
+  height: 70px;
+  right: 0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11);
+  z-index: 1;
+  min-width: 477px;
+  display: flex;
+  align-items: center;
+  background: white;
+}
+.stepTitleBar .stepTitle {
+  margin-left: 20px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 60px);
+}
+.stepTitleBar .stepName {
+  font-size: 16px;
+  font-family: Mont-SemiBold;
+  margin-bottom: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+.stepTitleBar .tooltip {
+  font-size: 16px;
+  font-family: Mont-SemiBold;
+  position: absolute;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  color: white;
+  margin-right: 20px;
+  margin-top: 25px;
+  z-index: 2;
+}
+.stepTitleBar .stepError {
+  color: #f95f6c;
+  font-size: 12px;
+}
+.stepTitleBar .tabs {
+  position: absolute;
+  bottom: 0;
+  right: 17px;
+  font-size: 12px;
+  display: flex;
+  font-weight: bold;
+  box-sizing: content-box;
+}
+.stepTitleBar .tabs > div {
+  cursor: pointer;
+  margin-left: 25px;
+}
+.stepTitleBar .tabs > div .underline {
+  margin-top: 9px;
+  margin-right: 2px;
+}
+.stepTitleBar .tabs > div.selected .underline {
+  border-bottom: solid 3px #3d5afe;
+}
+.stepTitleBar .tabs > div > div {
+  height: 20px;
+  padding-left: 10px;
+  padding-right: 7px;
+  color: #7a838e;
+  padding-top: 4px;
+  margin-bottom: 7px;
+  border-radius: 3px;
+  letter-spacing: 2.39px;
+}
+.stepTitleBar .tabs > div.selected > div {
+  color: #3d5afe;
+}
+.stepTitleBar .tabs > div.downloadHar {
+  padding: 6px 0 0 0;
+}
+.stepTitleBar .tabs > div.downloadHar:hover {
+  cursor: pointer;
+}
+.stepTitleBar .tabs > div.downloadHar > a > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.stepTitleBar .tabs > div.downloadHar a {
+  text-decoration: none;
+  cursor: pointer;
+}
+.stepTitleBar .tabs > div.downloadHar img {
+  width: 18px;
+}
+.stepTitleBar .tabs > div:hover {
+  background: #eef3ff;
+}
 
-.stepTitleBar.isClickimMode .tabs { bottom: 7px; }
-
+.stepTitleBar.isClickimMode .tabs {
+  bottom: 7px;
+}
 
 @media only screen and (max-width: 1024px) {
-    .stepTitleBar { height: 106px;}
-    .stepTitle { margin-top: -36px;}
-    .stepTitleBar .tabs { left: 0; right: unset; margin-left: -14px}
+  .stepTitleBar {
+    height: 106px;
+  }
+  .stepTitle {
+    margin-top: -36px;
+  }
+  .stepTitleBar .tabs {
+    left: 0;
+    right: unset;
+    margin-left: -14px;
+  }
 }

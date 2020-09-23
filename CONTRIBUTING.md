@@ -11,7 +11,7 @@ If you have any issues with the CLA or signing it please contact us (benji@testi
 
 This monorepo is managed with yarn workspaces.  
 The codebase is written with TypeScript, and linted using ESLint.  
-It's recommended to have proper IDE integration with the tools in use (eslint, editorconfig) before modifying the code
+It's recommended to have proper IDE integration with the tools in use (eslint, prettier, editorconfig) before modifying the code
 
 ### Prerequisite
 - yarn [Installation instructions](https://classic.yarnpkg.com/en/docs/install/#mac-stable)

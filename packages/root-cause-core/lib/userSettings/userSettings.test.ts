@@ -2,63 +2,63 @@
 import { loadSettings, readUserConfigFromFile } from './userSettings';
 import path from 'path';
 import {
-    getCleanAnsiPrettyFormatPluginFlatString,
-    getCleanAllPathsPrettyFormatPlugin,
+  getCleanAnsiPrettyFormatPluginFlatString,
+  getCleanAllPathsPrettyFormatPlugin,
 } from '@testim/internal-self-tests-helpers';
 
 var moduleDefaultFunction: jest.Mock | undefined;
 var loggerFunction: jest.Mock | undefined;
 
 jest.mock('debug', () => {
-    if (!moduleDefaultFunction) {
-        loggerFunction = jest.fn();
-        moduleDefaultFunction = jest.fn(() => loggerFunction);
-    }
+  if (!moduleDefaultFunction) {
+    loggerFunction = jest.fn();
+    moduleDefaultFunction = jest.fn(() => loggerFunction);
+  }
 
-    return {
-        __esModule: true,
-        default: moduleDefaultFunction,
-    };
+  return {
+    __esModule: true,
+    default: moduleDefaultFunction,
+  };
 });
 
 describe('user settings', () => {
+  // eslint-disable-next-line no-console
+  const mockedConsoleLog = jest.fn(console.log);
+  // eslint-disable-next-line no-console
+  const mockedConsoleWarn = jest.fn(console.warn);
+  const { warn: origConsoleWarn, log: origConsoleLog } = console;
+  expect.addSnapshotSerializer(getCleanAnsiPrettyFormatPluginFlatString());
+  expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
+
+  beforeAll(() => {
+    // fix an issue with running cosmiconfig inside jest lead to empty modules
+    // probably jest bug
+    // eslint-disable-next-line import/no-extraneous-dependencies
+    const a = require('parse-json');
+    a.toString();
+
     // eslint-disable-next-line no-console
-    const mockedConsoleLog = jest.fn(console.log);
+    console.log = mockedConsoleLog;
     // eslint-disable-next-line no-console
-    const mockedConsoleWarn = jest.fn(console.warn);
-    const { warn: origConsoleWarn, log: origConsoleLog } = console;
-    expect.addSnapshotSerializer(getCleanAnsiPrettyFormatPluginFlatString());
-    expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
+    console.warn = mockedConsoleWarn;
+  });
 
-    beforeAll(() => {
-        // fix an issue with running cosmiconfig inside jest lead to empty modules
-        // probably jest bug
-        // eslint-disable-next-line import/no-extraneous-dependencies
-        const a = require('parse-json');
-        a.toString();
+  afterAll(() => {
+    // eslint-disable-next-line no-console
+    console.log = origConsoleLog;
+    // eslint-disable-next-line no-console
+    console.warn = origConsoleWarn;
+  });
 
-        // eslint-disable-next-line no-console
-        console.log = mockedConsoleLog;
-        // eslint-disable-next-line no-console
-        console.warn = mockedConsoleWarn;
-    });
+  afterEach(() => {
+    mockedConsoleLog.mockReset();
+    mockedConsoleWarn.mockReset();
+    moduleDefaultFunction?.mockReset();
+    loggerFunction?.mockReset();
+  });
 
-    afterAll(() => {
-        // eslint-disable-next-line no-console
-        console.log = origConsoleLog;
-        // eslint-disable-next-line no-console
-        console.warn = origConsoleWarn;
-    });
-
-    afterEach(() => {
-        mockedConsoleLog.mockReset();
-        mockedConsoleWarn.mockReset();
-        moduleDefaultFunction?.mockReset();
-        loggerFunction?.mockReset();
-    });
-
-    test('When no config file, get defaults', async () => {
-        expect(await loadSettings()).toMatchInlineSnapshot(`
+  test('When no config file, get defaults', async () => {
+    expect(await loadSettings()).toMatchInlineSnapshot(`
             Object {
               "features": Object {
                 "console": true,
@@ -73,7 +73,7 @@ describe('user settings', () => {
             }
         `);
 
-        expect(moduleDefaultFunction?.mock.calls).toMatchInlineSnapshot(`
+    expect(moduleDefaultFunction?.mock.calls).toMatchInlineSnapshot(`
             Array [
               Array [
                 "root-cause:user-settings",
@@ -81,7 +81,7 @@ describe('user settings', () => {
             ]
         `);
 
-        expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
+    expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
             Array [
               Array [
                 "config file was empty",
@@ -93,13 +93,13 @@ describe('user settings', () => {
             ]
         `);
 
-        expect(mockedConsoleLog).not.toBeCalled();
-        expect(mockedConsoleWarn).not.toBeCalled();
-    });
+    expect(mockedConsoleLog).not.toBeCalled();
+    expect(mockedConsoleWarn).not.toBeCalled();
+  });
 
-    test('When settings file is valid, merge with defaults', async () => {
-        expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid')))
-            .toMatchInlineSnapshot(`
+  test('When settings file is valid, merge with defaults', async () => {
+    expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid')))
+      .toMatchInlineSnapshot(`
             Object {
               "features": Object {
                 "console": true,
@@ -110,7 +110,7 @@ describe('user settings', () => {
             }
         `);
 
-        expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
+    expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
             Array [
               Array [
                 "Found config file",
@@ -119,13 +119,13 @@ describe('user settings', () => {
             ]
         `);
 
-        expect(mockedConsoleLog).not.toBeCalled();
-        expect(mockedConsoleWarn).not.toBeCalled();
-    });
+    expect(mockedConsoleLog).not.toBeCalled();
+    expect(mockedConsoleWarn).not.toBeCalled();
+  });
 
-    test('Network logs off in config', async () => {
-        expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid-network-logs-off')))
-            .toMatchInlineSnapshot(`
+  test('Network logs off in config', async () => {
+    expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid-network-logs-off')))
+      .toMatchInlineSnapshot(`
             Object {
               "features": Object {
                 "console": true,
@@ -136,7 +136,7 @@ describe('user settings', () => {
             }
         `);
 
-        expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
+    expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
             Array [
               Array [
                 "Found config file",
@@ -145,13 +145,13 @@ describe('user settings', () => {
             ]
         `);
 
-        expect(mockedConsoleLog).not.toBeCalled();
-        expect(mockedConsoleWarn).not.toBeCalled();
-    });
+    expect(mockedConsoleLog).not.toBeCalled();
+    expect(mockedConsoleWarn).not.toBeCalled();
+  });
 
-    test('When settings file is malformed', async () => {
-        expect(await readUserConfigFromFile(path.resolve(__dirname, './fixtures', 'malformed')))
-            .toMatchInlineSnapshot(`
+  test('When settings file is malformed', async () => {
+    expect(await readUserConfigFromFile(path.resolve(__dirname, './fixtures', 'malformed')))
+      .toMatchInlineSnapshot(`
             Object {
               "features": Object {
                 "another wrong prop": null,
@@ -161,7 +161,7 @@ describe('user settings', () => {
             }
         `);
 
-        expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
+    expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
             Array [
               Array [
                 "Found config file",
@@ -170,7 +170,7 @@ describe('user settings', () => {
             ]
         `);
 
-        expect(mockedConsoleLog.mock.calls).toMatchInlineSnapshot(`
+    expect(mockedConsoleLog.mock.calls).toMatchInlineSnapshot(`
             Array [
               Array [
                 "ADDTIONAL PROPERTY should NOT have additional properties
@@ -198,7 +198,7 @@ describe('user settings', () => {
               ],
             ]
         `);
-        expect(mockedConsoleWarn.mock.calls).toMatchInlineSnapshot(`
+    expect(mockedConsoleWarn.mock.calls).toMatchInlineSnapshot(`
             Array [
               Array [
                 "Root Cause error: malformed config file
@@ -206,5 +206,5 @@ describe('user settings', () => {
               ],
             ]
         `);
-    });
+  });
 });
