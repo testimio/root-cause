@@ -1,188 +1,129 @@
 {
-    "extends": [
-        "airbnb-base"
+  "extends": ["airbnb-base", "prettier"],
+  "env": {
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint/eslint-plugin", "no-only-tests"],
+  "rules": {
+    "no-only-tests/no-only-tests": "error",
+    "no-useless-constructor": "off",
+    "no-underscore-dangle": "off",
+    "filename-matches-export": "off",
+    "no-wildcard": "off",
+    "no-plusplus": "off",
+    // not working with ts properly
+    "import/no-unresolved": "off",
+    "import/named": "off",
+    "class-methods-use-this": "off",
+    "strict": "off",
+    "global-require": "off",
+    "no-use-before-define": "off",
+    "max-classes-per-file": "off",
+    "vars-on-top": "off",
+    "no-unused-vars": "warn",
+    "no-undef": "warn",
+    "lines-between-class-members": "off",
+    "no-consecutive-blank-lines": "off",
+    "import/prefer-default-export": "off",
+    "no-param-reassign": "off",
+    "arrow-parens": "off",
+    "implicit-arrow-linebreak": "off",
+    "import/no-dynamic-require": "warn",
+    "spaced-comment": "off",
+    "prefer-promise-reject-errors": "warn",
+    "prefer-object-spread": "off",
+    "no-useless-escape": "off",
+    "import/extensions": "off",
+    "import/order": "off",
+    "prefer-destructuring": "off",
+    "no-return-await": "off",
+    "no-return-assign": ["error", "except-parens"],
+    "func-names": "off",
+    "no-tabs": "off",
+    "no-prototype-builtins": "off",
+    "no-fallthrough": "warn",
+    "no-multi-assign": "warn",
+    "no-new-func": "off",
+    "prefer-spread": "off",
+    "no-new": "warn",
+    "no-else-return": "warn",
+    "no-shadow": "off",
+    "no-var": "off",
+    "padded-blocks": "off",
+    "consistent-return": "off",
+    "consistent-returns": "off",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ForInStatement",
+        "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+      },
+      {
+        "selector": "LabeledStatement",
+        "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+      },
+      {
+        "selector": "WithStatement",
+        "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
     ],
-    "env": {
-        "node": true
-    },
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint/eslint-plugin",
-        "no-only-tests"
+    "generator-star-spacing": ["error", "after"],
+    "no-continue": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 3
+      }
     ],
-    "rules": {
-        "no-only-tests/no-only-tests": "error",
-        "no-useless-constructor": "off",
-        "no-underscore-dangle": "off",
-        "filename-matches-export": "off",
-        "no-wildcard": "off",
-        "no-plusplus": "off",
-        // not working with ts properly
-        "import/no-unresolved": "off",
-        "import/named": "off",
-        "class-methods-use-this": "off",
-        "strict": "off",
-        "global-require": "off",
-        "no-use-before-define": "off",
-        "max-classes-per-file": "off",
-        "vars-on-top": "off",
-        "no-unused-vars": "warn",
-        "no-undef": "warn",
-        "lines-between-class-members": "off",
-        "no-consecutive-blank-lines": "off",
-        "import/prefer-default-export": "off",
-        "no-param-reassign": "off",
-        "arrow-parens": "off",
-        "implicit-arrow-linebreak": "off",
-        "import/no-dynamic-require": "warn",
-        "spaced-comment": "off",
-        "prefer-promise-reject-errors": "warn",
-        "prefer-object-spread": "off",
-        "no-useless-escape": "off",
-        "import/extensions": "off",
-        "import/order": "off",
-        "prefer-destructuring": "off",
-        "no-return-await": "off",
-        "no-return-assign": [
-            "error",
-            "except-parens"
-        ],
-        "func-names": "off",
-        "no-tabs": "off",
-        "no-prototype-builtins": "off",
-        "no-fallthrough": "warn",
-        "no-multi-assign": "warn",
-        "no-new-func": "off",
-        "prefer-spread": "off",
-        "no-new": "warn",
-        "no-else-return": "warn",
-        "no-shadow": "off",
-        "no-var": "off",
-        "padded-blocks": "off",
-        "consistent-return": "off",
-        "operator-linebreak": [
-            "error",
-            "after"
-        ],
-        "consistent-returns": "off",
-        "no-restricted-syntax": [
-            "error",
-            {
-                "selector": "ForInStatement",
-                "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
-            },
-            {
-                "selector": "LabeledStatement",
-                "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
-            },
-            {
-                "selector": "WithStatement",
-                "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
-            }
-        ],
-        "generator-star-spacing": [
-            "error",
-            "after"
-        ],
-        "comma-dangle": [
-            "error",
-            {
-                "arrays": "always-multiline",
-                "objects": "always-multiline",
-                "imports": "always-multiline",
-                "exports": "always-multiline",
-                "functions": "ignore"
-            }
-        ],
-        "function-paren-newline": "off",
-        "no-continue": "off",
-        "no-multiple-empty-lines": [
-            "error",
-            {
-                "max": 3
-            }
-        ],
-        "max-len": [
-            "warn",
-            200
-        ],
-        "indent": [
-            "error",
-            4,
-            {
-                "SwitchCase": 1
-            }
-        ],
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": [
-                    "**/test.js",
-                    "**/*.test.js",
-                    "**/*.test.ts",
-                    "webpack/*",
-                    "quality/*",
-                    "scripts/*",
-                    "packages/internal-self-tests-helpers/*"
-                ]
-            }
-        ],
-        "object-curly-newline": [
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/test.js",
+          "**/*.test.js",
+          "**/*.test.ts",
+          "webpack/*",
+          "quality/*",
+          "scripts/*",
+          "packages/internal-self-tests-helpers/*"
+        ]
+      }
+    ],
+    "import/no-duplicates": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-empty-function": "warn",
+        "@typescript-eslint/interface-name-prefix": "off",
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "@typescript-eslint/no-use-before-define": [
           "error",
           {
-              "ObjectExpression": { "minProperties": 4, "multiline": true, "consistent": true
-            },
-              "ObjectPattern": { "minProperties": 4, "multiline": true, "consistent": true
-            },
-              "ImportDeclaration": { "minProperties": 5, "multiline": true, "consistent": true
-            },
-              "ExportDeclaration": { "minProperties": 5, "multiline": true, "consistent": true
-            }
+            "functions": false,
+            "classes": false
           }
         ],
-        "import/no-duplicates": "warn"
+        "@typescript-eslint/ban-types": "off"
+      }
     },
-    "overrides": [
-        {
-            "files": [
-                "*.ts",
-                "*.tsx"
-            ],
-            "extends": [
-                "plugin:@typescript-eslint/eslint-recommended",
-                "plugin:@typescript-eslint/recommended"
-            ],
-            "rules": {
-                "@typescript-eslint/no-explicit-any": "off",
-                "@typescript-eslint/no-var-requires": "off",
-                "@typescript-eslint/explicit-function-return-type": "off",
-                "@typescript-eslint/no-empty-function": "warn",
-                "@typescript-eslint/interface-name-prefix": "off",
-                "@typescript-eslint/ban-ts-ignore": "off",
-                "@typescript-eslint/no-use-before-define": [
-                    "error",
-                    {
-                        "functions": false,
-                        "classes": false
-                    }
-                ],
-                "@typescript-eslint/ban-types": "off"
-            }
-        },
-        {
-            "files": [
-                "*.test.js",
-                "*.test.ts"
-            ],
-            "env": {
-                "mocha": true
-            },
-            "globals": {
-                "expect": "readonly"
-            },
-            "rules": {
-                "no-unused-expressions": "off"
-            }
-        }
-    ]
+    {
+      "files": ["*.test.js", "*.test.ts"],
+      "env": {
+        "mocha": true
+      },
+      "globals": {
+        "expect": "readonly"
+      },
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
 }

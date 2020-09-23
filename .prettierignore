@@ -1,0 +1,9 @@
+dist
+.root-cause
+package-lock.json
+package.json
+tsconfig.json
+packages/client/build
+packages/client/packageToPublish/
+packages/root-cause-types/lib/*.d.ts
+packages/root-cause-types/*.d.ts

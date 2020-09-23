@@ -1,197 +1,198 @@
 version: 2.1
 executors:
-    node-executor:
-        docker:
-            - image: circleci/node:12.17-stretch-browsers
-        environment:
-            # TESTIM_PERSIST_RESULTS_TO_CLOUD: 'true'
-            TESTIM_PROJECT_JUNIT_PATH: ~/reporters-output/root-cause-junit-report.xml
-            # https://github.com/microsoft/playwright/blob/master/docs/ci.md#caching-browsers
-            PLAYWRIGHT_BROWSERS_PATH: '0'
-            YARN_CACHE_FOLDER: ~/.cache/yarn
+  node-executor:
+    docker:
+      - image: circleci/node:12.17-stretch-browsers
+    environment:
+      # TESTIM_PERSIST_RESULTS_TO_CLOUD: 'true'
+      TESTIM_PROJECT_JUNIT_PATH: ~/reporters-output/root-cause-junit-report.xml
+      # https://github.com/microsoft/playwright/blob/master/docs/ci.md#caching-browsers
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+      YARN_CACHE_FOLDER: ~/.cache/yarn
 
 jobs:
-    build-and-test:
-        executor: node-executor
+  build-and-test:
+    executor: node-executor
 
-        steps:
-            - checkout
-            - yarn-install-and-ensure-dedup
-            - lint-and-build
-            - run: mkdir ~/reporters-output
-            - run: yarn test
+    steps:
+      - checkout
+      - yarn-install-and-ensure-dedup
+      - lint-and-build
+      - run: mkdir ~/reporters-output
+      - run: yarn test
 
-            - store_artifacts:
-                  path: ./reporters-output/
+      - store_artifacts:
+          path: ./reporters-output/
 
-            - store_test_results:
-                  path: ./reporters-output/
+      - store_test_results:
+          path: ./reporters-output/
 
-    publish-release:
-        executor: node-executor
+  publish-release:
+    executor: node-executor
 
-        steps:
-            - checkout
-            - yarn-install-and-ensure-dedup
-            - lint-and-build
-            - run:
-                  name: Publish version
-                  command: yarn lerna publish from-git -y
+    steps:
+      - checkout
+      - yarn-install-and-ensure-dedup
+      - lint-and-build
+      - run:
+          name: Publish version
+          command: yarn lerna publish from-git -y
 
-                  no_output_timeout: 3m
+          no_output_timeout: 3m
 
-    # Not in use, for future reference and dry runs
-    publish-release-verdaccio:
-        executor: node-executor
+  # Not in use, for future reference and dry runs
+  publish-release-verdaccio:
+    executor: node-executor
 
-        steps:
-            - checkout
-            - yarn-install-and-ensure-dedup
-            - lint-and-build
-            - run:
-                  name: Publish version
-                  command: |
-                      set -x
-                      yarn verdaccio &
-                      yarn wait-port --timeout 10000 4873
-                      yarn lerna publish from-git -y --registry http://localhost:4873
-                      killall node
+    steps:
+      - checkout
+      - yarn-install-and-ensure-dedup
+      - lint-and-build
+      - run:
+          name: Publish version
+          command: |
+            set -x
+            yarn verdaccio &
+            yarn wait-port --timeout 10000 4873
+            yarn lerna publish from-git -y --registry http://localhost:4873
+            killall node
 
-                  no_output_timeout: 3m
+          no_output_timeout: 3m
 
-            - store-verdaccio-artifacts
+      - store-verdaccio-artifacts
 
-    publish-canary:
-        executor: node-executor
+  publish-canary:
+    executor: node-executor
 
-        steps:
-            - checkout
-            - yarn-install-and-ensure-dedup
-            - lint-and-build
-            - run:
-                  name: Publish canary version
-                  command: yarn lerna publish --canary --preid canary-$CIRCLE_BUILD_NUM --dist-tag canary -y --force-publish
-                  no_output_timeout: 3m
+    steps:
+      - checkout
+      - yarn-install-and-ensure-dedup
+      - lint-and-build
+      - run:
+          name: Publish canary version
+          command: yarn lerna publish --canary --preid canary-$CIRCLE_BUILD_NUM --dist-tag canary -y --force-publish
+          no_output_timeout: 3m
 
-    # Not in use, for future reference and dry runs
-    publish-canary-verdaccio:
-        executor: node-executor
+  # Not in use, for future reference and dry runs
+  publish-canary-verdaccio:
+    executor: node-executor
 
-        steps:
-            - checkout
-            - yarn-install-and-ensure-dedup
-            - lint-and-build
-            - run:
-                  name: Publish canary version
-                  command: |
-                      set -x;
-                      yarn verdaccio &
-                      yarn wait-port --timeout 10000 4873
-                      yarn lerna publish --canary --preid canary --dist-tag canary -y --force-publish --registry http://localhost:4873
-                      killall node
-                  no_output_timeout: 3m
+    steps:
+      - checkout
+      - yarn-install-and-ensure-dedup
+      - lint-and-build
+      - run:
+          name: Publish canary version
+          command: |
+            set -x;
+            yarn verdaccio &
+            yarn wait-port --timeout 10000 4873
+            yarn lerna publish --canary --preid canary --dist-tag canary -y --force-publish --registry http://localhost:4873
+            killall node
+          no_output_timeout: 3m
 
-            - store-verdaccio-artifacts
+      - store-verdaccio-artifacts
 
 workflows:
-    build-and-test:
-        jobs:
-            - build-and-test:
-                  filters:
-                      tags:
-                          ignore: /.*/
+  build-and-test:
+    jobs:
+      - build-and-test:
+          filters:
+            tags:
+              ignore: /.*/
 
-            - publish-release:
-                  requires:
-                      - build-and-test
-                  filters:
-                      branches:
-                          only:
-                            - main
-                      tags:
-                          ignore: /.*/
+      - publish-release:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only:
+                - main
+            tags:
+              ignore: /.*/
 
-            - publish-canary:
-                  filters:
-                      tags:
-                          only:
-                              - /^canary-publish-.+/
-                      branches:
-                          ignore: main
+      - publish-canary:
+          filters:
+            tags:
+              only:
+                - /^canary-publish-.+/
+            branches:
+              ignore: main
 
 commands:
-    yarn-install-and-ensure-dedup:
-        steps:
-            - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
-            - restore_cache:
-                  keys:
-                      - yarn-global-cache-{{ checksum "yarn.lock" }}
-                      - yarn-global-cache-
-            - restore_cache:
-                  keys:
-                      - yarn-node_modules-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-                      - yarn-node_modules-{{ checksum "yarn.lock" }}-
-            - run: yarn --frozen-lockfile
-            - save_cache:
-                  key: yarn-global-cache-{{ checksum "yarn.lock" }}
-                  paths:
-                      - ~/.cache/yarn
+  yarn-install-and-ensure-dedup:
+    steps:
+      - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
+      - restore_cache:
+          keys:
+            - yarn-global-cache-{{ checksum "yarn.lock" }}
+            - yarn-global-cache-
+      - restore_cache:
+          keys:
+            - yarn-node_modules-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+            - yarn-node_modules-{{ checksum "yarn.lock" }}-
+      - run: yarn --frozen-lockfile
+      - save_cache:
+          key: yarn-global-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
 
-            # running yarn deduplicate & yarn install should fix errors by it
-            # if it's not working as expected, feel free to comment this out and ping Bnaya
-            - run: yarn yarn-deduplicate -s fewer --fail --list yarn.lock
-            - save_cache:
-                  key: yarn-node_modules-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-                  paths:
-                      # no globbing as to date, that's sucks! we need to add all packages
-                      # https://circleci.com/docs/2.0/caching/#basic-example-of-dependency-caching
-                      - node_modules
-                      - packages/client/node_modules
-                      - packages/internal-self-tests-helpers/node_modules
-                      - packages/jest-tester-and-example/node_modules
-                      - packages/root-cause-core/node_modules
-                      - packages/root-cause-jest/node_modules
-                      - packages/root-cause-mocha/node_modules
-                      - packages/root-cause-types/node_modules
-                      - packages/root-cause/node_modules
-                      - packages/tester/node_modules
+      # running yarn deduplicate & yarn install should fix errors by it
+      # if it's not working as expected, feel free to comment this out and ping Bnaya
+      - run: yarn yarn-deduplicate -s fewer --fail --list yarn.lock
+      - save_cache:
+          key: yarn-node_modules-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+          paths:
+            # no globbing as to date, that's sucks! we need to add all packages
+            # https://circleci.com/docs/2.0/caching/#basic-example-of-dependency-caching
+            - node_modules
+            - packages/client/node_modules
+            - packages/internal-self-tests-helpers/node_modules
+            - packages/jest-tester-and-example/node_modules
+            - packages/root-cause-core/node_modules
+            - packages/root-cause-jest/node_modules
+            - packages/root-cause-mocha/node_modules
+            - packages/root-cause-types/node_modules
+            - packages/root-cause/node_modules
+            - packages/tester/node_modules
 
-    lint-and-build:
-        steps:
-            - run: yarn lint
-            - run: yarn build
+  lint-and-build:
+    steps:
+      - run: yarn lint
+      - run: yarn prettier-check
+      - run: yarn build
 
-    user-perspective-test:
-        steps:
-            - run:
-                  name: test user perspective
-                  command: |
-                      set -x;
-                      cd ./packages/root-cause-core;
-                      yarn prepublishOnly;
-                      cd ./dist;
-                      yarn pack --filename root-cause-local.tgz;
-                      mkdir ~/e2e
-                      cp ./root-cause-local.tgz ~/e2e/
-                      cd ~/e2e
-                      yarn init -y
-                      yarn add puppeteer ./root-cause-local.tgz wait-port
-                      cp ~/project/packages/root-cause-core/test/e2e/* .
-                      node user-test.js
-                      yarn root-cause ls
-                      yarn root-cause show $(yarn -s root-cause ls --simple) &
-                      # waiting for root-cause server to open in port 9876
-                      yarn wait-port --timeout 10000 9876
-                      sleep 1
-                      node e2e.js
-                      killall node
+  user-perspective-test:
+    steps:
+      - run:
+          name: test user perspective
+          command: |
+            set -x;
+            cd ./packages/root-cause-core;
+            yarn prepublishOnly;
+            cd ./dist;
+            yarn pack --filename root-cause-local.tgz;
+            mkdir ~/e2e
+            cp ./root-cause-local.tgz ~/e2e/
+            cd ~/e2e
+            yarn init -y
+            yarn add puppeteer ./root-cause-local.tgz wait-port
+            cp ~/project/packages/root-cause-core/test/e2e/* .
+            node user-test.js
+            yarn root-cause ls
+            yarn root-cause show $(yarn -s root-cause ls --simple) &
+            # waiting for root-cause server to open in port 9876
+            yarn wait-port --timeout 10000 9876
+            sleep 1
+            node e2e.js
+            killall node
 
-            - store_artifacts:
-                  path: ~/e2e/.root-cause
-                  destination: e2e-root-cause-dir
+      - store_artifacts:
+          path: ~/e2e/.root-cause
+          destination: e2e-root-cause-dir
 
-    store-verdaccio-artifacts:
-        steps:
-            - store_artifacts:
-                  path: verdaccio/verdaccio-storage
-                  destination: verdaccio-storage
+  store-verdaccio-artifacts:
+    steps:
+      - store_artifacts:
+          path: verdaccio/verdaccio-storage
+          destination: verdaccio-storage
