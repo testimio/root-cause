@@ -121,7 +121,7 @@ export async function testEndHook(
     try {
       codeLocationDetails = extractCodeLocationDetailsSync(testContext.testFilePath, process.cwd());
     } catch (e) {
-      // extractCodeLocationDetailsSync is best effort here, ignore that
+      // will not work on node, and also is considered best effort here
     }
 
     testContext.addTestMetadata({

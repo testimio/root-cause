@@ -177,10 +177,9 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: utils.extractCodeLocationDetailsSync(
-                userTestFile,
-                workingDirectory
-              ),
+              stepCodeLocation: !CONSTS.IS_NODE_10
+                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
+                : undefined,
             };
             attachController.reportAssertion(report);
           } else {
@@ -191,10 +190,9 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: utils.extractCodeLocationDetailsSync(
-                userTestFile,
-                workingDirectory
-              ),
+              stepCodeLocation: !CONSTS.IS_NODE_10
+                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
+                : undefined,
               stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResult.error),
             };
             attachController.reportAssertion(report);
@@ -211,10 +209,9 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: utils.extractCodeLocationDetailsSync(
-                userTestFile,
-                workingDirectory
-              ),
+              stepCodeLocation: !CONSTS.IS_NODE_10
+                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
+                : undefined,
             };
             attachController.reportAssertion(report);
           } else {
@@ -225,10 +222,9 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: utils.extractCodeLocationDetailsSync(
-                userTestFile,
-                workingDirectory
-              ),
+              stepCodeLocation: !CONSTS.IS_NODE_10
+                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
+                : undefined,
               stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResultAsync.error),
             };
             attachController.reportAssertion(report);
