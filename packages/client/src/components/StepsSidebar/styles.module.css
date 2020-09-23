@@ -8,6 +8,10 @@
 
 .stepItem .border { position: absolute; left: 31px; top: 9px; bottom: 12px; right: 15px; outline: solid 1px #D8DAE5; contain: layout; }
 .stepItem .contents { position: absolute; left: 31px; top: 9px; bottom: 53px; right: 15px; display: flex; align-items: center; font-size: 14px; contain: layout;}
+.stepItem.stepFailed .contents {
+    padding: 10px 0 0 10px;
+    text-transform: capitalize;
+}
 
 /* todo(benji) padding: 8px 10px 0; that I removed from .contents) */
 .stepItem .title { position: absolute; left: 31px; bottom: 12px; right: 15px; height: 40px; outline: solid 1px #D8DAE5; display: flex; align-items: center; padding-left: 13px; padding-right: 13px; font-size: 12px; background: white; }

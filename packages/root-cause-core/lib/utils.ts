@@ -1,14 +1,33 @@
 import type { AbortSignal } from 'abort-controller';
 import type { DevtoolsProtocolResponseMap } from './nicerChromeDevToolsTypes';
 import type { RootCausePage } from './interfaces';
-import { StartTestParams } from './attachInterfaces';
+import type { StartTestParams } from './attachInterfaces';
 import crypto from 'crypto';
 import path from 'path';
 import { RESULTS_DIR_NAME, RUNS_DIR_NAME } from './consts';
 import fs from 'fs-extra';
 import type { Page as PuppeteerPage, PageEventObj as PuppeteerPageEventObj } from 'puppeteer';
 import type { Page as PlaywrightPage, ChromiumBrowserContext, BrowserContext, ChromiumBrowser } from 'playwright';
-import type { TestSystemInfo, ICodeErrorDetails } from '@testim/root-cause-types';
+import type { TestSystemInfo, CodeLocationDetails, StepError } from '@testim/root-cause-types';
+import type { StackLineData, CallSite } from 'stack-utils';
+import StackUtils from 'stack-utils';
+
+const USER_CODE_BEFORE_AFTER_TO_SHOW = 3;
+
+const stackUtils = new StackUtils({ cwd: process.cwd(), internals: StackUtils.nodeInternals() });
+
+export function captureStacktraceDetails(): { stackLines: StackLineData[]; stacktrace: string } {
+    // stackUtils.capture have some wired issues with line numbers
+    // callSites: stackUtils.capture(captureStacktraceDetails),
+
+    const stacktrace = stackUtils.captureString(captureStacktraceDetails);
+    const stackLines = stackUtils.captureString(captureStacktraceDetails).split(/\r?\n/).map(line => stackUtils.parseLine(line)).filter(nonNullable);
+
+    return {
+        stackLines,
+        stacktrace,
+    };
+}
 
 // Avoid depending of TypeScript dom symbols
 declare const navigator: any;
@@ -148,7 +167,7 @@ export async function getSystemInfoForPuppeteerPage(page: PuppeteerPage): Promis
  *
  * @param userAgent
  */
-export function guessOperatingSystemUserAgent(): {name: string; version: string} {
+export function guessOperatingSystemUserAgent(): { name: string; version: string } {
     return {
         name: 'N/A',
         version: 'N/A',
@@ -202,6 +221,34 @@ export class AbortError extends Error {
 
 export function isAbortError(maybeAbortError: unknown): maybeAbortError is AbortError {
     return maybeAbortError instanceof Error && maybeAbortError.name === 'AbortError';
+}
+
+export function unknownValueThatIsProbablyErrorToStepError(probablyError: unknown): StepError {
+    let errorToReturn: StepError;
+
+    if (probablyError instanceof Error) {
+        errorToReturn = {
+            name: probablyError.name,
+            message: probablyError.message,
+            stack: probablyError.stack,
+        };
+    } else if (typeof probablyError === 'object' && probablyError !== null && 'message' in probablyError && 'name' in probablyError) {
+        errorToReturn = {
+            // @ts-expect-error
+            name: probablyError.name,
+            // @ts-expect-error
+            message: probablyError.message,
+            // @ts-expect-error
+            stack: probablyError.stack ?? undefined,
+        };
+    } else {
+        errorToReturn = {
+            name: 'Unknown error',
+            message: 'Unknown error',
+        };
+    }
+
+    return errorToReturn;
 }
 
 /**
@@ -265,66 +312,61 @@ export function arrayFlat<T>(arr: T[][]): T[] {
     }, []);
 }
 
-export async function extractCodeErrorDetails(errorStack: string, assumedUserLine = 3): Promise<ICodeErrorDetails> {
-    // remove at processTicksAndRejections (internal/process/task_queues.js:97:5)
-    // when we have some other errors in jest, the stack trace looks different...
-    const lines = errorStack.split('\n').filter(line => !line.includes('at processTicksAndRejections'));
-    // const lineBeforeUserCode = lines.findIndex(l => l.includes('PuppeteerPageHooker'));
-    // const userLine = lines[lineBeforeUserCode + 1];
+export function extractCodeLocationDetailsSync(userTestFile: string, workingDirectory: string): CodeLocationDetails {
+    const { stackLines, stacktrace } = captureStacktraceDetails();
 
-    const userLine = lines[assumedUserLine];
-    const firstSlashIndex = userLine.indexOf('/');
-    const firstColonIndex = userLine.indexOf(':');
-    const filepath = userLine.substr(firstSlashIndex, firstColonIndex - firstSlashIndex);
-    const [row, column] = userLine.substr(firstColonIndex + 1).split(':').map(v => v.replace(/[^0-9]/g, '')).map(Number);
+    stacktrace.toString();
 
-    const rowCountToShow = 3;
-    const userFile = await fs.readFile(filepath, 'utf8');
-    const userLines = userFile.split('\n');
-    const fromRowNumber = Math.max(row - rowCountToShow, 1);
-    const toRowNumber = Math.min(row + rowCountToShow, userLines.length);
+    const callSitesInUserCode = stackLines.filter(site => {
+        const callSiteFileName = site.file;
 
-    const errorLines = userLines.slice(fromRowNumber - 1, toRowNumber);
+        if (!callSiteFileName) {
+            return false;
+        }
 
-    return {
-        errorLines,
-        fromRowNumber,
-        toRowNumber,
-        row,
-        column,
-    };
-}
+        return userTestFile.endsWith(callSiteFileName);
+    });
 
-/**
- * Why do we need a sync variant of extractCodeError?
- * In some cases, like when inside sync matcher of jest, we cannot safely use async apis,
- * as the parent control flow will not wait for us
- * If we want to avoid some of the code redundancy, we can turn it into generator
- */
-export function extractCodeErrorDetailsSync(errorStack: string, assumedUserLine = 3): ICodeErrorDetails {
-    const lines = errorStack.split('\n');
-    // const lineBeforeUserCode = lines.findIndex(l => l.includes('PuppeteerPageHooker'));
-    // const userLine = lines[lineBeforeUserCode + 1];
-    const userLine = lines[assumedUserLine];
-    const firstSlashIndex = userLine.indexOf('/');
-    const firstColonIndex = userLine.indexOf(':');
-    const filepath = userLine.substr(firstSlashIndex, firstColonIndex - firstSlashIndex);
-    const [row, column] = userLine.substr(firstColonIndex + 1).split(':').map(v => v.replace(/[^0-9]/g, '')).map(Number);
+    // User code might have more than one lines in the stack
+    // we assume that the first line is the actual test code and not helper function
+    // That's might be not true in some cases
+    const userTestCodeLine = callSitesInUserCode[0];
 
-    const rowCountToShow = 3;
-    const userFile = fs.readFileSync(filepath, 'utf8');
-    const userLines = userFile.split('\n');
-    const fromRowNumber = Math.max(row - rowCountToShow, 1);
-    const toRowNumber = Math.min(row + rowCountToShow, userLines.length);
+    assertNotNullOrUndefined(userTestCodeLine.line);
+    assertNotNullOrUndefined(userTestCodeLine.column);
+    assertNotNullOrUndefined(userTestCodeLine.file);
 
-    const errorLines = userLines.slice(fromRowNumber - 1, toRowNumber);
+    // todo: cache file contents?
+    const userTestFileContent = fs.readFileSync(userTestFile, 'utf8');
+    const userTestFileCodeLines = userTestFileContent.split(/\r?\n/);
+    const fromRowNumber = Math.max(userTestCodeLine.line - USER_CODE_BEFORE_AFTER_TO_SHOW, 1);
+    const toRowNumber = Math.min(userTestCodeLine.line + USER_CODE_BEFORE_AFTER_TO_SHOW, userTestFileCodeLines.length);
+
+    const codeLines = userTestFileCodeLines.slice(fromRowNumber - 1, toRowNumber);
+
+    const callstack = stackLines.filter(line => {
+        if (line.function?.includes('extractCodeLocationDetailsSync')) {
+            return false;
+        }
+
+        if (line.function?.includes('stacktraceHook')) {
+            return false;
+        }
+
+        return true;
+    }).map((line) => ({
+        ...line,
+        file: line.file ? path.relative(workingDirectory, line.file) : undefined,
+    }));
 
     return {
-        errorLines,
+        sourceFileRelativePath: userTestFile.substring(process.cwd().length + 1),
+        codeLines,
         fromRowNumber,
         toRowNumber,
-        row,
-        column,
+        row: userTestCodeLine.line,
+        column: userTestCodeLine.column,
+        callstack,
     };
 }
 
@@ -344,4 +386,28 @@ export function puppeteerAddEventReturnDisposer<TEventName extends keyof Puppete
     return function dispose() {
         page.off(eventName, handler);
     };
+}
+
+const moreNodeBuiltin = ['assert.js', 'internal/process'];
+
+export function getSelfCallSiteFromStacktrace(howManyBack = 1): CallSite | null {
+    const noneInternalLines = stackUtils.capture(getSelfCallSiteFromStacktrace).filter(line => {
+        if (line.isNative()) {
+            return false;
+        }
+
+        const fileName = line.getFileName() || '';
+
+        return moreNodeBuiltin.every(builtin => !fileName.includes(builtin));
+    });
+
+    if (howManyBack >= noneInternalLines.length) {
+
+        // Note:
+        // In case that the caller dose not have 'await', async stack trace will not be added, and in node 10.
+        // that can case issues, so we return null
+        return null;
+    }
+
+    return noneInternalLines[howManyBack];
 }

@@ -1,7 +1,7 @@
 import { TestContext } from './TestContext';
 import type { RootCausePage } from './interfaces';
 import type { InstrumentedFunctionResult, StepError } from '@testim/root-cause-types';
-import { getSystemInfoForPage } from './utils';
+import { getSystemInfoForPage, captureStacktraceDetails, extractCodeLocationDetailsSync } from './utils';
 import { TestEndStatus } from './attachInterfaces';
 import { platform } from 'os';
 import { exec } from 'child_process';
@@ -19,26 +19,6 @@ export async function errorInStepHook(
         testContext.addStepMetadata({
             stepError: unknownErrorToOurRepresentation(instrumentedFunctionResult.error),
         });
-    }
-}
-
-//TODO(Benji) when we have a monorepo share this code with errorExtractor in clickim
-function getFileNameFromErrorStack() {
-    const stack = new Error().stack;
-    const relevantLine = stack?.split('\n')
-        .filter(x => x.match(/:(\d+):(\d+)/))
-        .find(x => !x.includes('@testim/root-cause/'));
-
-    if (!relevantLine) {
-        return null;
-    }
-    try {
-        //@ts-ignore incorrect type for `match`
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const [full, fileName, line, column] = relevantLine.match(/\((.*):(\d+):(\d+)\)/);
-        return fileName;
-    } catch (e) {
-        return null;
     }
 }
 
@@ -82,10 +62,8 @@ export async function testSystemInfoHook(testContext: TestContext, proxyContext:
         getSystemInfoForPage(rootPage),
         getBranchInfo(),
     ]);
-    const fileName = getFileNameFromErrorStack();
     testContext.addTestMetadata({
         systemInfo,
-        fileName,
         branchInfo,
     });
 }
@@ -118,33 +96,28 @@ function unknownErrorToOurRepresentation(error: unknown): StepError {
 }
 
 export async function testEndHook(testContext: TestContext, testEndStatus: TestEndStatus<unknown, unknown>) {
-    const error = testEndStatus.success ? undefined : unknownErrorToOurRepresentation(testEndStatus.error);
-    testContext.addTestMetadata({
-        testEndStatus: {
-            success: testEndStatus.success,
-            error,
-        },
-    });
+    if (testEndStatus.success) {
+        testContext.addTestMetadata({
+            testEndStatus: {
+                success: true,
+            },
+        });
+    } else {
+        const error = unknownErrorToOurRepresentation(testEndStatus.error);
+        let codeLocationDetails;
 
-    if (!testEndStatus.success) {
-
-        if (testContext.currentStep?.stepError) {
-            const metadata = {
-                stepError: error,
-            };
-            testContext.addStepMetadata(metadata);
-        } else {
-            testContext.stepStarted();
-            const metadata = {
-                stepError: error,
-                fnName: 'Assertion Error',
-                rect: { error: 'Assertion Error' },
-                screenshot: null,
-                text: error && error.message,
-            };
-            testContext.addStepMetadata(metadata);
-            await testContext.stepEnded();
+        try {
+            codeLocationDetails = extractCodeLocationDetailsSync(testContext.testFilePath, process.cwd());
+        } catch (e) {
+            // extractCodeLocationDetailsSync is best effort here, ignore that
         }
 
+        testContext.addTestMetadata({
+            testEndStatus: {
+                success: testEndStatus.success,
+                error,
+                codeLocationDetails,
+            },
+        });
     }
 }

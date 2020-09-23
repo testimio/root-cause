@@ -1,14 +1,14 @@
 import { TestContext } from './TestContext';
-import { extractCodeErrorDetails } from './utils';
+import { extractCodeLocationDetailsSync } from './utils';
 
 export const stacktraceHook = async (testContext: TestContext) => {
-    const myObject: any = {};
-    Error.captureStackTrace(myObject);
 
-    const codeError = await extractCodeErrorDetails(myObject.stack);
+    const stepCodeLocation = extractCodeLocationDetailsSync(testContext.testFilePath, process.cwd());
+
     const metadata = {
-        codeError,
+        stepCodeLocation,
     };
+
     testContext.addStepMetadata(metadata);
 };
 
