@@ -1,11 +1,7 @@
 import { TestContext } from './TestContext';
 import type { RootCausePage } from './interfaces';
 import type { InstrumentedFunctionResult, StepError } from '@testim/root-cause-types';
-import {
-  getSystemInfoForPage,
-  captureStacktraceDetails,
-  extractCodeLocationDetailsSync,
-} from './utils';
+import { getSystemInfoForPage, extractCodeLocationDetailsSync } from './utils';
 import { TestEndStatus } from './attachInterfaces';
 import { platform } from 'os';
 import { exec } from 'child_process';
