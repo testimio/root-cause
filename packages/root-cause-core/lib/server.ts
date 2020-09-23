@@ -18,11 +18,11 @@ let server: http.Server;
 
 async function buildClientStatics() {
     await new Promise<void>((res, rej) => {
-        childProcess.exec('yarn workspace @testim/root-cause-client-bundled build', {
+        childProcess.exec('yarn workspace @testim/root-cause-client-bundled build -s', {
             windowsHide: true,
         }, (error, sdtOut, stdErr) => {
             if (error) {
-                rej(error);
+                rej(sdtOut);
             } else {
                 res();
             }
@@ -51,8 +51,14 @@ export async function openServer(port: number, testPath: string): Promise<string
 
         if (!await fs.pathExists(path.resolve(DEV_STATIC_FILES_LOCATION, STATIC_INDEX_FILE))) {
             console.log('Client Static files not found, building client project...');
-            await buildClientStatics();
-            console.log('Done building client project');
+            try {
+                await buildClientStatics();
+                console.log('Done building client project');
+            } catch (e) {
+                console.warn(e);
+                console.warn('Building client project failed. you can keep this running, and use the CRA dev server');
+                console.warn('If you keep seeing this message and the CRA start don\'t have any errors, please open an issue');
+            }
         }
     } else if (!await fs.pathExists(path.resolve(PROD_STATIC_FILES_LOCATION, STATIC_INDEX_FILE))) {
         console.error('Missing client static, there\'s an issue with the package integrity');
