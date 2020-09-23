@@ -37,6 +37,20 @@ Object {
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 3,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-har-record.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 93,
+          },
+        ],
         "codeLines": Array [
           "        } = attachController;",
           "        // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test",
@@ -78,6 +92,20 @@ Object {
       "selector": "[data-job=GET_OK]",
       "startTimestamp": 5,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-har-record.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 94,
+          },
+        ],
         "codeLines": Array [
           "        // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test",
           "        // Still, it might be flaky",
@@ -126,6 +154,20 @@ Object {
       "selector": "[data-job=GET_404]",
       "startTimestamp": 7,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-har-record.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 95,
+          },
+        ],
         "codeLines": Array [
           "        // Still, it might be flaky",
           "        await playedPage.goto('http://jsbin.testim.io/ces');",
@@ -166,6 +208,20 @@ Object {
       "selector": "[data-job=POST_OK]",
       "startTimestamp": 10,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-har-record.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 96,
+          },
+        ],
         "codeLines": Array [
           "        await playedPage.goto('http://jsbin.testim.io/ces');",
           "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
@@ -214,6 +270,20 @@ Object {
       "selector": "[data-job=POST_404]",
       "startTimestamp": 12,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-har-record.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 97,
+          },
+        ],
         "codeLines": Array [
           "        await playedPage.click('[data-job=GET_OK]', { delay: 800 });",
           "        await playedPage.click('[data-job=GET_404]', { delay: 800 });",

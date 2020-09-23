@@ -22,6 +22,32 @@ Object {
     },
     "testEndStatus": Object {
       "codeLocationDetails": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/assortedHooks.ts",
+            "function": "testEndHook",
+            "line": 110,
+          },
+          Object {
+            "column": 23,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.end",
+            "line": 176,
+          },
+          Object {
+            "column": 9,
+            "file": "../root-cause-core/lib/attach.ts",
+            "function": "endTest",
+            "line": 118,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 110,
+          },
+        ],
         "codeLines": Array [
           "",
           "        expect(allButtons).toHaveLength(2);",
@@ -58,9 +84,23 @@ Object {
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 3,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 77,
+          },
+        ],
         "codeLines": Array [
           "",
-          "        const unhookExpect = makeHookExpect(attachController, currentTest.testPath);",
+          "        const unhookExpect = makeHookExpect(attachController, currentTest.testPath, startTestParams.projectRoot);",
           "",
           "        await playedPage.goto('http://jsbin.testim.io/ner/1');",
           "        await playedPage.click('#test');",
@@ -99,8 +139,22 @@ Object {
       "selector": "#test",
       "startTimestamp": 5,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 78,
+          },
+        ],
         "codeLines": Array [
-          "        const unhookExpect = makeHookExpect(attachController, currentTest.testPath);",
+          "        const unhookExpect = makeHookExpect(attachController, currentTest.testPath, startTestParams.projectRoot);",
           "",
           "        await playedPage.goto('http://jsbin.testim.io/ner/1');",
           "        await playedPage.click('#test');",
@@ -139,6 +193,20 @@ Object {
       "selector": "#test",
       "startTimestamp": 7,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 80,
+          },
+        ],
         "codeLines": Array [
           "        await playedPage.goto('http://jsbin.testim.io/ner/1');",
           "        await playedPage.click('#test');",
@@ -179,6 +247,20 @@ Object {
       "selector": "#test",
       "startTimestamp": 9,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 81,
+          },
+        ],
         "codeLines": Array [
           "        await playedPage.click('#test');",
           "",
@@ -219,6 +301,20 @@ Object {
       "selector": "#test",
       "startTimestamp": 11,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 83,
+          },
+        ],
         "codeLines": Array [
           "        await playedPage.click('#test');",
           "        await playedPage.click('#test');",
@@ -242,6 +338,26 @@ Object {
       "name": "expect(instanceof(ElementHandle)).not.toBe(null)",
       "startTimestamp": 13,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 53,
+            "file": "lib/helpers.ts",
+            "function": "Object.sync",
+            "line": 161,
+          },
+          Object {
+            "column": 39,
+            "file": "lib/hookExpect.ts",
+            "function": "Proxy.wrappedFunction",
+            "line": 102,
+          },
+          Object {
+            "column": 31,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 86,
+          },
+        ],
         "codeLines": Array [
           "        await playedPage.click('#test');",
           "        const counterEl = await playedPage.$('#counter');",
@@ -267,6 +383,20 @@ Object {
       "screenshot": "7.elementhandle-getProperty.jpg",
       "startTimestamp": 14,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 29,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 90,
+          },
+        ],
         "codeLines": Array [
           "",
           "        utils.assertNotNullOrUndefined(counterEl);",
@@ -290,6 +420,26 @@ Object {
       "name": "expect(4).toBe(4)",
       "startTimestamp": 16,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 53,
+            "file": "lib/helpers.ts",
+            "function": "Object.sync",
+            "line": 161,
+          },
+          Object {
+            "column": 39,
+            "file": "lib/hookExpect.ts",
+            "function": "Proxy.wrappedFunction",
+            "line": 102,
+          },
+          Object {
+            "column": 22,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 92,
+          },
+        ],
         "codeLines": Array [
           "",
           "        const text = await (await counterEl.getProperty('innerText')).jsonValue();",
@@ -329,6 +479,20 @@ Object {
       "selector": "#reset",
       "startTimestamp": 17,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 94,
+          },
+        ],
         "codeLines": Array [
           "",
           "        expect(text).toBe('4');",
@@ -355,6 +519,20 @@ Object {
       "screenshot": "10.elementhandle-getProperty.jpg",
       "startTimestamp": 19,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 30,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 96,
+          },
+        ],
         "codeLines": Array [
           "",
           "        await playedPage.click('#reset');",
@@ -378,6 +556,26 @@ Object {
       "name": "expect(0).toBe(0)",
       "startTimestamp": 21,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 53,
+            "file": "lib/helpers.ts",
+            "function": "Object.sync",
+            "line": 161,
+          },
+          Object {
+            "column": 39,
+            "file": "lib/hookExpect.ts",
+            "function": "Proxy.wrappedFunction",
+            "line": 102,
+          },
+          Object {
+            "column": 23,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 98,
+          },
+        ],
         "codeLines": Array [
           "",
           "        const text2 = await (await counterEl.getProperty('innerText')).jsonValue();",
@@ -403,6 +601,20 @@ Object {
       "screenshot": "12.elementhandle-click.jpg",
       "startTimestamp": 22,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 102,
+          },
+        ],
         "codeLines": Array [
           "",
           "        const allButtons = await playedPage.$$('button');",
@@ -429,6 +641,20 @@ Object {
       "screenshot": "13.elementhandle-getProperty.jpg",
       "startTimestamp": 24,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 30,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 104,
+          },
+        ],
         "codeLines": Array [
           "",
           "        await allButtons[0].click();",
@@ -452,6 +678,26 @@ Object {
       "name": "expect(1).toBe(1)",
       "startTimestamp": 26,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 53,
+            "file": "lib/helpers.ts",
+            "function": "Object.sync",
+            "line": 161,
+          },
+          Object {
+            "column": 39,
+            "file": "lib/hookExpect.ts",
+            "function": "Proxy.wrappedFunction",
+            "line": 102,
+          },
+          Object {
+            "column": 23,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 106,
+          },
+        ],
         "codeLines": Array [
           "",
           "        const text3 = await (await counterEl.getProperty('innerText')).jsonValue();",
@@ -474,6 +720,26 @@ Object {
       "name": "expect(Array(length=2)).toHaveLength(2)",
       "startTimestamp": 27,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 53,
+            "file": "lib/helpers.ts",
+            "function": "Object.sync",
+            "line": 161,
+          },
+          Object {
+            "column": 39,
+            "file": "lib/hookExpect.ts",
+            "function": "Proxy.wrappedFunction",
+            "line": 102,
+          },
+          Object {
+            "column": 28,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 108,
+          },
+        ],
         "codeLines": Array [
           "",
           "        expect(text3).toBe('1');",

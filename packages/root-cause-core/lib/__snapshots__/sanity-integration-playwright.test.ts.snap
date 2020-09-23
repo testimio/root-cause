@@ -22,6 +22,32 @@ Object {
     },
     "testEndStatus": Object {
       "codeLocationDetails": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/assortedHooks.ts",
+            "function": "testEndHook",
+            "line": 110,
+          },
+          Object {
+            "column": 23,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.end",
+            "line": 176,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/attach.ts",
+            "function": "endTest",
+            "line": 118,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 110,
+          },
+        ],
         "codeLines": Array [
           "",
           "        assert.equal(allButtons.length, 2);",
@@ -58,6 +84,20 @@ Object {
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 3,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 67,
+          },
+        ],
         "codeLines": Array [
           "            startTestParams,",
           "        }, mockedDateConstructor);",
@@ -99,6 +139,20 @@ Object {
       "selector": "#test",
       "startTimestamp": 5,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 68,
+          },
+        ],
         "codeLines": Array [
           "        }, mockedDateConstructor);",
           "",
@@ -139,6 +193,20 @@ Object {
       "selector": "#test",
       "startTimestamp": 7,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 75,
+          },
+        ],
         "codeLines": Array [
           "                throw new Error('injected error');",
           "            }, 0);",
@@ -186,6 +254,20 @@ Object {
       "selector": "#test",
       "startTimestamp": 10,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 76,
+          },
+        ],
         "codeLines": Array [
           "            }, 0);",
           "        });",
@@ -238,6 +320,20 @@ Object {
       "selector": "#test",
       "startTimestamp": 12,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 84,
+          },
+        ],
         "codeLines": Array [
           "                console.warn('injected console');",
           "            }, 0);",
@@ -264,6 +360,20 @@ Object {
       "screenshot": "6.elementhandle-getProperty.jpg",
       "startTimestamp": 15,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 29,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 90,
+          },
+        ],
         "codeLines": Array [
           "        assert.notEqual(counterEl, null);",
           "        assertNotNullOrUndefined(counterEl);",
@@ -304,6 +414,20 @@ Object {
       "selector": "#reset",
       "startTimestamp": 17,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 94,
+          },
+        ],
         "codeLines": Array [
           "",
           "        assert.equal(text, '4');",
@@ -330,6 +454,20 @@ Object {
       "screenshot": "8.elementhandle-getProperty.jpg",
       "startTimestamp": 19,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 30,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 96,
+          },
+        ],
         "codeLines": Array [
           "",
           "        await playedPage.click('#reset');",
@@ -356,6 +494,20 @@ Object {
       "screenshot": "9.elementhandle-click.jpg",
       "startTimestamp": 21,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 102,
+          },
+        ],
         "codeLines": Array [
           "",
           "        const allButtons = await playedPage.$$('button');",
@@ -382,6 +534,20 @@ Object {
       "screenshot": "10.elementhandle-getProperty.jpg",
       "startTimestamp": 23,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 30,
+            "file": "lib/sanity-integration-playwright.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 104,
+          },
+        ],
         "codeLines": Array [
           "",
           "        await allButtons[0].click();",

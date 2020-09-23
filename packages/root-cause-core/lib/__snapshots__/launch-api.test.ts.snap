@@ -21,6 +21,38 @@ Object {
     },
     "testEndStatus": Object {
       "codeLocationDetails": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/assortedHooks.ts",
+            "function": "testEndHook",
+            "line": 110,
+          },
+          Object {
+            "column": 23,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.end",
+            "line": 176,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/attach.ts",
+            "function": "endTest",
+            "line": 118,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 126,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "",
           "        const localRunId = guid();",
@@ -62,6 +94,31 @@ Object {
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 4,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 109,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "                _runId: localRunId,",
           "            },",
@@ -103,6 +160,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 6,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 111,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "            async (page) => {",
           "                await page.goto('http://jsbin.testim.io/ner/1');",
@@ -143,6 +225,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 8,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 112,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "                await page.goto('http://jsbin.testim.io/ner/1');",
           "",
@@ -183,6 +290,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 10,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 113,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "",
           "                await page.click('#test');",
@@ -223,6 +355,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 12,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 114,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -263,6 +420,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 14,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 115,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -303,6 +485,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 16,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 116,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -343,6 +550,31 @@ Object {
       "selector": "#reset",
       "startTimestamp": 18,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 117,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -383,6 +615,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 20,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 118,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -409,6 +666,31 @@ Object {
       "screenshot": "10.elementhandle-getProperty.jpg",
       "startTimestamp": 22,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 34,
+            "file": "lib/launch-api.test.ts",
+            "line": 126,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 100,
+          },
+        ],
         "codeLines": Array [
           "                    throw new Error('counter not found');",
           "                }",
@@ -466,6 +748,31 @@ Object {
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 4,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 46,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "                _runId: localRunId,",
           "            },",
@@ -507,6 +814,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 6,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 48,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "            async (page) => {",
           "                await page.goto('http://jsbin.testim.io/ner/1');",
@@ -547,6 +879,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 8,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 49,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "                await page.goto('http://jsbin.testim.io/ner/1');",
           "",
@@ -587,6 +944,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 10,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 50,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "",
           "                await page.click('#test');",
@@ -627,6 +1009,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 12,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 51,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -667,6 +1074,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 14,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 52,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -707,6 +1139,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 16,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 53,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -747,6 +1204,31 @@ Object {
       "selector": "#reset",
       "startTimestamp": 18,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 54,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -787,6 +1269,31 @@ Object {
       "selector": "#test",
       "startTimestamp": 20,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 17,
+            "file": "lib/launch-api.test.ts",
+            "line": 55,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "                await page.click('#test');",
           "                await page.click('#test');",
@@ -813,6 +1320,31 @@ Object {
       "screenshot": "10.elementhandle-getProperty.jpg",
       "startTimestamp": 22,
       "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 35,
+            "file": "lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction",
+            "line": 124,
+          },
+          Object {
+            "column": 34,
+            "file": "lib/launch-api.test.ts",
+            "line": 63,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch.ts",
+            "function": "Object.launchImpl",
+            "line": 120,
+          },
+          Object {
+            "column": 9,
+            "file": "lib/launch-api.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 34,
+          },
+        ],
         "codeLines": Array [
           "                    throw new Error('counter not found');",
           "                }",
