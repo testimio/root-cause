@@ -59,7 +59,7 @@ export async function forBeforeEachGivenPage<TPage extends RootCausePage>(page: 
     const attachController = await attach({ page, startTestParams, activeFeatures: userSettings.features });
 
     if (userSettings.features.jestAssertions) {
-        unhookExpect = makeHookExpect(attachController);
+        unhookExpect = makeHookExpect(attachController, currentTest.testPath);
     }
 
     return attachController;
@@ -102,7 +102,7 @@ export async function forBeforeEachOwnGlobals() {
     const { page: wrappedPage, endTest: endTestLocal } = attachController;
 
     if (userSettings.features.jestAssertions) {
-        unhookExpect = makeHookExpect(attachController);
+        unhookExpect = makeHookExpect(attachController, currentTest.testPath);
     }
 
     originalPage = page;
@@ -129,7 +129,7 @@ export async function forAfterEachEndTestOwnGlobals() {
 
     // @ts-ignore
     if (global.unhookExpect) {
-    // @ts-ignore
+        // @ts-ignore
         global.unhookExpect();
     }
 
@@ -141,9 +141,9 @@ export async function forAfterEachEndTest(localEndTest: EndTestFunction) {
     localEndTest(getEndStatusFromJasmineJest());
 }
 
-export function makeHookExpect<T extends RootCausePage>(attachController: AttachReturn<T>) {
+export function makeHookExpect<T extends RootCausePage>(attachController: AttachReturn<T>, userTestFile: string) {
     return hookExpect((expectArgs, stacktrace) => {
-        attachController.pauseStepsRecording();
+        // attachController.pauseStepsRecording();
 
         return function matcherStartHandler(matcherName, matcherArgs, modifier) {
             return {
@@ -158,16 +158,26 @@ export function makeHookExpect<T extends RootCausePage>(attachController: Attach
                                 matcherName,
                                 matcherArgs,
                             }),
-                            codeError: utils.extractCodeErrorDetailsSync(stacktrace, 1),
+                            stepCodeLocation: utils.extractCodeLocationDetailsSync(userTestFile),
+                        };
+                        attachController.reportAssertion(report);
+                    } else {
+                        const report = {
+                            ...expectDataToAssertionReport({
+                                expectArgs,
+                                modifier: modifier === 'root' ? undefined : modifier,
+                                matcherName,
+                                matcherArgs,
+                            }),
+                            stepCodeLocation: utils.extractCodeLocationDetailsSync(userTestFile),
+                            stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResult.error),
                         };
                         attachController.reportAssertion(report);
                     }
 
-                    attachController.resumeStepsRecording();
+                    // attachController.resumeStepsRecording();
                 },
                 async async(matcherResultAsync) {
-                    // failed assertions are handled by test failure, so we won't report on them here ATM
-                    // Edge cases are possible
                     if (matcherResultAsync.success) {
                         const report = {
                             ...expectDataToAssertionReport({
@@ -176,12 +186,24 @@ export function makeHookExpect<T extends RootCausePage>(attachController: Attach
                                 matcherName,
                                 matcherArgs,
                             }),
-                            codeError: await utils.extractCodeErrorDetails(stacktrace, 1),
+                            stepCodeLocation: utils.extractCodeLocationDetailsSync(userTestFile),
+                        };
+                        attachController.reportAssertion(report);
+                    } else {
+                        const report = {
+                            ...expectDataToAssertionReport({
+                                expectArgs,
+                                modifier: modifier === 'root' ? undefined : modifier,
+                                matcherName,
+                                matcherArgs,
+                            }),
+                            stepCodeLocation: utils.extractCodeLocationDetailsSync(userTestFile),
+                            stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResultAsync.error),
                         };
                         attachController.reportAssertion(report);
                     }
 
-                    attachController.resumeStepsRecording();
+                    // attachController.resumeStepsRecording();
                 },
             };
         };

@@ -1,4 +1,4 @@
-import type { DOMRect, InstrumentedFunctionResult, ICodeErrorDetails, StepError } from '@testim/root-cause-types';
+import type { DOMRect, InstrumentedFunctionResult, CodeLocationDetails, StepError } from '@testim/root-cause-types';
 import type { RootCausePage } from './interfaces';
 import { ResolvedSettings } from './userSettings/interfaces';
 
@@ -70,8 +70,8 @@ export interface AssertionReport {
     fnName?: string;
     text?: string;
     stepError?: StepError;
-    codeError?: ICodeErrorDetails;
-    rect?: DOMRect & { screenWidth: number; screenHeight: number; devicePixelRatio: number};
+    stepCodeLocation?: CodeLocationDetails;
+    rect?: DOMRect & { screenWidth: number; screenHeight: number; devicePixelRatio: number };
 }
 
 export type ReportAssertion = (assertion: AssertionReport) => void;

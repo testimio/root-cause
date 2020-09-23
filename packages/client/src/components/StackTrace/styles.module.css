@@ -4,3 +4,11 @@
 .infoTab .theCode { overflow: auto;  }
 .infoTab .stackTrace { color:grey; white-space: normal;  }
 .infoTab .selected { background: #fcdfe2; }
+
+.errorMessage {
+
+}
+
+.stackTraceArea {
+
+}

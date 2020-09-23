@@ -91,7 +91,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
                             }
 
                             if (result.constructor && result.constructor.name === 'Promise') {
-                                return result.then((resultOfPromiseReturnedByTopLevelFunction: any|any[]) => {
+                                return result.then((resultOfPromiseReturnedByTopLevelFunction: any | any[]) => {
                                     if (!resultOfPromiseReturnedByTopLevelFunction) {
                                         return resultOfPromiseReturnedByTopLevelFunction;
                                     }
@@ -117,7 +117,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
                     return reflectedProperty;
                 }
 
-                return async function rootCauseWrappedFunction(...args: any[]) {
+                const functionToReturn = async function rootCauseWrappedFunction(...args: any[]) {
                     testContext.stepStarted();
                     for (const beforeHook of beforeHooks) {
                         try {
@@ -154,6 +154,14 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
                         await testContext.stepEnded();
                     }
                 };
+
+                // Set the value that will appear in stack trace based on the wrapped function name
+                Object.defineProperty(functionToReturn, 'name', {
+                    value: `rootCauseWrappedFunction_${prop.toString()}`,
+                    writable: false,
+                });
+
+                return functionToReturn;
             },
         };
 

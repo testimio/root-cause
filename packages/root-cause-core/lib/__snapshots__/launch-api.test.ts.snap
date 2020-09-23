@@ -4,8 +4,8 @@ exports[`Launch api test Launch api test = failing 1`] = `
 Object {
   "metadata": Object {
     "branchInfo": "noise_removed:branchInfo",
-    "endedTimestamp": 26,
-    "fileName": "noise_removed/packages/root-cause-core/lib/assortedHooks.ts",
+    "endedTimestamp": 24,
+    "fileName": "noise_removed/packages/root-cause-core/lib/launch-api.test.ts",
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
@@ -20,12 +20,28 @@ Object {
       "userAgent": "noise_removed:userAgent",
     },
     "testEndStatus": Object {
+      "codeLocationDetails": Object {
+        "codeLines": Array [
+          "",
+          "        const localRunId = guid();",
+          "",
+          "        await assert.rejects(() => launchImpl(",
+          "            {",
+          "                testName: testInfo.fullName,",
+          "                noServer: true,",
+        ],
+        "column": 9,
+        "fromRowNumber": 97,
+        "row": 100,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 103,
+      },
       "error": Object {
         "message": "'1' == '2'",
         "name": "AssertionError",
         "stack": "AssertionError [ERR_ASSERTION]: '1' == '2'
     at noise_removed/packages/root-cause-core/lib/launch-api.test.ts:129:24
-    at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:118:9)
+    at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:120:9)
     at waitForActual (assert.js:692:5)
     at Function.rejects (assert.js:801:25)
     at Object.<anonymous> (noise_removed/packages/root-cause-core/lib/launch-api.test.ts:100:9)",
@@ -38,9 +54,15 @@ Object {
   },
   "steps": Array [
     Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "consoleEntries": Array [],
+      "endTimestamp": 5,
+      "fnName": "goto",
+      "index": 1,
+      "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
+      "screenshot": "1.page-goto.jpg",
+      "startTimestamp": 4,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
           "                _runId: localRunId,",
           "            },",
           "            async (page) => {",
@@ -49,36 +71,16 @@ Object {
           "                await page.click('#test');",
           "                await page.click('#test');",
         ],
+        "column": 17,
         "fromRowNumber": 106,
         "row": 109,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
         "toRowNumber": 112,
       },
-      "consoleEntries": Array [],
-      "endTimestamp": 5,
-      "fnName": "goto",
-      "index": 1,
-      "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
-      "screenshot": "1.page-goto.jpg",
-      "startTimestamp": 4,
       "text": "http://jsbin.testim.io/ner/1",
       "unhandledExceptions": Array [],
     },
     Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
-          "            async (page) => {",
-          "                await page.goto('http://jsbin.testim.io/ner/1');",
-          "",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-        ],
-        "fromRowNumber": 108,
-        "row": 111,
-        "toRowNumber": 114,
-      },
       "consoleEntries": Array [],
       "endTimestamp": 7,
       "fnName": "click",
@@ -100,24 +102,25 @@ Object {
       "screenshot": "2.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 6,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "            async (page) => {",
           "                await page.goto('http://jsbin.testim.io/ner/1');",
           "",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
-          "                await page.click('#test');",
         ],
-        "fromRowNumber": 109,
-        "row": 112,
-        "toRowNumber": 115,
+        "column": 17,
+        "fromRowNumber": 108,
+        "row": 111,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 114,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 9,
       "fnName": "click",
@@ -139,24 +142,25 @@ Object {
       "screenshot": "3.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 8,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.goto('http://jsbin.testim.io/ner/1');",
           "",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
-          "                await page.click('#test');",
         ],
-        "fromRowNumber": 110,
-        "row": 113,
-        "toRowNumber": 116,
+        "column": 17,
+        "fromRowNumber": 109,
+        "row": 112,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 115,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 11,
       "fnName": "click",
@@ -178,24 +182,25 @@ Object {
       "screenshot": "4.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 10,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+        ],
+        "column": 17,
+        "fromRowNumber": 110,
+        "row": 113,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 116,
+      },
       "unhandledExceptions": Array [],
     },
     Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#reset');",
-        ],
-        "fromRowNumber": 111,
-        "row": 114,
-        "toRowNumber": 117,
-      },
       "consoleEntries": Array [],
       "endTimestamp": 13,
       "fnName": "click",
@@ -217,24 +222,25 @@ Object {
       "screenshot": "5.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 12,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#reset');",
-          "                await page.click('#test');",
         ],
-        "fromRowNumber": 112,
-        "row": 115,
-        "toRowNumber": 118,
+        "column": 17,
+        "fromRowNumber": 111,
+        "row": 114,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 117,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 15,
       "fnName": "click",
@@ -256,24 +262,25 @@ Object {
       "screenshot": "6.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 14,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#reset');",
           "                await page.click('#test');",
-          "",
         ],
-        "fromRowNumber": 113,
-        "row": 116,
-        "toRowNumber": 119,
+        "column": 17,
+        "fromRowNumber": 112,
+        "row": 115,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 118,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 17,
       "fnName": "click",
@@ -295,24 +302,25 @@ Object {
       "screenshot": "7.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 16,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#reset');",
           "                await page.click('#test');",
           "",
-          "                const counter = await page.$('#counter');",
         ],
-        "fromRowNumber": 114,
-        "row": 117,
-        "toRowNumber": 120,
+        "column": 17,
+        "fromRowNumber": 113,
+        "row": 116,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 119,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 19,
       "fnName": "click",
@@ -334,24 +342,25 @@ Object {
       "screenshot": "8.page-click.jpg",
       "selector": "#reset",
       "startTimestamp": 18,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#reset');",
           "                await page.click('#test');",
           "",
           "                const counter = await page.$('#counter');",
-          "",
         ],
-        "fromRowNumber": 115,
-        "row": 118,
-        "toRowNumber": 121,
+        "column": 17,
+        "fromRowNumber": 114,
+        "row": 117,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 120,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 21,
       "fnName": "click",
@@ -373,12 +382,34 @@ Object {
       "screenshot": "9.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 20,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#reset');",
+          "                await page.click('#test');",
+          "",
+          "                const counter = await page.$('#counter');",
+          "",
+        ],
+        "column": 17,
+        "fromRowNumber": 115,
+        "row": 118,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 121,
+      },
       "unhandledExceptions": Array [],
     },
     Object {
-      "codeError": Object {
-        "column": 34,
-        "errorLines": Array [
+      "consoleEntries": Array [],
+      "endTimestamp": 23,
+      "fnName": "getProperty",
+      "index": 10,
+      "name": "getProperty",
+      "screenshot": "10.elementhandle-getProperty.jpg",
+      "startTimestamp": 22,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
           "                    throw new Error('counter not found');",
           "                }",
           "",
@@ -387,40 +418,13 @@ Object {
           "",
           "                assert.equal(text, '2');",
         ],
+        "column": 34,
         "fromRowNumber": 123,
         "row": 126,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
         "toRowNumber": 129,
       },
-      "consoleEntries": Array [],
-      "endTimestamp": 23,
-      "fnName": "getProperty",
-      "index": 10,
-      "name": "getProperty",
-      "screenshot": "10.elementhandle-getProperty.jpg",
-      "startTimestamp": 22,
       "unhandledExceptions": Array [],
-    },
-    Object {
-      "endTimestamp": 25,
-      "fnName": "Assertion Error",
-      "index": 11,
-      "name": "Assertion Error \\"'1' == '2'\\"",
-      "rect": Object {
-        "error": "possible noise removed",
-      },
-      "screenshot": null,
-      "startTimestamp": 24,
-      "stepError": Object {
-        "message": "'1' == '2'",
-        "name": "AssertionError",
-        "stack": "AssertionError [ERR_ASSERTION]: '1' == '2'
-    at noise_removed/packages/root-cause-core/lib/launch-api.test.ts:129:24
-    at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:118:9)
-    at waitForActual (assert.js:692:5)
-    at Function.rejects (assert.js:801:25)
-    at Object.<anonymous> (noise_removed/packages/root-cause-core/lib/launch-api.test.ts:100:9)",
-      },
-      "text": "'1' == '2'",
     },
   ],
 }
@@ -431,7 +435,7 @@ Object {
   "metadata": Object {
     "branchInfo": "noise_removed:branchInfo",
     "endedTimestamp": 24,
-    "fileName": "noise_removed/packages/root-cause-core/lib/assortedHooks.ts",
+    "fileName": "noise_removed/packages/root-cause-core/lib/launch-api.test.ts",
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
@@ -454,9 +458,15 @@ Object {
   },
   "steps": Array [
     Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "consoleEntries": Array [],
+      "endTimestamp": 5,
+      "fnName": "goto",
+      "index": 1,
+      "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
+      "screenshot": "1.page-goto.jpg",
+      "startTimestamp": 4,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
           "                _runId: localRunId,",
           "            },",
           "            async (page) => {",
@@ -465,36 +475,16 @@ Object {
           "                await page.click('#test');",
           "                await page.click('#test');",
         ],
+        "column": 17,
         "fromRowNumber": 43,
         "row": 46,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
         "toRowNumber": 49,
       },
-      "consoleEntries": Array [],
-      "endTimestamp": 5,
-      "fnName": "goto",
-      "index": 1,
-      "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
-      "screenshot": "1.page-goto.jpg",
-      "startTimestamp": 4,
       "text": "http://jsbin.testim.io/ner/1",
       "unhandledExceptions": Array [],
     },
     Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
-          "            async (page) => {",
-          "                await page.goto('http://jsbin.testim.io/ner/1');",
-          "",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-        ],
-        "fromRowNumber": 45,
-        "row": 48,
-        "toRowNumber": 51,
-      },
       "consoleEntries": Array [],
       "endTimestamp": 7,
       "fnName": "click",
@@ -516,24 +506,25 @@ Object {
       "screenshot": "2.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 6,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "            async (page) => {",
           "                await page.goto('http://jsbin.testim.io/ner/1');",
           "",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
-          "                await page.click('#test');",
         ],
-        "fromRowNumber": 46,
-        "row": 49,
-        "toRowNumber": 52,
+        "column": 17,
+        "fromRowNumber": 45,
+        "row": 48,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 51,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 9,
       "fnName": "click",
@@ -555,24 +546,25 @@ Object {
       "screenshot": "3.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 8,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.goto('http://jsbin.testim.io/ner/1');",
           "",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
-          "                await page.click('#test');",
         ],
-        "fromRowNumber": 47,
-        "row": 50,
-        "toRowNumber": 53,
+        "column": 17,
+        "fromRowNumber": 46,
+        "row": 49,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 52,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 11,
       "fnName": "click",
@@ -594,24 +586,25 @@ Object {
       "screenshot": "4.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 10,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+        ],
+        "column": 17,
+        "fromRowNumber": 47,
+        "row": 50,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 53,
+      },
       "unhandledExceptions": Array [],
     },
     Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#test');",
-          "                await page.click('#reset');",
-        ],
-        "fromRowNumber": 48,
-        "row": 51,
-        "toRowNumber": 54,
-      },
       "consoleEntries": Array [],
       "endTimestamp": 13,
       "fnName": "click",
@@ -633,24 +626,25 @@ Object {
       "screenshot": "5.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 12,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#reset');",
-          "                await page.click('#test');",
         ],
-        "fromRowNumber": 49,
-        "row": 52,
-        "toRowNumber": 55,
+        "column": 17,
+        "fromRowNumber": 48,
+        "row": 51,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 54,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 15,
       "fnName": "click",
@@ -672,24 +666,25 @@ Object {
       "screenshot": "6.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 14,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#reset');",
           "                await page.click('#test');",
-          "",
         ],
-        "fromRowNumber": 50,
-        "row": 53,
-        "toRowNumber": 56,
+        "column": 17,
+        "fromRowNumber": 49,
+        "row": 52,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 55,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 17,
       "fnName": "click",
@@ -711,24 +706,25 @@ Object {
       "screenshot": "7.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 16,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#reset');",
           "                await page.click('#test');",
           "",
-          "                const counter = await page.$('#counter');",
         ],
-        "fromRowNumber": 51,
-        "row": 54,
-        "toRowNumber": 57,
+        "column": 17,
+        "fromRowNumber": 50,
+        "row": 53,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 56,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 19,
       "fnName": "click",
@@ -750,24 +746,25 @@ Object {
       "screenshot": "8.page-click.jpg",
       "selector": "#reset",
       "startTimestamp": 18,
-      "unhandledExceptions": Array [],
-    },
-    Object {
-      "codeError": Object {
-        "column": 17,
-        "errorLines": Array [
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#test');",
           "                await page.click('#reset');",
           "                await page.click('#test');",
           "",
           "                const counter = await page.$('#counter');",
-          "",
         ],
-        "fromRowNumber": 52,
-        "row": 55,
-        "toRowNumber": 58,
+        "column": 17,
+        "fromRowNumber": 51,
+        "row": 54,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 57,
       },
+      "unhandledExceptions": Array [],
+    },
+    Object {
       "consoleEntries": Array [],
       "endTimestamp": 21,
       "fnName": "click",
@@ -789,12 +786,34 @@ Object {
       "screenshot": "9.page-click.jpg",
       "selector": "#test",
       "startTimestamp": 20,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
+          "                await page.click('#test');",
+          "                await page.click('#test');",
+          "                await page.click('#reset');",
+          "                await page.click('#test');",
+          "",
+          "                const counter = await page.$('#counter');",
+          "",
+        ],
+        "column": 17,
+        "fromRowNumber": 52,
+        "row": 55,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
+        "toRowNumber": 58,
+      },
       "unhandledExceptions": Array [],
     },
     Object {
-      "codeError": Object {
-        "column": 34,
-        "errorLines": Array [
+      "consoleEntries": Array [],
+      "endTimestamp": 23,
+      "fnName": "getProperty",
+      "index": 10,
+      "name": "getProperty",
+      "screenshot": "10.elementhandle-getProperty.jpg",
+      "startTimestamp": 22,
+      "stepCodeLocation": Object {
+        "codeLines": Array [
           "                    throw new Error('counter not found');",
           "                }",
           "",
@@ -803,17 +822,12 @@ Object {
           "",
           "                assert.equal(text, '1');",
         ],
+        "column": 34,
         "fromRowNumber": 60,
         "row": 63,
+        "sourceFileRelativePath": "lib/launch-api.test.ts",
         "toRowNumber": 66,
       },
-      "consoleEntries": Array [],
-      "endTimestamp": 23,
-      "fnName": "getProperty",
-      "index": 10,
-      "name": "getProperty",
-      "screenshot": "10.elementhandle-getProperty.jpg",
-      "startTimestamp": 22,
       "unhandledExceptions": Array [],
     },
   ],

@@ -94,7 +94,7 @@ describe('Mocha integration test', () => {
             ",
             }
         `);
-    }, 20_000);
+    }, 30_000);
 });
 
 async function execResults(command: string, options?: childProcess.ProcessEnvOptions) {

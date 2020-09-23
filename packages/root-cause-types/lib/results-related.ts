@@ -1,5 +1,6 @@
-export type InstrumentedFunctionResult<T, E> = { success: true; data?: T } |
-    { success: false; error: E };
+export type InstrumentedFunctionResult<T, E> =
+    | { success: true; data?: T }
+    | { success: false; error: E; codeLocationDetails?: CodeLocationDetails };
 
 export type TestEndStatus<T, E> = InstrumentedFunctionResult<T, E>;
 
@@ -103,19 +104,18 @@ export interface PageViewport {
      * @default false
      */
     isLandscape?: boolean;
-  }
+}
 
 export interface TestResultFile {
     metadata: TestMetadata;
     steps: StepResult[];
 }
 
-
 export type StepError = {
     message: string;
     name: string;
     stack?: string;
-}
+};
 
 export type StepResult = {
     name?: string;
@@ -129,20 +129,45 @@ export type StepResult = {
     endTimestamp?: number;
     consoleEntries?: ConsoleMessage[];
     unhandledExceptions?: ConsoleException[];
+
+    /**
+     * Exception that was thrown inside the step,
+     * this is not guarantee that the test is going to fail here
+     */
     stepError?: StepError;
-    codeError?: ICodeErrorDetails;
+
+    stepCodeLocation?: CodeLocationDetails;
+
+    /**
+     * @deprecated
+     * for backward compatibility
+     */
+    codeError?: CodeLocationDetails;
 } & HasRectangle;
 
 export type HasRectangle = {
-    rect?: DOMRect & { screenWidth: number; screenHeight: number; devicePixelRatio: number};
-}
+    rect?: DOMRect & { screenWidth: number; screenHeight: number; devicePixelRatio: number };
+};
 
-export interface ICodeErrorDetails {
-    errorLines: string[];
+export interface CodeLocationDetails {
+    /**
+     * Relative(!!) path for test file from working directory
+     * Old versions will not have this one
+     * In some cases, this might not be as TestContext testFullName
+     */
+    sourceFileRelativePath: string;
+
+    codeLines: string[];
+    /**
+     * @deprecated
+     * for backward compat
+     */
+    errorLines?: string[];
     fromRowNumber: number;
     toRowNumber: number;
     row: number;
     column: number;
+    stackLines: StackLineData[];
 }
 
 export interface TestMetadata {
@@ -171,10 +196,8 @@ export interface TestMetadata {
      */
     testFullName: string;
     systemInfo?: TestSystemInfo;
-    testEndStatus?: TestEndStatus<unknown, unknown>;
-
-    // the file name (detected, not 100% accurate) of the test
-    fileName?: string;
+    testEndStatus?: TestEndStatus<unknown, StepError>;
+    fileName: string;
     branchInfo?: {
         commitHash: string;
         branchName: string;
@@ -303,4 +326,21 @@ export interface AgnosticResultEntry {
     title: string;
     fullName: string;
     status: 'passed' | 'failed' | 'skipped' | 'pending' | 'todo' | 'disabled';
+}
+
+export interface StackLineData extends StackData {
+    evalLine?: number;
+    evalColumn?: number;
+    evalFile?: string;
+}
+
+export interface StackData {
+    line?: number;
+    column?: number;
+    file?: string;
+    constructor?: boolean;
+    evalOrigin?: string;
+    native?: boolean;
+    function?: string;
+    method?: string;
 }
