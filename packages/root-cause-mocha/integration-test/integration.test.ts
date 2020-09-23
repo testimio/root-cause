@@ -22,46 +22,46 @@ describe('Mocha integration test', () => {
     );
 
     expect(mochaRunResult).toMatchInlineSnapshot(`
-            Object {
-              "error": null,
-              "stderr": "",
-              "stdout": "
+      Object {
+        "error": null,
+        "stderr": "",
+        "stdout": "
 
-              for parallel
-                ✓ First Test pass (TEST TIME NOISE REMOVED)
-                1) Test that should fail
+        for parallel
+          ✓ First Test pass (TEST TIME NOISE REMOVED)
+          1) Test that should fail
 
-              Some mocha test
-                ✓ First Test pass (TEST TIME NOISE REMOVED)
-                2) Test that should fail
-
-
-              2 passing (TEST TIME NOISE REMOVED)
-              2 failing
-
-              1) for parallel
-                   Test that should fail:
-                 Error: No node found for selector: #not-found-element
-                  at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
-                  at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
-                  at processTicksAndRejections (internal/process/task_queues.js:97:5)
-                  at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
-                  at Context.<anonymous> (src/example-tests/for-parallel.test.ts:20:9)
-
-              2) Some mocha test
-                   Test that should fail:
-                 Error: No node found for selector: #not-found-element
-                  at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
-                  at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
-                  at processTicksAndRejections (internal/process/task_queues.js:97:5)
-                  at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
-                  at Context.<anonymous> (src/example-tests/some.test.ts:23:9)
+        Some mocha test
+          ✓ First Test pass (TEST TIME NOISE REMOVED)
+          2) Test that should fail
 
 
+        2 passing (TEST TIME NOISE REMOVED)
+        2 failing
 
-            ",
-            }
-        `);
+        1) for parallel
+             Test that should fail:
+           Error: No node found for selector: #not-found-element
+            at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
+            at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
+            at processTicksAndRejections (internal/process/task_queues.js:97:5)
+            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:138:28)
+            at Context.<anonymous> (src/example-tests/for-parallel.test.ts:20:5)
+
+        2) Some mocha test
+             Test that should fail:
+           Error: No node found for selector: #not-found-element
+            at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
+            at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
+            at processTicksAndRejections (internal/process/task_queues.js:97:5)
+            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:138:28)
+            at Context.<anonymous> (src/example-tests/some.test.ts:23:5)
+
+
+
+      ",
+      }
+    `);
 
     const rootCauseLs = await execResults(
       'node -r ts-node/register ../root-cause-core/lib/cli.ts ls',

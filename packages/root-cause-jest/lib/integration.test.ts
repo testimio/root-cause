@@ -21,33 +21,33 @@ describe('jest integration test', () => {
     jestRunResult.stderr = jestRunResult.stderr.replace(/ ?\([0-9\.]+ m?s\)$/gm, '');
 
     expect(jestRunResult.stderr).toMatchInlineSnapshot(`
-            "FAIL for-integration-test/example1.test.ts
-              ● Some test › Test that should fail
+      "FAIL for-integration-test/example1.test.ts
+        ● Some test › Test that should fail
 
-                To open in Root Cause viewer, run: npx root-cause show d3f0048d4d0ecd76f6f6b8ebf7051c4a
-                 Error: No node found for selector: #not-found-element
+          To open in Root Cause viewer, run: npx root-cause show d3f0048d4d0ecd76f6f6b8ebf7051c4a
+           Error: No node found for selector: #not-found-element
 
-                  130 |                     try {
-                  131 |                         const method = reflectedProperty;
-                > 132 |                         const result = await method.apply(target, args);
-                      |                                        ^
-                  133 | 
-                  134 |                         for (const afterHook of afterHooks) {
-                  135 |                             try {
+            136 |           try {
+            137 |             const method = reflectedProperty;
+          > 138 |             const result = await method.apply(target, args);
+                |                            ^
+            139 | 
+            140 |             for (const afterHook of afterHooks) {
+            141 |               try {
 
-                  at Object.exports.assert (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
-                  at DOMWorld.click (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
-                  at Proxy.rootCauseWrappedFunction (../../root-cause-core/lib/PuppeteerPageHooker.ts:132:40)
-                  at Object.<anonymous> (example1.test.ts:12:9)'
+            at Object.exports.assert (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
+            at DOMWorld.click (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
+            at Proxy.rootCauseWrappedFunction (../../root-cause-core/lib/PuppeteerPageHooker.ts:138:28)
+            at Object.<anonymous> (example1.test.ts:12:5)'
 
-            Test Suites: 1 failed, 1 total
-            Tests:       1 failed, 1 passed, 2 total
-            Snapshots:   0 total
-            Time: NOISE REMOVED
-            Ran all test suites.
-            error Command failed with exit code 1.
-            "
-        `);
+      Test Suites: 1 failed, 1 total
+      Tests:       1 failed, 1 passed, 2 total
+      Snapshots:   0 total
+      Time: NOISE REMOVED
+      Ran all test suites.
+      error Command failed with exit code 1.
+      "
+    `);
 
     const rootCauseLs = await execResults(
       'node -r ts-node/register ../root-cause-core/lib/cli.ts ls',
