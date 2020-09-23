@@ -4,7 +4,7 @@
     "description": "",
     "private": true,
     "scripts": {
-        "test": "jest",
+        "test": "jest -c for-integration-test/jest.config.js",
         "root-cause": "ts-node ../root-cause-core/lib/cli",
         "rc": "ts-node ../root-cause-core/lib/cli"
     },
