@@ -64,13 +64,18 @@ export async function readUserConfigFromFile(
 
 export function resolveSettings(input: PossibleUserSettings): ResolvedSettings {
   const screenshots = resolveScreenshots(input.features?.screenshots);
-  const networkLogs = input.features?.networkLogs ?? false;
+  // networkLogs on by default
+  const networkLogs = input.features?.networkLogs ?? true;
+  // on by default
+  const console = input.features?.console ? input.features?.console : true;
+  // off by default
+  const jestAssertions = input.features?.jestAssertions ? input.features?.jestAssertions : false;
 
   const features: ResolvedSettings['features'] = {
     screenshots,
-    console: input.features?.console ? input.features?.console : true,
+    console,
     networkLogs,
-    jestAssertions: input.features?.jestAssertions ? input.features?.jestAssertions : false,
+    jestAssertions,
   };
 
   return {
