@@ -59,19 +59,19 @@ describe('user settings', () => {
 
   test('When no config file, get defaults', async () => {
     expect(await loadSettings()).toMatchInlineSnapshot(`
-            Object {
-              "features": Object {
-                "console": true,
-                "jestAssertions": false,
-                "networkLogs": false,
-                "screenshots": Object {
-                  "format": "jpeg",
-                  "fullPage": false,
-                  "quality": 85,
-                },
-              },
-            }
-        `);
+      Object {
+        "features": Object {
+          "console": true,
+          "jestAssertions": false,
+          "networkLogs": true,
+          "screenshots": Object {
+            "format": "jpeg",
+            "fullPage": false,
+            "quality": 85,
+          },
+        },
+      }
+    `);
 
     expect(moduleDefaultFunction?.mock.calls).toMatchInlineSnapshot(`
             Array [
