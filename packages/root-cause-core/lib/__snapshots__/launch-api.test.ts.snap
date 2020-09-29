@@ -6,6 +6,7 @@ Object {
     "branchInfo": "noise_removed:branchInfo",
     "endedTimestamp": 24,
     "fileName": "noise_removed/packages/root-cause-core/lib/launch-api.test.ts",
+    "hasNetworkLogs": true,
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
@@ -38,7 +39,7 @@ Object {
             "column": 5,
             "file": "lib/attach.ts",
             "function": "endTest",
-            "line": 118,
+            "line": 110,
           },
           Object {
             "column": 5,
@@ -718,6 +719,7 @@ Object {
     "branchInfo": "noise_removed:branchInfo",
     "endedTimestamp": 24,
     "fileName": "noise_removed/packages/root-cause-core/lib/launch-api.test.ts",
+    "hasNetworkLogs": true,
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",

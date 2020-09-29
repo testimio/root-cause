@@ -25,22 +25,14 @@ import { stacktraceHook } from './stacktraceHook';
 import { RootCausePage } from './interfaces';
 import { persist } from './persist';
 import { networkLogsBeforeAllHook, networkLogsAfterAllHook } from './networkLogs';
+import { resolveSettings } from './userSettings/userSettings';
 
 const loggerDebug = debug('root-cause:debug');
 // swap with this if you need clear log location for dev time and so
 // const loggerError = console.error;
 
 function getDefaultActiveFeatures(): ActiveFeatures {
-  return {
-    screenshots: {
-      format: 'jpeg',
-      quality: 85,
-      fullPage: false,
-    },
-    console: true,
-    networkLogs: true,
-    jestAssertions: false,
-  };
+  return resolveSettings({ features: {} }).features;
 }
 
 // Attach takes a framework'ish page and needs to return a page of the same type (TPage)
