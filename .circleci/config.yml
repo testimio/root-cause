@@ -65,6 +65,7 @@ jobs:
     executor: node-executor
 
     steps:
+      - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
       - checkout
       - yarn-install-and-ensure-dedup
       - lint-and-build
@@ -122,7 +123,6 @@ workflows:
 commands:
   yarn-install-and-ensure-dedup:
     steps:
-      - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
       - restore_cache:
           keys:
             - yarn-global-cache-{{ checksum "yarn.lock" }}
