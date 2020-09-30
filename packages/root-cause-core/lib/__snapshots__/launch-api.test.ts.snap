@@ -75,8 +75,8 @@ Object {
         "stack": "AssertionError [ERR_ASSERTION]: '1' == '2'
     at noise_removed/packages/root-cause-core/lib/launch-api.test.ts:143:18
     at Object.launchImpl (noise_removed/packages/root-cause-core/lib/launch.ts:124:5)
-    at waitForActual (assert.js:692:5)
-    at Function.rejects (assert.js:801:25)
+    at waitForActual (assert.js:722:5)
+    at Function.rejects (assert.js:831:25)
     at Object.<anonymous> (noise_removed/packages/root-cause-core/lib/launch-api.test.ts:110:5)",
       },
       "success": false,

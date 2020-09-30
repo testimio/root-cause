@@ -24,7 +24,8 @@ describe('Mocha integration test', () => {
     expect(mochaRunResult).toMatchInlineSnapshot(`
       Object {
         "error": null,
-        "stderr": "",
+        "stderr": "(node:38040) ExperimentalWarning: Conditional exports is an experimental feature. This feature could change at any time
+      ",
         "stdout": "
 
         for parallel
@@ -45,7 +46,7 @@ describe('Mocha integration test', () => {
             at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
             at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
             at processTicksAndRejections (internal/process/task_queues.js:97:5)
-            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:138:28)
+            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:158:28)
             at Context.<anonymous> (src/example-tests/for-parallel.test.ts:20:5)
 
         2) Some mocha test
@@ -54,7 +55,7 @@ describe('Mocha integration test', () => {
             at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
             at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
             at processTicksAndRejections (internal/process/task_queues.js:97:5)
-            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:138:28)
+            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:158:28)
             at Context.<anonymous> (src/example-tests/some.test.ts:23:5)
 
 
