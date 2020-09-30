@@ -92,6 +92,9 @@ Object {
       "fnName": "goto",
       "index": 1,
       "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
+      "rect": Object {
+        "error": "possible noise removed",
+      },
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 4,
       "stepCodeLocation": Object {
@@ -664,6 +667,19 @@ Object {
       "fnName": "getProperty",
       "index": 10,
       "name": "getProperty",
+      "rect": Object {
+        "bottom": "possible noise removed",
+        "devicePixelRatio": "possible noise removed",
+        "height": "possible noise removed",
+        "left": "possible noise removed",
+        "right": "possible noise removed",
+        "screenHeight": "possible noise removed",
+        "screenWidth": "possible noise removed",
+        "top": "possible noise removed",
+        "width": "possible noise removed",
+        "x": "possible noise removed",
+        "y": "possible noise removed",
+      },
       "screenshot": "10.elementhandle-getProperty.jpg",
       "startTimestamp": 22,
       "stepCodeLocation": Object {
@@ -747,6 +763,9 @@ Object {
       "fnName": "goto",
       "index": 1,
       "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
+      "rect": Object {
+        "error": "possible noise removed",
+      },
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 4,
       "stepCodeLocation": Object {
@@ -1319,6 +1338,19 @@ Object {
       "fnName": "getProperty",
       "index": 10,
       "name": "getProperty",
+      "rect": Object {
+        "bottom": "possible noise removed",
+        "devicePixelRatio": "possible noise removed",
+        "height": "possible noise removed",
+        "left": "possible noise removed",
+        "right": "possible noise removed",
+        "screenHeight": "possible noise removed",
+        "screenWidth": "possible noise removed",
+        "top": "possible noise removed",
+        "width": "possible noise removed",
+        "x": "possible noise removed",
+        "y": "possible noise removed",
+      },
       "screenshot": "10.elementhandle-getProperty.jpg",
       "startTimestamp": 22,
       "stepCodeLocation": Object {

@@ -34,6 +34,9 @@ Object {
       "fnName": "goto",
       "index": 1,
       "name": "goto \\"http://jsbin.testim.io/ces\\"",
+      "rect": Object {
+        "error": "possible noise removed",
+      },
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 3,
       "stepCodeLocation": Object {

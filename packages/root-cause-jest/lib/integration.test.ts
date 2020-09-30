@@ -31,7 +31,7 @@ describe('jest integration test', () => {
             155 |             const method = reflectedProperty;
           > 156 |             const result = await method.apply(target, args);
                 |                            ^
-            157 | 
+            157 |
             158 |             for (const afterHook of afterHooks) {
             159 |               try {
 
@@ -41,7 +41,7 @@ describe('jest integration test', () => {
             at Object.<anonymous> (example1.test.ts:12:5)'
 
       Test Suites: 1 failed, 1 total
-      Tests:       1 failed, 1 passed, 2 total
+      Tests:       0 total
       Snapshots:   0 total
       Time: NOISE REMOVED
       Ran all test suites.
