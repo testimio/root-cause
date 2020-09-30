@@ -1,7 +1,7 @@
-import { TestContext } from './TestContext';
 import { extractCodeLocationDetailsSync } from './utils';
+import { BeforeHook } from './interfaces';
 
-export const stacktraceHook = async (testContext: TestContext) => {
+export const stacktraceHook: BeforeHook = async function stacktraceHook({ testContext }) {
   const stepCodeLocation = extractCodeLocationDetailsSync(testContext.testFilePath, process.cwd());
 
   const metadata = {

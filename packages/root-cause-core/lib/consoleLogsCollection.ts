@@ -1,7 +1,6 @@
 import type { ConsoleMessage as PuppeteerConsoleMessage, JSHandle } from 'puppeteer';
 import type { ConsoleMessage as PlaywrightConsoleMessage } from 'playwright';
-import type { TestContext } from './TestContext';
-import type { RootCausePage } from './interfaces';
+import type { AfterAllHook, BeforeAllHook, BeforeHook, AfterHook } from './interfaces';
 import { isNotPlaywrightPage } from './utils';
 import { addDisposer, runAllDisposers } from './hooksHandlersDisposersHelper';
 import type { ConsoleException, ConsoleMessage } from '@testim/root-cause-types';
@@ -24,11 +23,10 @@ Clickim have complex logs-from-cdp parsing logic at src/background/debuggerEvent
 I don't see quick way to be compatible here, so for now i choose to go with interfaces similar to puppeteer.
 */
 
-export async function logsBeforeAllHook(
-  testContext: TestContext,
-  proxyContext: any,
-  rootPage: RootCausePage
-) {
+export const logsBeforeAllHook: BeforeAllHook = async function logsBeforeAllHook({
+  rootPage,
+  testContext,
+}) {
   async function onConsole(message: PuppeteerConsoleMessage) {
     testContext.consoleEntries.push(
       await puppeteerOrPlaywrightConsoleMessageToOurRepresentation(
@@ -77,23 +75,15 @@ export async function logsBeforeAllHook(
       rootPage.off('pageerror', onPageErrorPlaywright);
     });
   }
-}
+};
 
-export async function logsAfterAllHook(testContext: TestContext) {
+export const logsAfterAllHook: AfterAllHook = async function logsAfterAllHook({ testContext }) {
   runAllDisposers(testContext, DISPOSERS_TOPIC);
-}
+};
 
-export async function logsBeforeEachHook(
-  testContext: TestContext,
-  proxyContext: any,
-  rootPage: RootCausePage
-) {}
+export const logsBeforeEachHook: BeforeHook = async function logsBeforeEachHook() {};
 
-export async function logsAfterEachHook(
-  testContext: TestContext,
-  proxyContext: any,
-  rootPage: RootCausePage
-) {
+export const logsAfterEachHook: AfterHook = async function logsAfterEachHook({ testContext }) {
   const stepContext = testContext.currentStep;
   if (!stepContext) {
     return;
@@ -106,7 +96,7 @@ export async function logsAfterEachHook(
     (e) => e.timestamp > stepContext.startTimestamp
   );
   testContext.addStepMetadata({ consoleEntries, unhandledExceptions });
-}
+};
 
 async function puppeteerOrPlaywrightConsoleMessageToOurRepresentation(
   message: PuppeteerConsoleMessage | PlaywrightConsoleMessage,

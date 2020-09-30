@@ -1,18 +1,16 @@
 import { extractPuppeteerSelector } from '../utils/puppeteer-selector-mapping';
 import { extractPuppeteerText } from '../utils/puppeteer-text-mapping';
-import type { TestContext } from '../TestContext';
-import { RootCausePage } from '../interfaces';
+import { AfterHook } from '../interfaces';
 
-export async function puppeteerMetadata(
-  testContext: TestContext,
-  fnName: string,
-  proxyContext: any,
-  rootPage: RootCausePage,
-  args: any[],
-  returnValue: any
-) {
+export const puppeteerMetadata: AfterHook = async function puppeteerMetadata({
+  args,
+  fnName,
+  testContext,
+  instrumentedFunctionResult,
+}) {
   const selector = extractPuppeteerSelector(fnName as any, args);
-  const text = extractPuppeteerText(fnName as any, args, returnValue);
+  const text = extractPuppeteerText(fnName as any, args, instrumentedFunctionResult);
+
   if (selector) {
     testContext.addStepMetadata({ selector });
   }
@@ -22,4 +20,4 @@ export async function puppeteerMetadata(
   if (text) {
     testContext.addStepMetadata({ text });
   }
-}
+};

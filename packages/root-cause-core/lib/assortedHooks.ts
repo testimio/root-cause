@@ -1,26 +1,26 @@
-import { TestContext } from './TestContext';
-import type { RootCausePage } from './interfaces';
-import type { InstrumentedFunctionResult, StepError } from '@testim/root-cause-types';
-import { getSystemInfoForPage, extractCodeLocationDetailsSync } from './utils';
-import { TestEndStatus } from './attachInterfaces';
-import { platform } from 'os';
+import type { StepError } from '@testim/root-cause-types';
 import { exec } from 'child_process';
+import { platform } from 'os';
 import { promisify } from 'util';
+import type {
+  AfterAllHook,
+  AfterHook,
+  AfterHookArgs,
+  BeforeAllHook,
+  BeforeAllHookArgs,
+} from './interfaces';
+import { extractCodeLocationDetailsSync, getSystemInfoForPage } from './utils';
 
-export async function errorInStepHook(
-  testContext: TestContext,
-  fnName: string,
-  proxyContext: any,
-  rootPage: RootCausePage,
-  args: any[],
-  instrumentedFunctionResult: InstrumentedFunctionResult<any, any>
-) {
+export const errorInStepHook: AfterHook = async function errorInStepHook({
+  instrumentedFunctionResult,
+  testContext,
+}: AfterHookArgs) {
   if (!instrumentedFunctionResult.success) {
     testContext.addStepMetadata({
       stepError: unknownErrorToOurRepresentation(instrumentedFunctionResult.error),
     });
   }
-}
+};
 
 async function getBranchInfo(): Promise<{ commitHash: string; branchName: string }> {
   function getEnvironmentGitBranch() {
@@ -62,11 +62,10 @@ async function getBranchInfo(): Promise<{ commitHash: string; branchName: string
   const commitHash = (getEnvironmentGitCommit() ?? (await getGitCommitExec()))?.trim();
   return { branchName, commitHash };
 }
-export async function testSystemInfoHook(
-  testContext: TestContext,
-  proxyContext: any,
-  rootPage: RootCausePage
-) {
+export const testSystemInfoHook: BeforeAllHook = async function testSystemInfoHook({
+  rootPage,
+  testContext,
+}: BeforeAllHookArgs) {
   const [systemInfo, branchInfo] = await Promise.all([
     getSystemInfoForPage(rootPage),
     getBranchInfo(),
@@ -75,7 +74,7 @@ export async function testSystemInfoHook(
     systemInfo,
     branchInfo,
   });
-}
+};
 
 function unknownErrorToOurRepresentation(error: unknown): StepError {
   if (error instanceof Error) {
@@ -104,18 +103,15 @@ function unknownErrorToOurRepresentation(error: unknown): StepError {
   };
 }
 
-export async function testEndHook(
-  testContext: TestContext,
-  testEndStatus: TestEndStatus<unknown, unknown>
-) {
-  if (testEndStatus.success) {
+export const testEndHook: AfterAllHook = async function testEndHook({ testContext, endStatus }) {
+  if (endStatus.success) {
     testContext.addTestMetadata({
       testEndStatus: {
         success: true,
       },
     });
   } else {
-    const error = unknownErrorToOurRepresentation(testEndStatus.error);
+    const error = unknownErrorToOurRepresentation(endStatus.error);
     let codeLocationDetails;
 
     try {
@@ -126,10 +122,10 @@ export async function testEndHook(
 
     testContext.addTestMetadata({
       testEndStatus: {
-        success: testEndStatus.success,
+        success: endStatus.success,
         error,
         codeLocationDetails,
       },
     });
   }
-}
+};

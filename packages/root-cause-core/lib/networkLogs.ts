@@ -1,7 +1,7 @@
 import type { Page as PuppeteerPage, CDPSession } from 'puppeteer';
 import type { Page as PlaywrightPage, CDPSession as PlaywrightCDPSession } from 'playwright';
 import type { TestContext } from './TestContext';
-import type { RootCausePage } from './interfaces';
+import type { BeforeAllHook, AfterAllHook } from './interfaces';
 import { isNotPlaywrightPage, isPlaywrightChromiumBrowserContext } from './utils';
 import chromeHar, { ChromeHarMessage } from 'chrome-har';
 import { addDisposer, runAllDisposers } from './hooksHandlersDisposersHelper';
@@ -40,19 +40,30 @@ function getMessagesForTestContextMap(textContext: TestContext) {
 
 const DISPOSERS_TOPIC = 'network-logs';
 
-export async function networkLogsBeforeAllHook(
-  testContext: TestContext,
-  proxyContext: any,
-  rootPage: RootCausePage
-) {
+export const networkLogsBeforeAllHook: BeforeAllHook = async function networkLogsBeforeAllHook({
+  testContext,
+  rootPage,
+}) {
   if (isNotPlaywrightPage(rootPage)) {
-    return networkLogsBeforeAllHookPuppeteer(testContext, rootPage);
+    return networkLogsBeforeAllHookPuppeteer({
+      testContext,
+      page: rootPage,
+    });
   }
 
-  return networkLogsBeforeAllHookPlaywright(testContext, rootPage);
-}
+  return networkLogsBeforeAllHookPlaywright({
+    testContext,
+    page: rootPage,
+  });
+};
 
-async function networkLogsBeforeAllHookPuppeteer(testContext: TestContext, page: PuppeteerPage) {
+async function networkLogsBeforeAllHookPuppeteer({
+  testContext,
+  page,
+}: {
+  testContext: TestContext;
+  page: PuppeteerPage;
+}) {
   // We may create new CDP session, and activate the needed events
   // for now - we use private client of the page
   // const cdpSession = await page.target().createCDPSession();
@@ -74,7 +85,13 @@ async function networkLogsBeforeAllHookPuppeteer(testContext: TestContext, page:
   }
 }
 
-function networkLogsBeforeAllHookPlaywright(testContext: TestContext, page: PlaywrightPage) {
+function networkLogsBeforeAllHookPlaywright({
+  testContext,
+  page,
+}: {
+  testContext: TestContext;
+  page: PlaywrightPage;
+}) {
   const context = page.context();
 
   if (isPlaywrightChromiumBrowserContext(context)) {
@@ -101,7 +118,9 @@ function networkLogsBeforeAllHookPlaywright(testContext: TestContext, page: Play
   }
 }
 
-export async function networkLogsAfterAllHook(testContext: TestContext) {
+export const networkLogsAfterAllHook: AfterAllHook = async function networkLogsAfterAllHook({
+  testContext,
+}) {
   const messages = getMessagesForTestContextMap(testContext);
 
   const harFileContents = chromeHar.harFromMessages(messages, {});
@@ -113,4 +132,4 @@ export async function networkLogsAfterAllHook(testContext: TestContext) {
   testContext.addTestMetadata({ hasNetworkLogs: true });
 
   runAllDisposers(testContext, DISPOSERS_TOPIC);
-}
+};

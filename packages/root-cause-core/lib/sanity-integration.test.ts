@@ -17,7 +17,7 @@ import { registerJasmineReporterToGlobal, getJasmineCurrentTest } from '@testim/
 import type { TestResultFile } from '@testim/root-cause-types';
 
 describe('Sanity integration test', () => {
-  jest.setTimeout(30_000);
+  jest.setTimeout(999999999);
   expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
   expect.addSnapshotSerializer(getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin());
 
@@ -31,7 +31,10 @@ describe('Sanity integration test', () => {
     // https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
     // Not optimal, but didn't work on circle on circleci/node:12.17-stretch-browsers without it
     // Need to revisit
-    browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      devtools: false,
+    });
   });
 
   afterAll(async () => {
