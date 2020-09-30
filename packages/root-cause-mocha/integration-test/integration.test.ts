@@ -24,8 +24,7 @@ describe('Mocha integration test', () => {
     expect(mochaRunResult).toMatchInlineSnapshot(`
       Object {
         "error": null,
-        "stderr": "(node:38040) ExperimentalWarning: Conditional exports is an experimental feature. This feature could change at any time
-      ",
+        "stderr": "",
         "stdout": "
 
         for parallel
