@@ -149,11 +149,18 @@ export function getPostmanEchoWorkaround2PrettyFormatPlugin(): jest.SnapshotSeri
  * that code remotes that stack frame
  */
 export function getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin(): jest.SnapshotSerializerPlugin {
+  const stringParts = [
+    'at processTicksAndRejections (internal/process/task_queues.js',
+    'at waitForActual (assert.js',
+    'at Function.rejects (assert.js',
+  ];
   const plugin: Plugin = {
     test(val) {
       if (
         typeof val === 'string' &&
-        val.includes('at processTicksAndRejections (internal/process/task_queues.js')
+        stringParts.some((part) => {
+          return val.includes(part);
+        })
       ) {
         return true;
       }
@@ -161,11 +168,12 @@ export function getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin():
       return false;
     },
     serialize(valueToSerialize: string, config, indentation, depth, refs, printer) {
-      const regExp = new RegExp(
-        `${escapeStringRegexp('at processTicksAndRejections (internal/process/task_queues.js')}.+$`,
-        'g'
-      );
-      const afterValueToSerialize = valueToSerialize.replace(regExp, '').trim();
+      let afterValueToSerialize = valueToSerialize;
+      for (const part of stringParts) {
+        const regExp = new RegExp(`^.*${escapeStringRegexp(part)}.+$\n?`, 'gm');
+        afterValueToSerialize = afterValueToSerialize.replace(regExp, '').trim();
+      }
+
       return printer(afterValueToSerialize, config, indentation, depth, refs, false);
     },
   };
