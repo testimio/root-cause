@@ -92,7 +92,7 @@ async function getElementHandleRectWithSelector(
   fnName: any,
   args: any[]
 ): Promise<null | RectFromElementHandle> {
-  const selector = extractPuppeteerSelector(fnName as any, args);
+  const selector = extractPuppeteerSelector(proxyContext, fnName, args);
   if (!selector) {
     return null;
   }

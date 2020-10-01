@@ -120,9 +120,9 @@ describe('Sanity integration test', () => {
 
     assert.equal(allButtons.length, 2);
 
-    await page.keyboard.type('should do nothing');
+    await playedPage.keyboard.type('should do nothing');
 
-    await page.mouse.move(10, 20);
+    await playedPage.mouse.move(10, 20);
 
     await endTest({
       success: false,
