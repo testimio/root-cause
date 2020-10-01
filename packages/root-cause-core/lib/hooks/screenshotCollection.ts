@@ -16,7 +16,9 @@ export const puppeteerScreenshot: BeforeHook = async function puppeteerScreensho
   }`;
 
   const rect = await getElementRect(hookArgs);
-  testContext.addStepMetadata({ rect });
+  if (rect) {
+    testContext.addStepMetadata({ rect });
+  }
 
   await rootPage.screenshot({
     path: path.join(testContext.testArtifactsFolder, filename),
@@ -36,8 +38,8 @@ async function getElementRect({ proxyContext, fnName, args }: BeforeHookArgs): P
       (await getElementHandleRectWithBoundingBox(proxyContext)) ||
       (await getElementHandleRectWithSelector(proxyContext, fnName, args));
 
-    if (!elementHandleRect) {
-      return { error: 'not found' };
+    if (!elementHandleRect || (elementHandleRect as any).error) {
+      return elementHandleRect;
     }
 
     // TODO(Benji) figure out why `$eval` here causes:
@@ -98,7 +100,7 @@ async function getElementHandleRectWithSelector(
   ) {
     const element = document.querySelector(selector);
     if (!element) {
-      return null;
+      return { error: 'not found' };
     }
 
     const { x, y, width, height, top, right, bottom, left } = element.getBoundingClientRect();

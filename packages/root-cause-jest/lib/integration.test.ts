@@ -41,7 +41,7 @@ describe('jest integration test', () => {
             at Object.<anonymous> (example1.test.ts:12:5)'
 
       Test Suites: 1 failed, 1 total
-      Tests:       0 total
+      Tests:       1 failed, 1 passed, 2 total
       Snapshots:   0 total
       Time: NOISE REMOVED
       Ran all test suites.
