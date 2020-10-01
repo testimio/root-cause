@@ -89,7 +89,7 @@ export async function attach<TPage extends RootCausePage>(
 
   instrumentor.registerAfterHook(errorInStepHook);
   instrumentor.registerAfterHook(puppeteerMetadata);
-  instrumentor.registerBeforeHook(async (testContext, fnName, proxyContext) => {
+  instrumentor.registerBeforeHook(async ({ proxyContext, fnName }) => {
     loggerDebug(`>>${proxyContext.constructor.name}>>${fnName}`);
   });
 

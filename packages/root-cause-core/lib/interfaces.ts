@@ -12,31 +12,41 @@ export interface AttachOptions {
   resultsDirectory?: string;
 }
 
-export type BeforeHook = (
-  testContext: TestContext,
-  fnName: string,
-  proxyContext: any,
-  rootPage: RootCausePage,
-  args: any[]
-) => Promise<void>;
-export type AfterHook = (
-  testContext: TestContext,
-  fnName: string,
-  proxyContext: any,
-  rootPage: RootCausePage,
-  args: any[],
-  instrumentedFunctionResult: InstrumentedFunctionResult<any, any>
-) => Promise<void>;
+export interface BeforeHookArgs {
+  testContext: TestContext;
+  fnName: string;
+  proxyContext: any;
+  rootPage: RootCausePage;
+  args: any[];
+}
 
-export type BeforeAllHook = (
-  testContext: TestContext,
-  proxyContext: any,
-  rootPage: RootCausePage
-) => Promise<void>;
-export type AfterAllHook = (
-  testContext: TestContext,
-  endStatus: TestEndStatus<unknown, unknown>
-) => Promise<void>;
+export type BeforeHook = (args: BeforeHookArgs) => Promise<void>;
+
+export interface AfterHookArgs {
+  testContext: TestContext;
+  fnName: string;
+  proxyContext: any;
+  rootPage: RootCausePage;
+  args: any[];
+  instrumentedFunctionResult: InstrumentedFunctionResult<any, any>;
+}
+
+export type AfterHook = (args: AfterHookArgs) => Promise<void>;
+
+export interface BeforeAllHookArgs {
+  testContext: TestContext;
+  proxyContext: any;
+  rootPage: RootCausePage;
+}
+
+export type BeforeAllHook = (args: BeforeAllHookArgs) => Promise<void>;
+
+export interface AfterAllHookArgs {
+  testContext: TestContext;
+  endStatus: TestEndStatus<unknown, unknown>;
+}
+
+export type AfterAllHook = (args: AfterAllHookArgs) => Promise<void>;
 
 export interface IAutomationFrameworkInstrumentor {
   // register additional hooks on a context, this is implemented for
@@ -50,4 +60,9 @@ export interface IAutomationFrameworkInstrumentor {
   end(endStatus: TestEndStatus<unknown, unknown>): Promise<void>;
   pause(): void;
   resume(): void;
+}
+
+export interface SubObjectCreationData {
+  creationFunction: string;
+  selector?: string;
 }

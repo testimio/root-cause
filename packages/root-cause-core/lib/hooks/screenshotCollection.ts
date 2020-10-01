@@ -1,18 +1,17 @@
-import type { TestContext } from '../TestContext';
 import path from 'path';
 import { extractPuppeteerSelector } from '../utils/puppeteer-selector-mapping';
-import { RootCausePage } from '../interfaces';
+import { BeforeHook } from '../interfaces';
 
 declare const document: any;
 declare const window: any;
 
-export async function puppeteerScreenshot(
-  testContext: TestContext,
-  fnName: string,
-  proxyContext: any,
-  rootPage: RootCausePage,
-  args: any[]
-) {
+export const puppeteerScreenshot: BeforeHook = async function puppeteerScreenshot({
+  proxyContext,
+  testContext,
+  fnName,
+  args,
+  rootPage,
+}) {
   if (!testContext.featuresSettings.screenshots) {
     return;
   }
@@ -26,27 +25,29 @@ export async function puppeteerScreenshot(
     try {
       //TODO(Benji) figure out why `$eval` here causes:
       // "Object reference chain is too long"
-      const rect = await proxyContext.evaluate((selector: string) => {
-        const found = document.querySelector(selector);
-        if (!found) {
-          return { error: 'not found' };
-        }
-        const { x, y, width, height, top, right, bottom, left } = found.getBoundingClientRect();
-        const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
-        const { devicePixelRatio } = window;
-        return {
-          x,
-          y,
-          width,
-          height,
-          top,
-          right,
-          bottom,
-          left,
-          screenWidth,
-          screenHeight,
-          devicePixelRatio,
-        };
+      const rect = await proxyContext.evaluate(function doOnBrowserSide(selector: string) {
+        return (() => {
+          const found = document.querySelector(selector);
+          if (!found) {
+            return { error: 'not found' };
+          }
+          const { x, y, width, height, top, right, bottom, left } = found.getBoundingClientRect();
+          const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
+          const { devicePixelRatio } = window;
+          return {
+            x,
+            y,
+            width,
+            height,
+            top,
+            right,
+            bottom,
+            left,
+            screenWidth,
+            screenHeight,
+            devicePixelRatio,
+          };
+        })();
       }, selector);
       testContext.addStepMetadata({ rect });
     } catch (e) {
@@ -64,4 +65,4 @@ export async function puppeteerScreenshot(
     fullPage: testContext.featuresSettings.screenshots.fullPage,
   });
   testContext.addStepMetadata({ screenshot: filename });
-}
+};

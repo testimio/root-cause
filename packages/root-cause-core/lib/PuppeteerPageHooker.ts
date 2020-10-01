@@ -1,23 +1,22 @@
 /* eslint-disable no-await-in-loop */
+import debug from 'debug';
+import { TestEndStatus } from './attachInterfaces';
 import type {
-  IAutomationFrameworkInstrumentor,
-  BeforeAllHook,
   AfterAllHook,
-  BeforeHook,
   AfterHook,
+  BeforeAllHook,
+  BeforeHook,
+  IAutomationFrameworkInstrumentor,
   RootCausePage,
 } from './interfaces';
 import type { TestContext } from './TestContext';
-import { TestEndStatus } from './attachInterfaces';
-
-import debug from 'debug';
 
 // const loggerDebug = debug('root-cause:debug');
 const loggerError = debug('root-cause:error');
 // swap with this if you need clear log location for dev time and so
 // const loggerError = console.error;
 
-const ommittedPageMethods = [
+const omittedPageMethods = [
   'then',
   'setViewport',
   'mainFrame',
@@ -29,12 +28,16 @@ const ommittedPageMethods = [
   'viewport',
 ];
 
-const proxiedTypes = ['frames', 'keyboard', 'mouse', '$', '$$', 'waitForSelector'];
+const returningElementHandlesViaPromise = new Set(['$', '$$', 'waitForSelector']);
+const flatGetters = new Set(['keyboard', 'mouse']);
+const gettersViaFunction = new Set(['frames']);
 
 export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   public paused = false;
+  // private handlesRegistry = new WeakMap<any, SubObjectCreationData>();
 
   constructor(private testContext: TestContext, private rootPage: RootCausePage) {}
+
   pause(): void {
     this.paused = true;
   }
@@ -74,49 +77,58 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
     const handler: ProxyHandler<T> = {
       get(target, prop, receiver) {
         const reflectedProperty = Reflect.get(target, prop, receiver);
+        const accessedPropAsString = prop.toString();
 
         // Possible alternative: implement pausing by not calling hooks and not short circuit wrapping
         if (
-          prop.toString().startsWith('_') ||
-          ommittedPageMethods.includes(prop.toString()) ||
+          accessedPropAsString.startsWith('_') ||
+          omittedPageMethods.includes(accessedPropAsString) ||
           pauseStateHolder.paused
         ) {
           return reflectedProperty;
         }
 
-        if (proxiedTypes.includes(prop.toString())) {
-          if (typeof reflectedProperty === 'function') {
-            return (...args: any[]) => {
-              const method = reflectedProperty;
-              const result = method.apply(target, args);
-
-              if (!result) {
-                return result;
-              }
-
-              if (result.constructor && result.constructor.name === 'Promise') {
-                return result.then((resultOfPromiseReturnedByTopLevelFunction: any | any[]) => {
-                  if (!resultOfPromiseReturnedByTopLevelFunction) {
-                    return resultOfPromiseReturnedByTopLevelFunction;
-                  }
-
-                  if (resultOfPromiseReturnedByTopLevelFunction.length) {
-                    const proxiedResult = resultOfPromiseReturnedByTopLevelFunction.map((a: any) =>
-                      pageHookerThis.wrapWithProxy(a)
-                    );
-                    return proxiedResult;
-                  }
-                  return pageHookerThis.wrapWithProxy(resultOfPromiseReturnedByTopLevelFunction);
-                });
-              }
-              if (result.length) {
-                const proxiedResult = result.map((a: any) => pageHookerThis.wrapWithProxy(a));
-                return proxiedResult;
-              }
-              return pageHookerThis.wrapWithProxy(result);
-            };
-          }
+        if (flatGetters.has(accessedPropAsString)) {
           return pageHookerThis.wrapWithProxy(reflectedProperty);
+        }
+
+        if (gettersViaFunction.has(accessedPropAsString)) {
+          const method = reflectedProperty;
+          return function gettersViaFunctionWrapped(...args: any[]) {
+            const result = method.apply(target, args);
+            if (Array.isArray(result)) {
+              return result.map((a: any) => pageHookerThis.wrapWithProxy(a));
+            }
+
+            return pageHookerThis.wrapWithProxy(result);
+          };
+        }
+
+        if (returningElementHandlesViaPromise.has(accessedPropAsString)) {
+          return async function returningElementHandlesViaPromiseWrappedFunction(...args: any[]) {
+            const method = reflectedProperty;
+            const result = await method.apply(target, args);
+
+            if (!result) {
+              return result;
+            }
+
+            if (Array.isArray(result)) {
+              return result.map((a: any) => {
+                // pageHookerThis.handlesRegistry.set(a, {
+                //   creationFunction: accessedPropAsString,
+                //   selector: args[0],
+                // });
+                return pageHookerThis.wrapWithProxy(a);
+              });
+            }
+
+            // pageHookerThis.handlesRegistry.set(result, {
+            //   creationFunction: accessedPropAsString,
+            //   selector: args[0],
+            // });
+            return pageHookerThis.wrapWithProxy(result);
+          };
         }
 
         if (typeof reflectedProperty !== 'function') {
@@ -127,7 +139,13 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
           testContext.stepStarted();
           for (const beforeHook of beforeHooks) {
             try {
-              await beforeHook(testContext, prop.toString(), proxiedObject, rootPage, args);
+              await beforeHook({
+                testContext,
+                fnName: accessedPropAsString,
+                proxyContext: proxiedObject,
+                rootPage,
+                args,
+              });
             } catch (err) {
               loggerError(err);
             }
@@ -139,9 +157,16 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
 
             for (const afterHook of afterHooks) {
               try {
-                await afterHook(testContext, prop.toString(), proxiedObject, rootPage, args, {
-                  success: true,
-                  data: result,
+                await afterHook({
+                  testContext,
+                  fnName: accessedPropAsString,
+                  proxyContext: proxiedObject,
+                  rootPage,
+                  args,
+                  instrumentedFunctionResult: {
+                    success: true,
+                    data: result,
+                  },
                 });
               } catch (err) {
                 loggerError(err);
@@ -152,9 +177,16 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
           } catch (err) {
             for (const afterHook of afterHooks) {
               try {
-                await afterHook(testContext, prop.toString(), proxiedObject, rootPage, args, {
-                  success: false,
-                  error: err,
+                await afterHook({
+                  testContext,
+                  fnName: accessedPropAsString,
+                  proxyContext: proxiedObject,
+                  rootPage,
+                  args,
+                  instrumentedFunctionResult: {
+                    success: false,
+                    error: err,
+                  },
                 });
               } catch (err) {
                 loggerError(err);
@@ -175,7 +207,12 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   async start() {
     for (const beforeAllHook of this.beforeAllHooks) {
       try {
-        await beforeAllHook(this.testContext, this.rootPage, this.rootPage);
+        // await beforeAllHook(this.testContext, this.rootPage, this.rootPage);
+        await beforeAllHook({
+          testContext: this.testContext,
+          rootPage: this.rootPage,
+          proxyContext: this.rootPage,
+        });
       } catch (e) {
         loggerError(e);
       }
@@ -185,7 +222,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   async end(endStatus: TestEndStatus<unknown, unknown>) {
     for (const afterAllHook of this.afterAllHooks) {
       try {
-        await afterAllHook(this.testContext, endStatus);
+        await afterAllHook({ testContext: this.testContext, endStatus });
       } catch (e) {
         loggerError(e);
       }
