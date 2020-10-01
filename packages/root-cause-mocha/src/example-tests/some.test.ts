@@ -9,6 +9,8 @@ describe('Some mocha test', function () {
     this.timeout(5000);
     await page.goto('http://jsbin.testim.io/tog');
     await page.click('#forerror');
+    const handle = await page.waitForSelector('#forerror');
+    await handle.click();
     await page.click('#forwarning');
     await page.click('#forlog');
     await page.click('#forerror');
