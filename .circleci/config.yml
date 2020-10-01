@@ -1,8 +1,17 @@
 version: 2.1
 executors:
-  node-executor:
+  node12:
     docker:
-      - image: circleci/node:12.17-stretch-browsers
+      - image: circleci/node:12-stretch-browsers
+    environment:
+      # TESTIM_PERSIST_RESULTS_TO_CLOUD: 'true'
+      TESTIM_PROJECT_JUNIT_PATH: ~/reporters-output/root-cause-junit-report.xml
+      # https://github.com/microsoft/playwright/blob/master/docs/ci.md#caching-browsers
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+      YARN_CACHE_FOLDER: ~/.cache/yarn
+  node14:
+    docker:
+      - image: circleci/node:14-stretch-browsers
     environment:
       # TESTIM_PERSIST_RESULTS_TO_CLOUD: 'true'
       TESTIM_PROJECT_JUNIT_PATH: ~/reporters-output/root-cause-junit-report.xml
@@ -12,11 +21,19 @@ executors:
 
 jobs:
   build-and-test:
-    executor: node-executor
+    parameters:
+      executor:
+        type: executor
+
+      nodeVersion:
+        type: string
+
+    executor: << parameters.executor >>
 
     steps:
       - checkout
-      - yarn-install-and-ensure-dedup
+      - yarn-install-and-ensure-dedup:
+          nodeVersion: << parameters.nodeVersion >>
       - lint-and-build
       - run: mkdir ~/reporters-output
       - run: yarn test
@@ -28,12 +45,13 @@ jobs:
           path: ./reporters-output/
 
   publish-release:
-    executor: node-executor
+    executor: node12
 
     steps:
       - set-npm-auth-token
       - checkout
-      - yarn-install-and-ensure-dedup
+      - yarn-install-and-ensure-dedup:
+          nodeVersion: "12"
       - lint-and-build
       - run:
           name: Publish version
@@ -43,11 +61,12 @@ jobs:
 
   # Not in use, for future reference and dry runs
   publish-release-verdaccio:
-    executor: node-executor
+    executor: node12
 
     steps:
       - checkout
-      - yarn-install-and-ensure-dedup
+      - yarn-install-and-ensure-dedup:
+          nodeVersion: "12"
       - lint-and-build
       - run:
           name: Publish version
@@ -63,12 +82,13 @@ jobs:
       - store-verdaccio-artifacts
 
   publish-canary:
-    executor: node-executor
+    executor: node12
 
     steps:
       - set-npm-auth-token
       - checkout
-      - yarn-install-and-ensure-dedup
+      - yarn-install-and-ensure-dedup:
+          nodeVersion: "12"
       - lint-and-build
       - run:
           name: Publish canary version
@@ -77,11 +97,12 @@ jobs:
 
   # Not in use, for future reference and dry runs
   publish-canary-verdaccio:
-    executor: node-executor
+    executor: node12
 
     steps:
       - checkout
-      - yarn-install-and-ensure-dedup
+      - yarn-install-and-ensure-dedup:
+          nodeVersion: "12"
       - lint-and-build
       - run:
           name: Publish canary version
@@ -99,6 +120,16 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test:
+          matrix:
+            parameters:
+              executor: ["node12", "node14"]
+              nodeVersion: ["12", "14"]
+            exclude:
+              - executor: node12
+                nodeVersion: "14"
+              - executor: node14
+                nodeVersion: "12"
+
           filters:
             tags:
               ignore: /.*/
@@ -127,6 +158,11 @@ commands:
       - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
 
   yarn-install-and-ensure-dedup:
+    parameters:
+      nodeVersion:
+        description: node version, to have different node_modules cache per node versions (native addons...)
+        type: string
+
     steps:
       - restore_cache:
           keys:
@@ -134,19 +170,29 @@ commands:
             - yarn-global-cache-
       - restore_cache:
           keys:
-            - yarn-node_modules-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-            - yarn-node_modules-{{ checksum "yarn.lock" }}-
-      - run: yarn --frozen-lockfile
+            - yarn-node_modules-<< parameters.nodeVersion >>-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+            - yarn-node_modules-<< parameters.nodeVersion >>-{{ checksum "yarn.lock" }}-
+
+      - run: yarn
+      - run:
+          # Based on https://github.com/salto-io/salto/pull/1227/files#diff-1d37e48f9ceff6d8030570cd36286a61R76-R83
+          # As a workaround to the --frozen-lockfile flag not working with workspaces
+          # (see: https://github.com/yarnpkg/yarn/issues/4098)
+          # we use a regular `yarn` and add an explicit test that the yarn.lock file is unchanged
+          name: ensure yarn.lock file is up to date
+          command: "! git diff --name-only | grep yarn.lock"
+
+      # running yarn deduplicate & yarn install should fix these errors
+      # if it's not working as expected, feel free to comment this out and ping Bnaya
+      - run: yarn yarn-deduplicate -s fewer --fail --list yarn.lock
+
       - save_cache:
           key: yarn-global-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
 
-      # running yarn deduplicate & yarn install should fix errors by it
-      # if it's not working as expected, feel free to comment this out and ping Bnaya
-      - run: yarn yarn-deduplicate -s fewer --fail --list yarn.lock
       - save_cache:
-          key: yarn-node_modules-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+          key: yarn-node_modules-<< parameters.nodeVersion >>-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
           paths:
             # no globbing as to date, that's sucks! we need to add all packages
             # https://circleci.com/docs/2.0/caching/#basic-example-of-dependency-caching
