@@ -27,12 +27,6 @@ jobs:
       - store_test_results:
           path: ./reporters-output/
 
-  set-npm-auth-token:
-    executor: node-executor
-
-    steps:
-      - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
-
   publish-release:
     executor: node-executor
 
@@ -128,6 +122,10 @@ workflows:
               ignore: main
 
 commands:
+  set-npm-auth-token:
+    steps:
+      - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
+
   yarn-install-and-ensure-dedup:
     steps:
       - restore_cache:
