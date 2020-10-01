@@ -33,6 +33,10 @@ export const puppeteerScreenshot: BeforeHook = async function puppeteerScreensho
 };
 
 async function getElementRect({ proxyContext, fnName, args }: BeforeHookArgs): Promise<any> {
+  if (!shouldExtractElementRect(proxyContext)) {
+    return null;
+  }
+
   try {
     const elementHandleRect =
       (await getElementHandleRectWithBoundingBox(proxyContext)) ||
@@ -113,6 +117,10 @@ async function getElementHandleRectWithSelector(
   selector);
 
   return rect;
+}
+
+function shouldExtractElementRect({ constructor: { name } }: object) {
+  return name === 'ElementHandle' || name === 'Page';
 }
 
 interface RectFromElementHandle {

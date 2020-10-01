@@ -132,6 +132,8 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
         }
 
         if (typeof reflectedProperty !== 'function') {
+          // TODO: returning here means that flat properties, that aren't methods,
+          // Don't get proxied. This includes page.keyboard, page.mouse, etc.
           return reflectedProperty;
         }
 
