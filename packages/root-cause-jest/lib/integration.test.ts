@@ -31,7 +31,7 @@ describe('jest integration test', () => {
             155 |             const method = reflectedProperty;
           > 156 |             const result = await method.apply(target, args);
                 |                            ^
-            157 |
+            157 | 
             158 |             for (const afterHook of afterHooks) {
             159 |               try {
 
