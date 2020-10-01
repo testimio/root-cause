@@ -27,10 +27,17 @@ jobs:
       - store_test_results:
           path: ./reporters-output/
 
+  set-npm-auth-token:
+    executor: node-executor
+
+    steps:
+      - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
+
   publish-release:
     executor: node-executor
 
     steps:
+      - set-npm-auth-token
       - checkout
       - yarn-install-and-ensure-dedup
       - lint-and-build
@@ -65,7 +72,7 @@ jobs:
     executor: node-executor
 
     steps:
-      - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
+      - set-npm-auth-token
       - checkout
       - yarn-install-and-ensure-dedup
       - lint-and-build

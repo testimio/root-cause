@@ -17,7 +17,7 @@ import { registerJasmineReporterToGlobal, getJasmineCurrentTest } from '@testim/
 import type { TestResultFile } from '@testim/root-cause-types';
 
 describe('Sanity integration test', () => {
-  jest.setTimeout(999999999);
+  jest.setTimeout(30_000);
   expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
   expect.addSnapshotSerializer(getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin());
 

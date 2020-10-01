@@ -1,17 +1,15 @@
 /* eslint-disable no-await-in-loop */
+import debug from 'debug';
+import { TestEndStatus } from './attachInterfaces';
 import type {
-  IAutomationFrameworkInstrumentor,
-  BeforeAllHook,
   AfterAllHook,
-  BeforeHook,
   AfterHook,
+  BeforeAllHook,
+  BeforeHook,
+  IAutomationFrameworkInstrumentor,
   RootCausePage,
-  SubObjectCreationData,
 } from './interfaces';
 import type { TestContext } from './TestContext';
-import { TestEndStatus } from './attachInterfaces';
-
-import debug from 'debug';
 
 // const loggerDebug = debug('root-cause:debug');
 const loggerError = debug('root-cause:error');
@@ -36,9 +34,10 @@ const gettersViaFunction = new Set(['frames']);
 
 export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   public paused = false;
-  private handlesRegistry = new WeakMap<any, SubObjectCreationData>();
+  // private handlesRegistry = new WeakMap<any, SubObjectCreationData>();
 
   constructor(private testContext: TestContext, private rootPage: RootCausePage) {}
+
   pause(): void {
     this.paused = true;
   }
@@ -116,18 +115,18 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
 
             if (Array.isArray(result)) {
               return result.map((a: any) => {
-                pageHookerThis.handlesRegistry.set(a, {
-                  creationFunction: accessedPropAsString,
-                  selector: args[0],
-                });
+                // pageHookerThis.handlesRegistry.set(a, {
+                //   creationFunction: accessedPropAsString,
+                //   selector: args[0],
+                // });
                 return pageHookerThis.wrapWithProxy(a);
               });
             }
 
-            pageHookerThis.handlesRegistry.set(result, {
-              creationFunction: accessedPropAsString,
-              selector: args[0],
-            });
+            // pageHookerThis.handlesRegistry.set(result, {
+            //   creationFunction: accessedPropAsString,
+            //   selector: args[0],
+            // });
             return pageHookerThis.wrapWithProxy(result);
           };
         }
@@ -140,7 +139,6 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
           testContext.stepStarted();
           for (const beforeHook of beforeHooks) {
             try {
-              // await beforeHook(testContext, accessedPropAsString, proxiedObject, rootPage, args);
               await beforeHook({
                 testContext,
                 fnName: accessedPropAsString,
