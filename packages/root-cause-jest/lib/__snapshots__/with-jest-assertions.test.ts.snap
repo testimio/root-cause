@@ -4,7 +4,7 @@ exports[`Sanity integration test with jest assertions 1`] = `
 Object {
   "metadata": Object {
     "branchInfo": "noise_removed:branchInfo",
-    "endedTimestamp": 28,
+    "endedTimestamp": 32,
     "fileName": "noise_removed/packages/root-cause-jest/lib/with-jest-assertions.test.ts",
     "hasNetworkLogs": true,
     "systemInfo": Object {
@@ -33,7 +33,7 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.end",
-            "line": 227,
+            "line": 176,
           },
           Object {
             "column": 5,
@@ -86,7 +86,13 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -141,7 +147,13 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -195,7 +207,13 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -249,7 +267,13 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -303,7 +327,13 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -333,10 +363,70 @@ Object {
       "unhandledExceptions": Array [],
     },
     Object {
-      "fnName": "assertion",
+      "consoleEntries": Array [],
+      "endTimestamp": 14,
+      "fnName": "$",
       "index": 6,
-      "name": "expect(instanceof(ElementHandle)).not.toBe(null)",
+      "name": "$ \\"#counter\\"",
+      "rect": Object {
+        "bottom": "possible noise removed",
+        "devicePixelRatio": "possible noise removed",
+        "height": "possible noise removed",
+        "left": "possible noise removed",
+        "right": "possible noise removed",
+        "screenHeight": "possible noise removed",
+        "screenWidth": "possible noise removed",
+        "top": "possible noise removed",
+        "width": "possible noise removed",
+        "x": "possible noise removed",
+        "y": "possible noise removed",
+      },
+      "screenshot": "6.page-$.jpg",
+      "selector": "#counter",
       "startTimestamp": 13,
+      "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 28,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction",
+            "line": 107,
+          },
+          Object {
+            "column": 23,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 91,
+          },
+        ],
+        "codeLines": Array [
+          "    await playedPage.click('#test');",
+          "",
+          "    await playedPage.click('#test');",
+          "    const counterEl = await playedPage.$('#counter');",
+          "",
+          "    expect(counterEl).not.toBe(null);",
+          "",
+        ],
+        "column": 23,
+        "fromRowNumber": 88,
+        "row": 91,
+        "sourceFileRelativePath": "lib/with-jest-assertions.test.ts",
+        "toRowNumber": 94,
+      },
+      "unhandledExceptions": Array [],
+    },
+    Object {
+      "fnName": "assertion",
+      "index": 7,
+      "name": "expect(instanceof(ElementHandle)).not.toBe(null)",
+      "startTimestamp": 15,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
@@ -376,9 +466,9 @@ Object {
     },
     Object {
       "consoleEntries": Array [],
-      "endTimestamp": 15,
+      "endTimestamp": 17,
       "fnName": "getProperty",
-      "index": 7,
+      "index": 8,
       "name": "getProperty",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -393,12 +483,18 @@ Object {
         "x": "possible noise removed",
         "y": "possible noise removed",
       },
-      "screenshot": "7.elementhandle-getProperty.jpg",
-      "startTimestamp": 14,
+      "screenshot": "8.elementhandle-getProperty.jpg",
+      "startTimestamp": 16,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -429,9 +525,9 @@ Object {
     },
     Object {
       "fnName": "assertion",
-      "index": 8,
+      "index": 9,
       "name": "expect(4).toBe(4)",
-      "startTimestamp": 16,
+      "startTimestamp": 18,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
@@ -471,9 +567,9 @@ Object {
     },
     Object {
       "consoleEntries": Array [],
-      "endTimestamp": 18,
+      "endTimestamp": 20,
       "fnName": "click",
-      "index": 9,
+      "index": 10,
       "name": "click \\"#reset\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -488,13 +584,19 @@ Object {
         "x": "possible noise removed",
         "y": "possible noise removed",
       },
-      "screenshot": "9.page-click.jpg",
+      "screenshot": "10.page-click.jpg",
       "selector": "#reset",
-      "startTimestamp": 17,
+      "startTimestamp": 19,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -525,9 +627,9 @@ Object {
     },
     Object {
       "consoleEntries": Array [],
-      "endTimestamp": 20,
+      "endTimestamp": 22,
       "fnName": "getProperty",
-      "index": 10,
+      "index": 11,
       "name": "getProperty",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -542,12 +644,18 @@ Object {
         "x": "possible noise removed",
         "y": "possible noise removed",
       },
-      "screenshot": "10.elementhandle-getProperty.jpg",
-      "startTimestamp": 19,
+      "screenshot": "11.elementhandle-getProperty.jpg",
+      "startTimestamp": 21,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -578,9 +686,9 @@ Object {
     },
     Object {
       "fnName": "assertion",
-      "index": 11,
+      "index": 12,
       "name": "expect(0).toBe(0)",
-      "startTimestamp": 21,
+      "startTimestamp": 23,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
@@ -620,9 +728,69 @@ Object {
     },
     Object {
       "consoleEntries": Array [],
-      "endTimestamp": 23,
+      "endTimestamp": 25,
+      "fnName": "$$",
+      "index": 13,
+      "name": "$$ \\"button\\"",
+      "rect": Object {
+        "bottom": "possible noise removed",
+        "devicePixelRatio": "possible noise removed",
+        "height": "possible noise removed",
+        "left": "possible noise removed",
+        "right": "possible noise removed",
+        "screenHeight": "possible noise removed",
+        "screenWidth": "possible noise removed",
+        "top": "possible noise removed",
+        "width": "possible noise removed",
+        "x": "possible noise removed",
+        "y": "possible noise removed",
+      },
+      "screenshot": "13.page-$$.jpg",
+      "selector": "button",
+      "startTimestamp": 24,
+      "stepCodeLocation": Object {
+        "callstack": Array [
+          Object {
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 28,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction",
+            "line": 107,
+          },
+          Object {
+            "column": 24,
+            "file": "lib/with-jest-assertions.test.ts",
+            "function": "Object.<anonymous>",
+            "line": 107,
+          },
+        ],
+        "codeLines": Array [
+          "",
+          "    expect(text2).toBe('0');",
+          "",
+          "    const allButtons = await playedPage.$$('button');",
+          "",
+          "    await allButtons[0].click();",
+          "",
+        ],
+        "column": 24,
+        "fromRowNumber": 104,
+        "row": 107,
+        "sourceFileRelativePath": "lib/with-jest-assertions.test.ts",
+        "toRowNumber": 110,
+      },
+      "unhandledExceptions": Array [],
+    },
+    Object {
+      "consoleEntries": Array [],
+      "endTimestamp": 27,
       "fnName": "click",
-      "index": 12,
+      "index": 14,
       "name": "click",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -637,12 +805,18 @@ Object {
         "x": "possible noise removed",
         "y": "possible noise removed",
       },
-      "screenshot": "12.elementhandle-click.jpg",
-      "startTimestamp": 22,
+      "screenshot": "14.elementhandle-click.jpg",
+      "startTimestamp": 26,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -673,9 +847,9 @@ Object {
     },
     Object {
       "consoleEntries": Array [],
-      "endTimestamp": 25,
+      "endTimestamp": 29,
       "fnName": "getProperty",
-      "index": 13,
+      "index": 15,
       "name": "getProperty",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -690,12 +864,18 @@ Object {
         "x": "possible noise removed",
         "y": "possible noise removed",
       },
-      "screenshot": "13.elementhandle-getProperty.jpg",
-      "startTimestamp": 24,
+      "screenshot": "15.elementhandle-getProperty.jpg",
+      "startTimestamp": 28,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 21,
+            "column": 15,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "PuppeteerPageHooker.makeStep",
+            "line": 191,
+          },
+          Object {
+            "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
             "line": 144,
@@ -726,9 +906,9 @@ Object {
     },
     Object {
       "fnName": "assertion",
-      "index": 14,
+      "index": 16,
       "name": "expect(1).toBe(1)",
-      "startTimestamp": 26,
+      "startTimestamp": 30,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
@@ -768,9 +948,9 @@ Object {
     },
     Object {
       "fnName": "assertion",
-      "index": 15,
+      "index": 17,
       "name": "expect(Array(length=2)).toHaveLength(2)",
-      "startTimestamp": 27,
+      "startTimestamp": 31,
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
