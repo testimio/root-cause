@@ -1,11 +1,6 @@
 import { extractPuppeteerSelector } from './puppeteer-selector-mapping';
 import { strictEqual } from 'assert';
-
-const fakeOfType = (name: string) => ({ constructor: { name } });
-
-const Page = fakeOfType('Page');
-const Keyboard = fakeOfType('Keyboard');
-const ElementHandle = fakeOfType('ElementHandle');
+import { ElementHandle, Keyboard, Page } from './common-for-tests';
 
 describe('Selector extraction from puppeteer', () => {
   it('extracts selectors from click', () => {

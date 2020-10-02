@@ -622,7 +622,7 @@ Object {
       "endTimestamp": 26,
       "fnName": "type",
       "index": 11,
-      "name": "type",
+      "name": "type \\"should do nothing\\"",
       "screenshot": "11.keyboard-type.jpg",
       "startTimestamp": 25,
       "stepCodeLocation": Object {
@@ -655,6 +655,7 @@ Object {
         "sourceFileRelativePath": "lib/sanity-integration.test.ts",
         "toRowNumber": 126,
       },
+      "text": "should do nothing",
       "unhandledExceptions": Array [],
     },
     Object {
@@ -662,7 +663,7 @@ Object {
       "endTimestamp": 28,
       "fnName": "move",
       "index": 12,
-      "name": "move",
+      "name": "move \\"[10,20]\\"",
       "screenshot": "12.mouse-move.jpg",
       "startTimestamp": 27,
       "stepCodeLocation": Object {
@@ -695,6 +696,7 @@ Object {
         "sourceFileRelativePath": "lib/sanity-integration.test.ts",
         "toRowNumber": 128,
       },
+      "text": "[10,20]",
       "unhandledExceptions": Array [],
     },
   ],

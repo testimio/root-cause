@@ -10,7 +10,7 @@ export const puppeteerMetadata: AfterHook = async function puppeteerMetadata({
   proxyContext,
 }) {
   const selector = extractPuppeteerSelector(proxyContext, fnName as any, args);
-  const text = extractPuppeteerText(fnName as any, args, instrumentedFunctionResult);
+  const text = extractPuppeteerText(proxyContext, fnName as any, args, instrumentedFunctionResult);
 
   if (selector) {
     testContext.addStepMetadata({ selector });
