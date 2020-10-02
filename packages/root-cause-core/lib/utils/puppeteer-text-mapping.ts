@@ -33,6 +33,7 @@ const textMapping: TextMapping = {
   } as TextMappingOf<RootCausePage>,
   ElementHandle: {
     type: firstArg,
+    getProperty: firstArg,
   } as TextMappingOf<ElementHandle>,
   Keyboard: {
     press: firstArg,

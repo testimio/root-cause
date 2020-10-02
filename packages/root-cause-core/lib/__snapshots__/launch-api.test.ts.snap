@@ -786,7 +786,7 @@ Object {
       "endTimestamp": 25,
       "fnName": "getProperty",
       "index": 11,
-      "name": "getProperty",
+      "name": "getProperty \\"innerText\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -849,6 +849,7 @@ Object {
         "sourceFileRelativePath": "lib/launch-api.test.ts",
         "toRowNumber": 143,
       },
+      "text": "innerText",
       "unhandledExceptions": Array [],
     },
   ],
@@ -1585,7 +1586,7 @@ Object {
       "endTimestamp": 25,
       "fnName": "getProperty",
       "index": 11,
-      "name": "getProperty",
+      "name": "getProperty \\"innerText\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -1648,6 +1649,7 @@ Object {
         "sourceFileRelativePath": "lib/launch-api.test.ts",
         "toRowNumber": 69,
       },
+      "text": "innerText",
       "unhandledExceptions": Array [],
     },
   ],

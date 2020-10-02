@@ -469,7 +469,7 @@ Object {
       "endTimestamp": 17,
       "fnName": "getProperty",
       "index": 8,
-      "name": "getProperty",
+      "name": "getProperty \\"innerText\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -521,6 +521,7 @@ Object {
         "sourceFileRelativePath": "lib/with-jest-assertions.test.ts",
         "toRowNumber": 100,
       },
+      "text": "innerText",
       "unhandledExceptions": Array [],
     },
     Object {
@@ -630,7 +631,7 @@ Object {
       "endTimestamp": 22,
       "fnName": "getProperty",
       "index": 11,
-      "name": "getProperty",
+      "name": "getProperty \\"innerText\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -682,6 +683,7 @@ Object {
         "sourceFileRelativePath": "lib/with-jest-assertions.test.ts",
         "toRowNumber": 106,
       },
+      "text": "innerText",
       "unhandledExceptions": Array [],
     },
     Object {
@@ -850,7 +852,7 @@ Object {
       "endTimestamp": 29,
       "fnName": "getProperty",
       "index": 15,
-      "name": "getProperty",
+      "name": "getProperty \\"innerText\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -902,6 +904,7 @@ Object {
         "sourceFileRelativePath": "lib/with-jest-assertions.test.ts",
         "toRowNumber": 114,
       },
+      "text": "innerText",
       "unhandledExceptions": Array [],
     },
     Object {

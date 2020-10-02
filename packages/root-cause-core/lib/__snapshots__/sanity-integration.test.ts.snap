@@ -446,7 +446,7 @@ Object {
       "endTimestamp": 18,
       "fnName": "getProperty",
       "index": 7,
-      "name": "getProperty",
+      "name": "getProperty \\"innerText\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -498,6 +498,7 @@ Object {
         "sourceFileRelativePath": "lib/sanity-integration.test.ts",
         "toRowNumber": 106,
       },
+      "text": "innerText",
       "unhandledExceptions": Array [],
     },
     Object {
@@ -565,7 +566,7 @@ Object {
       "endTimestamp": 22,
       "fnName": "getProperty",
       "index": 9,
-      "name": "getProperty",
+      "name": "getProperty \\"innerText\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -617,6 +618,7 @@ Object {
         "sourceFileRelativePath": "lib/sanity-integration.test.ts",
         "toRowNumber": 112,
       },
+      "text": "innerText",
       "unhandledExceptions": Array [],
     },
     Object {
@@ -743,7 +745,7 @@ Object {
       "endTimestamp": 28,
       "fnName": "getProperty",
       "index": 12,
-      "name": "getProperty",
+      "name": "getProperty \\"innerText\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -795,6 +797,7 @@ Object {
         "sourceFileRelativePath": "lib/sanity-integration.test.ts",
         "toRowNumber": 120,
       },
+      "text": "innerText",
       "unhandledExceptions": Array [],
     },
     Object {
