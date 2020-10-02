@@ -67,8 +67,6 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   private afterHooks: Array<AfterHook> = [];
 
   wrapWithProxy<T extends object>(proxiedObject: T): T {
-    const { beforeHooks, afterHooks, testContext, rootPage } = this;
-
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const pauseStateHolder: { paused: boolean } = this;
 
@@ -106,8 +104,13 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
 
         if (returningElementHandlesViaPromise.has(accessedPropAsString)) {
           return async function returningElementHandlesViaPromiseWrappedFunction(...args: any[]) {
-            const method = reflectedProperty;
-            const result = await method.apply(target, args);
+            const result = await pageHookerThis.makeStep(
+              proxiedObject,
+              target,
+              reflectedProperty,
+              accessedPropAsString,
+              args
+            );
 
             if (!result) {
               return result;
@@ -138,67 +141,13 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
         }
 
         return async function rootCauseWrappedFunction(...args: any[]) {
-          testContext.stepStarted();
-          for (const beforeHook of beforeHooks) {
-            try {
-              await beforeHook({
-                testContext,
-                fnName: accessedPropAsString,
-                proxyContext: proxiedObject,
-                rootPage,
-                args,
-              });
-            } catch (err) {
-              loggerError(err);
-            }
-          }
-
-          try {
-            const method = reflectedProperty;
-            const result = await method.apply(target, args);
-
-            for (const afterHook of afterHooks) {
-              try {
-                await afterHook({
-                  testContext,
-                  fnName: accessedPropAsString,
-                  proxyContext: proxiedObject,
-                  rootPage,
-                  args,
-                  instrumentedFunctionResult: {
-                    success: true,
-                    data: result,
-                  },
-                });
-              } catch (err) {
-                loggerError(err);
-              }
-            }
-
-            return result;
-          } catch (err) {
-            for (const afterHook of afterHooks) {
-              try {
-                await afterHook({
-                  testContext,
-                  fnName: accessedPropAsString,
-                  proxyContext: proxiedObject,
-                  rootPage,
-                  args,
-                  instrumentedFunctionResult: {
-                    success: false,
-                    error: err,
-                  },
-                });
-              } catch (err) {
-                loggerError(err);
-              }
-            }
-
-            throw err;
-          } finally {
-            await testContext.stepEnded();
-          }
+          return await pageHookerThis.makeStep(
+            proxiedObject,
+            target,
+            reflectedProperty,
+            accessedPropAsString,
+            args
+          );
         };
       },
     };
@@ -230,5 +179,71 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
       }
     }
     await this.testContext.testEnded();
+  }
+
+  private async makeStep(proxyContext: any, target: any, method: any, fnName: string, args: any[]) {
+    const { beforeHooks, afterHooks, testContext, rootPage } = this;
+
+    testContext.stepStarted();
+
+    for (const beforeHook of beforeHooks) {
+      try {
+        await beforeHook({
+          testContext,
+          fnName,
+          proxyContext,
+          rootPage,
+          args,
+        });
+      } catch (err) {
+        loggerError(err);
+      }
+    }
+
+    try {
+      const result = await method.apply(target, args);
+
+      for (const afterHook of afterHooks) {
+        try {
+          await afterHook({
+            testContext,
+            fnName,
+            proxyContext,
+            rootPage,
+            args,
+            instrumentedFunctionResult: {
+              success: true,
+              data: result,
+            },
+          });
+        } catch (err) {
+          loggerError(err);
+        }
+      }
+
+      return result;
+    } catch (err) {
+      for (const afterHook of afterHooks) {
+        try {
+          await afterHook({
+            testContext,
+            fnName,
+            proxyContext,
+            rootPage,
+            args,
+            instrumentedFunctionResult: {
+              success: false,
+              error: err,
+            },
+          });
+        } catch (err) {
+          loggerError(err);
+        }
+      }
+
+      throw err;
+    } finally {
+      await testContext.stepEnded();
+    }
   }
 }
