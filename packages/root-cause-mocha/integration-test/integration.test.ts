@@ -44,8 +44,8 @@ describe('Mocha integration test', () => {
            Error: No node found for selector: #not-found-element
             at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
             at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
-            at PuppeteerPageHooker.makeStep (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:204:22)
-            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:144:18)
+            at PuppeteerPageHooker.makeStep (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:201:22)
+            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:142:18)
             at Context.<anonymous> (src/example-tests/for-parallel.test.ts:20:5)
 
         2) Some mocha test
@@ -53,8 +53,8 @@ describe('Mocha integration test', () => {
            Error: No node found for selector: #not-found-element
             at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
             at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
-            at PuppeteerPageHooker.makeStep (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:204:22)
-            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:144:18)
+            at PuppeteerPageHooker.makeStep (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:201:22)
+            at Proxy.rootCauseWrappedFunction (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:142:18)
             at Context.<anonymous> (src/example-tests/some.test.ts:25:5)",
       }
     `);
