@@ -135,8 +135,6 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
         }
 
         if (typeof reflectedProperty !== 'function') {
-          // TODO: returning here means that flat properties, that aren't methods,
-          // Don't get proxied. This includes page.keyboard, page.mouse, etc.
           return reflectedProperty;
         }
 
@@ -158,7 +156,6 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   async start() {
     for (const beforeAllHook of this.beforeAllHooks) {
       try {
-        // await beforeAllHook(this.testContext, this.rootPage, this.rootPage);
         await beforeAllHook({
           testContext: this.testContext,
           rootPage: this.rootPage,

@@ -66,9 +66,5 @@ export function extractPuppeteerSelector(
   const type = puppeteerObject.constructor.name;
 
   // @ts-ignore typing gets weird here, says result of ?.[fnName] is unknown
-  const selector: string | undefined = selectorMapping[type]?.[fnName]?.(args);
-  // if (!selector) {
-  //   console.error(`Could not find selector for ${type}.${fnName}(${args})`);
-  // }
-  return selector;
+  return selectorMapping[type]?.[fnName]?.(args);
 }
