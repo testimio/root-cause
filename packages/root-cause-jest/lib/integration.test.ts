@@ -27,18 +27,18 @@ describe('jest integration test', () => {
           To open in Root Cause viewer, run: npx root-cause show d3f0048d4d0ecd76f6f6b8ebf7051c4a
            Error: No node found for selector: #not-found-element
 
-            199 | 
-            200 |     try {
-          > 201 |       const result = await method.apply(target, args);
+            241 | 
+            242 |     try {
+          > 243 |       const result = await method.apply(target, args);
                 |                      ^
-            202 | 
-            203 |       for (const afterHook of afterHooks) {
-            204 |         try {
+            244 | 
+            245 |       newMethodCallData.text = extractPuppeteerText(proxyContext, fnName, args, result);
+            246 | 
 
             at Object.exports.assert (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
             at DOMWorld.click (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
-            at PuppeteerPageHooker.makeStep (../../root-cause-core/lib/PuppeteerPageHooker.ts:201:22)
-            at Proxy.rootCauseWrappedFunction (../../root-cause-core/lib/PuppeteerPageHooker.ts:142:18)
+            at PuppeteerPageHooker.makeStep (../../root-cause-core/lib/PuppeteerPageHooker.ts:243:22)
+            at Proxy.rootCauseWrappedFunction (../../root-cause-core/lib/PuppeteerPageHooker.ts:148:18)
             at Object.<anonymous> (example1.test.ts:12:5)'
 
       Test Suites: 1 failed, 1 total

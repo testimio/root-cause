@@ -33,7 +33,7 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.end",
-            "line": 173,
+            "line": 180,
           },
           Object {
             "column": 5,
@@ -89,13 +89,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 5,
@@ -150,13 +150,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 5,
@@ -210,13 +210,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 5,
@@ -270,13 +270,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 5,
@@ -330,13 +330,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 5,
@@ -390,13 +390,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 28,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction",
-            "line": 107,
+            "line": 120,
           },
           Object {
             "column": 23,
@@ -469,7 +469,7 @@ Object {
       "endTimestamp": 17,
       "fnName": "getProperty",
       "index": 8,
-      "name": "getProperty \\"innerText\\"",
+      "name": "getProperty \\"innerText\\" on \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -484,6 +484,7 @@ Object {
         "y": "possible noise removed",
       },
       "screenshot": "8.elementhandle-getProperty.jpg",
+      "selector": "#counter",
       "startTimestamp": 16,
       "stepCodeLocation": Object {
         "callstack": Array [
@@ -491,13 +492,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 25,
@@ -594,13 +595,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 5,
@@ -631,7 +632,7 @@ Object {
       "endTimestamp": 22,
       "fnName": "getProperty",
       "index": 11,
-      "name": "getProperty \\"innerText\\"",
+      "name": "getProperty \\"innerText\\" on \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -646,6 +647,7 @@ Object {
         "y": "possible noise removed",
       },
       "screenshot": "11.elementhandle-getProperty.jpg",
+      "selector": "#counter",
       "startTimestamp": 21,
       "stepCodeLocation": Object {
         "callstack": Array [
@@ -653,13 +655,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 26,
@@ -756,13 +758,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 28,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction",
-            "line": 107,
+            "line": 120,
           },
           Object {
             "column": 24,
@@ -793,7 +795,7 @@ Object {
       "endTimestamp": 27,
       "fnName": "click",
       "index": 14,
-      "name": "click",
+      "name": "click \\"button[0]\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -808,6 +810,7 @@ Object {
         "y": "possible noise removed",
       },
       "screenshot": "14.elementhandle-click.jpg",
+      "selector": "button[0]",
       "startTimestamp": 26,
       "stepCodeLocation": Object {
         "callstack": Array [
@@ -815,13 +818,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 5,
@@ -852,7 +855,7 @@ Object {
       "endTimestamp": 29,
       "fnName": "getProperty",
       "index": 15,
-      "name": "getProperty \\"innerText\\"",
+      "name": "getProperty \\"innerText\\" on \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -867,6 +870,7 @@ Object {
         "y": "possible noise removed",
       },
       "screenshot": "15.elementhandle-getProperty.jpg",
+      "selector": "#counter",
       "startTimestamp": 28,
       "stepCodeLocation": Object {
         "callstack": Array [
@@ -874,13 +878,13 @@ Object {
             "column": 15,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 188,
+            "line": 236,
           },
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction",
-            "line": 142,
+            "line": 148,
           },
           Object {
             "column": 26,

@@ -9,7 +9,7 @@ import type {
   CommonEachHookArgs,
   IAutomationFrameworkInstrumentor,
   ProxiedMethodCallData,
-  RootCausePage
+  RootCausePage,
 } from './interfaces';
 import type { TestContext } from './TestContext';
 import { extractPuppeteerSelector } from './utils/puppeteer-selector-mapping';
@@ -190,7 +190,6 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
     previousMethodCallData: ProxiedMethodCallData[],
     methodCallData: ProxiedMethodCallData
   ) {
-
     if (Array.isArray(result)) {
       return result.map((element: any, index: number) => {
         return this.innerWrapWithProxy(

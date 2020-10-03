@@ -2,12 +2,11 @@ import { AfterHook, ProxiedMethodCallData } from '../interfaces';
 
 const isNullOrUndefined = (val: unknown) => val === null || val === undefined;
 
-const getSelectorAndText = (data: ProxiedMethodCallData[]) => {
+const getSelector = (data: ProxiedMethodCallData[]) => {
   let finalSelector = null;
-  let finalText = null;
 
   // TODO: do we want this behavior, or just get the last one?
-  for (const { selector, text, index } of data) {
+  for (const { selector, index } of data) {
     if (selector) {
       if (!finalSelector) {
         finalSelector = `${selector}`;
@@ -18,15 +17,15 @@ const getSelectorAndText = (data: ProxiedMethodCallData[]) => {
 
     // tried index ?? false, got false for 0 🤨
     if (!isNullOrUndefined(index)) {
-      // should this be :nth(index)?
+      // Two options are: "[index]" and ":nth-of-type(index)"
+      // I did nth-of-type first, but considering it requires a tag selector,
+      // It would be both incorrect and longer.
+      // TODO: Remove this comment before merging
       finalSelector = `${finalSelector}[${index}]`;
-    }
-    if (!isNullOrUndefined(text)) {
-      finalText = text;
     }
   }
 
-  return [finalSelector, finalText];
+  return finalSelector;
 };
 
 export const puppeteerMetadata: AfterHook = async function puppeteerMetadata({
@@ -34,7 +33,8 @@ export const puppeteerMetadata: AfterHook = async function puppeteerMetadata({
   testContext,
   methodCallData,
 }) {
-  const [selector, text] = getSelectorAndText(methodCallData);
+  const selector = getSelector(methodCallData);
+  const text = methodCallData[methodCallData.length - 1]?.text;
 
   if (selector) {
     testContext.addStepMetadata({ selector });
