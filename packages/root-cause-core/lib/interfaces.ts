@@ -12,22 +12,20 @@ export interface AttachOptions {
   resultsDirectory?: string;
 }
 
-export interface BeforeHookArgs {
+export interface CommonEachHookArgs {
   testContext: TestContext;
   fnName: string;
   proxyContext: any;
   rootPage: RootCausePage;
   args: any[];
+  methodCallData: ProxiedMethodCallData[];
 }
+
+export type BeforeHookArgs = CommonEachHookArgs;
 
 export type BeforeHook = (args: BeforeHookArgs) => Promise<void>;
 
-export interface AfterHookArgs {
-  testContext: TestContext;
-  fnName: string;
-  proxyContext: any;
-  rootPage: RootCausePage;
-  args: any[];
+export interface AfterHookArgs extends CommonEachHookArgs {
   instrumentedFunctionResult: InstrumentedFunctionResult<any, any>;
 }
 
@@ -62,7 +60,9 @@ export interface IAutomationFrameworkInstrumentor {
   resume(): void;
 }
 
-export interface SubObjectCreationData {
+export interface ProxiedMethodCallData {
   creationFunction: string;
   selector?: string;
+  text?: string;
+  index?: number;
 }

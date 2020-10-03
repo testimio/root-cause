@@ -1,16 +1,40 @@
-import { extractPuppeteerSelector } from '../utils/puppeteer-selector-mapping';
-import { extractPuppeteerText } from '../utils/puppeteer-text-mapping';
-import { AfterHook } from '../interfaces';
+import { AfterHook, ProxiedMethodCallData } from '../interfaces';
+
+const isNullOrUndefined = (val: unknown) => val === null || val === undefined;
+
+const getSelector = (data: ProxiedMethodCallData[]) => {
+  let finalSelector = null;
+
+  // TODO: do we want this behavior, or just get the last one?
+  for (const { selector, index } of data) {
+    if (selector) {
+      if (!finalSelector) {
+        finalSelector = `${selector}`;
+      } else {
+        finalSelector = `${finalSelector} > ${selector}`;
+      }
+    }
+
+    // tried index ?? false, got false for 0 🤨
+    if (!isNullOrUndefined(index)) {
+      // Two options are: "[index]" and ":nth-of-type(index)"
+      // I did nth-of-type first, but considering it requires a tag selector,
+      // It would be both incorrect and longer.
+      // TODO: Remove this comment before merging
+      finalSelector = `${finalSelector}[${index}]`;
+    }
+  }
+
+  return finalSelector;
+};
 
 export const puppeteerMetadata: AfterHook = async function puppeteerMetadata({
-  args,
   fnName,
   testContext,
-  instrumentedFunctionResult,
-  proxyContext,
+  methodCallData,
 }) {
-  const selector = extractPuppeteerSelector(proxyContext, fnName as any, args);
-  const text = extractPuppeteerText(proxyContext, fnName as any, args, instrumentedFunctionResult);
+  const selector = getSelector(methodCallData);
+  const text = methodCallData[methodCallData.length - 1]?.text;
 
   if (selector) {
     testContext.addStepMetadata({ selector });
