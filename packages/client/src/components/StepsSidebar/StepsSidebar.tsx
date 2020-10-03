@@ -94,6 +94,8 @@ function getIcon(step: StepResult): string {
       return icons.chrome;
     case 'click':
       return icons.click;
+    case 'move':
+      return icons.click;
     case 'hover':
       return icons.click;
     case 'close':
@@ -101,6 +103,8 @@ function getIcon(step: StepResult): string {
     case 'tap':
       return icons.click;
     case 'type':
+      return icons.keyboard;
+    case 'press':
       return icons.keyboard;
     case 'assertion':
       return icons.assertion;
