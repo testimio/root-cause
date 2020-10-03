@@ -467,3 +467,7 @@ export function getSelfCallSiteFromStacktrace(howManyBack = 1): CallSite | null 
 
   return noneInternalLines[howManyBack];
 }
+
+export function getLast<T>(items: T[]) {
+  return items[items.length - 1];
+}

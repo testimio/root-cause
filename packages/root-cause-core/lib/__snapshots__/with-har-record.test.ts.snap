@@ -42,7 +42,7 @@ Object {
             "column": 15,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 236,
+            "line": 235,
           },
           Object {
             "column": 18,
@@ -103,7 +103,7 @@ Object {
             "column": 15,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 236,
+            "line": 235,
           },
           Object {
             "column": 18,
@@ -171,7 +171,7 @@ Object {
             "column": 15,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 236,
+            "line": 235,
           },
           Object {
             "column": 18,
@@ -231,7 +231,7 @@ Object {
             "column": 15,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 236,
+            "line": 235,
           },
           Object {
             "column": 18,
@@ -299,7 +299,7 @@ Object {
             "column": 15,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.makeStep",
-            "line": 236,
+            "line": 235,
           },
           Object {
             "column": 18,

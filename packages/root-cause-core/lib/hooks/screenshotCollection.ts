@@ -1,6 +1,6 @@
 import path from 'path';
 import { BeforeHook, BeforeHookArgs } from '../interfaces';
-import { extractPuppeteerSelector } from '../utils/puppeteer-selector-mapping';
+import { getLast } from '../utils';
 
 declare const document: any;
 declare const window: any;
@@ -32,7 +32,7 @@ export const puppeteerScreenshot: BeforeHook = async function puppeteerScreensho
   testContext.addStepMetadata({ screenshot: filename });
 };
 
-async function getElementRect({ proxyContext, fnName, args }: BeforeHookArgs): Promise<any> {
+async function getElementRect({ proxyContext, methodCallData }: BeforeHookArgs): Promise<any> {
   if (!shouldExtractElementRect(proxyContext)) {
     return null;
   }
@@ -40,7 +40,7 @@ async function getElementRect({ proxyContext, fnName, args }: BeforeHookArgs): P
   try {
     const elementHandleRect =
       (await getElementHandleRectWithBoundingBox(proxyContext)) ||
-      (await getElementHandleRectWithSelector(proxyContext, fnName, args));
+      (await getElementHandleRectWithSelector(proxyContext, getLast(methodCallData)?.selector));
 
     if (!elementHandleRect || (elementHandleRect as any).error) {
       return elementHandleRect;
@@ -89,10 +89,8 @@ async function getElementHandleRectWithBoundingBox(
 
 async function getElementHandleRectWithSelector(
   proxyContext: any,
-  fnName: any,
-  args: any[]
+  selector: string | undefined
 ): Promise<null | RectFromElementHandle> {
-  const selector = extractPuppeteerSelector(proxyContext, fnName, args);
   if (!selector) {
     return null;
   }
