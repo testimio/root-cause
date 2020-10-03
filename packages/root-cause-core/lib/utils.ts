@@ -358,16 +358,24 @@ export function arrayFlat<T>(arr: T[][]): T[] {
   }, []);
 }
 
+const stackFramesToFilter = [
+  'PuppeteerPageHooker.makeStep',
+  'stacktraceHook',
+  'extractCodeLocationDetailsSync',
+];
+
 export function extractCodeLocationDetailsSync(
   userTestFile: string,
   workingDirectory: string
 ): CodeLocationDetails {
-  const { stackLines, stacktrace } = captureStacktraceDetails();
-
-  stacktrace.toString();
+  const { stackLines /*, stacktrace*/ } = captureStacktraceDetails();
 
   const callSitesInUserCode = stackLines.filter((site) => {
     const callSiteFileName = site.file;
+
+    if (site.function && stackFramesToFilter.includes(site.function)) {
+      return false;
+    }
 
     if (!callSiteFileName) {
       return false;
@@ -398,11 +406,8 @@ export function extractCodeLocationDetailsSync(
 
   const callstack = stackLines
     .filter((line) => {
-      if (line.function?.includes('extractCodeLocationDetailsSync')) {
-        return false;
-      }
-
-      if (line.function?.includes('stacktraceHook')) {
+      const { function: functionName } = line;
+      if (functionName && stackFramesToFilter.some((frame) => functionName.includes(frame))) {
         return false;
       }
 
@@ -470,4 +475,17 @@ export function getSelfCallSiteFromStacktrace(howManyBack = 1): CallSite | null 
 
 export function getLast<T>(items: T[]) {
   return items[items.length - 1];
+}
+
+export function setFunctionName(func: Function, newName: string) {
+  Object.defineProperty(func, 'name', {
+    value: newName,
+    writable: false,
+  });
+
+  return func;
+}
+
+export function appendToFunctionName(func: Function, append: string) {
+  return setFunctionName(func, `${func.name}${append}`);
 }

@@ -33,7 +33,7 @@ Object {
             "column": 15,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.end",
-            "line": 180,
+            "line": 188,
           },
           Object {
             "column": 5,
@@ -86,16 +86,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_Page_goto",
+            "line": 156,
           },
           Object {
             "column": 5,
@@ -147,16 +141,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
+            "line": 156,
           },
           Object {
             "column": 5,
@@ -207,16 +195,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
+            "line": 156,
           },
           Object {
             "column": 5,
@@ -274,16 +256,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
+            "line": 156,
           },
           Object {
             "column": 5,
@@ -346,16 +322,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
+            "line": 156,
           },
           Object {
             "column": 5,
@@ -406,16 +376,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
+            "column": 30,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
-            "column": 28,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction",
-            "line": 120,
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_$",
+            "line": 122,
           },
           Object {
             "column": 23,
@@ -466,16 +430,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
+            "line": 156,
           },
           Object {
             "column": 25,
@@ -527,16 +485,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
+            "line": 156,
           },
           Object {
             "column": 5,
@@ -587,16 +539,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
+            "line": 156,
           },
           Object {
             "column": 26,
@@ -648,16 +594,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
+            "column": 30,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
-            "column": 28,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction",
-            "line": 120,
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_$$",
+            "line": 122,
           },
           Object {
             "column": 24,
@@ -708,16 +648,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_click",
+            "line": 156,
           },
           Object {
             "column": 5,
@@ -768,16 +702,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
+            "line": 156,
           },
           Object {
             "column": 26,
@@ -815,16 +743,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_Keyboard_type",
+            "line": 156,
           },
           Object {
             "column": 5,
@@ -862,16 +784,10 @@ Object {
       "stepCodeLocation": Object {
         "callstack": Array [
           Object {
-            "column": 15,
-            "file": "lib/PuppeteerPageHooker.ts",
-            "function": "PuppeteerPageHooker.makeStep",
-            "line": 235,
-          },
-          Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction",
-            "line": 148,
+            "function": "Proxy.rootCauseWrappedFunction_Mouse_move",
+            "line": 156,
           },
           Object {
             "column": 5,

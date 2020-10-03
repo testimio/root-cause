@@ -12,6 +12,7 @@ import type {
   RootCausePage,
 } from './interfaces';
 import type { TestContext } from './TestContext';
+import { appendToFunctionName } from './utils';
 import { extractPuppeteerSelector } from './utils/puppeteer-selector-mapping';
 import { extractPuppeteerText } from './utils/puppeteer-text-mapping';
 
@@ -116,35 +117,42 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
         }
 
         if (returningElementHandlesViaPromise.has(accessedPropAsString)) {
-          return async function returningElementHandlesViaPromiseWrappedFunction(...args: any[]) {
-            const result = await pageHookerThis.makeStep(
-              proxiedObject,
-              target,
-              reflectedProperty,
-              accessedPropAsString,
-              args,
-              methodCallData
-            );
+          return appendToFunctionName(
+            async function returningElementHandlesViaPromiseWrappedFunction(...args: any[]) {
+              const result = await pageHookerThis.makeStep(
+                proxiedObject,
+                target,
+                reflectedProperty,
+                accessedPropAsString,
+                args,
+                methodCallData
+              );
 
-            if (!result) {
-              return result;
-            }
+              if (!result) {
+                return result;
+              }
 
-            const newMethodCallData: ProxiedMethodCallData = {
-              selector: extractPuppeteerSelector(proxiedObject, accessedPropAsString, args),
-              creationFunction: accessedPropAsString,
-              text: extractPuppeteerText(proxiedObject, accessedPropAsString, args, result),
-            };
+              const newMethodCallData: ProxiedMethodCallData = {
+                selector: extractPuppeteerSelector(proxiedObject, accessedPropAsString, args),
+                creationFunction: accessedPropAsString,
+                text: extractPuppeteerText(proxiedObject, accessedPropAsString, args, result),
+              };
 
-            return pageHookerThis.wrapReturnValueInProxy(result, methodCallData, newMethodCallData);
-          };
+              return pageHookerThis.wrapReturnValueInProxy(
+                result,
+                methodCallData,
+                newMethodCallData
+              );
+            },
+            `_${proxiedObject.constructor.name}_${accessedPropAsString}`
+          );
         }
 
         if (typeof reflectedProperty !== 'function') {
           return reflectedProperty;
         }
 
-        return async function rootCauseWrappedFunction(...args: any[]) {
+        return appendToFunctionName(async function rootCauseWrappedFunction(...args: any[]) {
           return await pageHookerThis.makeStep(
             proxiedObject,
             target,
@@ -153,7 +161,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
             args,
             methodCallData
           );
-        };
+        }, `_${proxiedObject.constructor.name}_${accessedPropAsString}`);
       },
     };
 
