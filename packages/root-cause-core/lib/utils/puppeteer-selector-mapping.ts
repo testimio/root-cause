@@ -6,9 +6,11 @@ type FunctionPropertyNames<T> = {
   [K in keyof T]: T[K] extends Function ? K : never;
 }[keyof T];
 
-type SelectorMappingOf<T> = {
-  [K in FunctionPropertyNames<T>]: SelectorMapper;
-};
+type SelectorMappingOf<T> = Partial<
+  {
+    [K in FunctionPropertyNames<T>]: SelectorMapper;
+  }
+>;
 
 interface SelectorMapping {
   Page: SelectorMappingOf<Page>;
@@ -45,17 +47,17 @@ const selectorMapping: SelectorMapping = {
     ...commonSelectorMapping,
     waitFor: firstArgIfString,
     waitForSelector: firstArg,
-  } as SelectorMappingOf<Page>, // Hack to not have to make the list exhaustive
+  },
   ElementHandle: {
     ...commonSelectorMapping,
-  } as SelectorMappingOf<ElementHandle>,
-  Keyboard: {} as SelectorMappingOf<Keyboard>,
-  Mouse: {} as SelectorMappingOf<Mouse>,
+  },
+  Keyboard: {},
+  Mouse: {},
   Frame: {
     ...commonSelectorMapping,
     waitFor: firstArgIfString,
     waitForSelector: firstArg,
-  } as SelectorMappingOf<Frame>,
+  },
 };
 
 export function extractPuppeteerSelector(
