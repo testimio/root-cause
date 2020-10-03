@@ -87,10 +87,20 @@ class EnhancedDefault implements Reporter {
       test.path
     );
 
-    testResult.failureMessage = formattedErrorMessage;
+    if (formattedErrorMessage !== null) {
+      testResult.failureMessage = formattedErrorMessage;
+    }
 
     this.defaultReporter.onTestResult(test, testResult, aggregatedResult);
     this.summaryReporter.onTestResult(test, testResult, aggregatedResult);
+  }
+
+  // onTestFileResult(test: Test, testResult: TestResult, aggregatedResult: AggregatedResult) {
+  // }
+
+  onTestCaseResult(test: Test, testCaseResult: any) {
+    this.summaryReporter.onTestCaseResult(test, testCaseResult);
+    this.defaultReporter.onTestCaseResult(test, testCaseResult);
   }
 
   onRunStart(results: AggregatedResult, options: ReporterOnStartOptions) {
