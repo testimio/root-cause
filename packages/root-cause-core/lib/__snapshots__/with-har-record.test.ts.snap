@@ -41,7 +41,7 @@ Object {
           Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_goto",
+            "function": "Proxy.rootCauseWrappedFunction_Page_goto",
             "line": 156,
           },
           Object {
@@ -96,7 +96,7 @@ Object {
           Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {
@@ -158,7 +158,7 @@ Object {
           Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {
@@ -212,7 +212,7 @@ Object {
           Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {
@@ -274,7 +274,7 @@ Object {
           Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {

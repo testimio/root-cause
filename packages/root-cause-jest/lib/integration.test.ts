@@ -38,7 +38,7 @@ describe('jest integration test', () => {
             at Object.exports.assert (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
             at DOMWorld.click (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
             at PuppeteerPageHooker.makeStep (../../root-cause-core/lib/PuppeteerPageHooker.ts:250:22)
-            at Proxy.rootCauseWrappedFunction_click (../../root-cause-core/lib/PuppeteerPageHooker.ts:156:18)
+            at Proxy.rootCauseWrappedFunction_Page_click (../../root-cause-core/lib/PuppeteerPageHooker.ts:156:18)
             at Object.<anonymous> (example1.test.ts:12:5)'
 
       Test Suites: 1 failed, 1 total

@@ -144,7 +144,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
                 newMethodCallData
               );
             },
-            `_${accessedPropAsString}`
+            `_${proxiedObject.constructor.name}_${accessedPropAsString}`
           );
         }
 
@@ -161,7 +161,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
             args,
             methodCallData
           );
-        }, `_${accessedPropAsString}`);
+        }, `_${proxiedObject.constructor.name}_${accessedPropAsString}`);
       },
     };
 

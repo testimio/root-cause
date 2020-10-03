@@ -88,7 +88,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_goto",
+            "function": "Proxy.rootCauseWrappedFunction_Page_goto",
             "line": 156,
           },
           Object {
@@ -143,7 +143,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {
@@ -197,7 +197,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {
@@ -251,7 +251,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {
@@ -305,7 +305,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {
@@ -359,7 +359,7 @@ Object {
           Object {
             "column": 30,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_$",
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_$",
             "line": 122,
           },
           Object {
@@ -455,7 +455,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_getProperty",
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
             "line": 156,
           },
           Object {
@@ -552,7 +552,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click",
             "line": 156,
           },
           Object {
@@ -606,7 +606,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_getProperty",
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
             "line": 156,
           },
           Object {
@@ -703,7 +703,7 @@ Object {
           Object {
             "column": 30,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_$$",
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_$$",
             "line": 122,
           },
           Object {
@@ -757,7 +757,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_click",
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_click",
             "line": 156,
           },
           Object {
@@ -811,7 +811,7 @@ Object {
           Object {
             "column": 18,
             "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
-            "function": "Proxy.rootCauseWrappedFunction_getProperty",
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
             "line": 156,
           },
           Object {
