@@ -88,6 +88,9 @@ export async function sendCDPCommand<C extends keyof ProtocolMapping.Commands>(
   command: C,
   ...params: ProtocolMapping.Commands[C]['paramsType']
 ): Promise<ProtocolMapping.Commands[C]['returnType']> {
+  // Casting because otherwise it errors on mismatch for the first param (command name).
+  // Playwright has their own generated Devtools Protocol typings,
+  // So they may have inconsistencies/not support all the commands.
   return await (session as PuppeteerCDPSession).send(command, ...params);
 }
 
