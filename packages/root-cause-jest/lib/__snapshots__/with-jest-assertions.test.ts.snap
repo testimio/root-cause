@@ -80,7 +80,6 @@ Object {
       "endTimestamp": 4,
       "fnName": "goto",
       "index": 1,
-      "mhtmlFile": "1.document.mhtml",
       "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 3,
@@ -122,7 +121,6 @@ Object {
       "endTimestamp": 6,
       "fnName": "click",
       "index": 2,
-      "mhtmlFile": "2.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -177,7 +175,6 @@ Object {
       "endTimestamp": 8,
       "fnName": "click",
       "index": 3,
-      "mhtmlFile": "3.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -232,7 +229,6 @@ Object {
       "endTimestamp": 10,
       "fnName": "click",
       "index": 4,
-      "mhtmlFile": "4.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -287,7 +283,6 @@ Object {
       "endTimestamp": 12,
       "fnName": "click",
       "index": 5,
-      "mhtmlFile": "5.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -342,7 +337,6 @@ Object {
       "endTimestamp": 14,
       "fnName": "$",
       "index": 6,
-      "mhtmlFile": "6.document.mhtml",
       "name": "$ \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -439,7 +433,6 @@ Object {
       "endTimestamp": 17,
       "fnName": "getProperty",
       "index": 8,
-      "mhtmlFile": "8.document.mhtml",
       "name": "getProperty \\"innerText\\" on \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -537,7 +530,6 @@ Object {
       "endTimestamp": 20,
       "fnName": "click",
       "index": 10,
-      "mhtmlFile": "10.document.mhtml",
       "name": "click \\"#reset\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -592,7 +584,6 @@ Object {
       "endTimestamp": 22,
       "fnName": "getProperty",
       "index": 11,
-      "mhtmlFile": "11.document.mhtml",
       "name": "getProperty \\"innerText\\" on \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -690,7 +681,6 @@ Object {
       "endTimestamp": 25,
       "fnName": "$$",
       "index": 13,
-      "mhtmlFile": "13.document.mhtml",
       "name": "$$ \\"button\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -745,7 +735,6 @@ Object {
       "endTimestamp": 27,
       "fnName": "click",
       "index": 14,
-      "mhtmlFile": "14.document.mhtml",
       "name": "click \\"button[0]\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -800,7 +789,6 @@ Object {
       "endTimestamp": 29,
       "fnName": "getProperty",
       "index": 15,
-      "mhtmlFile": "15.document.mhtml",
       "name": "getProperty \\"innerText\\" on \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",

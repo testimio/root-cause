@@ -1,5 +1,5 @@
 export interface PossibleUserSettings {
-  features?: FeaturesSettings;
+  features?: Partial<FeaturesSettings>;
 }
 
 export interface FeaturesSettings {

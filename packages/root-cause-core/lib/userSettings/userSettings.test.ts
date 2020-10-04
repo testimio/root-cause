@@ -62,7 +62,7 @@ describe('user settings', () => {
       Object {
         "features": Object {
           "console": true,
-          "html": true,
+          "html": false,
           "jestAssertions": false,
           "networkLogs": true,
           "screenshots": Object {
@@ -104,7 +104,7 @@ describe('user settings', () => {
       Object {
         "features": Object {
           "console": true,
-          "html": true,
+          "html": false,
           "jestAssertions": true,
           "networkLogs": true,
           "screenshots": false,
@@ -131,7 +131,7 @@ describe('user settings', () => {
       Object {
         "features": Object {
           "console": true,
-          "html": true,
+          "html": false,
           "jestAssertions": true,
           "networkLogs": false,
           "screenshots": false,
