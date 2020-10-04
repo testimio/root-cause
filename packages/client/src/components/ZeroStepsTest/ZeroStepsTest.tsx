@@ -6,7 +6,7 @@ export function ZeroStepsTest() {
   return (
     <div className={styles.emptyStateWrapper}>
       <img src={noImagePlaceholder} alt="Test have zero detected steps" />
-      <h3>Test have zero detected steps</h3>
+      <h3>No test steps detected</h3>
       <h3>
         The selected test might have no browser automation calls, or there's a problem with the
         integration
