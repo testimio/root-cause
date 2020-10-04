@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { StepResult } from '@testim/root-cause-types';
 import styles from './styles.module.css';
 import classnames from 'classnames';
-import { apiUrl, useMainStore } from '../../stores/MainStore';
+import { useMainStore } from '../../stores/MainStore';
 import { useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Screenshot } from '../Screenshots/Screenshots';
@@ -41,7 +41,6 @@ export const StepsSidebar = observer(() => {
             {step.screenshot ? (
               <Screenshot
                 step={step}
-                apiUrl={apiUrl}
                 className={styles.thumbnailContainer}
                 imageStretchBehavior="zoom"
               />

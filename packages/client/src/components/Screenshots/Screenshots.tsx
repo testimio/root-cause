@@ -9,14 +9,12 @@ import noImagePlaceholder from './no_image@3x.svg';
 
 export function Screenshot({
   step,
-  apiUrl,
   className,
   screenshotClassName,
   showHighlightRect = false,
   imageStretchBehavior = 'content-fit',
 }: {
   step: StepResult;
-  apiUrl: string;
   className?: string;
   imageStretchBehavior?: ImageStretchBehavior;
   screenshotClassName?: string;
