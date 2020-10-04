@@ -162,8 +162,6 @@ export function makeHookExpect<T extends RootCausePage>(
   workingDirectory: string
 ) {
   return hookExpect((expectArgs, stacktrace) => {
-    attachController.pauseStepsRecording();
-
     return function matcherStartHandler(matcherName, matcherArgs, modifier) {
       return {
         sync(matcherResult) {
@@ -197,8 +195,6 @@ export function makeHookExpect<T extends RootCausePage>(
             };
             attachController.reportAssertion(report);
           }
-
-          attachController.resumeStepsRecording();
         },
         async async(matcherResultAsync) {
           if (matcherResultAsync.success) {
@@ -229,8 +225,6 @@ export function makeHookExpect<T extends RootCausePage>(
             };
             attachController.reportAssertion(report);
           }
-
-          attachController.resumeStepsRecording();
         },
       };
     };

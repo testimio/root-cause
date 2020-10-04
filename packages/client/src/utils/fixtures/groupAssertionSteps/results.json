@@ -1,0 +1,616 @@
+{
+  "metadata": {
+    "fileName": "/Users/bnaya/dev/clients/testim.io/dev-first/root-cause/packages/jest-tester-and-example/for-integration-test/example1.test.ts",
+    "testName": "First Test pass",
+    "testFullName": "Some test First Test pass",
+    "timestamp": 1601853850723,
+    "endedTimestamp": 1601853855412,
+    "systemInfo": {
+      "automationFramework": "playwright",
+      "browser": "chromium",
+      "pageViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/86.0.4217.0 Safari/537.36",
+      "browserVersion": "N/A",
+      "modelName": "MacBookPro",
+      "modelVersion": "11.3",
+      "browserPlatform": "MacIntel"
+    },
+    "branchInfo": {
+      "branchName": "assertions-iteration",
+      "commitHash": "a74b461db8f530de16b64df6c928a526742c0d3e"
+    },
+    "hasNetworkLogs": true,
+    "testEndStatus": {
+      "success": false,
+      "error": {
+        "name": "",
+        "message": "Error: 'cat log :P' is not included in 'Make log' of '#forlog'.",
+        "stack": "Error: 'cat log :P' is not included in 'Make log' of '#forlog'.\n    at Proxy.wrappedFunction_root_toHaveText (/Users/bnaya/dev/clients/testim.io/dev-first/root-cause/packages/root-cause-jest/lib/hookExpect.ts:107:29)\n    at Object.<anonymous> (/Users/bnaya/dev/clients/testim.io/dev-first/root-cause/packages/jest-tester-and-example/for-integration-test/example1.test.ts:16:24)"
+      }
+    }
+  },
+  "steps": [
+    {
+      "index": 1,
+      "startTimestamp": 1601853850774,
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "/* eslint-disable no-useless-catch */",
+          "describe('Some test', () => {",
+          "  it('First Test pass', async () => {",
+          "    await page.goto('http://jsbin.testim.io/tog');",
+          "    await new Promise((res) => {",
+          "      setTimeout(res, 1000);",
+          "    });"
+        ],
+        "fromRowNumber": 1,
+        "toRowNumber": 7,
+        "row": 4,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 156,
+            "column": 18,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction_Page_goto"
+          },
+          {
+            "line": 4,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "screenshot": "1.page-goto.jpg",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "fnName": "goto",
+      "text": "http://jsbin.testim.io/tog",
+      "endTimestamp": 1601853852717,
+      "name": "goto \"http://jsbin.testim.io/tog\""
+    },
+    {
+      "index": 2,
+      "startTimestamp": 1601853853724,
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    await new Promise((res) => {",
+          "      setTimeout(res, 1000);",
+          "    });",
+          "    await page.click('#forwarning');",
+          "    // expect-puppeteer",
+          "    // await expect(page).toMatchElement('#forlog', { text: 'Make log' });",
+          "    // expect-playwright"
+        ],
+        "fromRowNumber": 5,
+        "toRowNumber": 11,
+        "row": 8,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 156,
+            "column": 18,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction_Page_click"
+          },
+          {
+            "line": 8,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "rect": {
+        "screenWidth": 1280,
+        "screenHeight": 720,
+        "devicePixelRatio": 1,
+        "x": 93.921875,
+        "y": 8,
+        "width": 101.453125,
+        "height": 21,
+        "top": 8,
+        "right": 195.375,
+        "bottom": 29,
+        "left": 93.921875
+      },
+      "screenshot": "2.page-click.jpg",
+      "consoleEntries": [
+        {
+          "level": "warning",
+          "text": "Some warning here",
+          "line": 31,
+          "column": 10,
+          "url": "http://jsbin.testim.io/tog",
+          "timestamp": 1601853854027,
+          "args": [
+            "\"Some warning here\""
+          ]
+        }
+      ],
+      "unhandledExceptions": [],
+      "selector": "#forwarning",
+      "fnName": "click",
+      "endTimestamp": 1601853854030,
+      "name": "click \"#forwarning\""
+    },
+    {
+      "index": 3,
+      "startTimestamp": 1601853854033,
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    // await expect(page).toMatchElement('#forlog', { text: 'Make log' });",
+          "    // expect-playwright",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'Make log');",
+          "",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'cat log :P');"
+        ],
+        "fromRowNumber": 10,
+        "toRowNumber": 16,
+        "row": 13,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 122,
+            "column": 30,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_waitForSelector"
+          },
+          {
+            "line": 46,
+            "column": 13,
+            "file": "../../node_modules/expect-playwright/lib/matchers/utils.js",
+            "function": "Object.exports.getElementText"
+          },
+          {
+            "line": 6,
+            "column": 60,
+            "file": "../../node_modules/expect-playwright/lib/matchers/toHaveText/index.js",
+            "function": "Object.toHaveText"
+          },
+          {
+            "line": 13,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "rect": {
+        "screenWidth": 1280,
+        "screenHeight": 720,
+        "devicePixelRatio": 1,
+        "x": 199.375,
+        "y": 8,
+        "width": 70.09375,
+        "height": 21,
+        "top": 8,
+        "right": 269.46875,
+        "bottom": 29,
+        "left": 199.375
+      },
+      "screenshot": "3.page-waitForSelector.jpg",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "selector": "#forlog",
+      "fnName": "waitForSelector",
+      "endTimestamp": 1601853854263,
+      "name": "waitForSelector \"#forlog\""
+    },
+    {
+      "index": 4,
+      "startTimestamp": 1601853854265,
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    // await expect(page).toMatchElement('#forlog', { text: 'Make log' });",
+          "    // expect-playwright",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'Make log');",
+          "",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'cat log :P');"
+        ],
+        "fromRowNumber": 10,
+        "toRowNumber": 16,
+        "row": 13,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 122,
+            "column": 30,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_$"
+          },
+          {
+            "line": 52,
+            "column": 28,
+            "file": "../../node_modules/expect-playwright/lib/matchers/utils.js",
+            "function": "Object.exports.getElementText"
+          },
+          {
+            "line": 6,
+            "column": 60,
+            "file": "../../node_modules/expect-playwright/lib/matchers/toHaveText/index.js",
+            "function": "Object.toHaveText"
+          },
+          {
+            "line": 13,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "rect": {
+        "screenWidth": 1280,
+        "screenHeight": 720,
+        "devicePixelRatio": 1,
+        "x": 199.375,
+        "y": 8,
+        "width": 70.09375,
+        "height": 21,
+        "top": 8,
+        "right": 269.46875,
+        "bottom": 29,
+        "left": 199.375
+      },
+      "screenshot": "4.page-$.jpg",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "selector": "#forlog",
+      "fnName": "$",
+      "endTimestamp": 1601853854482,
+      "name": "$ \"#forlog\""
+    },
+    {
+      "index": 5,
+      "startTimestamp": 1601853854483,
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    // await expect(page).toMatchElement('#forlog', { text: 'Make log' });",
+          "    // expect-playwright",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'Make log');",
+          "",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'cat log :P');"
+        ],
+        "fromRowNumber": 10,
+        "toRowNumber": 16,
+        "row": 13,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 156,
+            "column": 18,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_evaluate"
+          },
+          {
+            "line": 8,
+            "column": 35,
+            "file": "../../node_modules/expect-playwright/lib/matchers/toHaveText/index.js",
+            "function": "Object.toHaveText"
+          },
+          {
+            "line": 13,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "rect": {
+        "screenWidth": 1280,
+        "screenHeight": 720,
+        "devicePixelRatio": 1,
+        "x": 199.375,
+        "y": 8,
+        "width": 70.09375,
+        "height": 21,
+        "top": 8,
+        "left": 199.375,
+        "bottom": 29,
+        "right": 269.46875
+      },
+      "screenshot": "5.elementhandle-evaluate.jpg",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "selector": "#forlog",
+      "fnName": "evaluate",
+      "endTimestamp": 1601853854696,
+      "name": "evaluate \"#forlog\""
+    },
+    {
+      "index": 6,
+      "startTimestamp": 1601853854701,
+      "name": "expect(instanceof(Page)).toHaveText(#forlog,Make log)",
+      "fnName": "assertion",
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    // await expect(page).toMatchElement('#forlog', { text: 'Make log' });",
+          "    // expect-playwright",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'Make log');",
+          "",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'cat log :P');"
+        ],
+        "fromRowNumber": 10,
+        "toRowNumber": 16,
+        "row": 13,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 213,
+            "column": 25,
+            "file": "../root-cause-jest/lib/helpers.ts",
+            "function": "Object.async"
+          },
+          {
+            "line": 117,
+            "column": 37,
+            "file": "../root-cause-jest/lib/hookExpect.ts",
+            "function": "returnValue.then.matcherEndHandler.async.success"
+          },
+          {
+            "line": 13,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "startTimestamp": 1601853854701,
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    await expect(page).toHaveText('#forlog', 'Make log');",
+          "",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'cat log :P');",
+          "",
+          "    await page.click('#forlog');",
+          "  }, 5_000);"
+        ],
+        "fromRowNumber": 13,
+        "toRowNumber": 19,
+        "row": 16,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 122,
+            "column": 30,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_waitForSelector"
+          },
+          {
+            "line": 46,
+            "column": 13,
+            "file": "../../node_modules/expect-playwright/lib/matchers/utils.js",
+            "function": "Object.exports.getElementText"
+          },
+          {
+            "line": 6,
+            "column": 60,
+            "file": "../../node_modules/expect-playwright/lib/matchers/toHaveText/index.js",
+            "function": "Object.toHaveText"
+          },
+          {
+            "line": 16,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "rect": {
+        "screenWidth": 1280,
+        "screenHeight": 720,
+        "devicePixelRatio": 1,
+        "x": 199.375,
+        "y": 8,
+        "width": 70.09375,
+        "height": 21,
+        "top": 8,
+        "right": 269.46875,
+        "bottom": 29,
+        "left": 199.375
+      },
+      "screenshot": "7.page-waitForSelector.jpg",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "selector": "#forlog",
+      "fnName": "waitForSelector",
+      "endTimestamp": 1601853854926,
+      "name": "waitForSelector \"#forlog\""
+    },
+    {
+      "index": 8,
+      "startTimestamp": 1601853854928,
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    await expect(page).toHaveText('#forlog', 'Make log');",
+          "",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'cat log :P');",
+          "",
+          "    await page.click('#forlog');",
+          "  }, 5_000);"
+        ],
+        "fromRowNumber": 13,
+        "toRowNumber": 19,
+        "row": 16,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 122,
+            "column": 30,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_$"
+          },
+          {
+            "line": 52,
+            "column": 28,
+            "file": "../../node_modules/expect-playwright/lib/matchers/utils.js",
+            "function": "Object.exports.getElementText"
+          },
+          {
+            "line": 6,
+            "column": 60,
+            "file": "../../node_modules/expect-playwright/lib/matchers/toHaveText/index.js",
+            "function": "Object.toHaveText"
+          },
+          {
+            "line": 16,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "rect": {
+        "screenWidth": 1280,
+        "screenHeight": 720,
+        "devicePixelRatio": 1,
+        "x": 199.375,
+        "y": 8,
+        "width": 70.09375,
+        "height": 21,
+        "top": 8,
+        "right": 269.46875,
+        "bottom": 29,
+        "left": 199.375
+      },
+      "screenshot": "8.page-$.jpg",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "selector": "#forlog",
+      "fnName": "$",
+      "endTimestamp": 1601853855153,
+      "name": "$ \"#forlog\""
+    },
+    {
+      "index": 9,
+      "startTimestamp": 1601853855154,
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    await expect(page).toHaveText('#forlog', 'Make log');",
+          "",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'cat log :P');",
+          "",
+          "    await page.click('#forlog');",
+          "  }, 5_000);"
+        ],
+        "fromRowNumber": 13,
+        "toRowNumber": 19,
+        "row": 16,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 156,
+            "column": 18,
+            "file": "../root-cause-core/lib/PuppeteerPageHooker.ts",
+            "function": "Proxy.rootCauseWrappedFunction_ElementHandle_evaluate"
+          },
+          {
+            "line": 8,
+            "column": 35,
+            "file": "../../node_modules/expect-playwright/lib/matchers/toHaveText/index.js",
+            "function": "Object.toHaveText"
+          },
+          {
+            "line": 16,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "rect": {
+        "screenWidth": 1280,
+        "screenHeight": 720,
+        "devicePixelRatio": 1,
+        "x": 199.375,
+        "y": 8,
+        "width": 70.09375,
+        "height": 21,
+        "top": 8,
+        "left": 199.375,
+        "bottom": 29,
+        "right": 269.46875
+      },
+      "screenshot": "9.elementhandle-evaluate.jpg",
+      "consoleEntries": [],
+      "unhandledExceptions": [],
+      "selector": "#forlog",
+      "fnName": "evaluate",
+      "endTimestamp": 1601853855380,
+      "name": "evaluate \"#forlog\""
+    },
+    {
+      "index": 10,
+      "startTimestamp": 1601853855382,
+      "name": "expect(instanceof(Page)).toHaveText(#forlog,cat log :P)",
+      "fnName": "assertion",
+      "stepCodeLocation": {
+        "sourceFileRelativePath": "for-integration-test/example1.test.ts",
+        "codeLines": [
+          "    await expect(page).toHaveText('#forlog', 'Make log');",
+          "",
+          "    // @ts-ignore",
+          "    await expect(page).toHaveText('#forlog', 'cat log :P');",
+          "",
+          "    await page.click('#forlog');",
+          "  }, 5_000);"
+        ],
+        "fromRowNumber": 13,
+        "toRowNumber": 19,
+        "row": 16,
+        "column": 5,
+        "callstack": [
+          {
+            "line": 226,
+            "column": 25,
+            "file": "../root-cause-jest/lib/helpers.ts",
+            "function": "Object.async"
+          },
+          {
+            "line": 121,
+            "column": 37,
+            "file": "../root-cause-jest/lib/hookExpect.ts"
+          },
+          {
+            "line": 16,
+            "column": 5,
+            "file": "for-integration-test/example1.test.ts",
+            "function": "Object.<anonymous>"
+          }
+        ]
+      },
+      "stepError": {
+        "name": "Error",
+        "message": "'cat log :P' is not included in 'Make log' of '#forlog'.",
+        "stack": "Error: 'cat log :P' is not included in 'Make log' of '#forlog'.\n    at Proxy.wrappedFunction_root_toHaveText (/Users/bnaya/dev/clients/testim.io/dev-first/root-cause/packages/root-cause-jest/lib/hookExpect.ts:107:29)\n    at Object.<anonymous> (/Users/bnaya/dev/clients/testim.io/dev-first/root-cause/packages/jest-tester-and-example/for-integration-test/example1.test.ts:16:24)"
+      }
+    }
+  ]
+}

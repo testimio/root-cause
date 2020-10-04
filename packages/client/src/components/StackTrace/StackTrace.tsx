@@ -45,6 +45,17 @@ export const StackTrace = React.memo(function StackTrace({ step }: { step: StepR
           );
         })}
       </div>
+      {/* use for debug. maybe add as feature  <div className={styles.stackTraceArea}>
+        ----
+        <div className={styles.stackTrace}>
+          {step.stepCodeLocation.callstack.map((l, idx) => (
+            <div key={idx}>
+              {l.function} {l.file}:{l.line}:{l.column}
+            </div>
+          ))}
+        </div>
+        ---
+      </div> */}
       <div className={styles.stackTraceArea}>
         {step.stepError?.stack && (
           <div className={styles.stackTrace}>

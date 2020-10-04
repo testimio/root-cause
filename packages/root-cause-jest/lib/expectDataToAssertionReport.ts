@@ -1,9 +1,14 @@
 import type { AssertionReport } from '@testim/root-cause-core';
 import { utils } from '@testim/root-cause-core';
+import nodeUtils from 'util';
+import { IS_NODE_10 } from '@testim/root-cause-core/lib/consts';
 
 const DEFAULT_STRING_REPRESENTATION_TAIL_SIZE = 7;
 const DEFAULT_BEST_EFFORT_LENGTH = 40;
 const STRING_TAIL_SEPARATOR = '...';
+
+// Local feature flag; the output of inspect is too long atm, need to revisit before enabling
+const USE_INSPECT = false;
 
 export interface ExpectData {
   expectArgs: any[];
@@ -24,11 +29,17 @@ export function expectDataToAssertionReport(
   //     expectData.matcherName
   // }(actual)`;
 
-  const text = `expect(${javascriptValueToVisualTextualRepresentation(expectData.expectArgs[0])})${
+  const expectArgsAsStrings = expectData.expectArgs.map((arg) =>
+    javascriptValueToVisualTextualRepresentation(arg)
+  );
+
+  const matcherArgsAsStrings = expectData.matcherArgs.map((arg) =>
+    javascriptValueToVisualTextualRepresentation(arg)
+  );
+
+  const text = `expect(${expectArgsAsStrings.join(', ')})${
     expectData.modifier ? `.${expectData.modifier}` : ''
-  }.${expectData.matcherName}(${javascriptValueToVisualTextualRepresentation(
-    expectData.matcherArgs[0]
-  )})`;
+  }.${expectData.matcherName}(${matcherArgsAsStrings})`;
 
   return {
     name: text,
@@ -87,12 +98,26 @@ export function javascriptValueToVisualTextualRepresentation(
   }
 
   if (Array.isArray(value)) {
-    return `Array(length=${value.length})`;
+    if (IS_NODE_10 || !USE_INSPECT) {
+      return `Array(length=${value.length})`;
+    }
+
+    // @ts-expect-error we are with node 10 types, that dose not support maxStringLength
+    return nodeUtils.inspect(value, {
+      maxStringLength: bestEffortMaxLength,
+    });
   }
 
-  // We are sync function, we can't extract promises
   if (utils.isPromise(value)) {
-    return 'Promise';
+    // We are sync function, we can't extract promises
+    if (IS_NODE_10 || !USE_INSPECT) {
+      return 'Promise';
+    }
+
+    // @ts-expect-error we are with node 10 types, that dose not support maxStringLength
+    return nodeUtils.inspect(value, {
+      maxStringLength: bestEffortMaxLength,
+    });
   }
 
   if (typeof value === 'object' && value !== null && value.constructor.name !== 'Object') {
@@ -101,9 +126,23 @@ export function javascriptValueToVisualTextualRepresentation(
             https://github.com/facebook/jest/blob/v26.1.0/packages/expect/src/asymmetricMatchers.ts
             We may add special handling for it later
          */
-    return `instanceof(${value.constructor.name})`;
+    if (IS_NODE_10 || !USE_INSPECT) {
+      return `instanceof(${value.constructor.name})`;
+    }
+
+    // @ts-expect-error we are with node 10 types, that dose not support maxStringLength
+    return nodeUtils.inspect(value, {
+      maxStringLength: bestEffortMaxLength,
+    });
   }
 
   // fallback value
-  return 'object';
+  if (IS_NODE_10 || !USE_INSPECT) {
+    return 'object';
+  }
+
+  // @ts-expect-error we are with node 10 types, that dose not support maxStringLength
+  return nodeUtils.inspect(value, {
+    maxStringLength: bestEffortMaxLength,
+  });
 }

@@ -21,25 +21,22 @@ describe('jest integration test', () => {
     jestRunResult.stderr = jestRunResult.stderr.replace(/ ?\([0-9\.]+ m?s\)$/gm, '');
 
     expect(jestRunResult.stderr).toMatchInlineSnapshot(`
-      "FAIL for-integration-test/example1.test.ts
-        ● Some test › Test that should fail
+      "FAIL browser: chromium for-integration-test/example1.test.ts
+        ● Some test suite › This that should fail
 
-          To open in Root Cause viewer, run: npx root-cause show d3f0048d4d0ecd76f6f6b8ebf7051c4a
-           Error: No node found for selector: #not-found-element
+          To open in Root Cause viewer, run: npx root-cause show f1d40d3cf143b37409f8b8d500980b67
+           Error: 'Make violation... no so much' is not included in 'Make violation' of '#forviolation'.
 
-            248 | 
-            249 |     try {
-          > 250 |       const result = await method.apply(target, args);
-                |                      ^
-            251 | 
-            252 |       newMethodCallData.text = extractPuppeteerText(proxyContext, fnName, args, result);
-            253 | 
+            107 | 
+            108 |       try {
+          > 109 |         const returnValue = theMatcherFunction(...args);
+                |                             ^
+            110 | 
+            111 |         if (!isPromise(returnValue)) {
+            112 |           matcherEndHandler.sync({ success: true });
 
-            at Object.exports.assert (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
-            at DOMWorld.click (../../../node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
-            at PuppeteerPageHooker.makeStep (../../root-cause-core/lib/PuppeteerPageHooker.ts:250:22)
-            at Proxy.rootCauseWrappedFunction_Page_click (../../root-cause-core/lib/PuppeteerPageHooker.ts:156:18)
-            at Object.<anonymous> (example1.test.ts:12:5)'
+            at Proxy.wrappedFunction_root_toHaveText (../../root-cause-jest/lib/hookExpect.ts:109:29)
+            at Object.<anonymous> (example1.test.ts:26:24)'
 
       Test Suites: 1 failed, 1 total
       Tests:       1 failed, 1 passed, 2 total
@@ -61,20 +58,20 @@ describe('jest integration test', () => {
     rootCauseLs.stdout = rootCauseLs.stdout.replace(/Run time: [^\n]+/, 'Run time: noise removed');
 
     expect(rootCauseLs).toMatchInlineSnapshot(`
-            Object {
-              "error": null,
-              "stderr": "",
-              "stdout": "Run id: noise removed
-            Run time: noise removed
-            ┌─────────┬────────────────────────────────────┬─────────────────────────┬─────────┐
-            │ (index) │                 id                 │          name           │ success │
-            ├─────────┼────────────────────────────────────┼─────────────────────────┼─────────┤
-            │    0    │ '6e6e4ddf5d0c7c93b126e27ec5167e35' │    'First Test pass'    │  true   │
-            │    1    │ 'd3f0048d4d0ecd76f6f6b8ebf7051c4a' │ 'Test that should fail' │  false  │
-            └─────────┴────────────────────────────────────┴─────────────────────────┴─────────┘
-            ",
-            }
-        `);
+      Object {
+        "error": null,
+        "stderr": "",
+        "stdout": "Run id: noise removed
+      Run time: noise removed
+      ┌─────────┬────────────────────────────────────┬─────────────────────────┬─────────┐
+      │ (index) │                 id                 │          name           │ success │
+      ├─────────┼────────────────────────────────────┼─────────────────────────┼─────────┤
+      │    0    │ '849716b92ae3ae73996469498df59e6f' │ 'This test should pass' │  true   │
+      │    1    │ 'f1d40d3cf143b37409f8b8d500980b67' │ 'This that should fail' │  false  │
+      └─────────┴────────────────────────────────────┴─────────────────────────┴─────────┘
+      ",
+      }
+    `);
   }, 120_000);
 });
 
