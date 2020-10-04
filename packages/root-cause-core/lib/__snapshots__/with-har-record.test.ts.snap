@@ -33,6 +33,7 @@ Object {
       "endTimestamp": 4,
       "fnName": "goto",
       "index": 1,
+      "mhtmlFile": "1.document.mhtml",
       "name": "goto \\"http://jsbin.testim.io/ces\\"",
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 3,
@@ -74,6 +75,7 @@ Object {
       "endTimestamp": 6,
       "fnName": "click",
       "index": 2,
+      "mhtmlFile": "2.document.mhtml",
       "name": "click \\"[data-job=GET_OK]\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -136,6 +138,7 @@ Object {
       "endTimestamp": 9,
       "fnName": "click",
       "index": 3,
+      "mhtmlFile": "3.document.mhtml",
       "name": "click \\"[data-job=GET_404]\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -190,6 +193,7 @@ Object {
       "endTimestamp": 11,
       "fnName": "click",
       "index": 4,
+      "mhtmlFile": "4.document.mhtml",
       "name": "click \\"[data-job=POST_OK]\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -252,6 +256,7 @@ Object {
       "endTimestamp": 14,
       "fnName": "click",
       "index": 5,
+      "mhtmlFile": "5.document.mhtml",
       "name": "click \\"[data-job=POST_404]\\"",
       "rect": Object {
         "bottom": "possible noise removed",

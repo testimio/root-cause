@@ -39,7 +39,7 @@ Object {
             "column": 5,
             "file": "lib/attach.ts",
             "function": "endTest",
-            "line": 110,
+            "line": 113,
           },
           Object {
             "column": 5,
@@ -89,6 +89,7 @@ Object {
       "endTimestamp": 5,
       "fnName": "goto",
       "index": 1,
+      "mhtmlFile": "1.document.mhtml",
       "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 4,
@@ -141,6 +142,7 @@ Object {
       "endTimestamp": 7,
       "fnName": "click",
       "index": 2,
+      "mhtmlFile": "2.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -206,6 +208,7 @@ Object {
       "endTimestamp": 9,
       "fnName": "click",
       "index": 3,
+      "mhtmlFile": "3.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -271,6 +274,7 @@ Object {
       "endTimestamp": 11,
       "fnName": "click",
       "index": 4,
+      "mhtmlFile": "4.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -336,6 +340,7 @@ Object {
       "endTimestamp": 13,
       "fnName": "click",
       "index": 5,
+      "mhtmlFile": "5.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -401,6 +406,7 @@ Object {
       "endTimestamp": 15,
       "fnName": "click",
       "index": 6,
+      "mhtmlFile": "6.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -466,6 +472,7 @@ Object {
       "endTimestamp": 17,
       "fnName": "click",
       "index": 7,
+      "mhtmlFile": "7.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -531,6 +538,7 @@ Object {
       "endTimestamp": 19,
       "fnName": "click",
       "index": 8,
+      "mhtmlFile": "8.document.mhtml",
       "name": "click \\"#reset\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -596,6 +604,7 @@ Object {
       "endTimestamp": 21,
       "fnName": "click",
       "index": 9,
+      "mhtmlFile": "9.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -661,6 +670,7 @@ Object {
       "endTimestamp": 23,
       "fnName": "$",
       "index": 10,
+      "mhtmlFile": "10.document.mhtml",
       "name": "$ \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -726,6 +736,7 @@ Object {
       "endTimestamp": 25,
       "fnName": "getProperty",
       "index": 11,
+      "mhtmlFile": "11.document.mhtml",
       "name": "getProperty \\"innerText\\" on \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -824,6 +835,7 @@ Object {
       "endTimestamp": 5,
       "fnName": "goto",
       "index": 1,
+      "mhtmlFile": "1.document.mhtml",
       "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 4,
@@ -876,6 +888,7 @@ Object {
       "endTimestamp": 7,
       "fnName": "click",
       "index": 2,
+      "mhtmlFile": "2.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -941,6 +954,7 @@ Object {
       "endTimestamp": 9,
       "fnName": "click",
       "index": 3,
+      "mhtmlFile": "3.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -1006,6 +1020,7 @@ Object {
       "endTimestamp": 11,
       "fnName": "click",
       "index": 4,
+      "mhtmlFile": "4.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -1071,6 +1086,7 @@ Object {
       "endTimestamp": 13,
       "fnName": "click",
       "index": 5,
+      "mhtmlFile": "5.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -1136,6 +1152,7 @@ Object {
       "endTimestamp": 15,
       "fnName": "click",
       "index": 6,
+      "mhtmlFile": "6.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -1201,6 +1218,7 @@ Object {
       "endTimestamp": 17,
       "fnName": "click",
       "index": 7,
+      "mhtmlFile": "7.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -1266,6 +1284,7 @@ Object {
       "endTimestamp": 19,
       "fnName": "click",
       "index": 8,
+      "mhtmlFile": "8.document.mhtml",
       "name": "click \\"#reset\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -1331,6 +1350,7 @@ Object {
       "endTimestamp": 21,
       "fnName": "click",
       "index": 9,
+      "mhtmlFile": "9.document.mhtml",
       "name": "click \\"#test\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -1396,6 +1416,7 @@ Object {
       "endTimestamp": 23,
       "fnName": "$",
       "index": 10,
+      "mhtmlFile": "10.document.mhtml",
       "name": "$ \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",
@@ -1461,6 +1482,7 @@ Object {
       "endTimestamp": 25,
       "fnName": "getProperty",
       "index": 11,
+      "mhtmlFile": "11.document.mhtml",
       "name": "getProperty \\"innerText\\" on \\"#counter\\"",
       "rect": Object {
         "bottom": "possible noise removed",

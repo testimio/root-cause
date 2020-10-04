@@ -26,6 +26,7 @@ import { RootCausePage } from './interfaces';
 import { persist } from './persist';
 import { networkLogsBeforeAllHook, networkLogsAfterAllHook } from './networkLogs';
 import { resolveSettings } from './userSettings/userSettings';
+import { createHtmlCollectionHook } from './hooks/htmlCollection';
 
 const loggerDebug = debug('root-cause:debug');
 // swap with this if you need clear log location for dev time and so
@@ -96,6 +97,8 @@ export async function attach<TPage extends RootCausePage>(
   if (resolvedActiveFeatures?.screenshots) {
     instrumentor.registerBeforeHook(puppeteerScreenshot);
   }
+
+  instrumentor.registerBeforeHook(createHtmlCollectionHook(page));
 
   if (resolvedActiveFeatures.networkLogs) {
     instrumentor.registerAfterAllHook(networkLogsAfterAllHook);
