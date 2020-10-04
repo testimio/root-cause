@@ -1,25 +1,26 @@
+import type { CodeLocationDetails, StepError, TestSystemInfo } from '@testim/root-cause-types';
 import type { AbortSignal } from 'abort-controller';
-import type { DevtoolsProtocolResponseMap } from './nicerChromeDevToolsTypes';
-import type { RootCausePage } from './interfaces';
-import type { StartTestParams } from './attachInterfaces';
 import crypto from 'crypto';
-import path from 'path';
-import { RESULTS_DIR_NAME, RUNS_DIR_NAME } from './consts';
+import ProtocolMapping from 'devtools-protocol/types/protocol-mapping';
 import fs from 'fs-extra';
+import path from 'path';
 import type {
-  CDPSession,
+  BrowserContext,
+  CDPSession as PlaywrightCDPSession,
+  ChromiumBrowser,
+  ChromiumBrowserContext,
+  Page as PlaywrightPage,
+} from 'playwright';
+import type {
+  CDPSession as PuppeteerCDPSession,
   Page as PuppeteerPage,
   PageEventObj as PuppeteerPageEventObj,
 } from 'puppeteer';
-import type {
-  Page as PlaywrightPage,
-  ChromiumBrowserContext,
-  BrowserContext,
-  ChromiumBrowser,
-} from 'playwright';
-import type { TestSystemInfo, CodeLocationDetails, StepError } from '@testim/root-cause-types';
-import type { StackLineData, CallSite } from 'stack-utils';
+import type { CallSite, StackLineData } from 'stack-utils';
 import StackUtils from 'stack-utils';
+import type { StartTestParams } from './attachInterfaces';
+import { RESULTS_DIR_NAME, RUNS_DIR_NAME } from './consts';
+import type { RootCausePage } from './interfaces';
 
 const USER_CODE_BEFORE_AFTER_TO_SHOW = 3;
 
@@ -82,6 +83,14 @@ export function testUniqueIdentifierFromStartParams(startParams: {
   return crypto.createHash('md5').update(str).digest('hex');
 }
 
+export async function sendCDPCommand<C extends keyof ProtocolMapping.Commands>(
+  session: PuppeteerCDPSession | PlaywrightCDPSession,
+  command: C,
+  ...params: ProtocolMapping.Commands[C]['paramsType']
+): Promise<ProtocolMapping.Commands[C]['returnType']> {
+  return await (session as PuppeteerCDPSession).send(command, ...params);
+}
+
 // find something better? for now we are cool
 export function isNotPlaywrightPage(page: RootCausePage): page is PuppeteerPage {
   return !('exposeBinding' in page);
@@ -140,10 +149,7 @@ export async function getSystemInfoForPlaywrightChromiumPage(
   // @ts-expect-error
   const crBrowser: ChromiumBrowser = context._browser;
   const cdpSession = await crBrowser.newBrowserCDPSession();
-  const systemInfo: DevtoolsProtocolResponseMap['SystemInfo.getInfo'] = (await cdpSession.send(
-    'SystemInfo.getInfo'
-  )) as DevtoolsProtocolResponseMap['SystemInfo.getInfo'];
-  const { modelName, modelVersion } = systemInfo;
+  const { modelName, modelVersion } = await sendCDPCommand(cdpSession, 'SystemInfo.getInfo');
 
   const browserPlatform = await page.evaluate(() => navigator.platform);
   const pageViewport =
@@ -178,11 +184,7 @@ export async function getSystemInfoForPuppeteerPage(page: PuppeteerPage): Promis
 
   const cdpSession = await browserTarget.createCDPSession();
   // https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo/#type-ProcessInfo
-  const systemInfo: DevtoolsProtocolResponseMap['SystemInfo.getInfo'] = (await cdpSession.send(
-    'SystemInfo.getInfo'
-  )) as DevtoolsProtocolResponseMap['SystemInfo.getInfo'];
-
-  const { modelName, modelVersion } = systemInfo;
+  const { modelName, modelVersion } = await sendCDPCommand(cdpSession, 'SystemInfo.getInfo');
 
   return {
     automationFramework: 'puppeteer',
@@ -196,8 +198,31 @@ export async function getSystemInfoForPuppeteerPage(page: PuppeteerPage): Promis
   };
 }
 
-export function isChromeCDPSession(session: unknown): session is CDPSession {
-  return session && typeof (session as CDPSession).send === 'function';
+function isChromeCDPSession(session: unknown): session is PuppeteerCDPSession {
+  return session && typeof (session as PuppeteerCDPSession).send === 'function';
+}
+
+export async function getChromeCDPSession(
+  page: RootCausePage
+): Promise<PuppeteerCDPSession | null> {
+  if (isNotPlaywrightPage(page)) {
+    // Benji promised me it's real
+    // TODO(giorag): acquire session in playwright, currently only puppeteer
+    const session: unknown = (page as any)._client;
+    return isChromeCDPSession(session) ? session : null;
+  }
+
+  const playwrightBrowserContext = page.context();
+  if (!isPlaywrightChromiumBrowserContext(playwrightBrowserContext)) {
+    return null;
+  }
+
+  // https://github.com/microsoft/playwright/blob/master/docs/api.md#class-cdpsession
+  const session = await playwrightBrowserContext.newCDPSession(page);
+
+  // It doesn't support all methods cause it's not fully an event emitter (like puppeteer's CDPSession)
+  // But it's good enough
+  return session as PuppeteerCDPSession;
 }
 
 /**

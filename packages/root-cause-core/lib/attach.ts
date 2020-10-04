@@ -99,7 +99,7 @@ export async function attach<TPage extends RootCausePage>(
   }
 
   if (resolvedActiveFeatures?.html) {
-    instrumentor.registerBeforeHook(createHtmlCollectionHook(page));
+    instrumentor.registerBeforeHook(await createHtmlCollectionHook(page));
   }
 
   if (resolvedActiveFeatures.networkLogs) {
