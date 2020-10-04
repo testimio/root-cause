@@ -26,6 +26,11 @@ export interface FeaturesSettings {
    * When using jest integration, record jest expect calls as assertion steps
    */
   jestAssertions?: boolean;
+
+  /**
+   * Record the DOM content of the page for every step
+   */
+  html?: boolean;
 }
 
 export interface ResolvedSettings {
@@ -34,6 +39,7 @@ export interface ResolvedSettings {
     console: boolean;
     networkLogs: boolean;
     jestAssertions: boolean;
+    html: boolean;
   };
 }
 

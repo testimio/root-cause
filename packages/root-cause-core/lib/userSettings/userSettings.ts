@@ -70,12 +70,15 @@ export function resolveSettings(input: PossibleUserSettings): ResolvedSettings {
   const console = input.features?.console ? input.features?.console : true;
   // off by default
   const jestAssertions = input.features?.jestAssertions ? input.features?.jestAssertions : false;
+  // TODO(giorag): on or off by default? true for testing, change after deciding
+  const html = input.features?.html ?? true;
 
   const features: ResolvedSettings['features'] = {
     screenshots,
     console,
     networkLogs,
     jestAssertions,
+    html,
   };
 
   return {

@@ -83,6 +83,7 @@ describe('with har record', () => {
           console: true,
           networkLogs: true,
           jestAssertions: false,
+          html: true,
         },
       },
       mockedDateConstructor

@@ -98,7 +98,9 @@ export async function attach<TPage extends RootCausePage>(
     instrumentor.registerBeforeHook(puppeteerScreenshot);
   }
 
-  instrumentor.registerBeforeHook(createHtmlCollectionHook(page));
+  if (resolvedActiveFeatures?.html) {
+    instrumentor.registerBeforeHook(createHtmlCollectionHook(page));
+  }
 
   if (resolvedActiveFeatures.networkLogs) {
     instrumentor.registerAfterAllHook(networkLogsAfterAllHook);

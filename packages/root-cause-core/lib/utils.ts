@@ -6,7 +6,11 @@ import crypto from 'crypto';
 import path from 'path';
 import { RESULTS_DIR_NAME, RUNS_DIR_NAME } from './consts';
 import fs from 'fs-extra';
-import type { Page as PuppeteerPage, PageEventObj as PuppeteerPageEventObj } from 'puppeteer';
+import type {
+  CDPSession,
+  Page as PuppeteerPage,
+  PageEventObj as PuppeteerPageEventObj,
+} from 'puppeteer';
 import type {
   Page as PlaywrightPage,
   ChromiumBrowserContext,
@@ -190,6 +194,10 @@ export async function getSystemInfoForPuppeteerPage(page: PuppeteerPage): Promis
     modelVersion,
     browserPlatform,
   };
+}
+
+export function isChromeCDPSession(session: unknown): session is CDPSession {
+  return session && typeof (session as CDPSession).send === 'function';
 }
 
 /**
