@@ -101,13 +101,13 @@ export class MainStore {
   }
 
   @computed get testTotalTime(): number {
-    if (!this.resultsFile) {
+    if (!this.resultsFile || this.resultsFile.steps.length === 0) {
       return 0;
     } else {
       const first = this.resultsFile.steps[0];
       const last = this.resultsFile.steps[this.resultsFile.steps.length - 1];
 
-      return last.startTimestamp - first.startTimestamp;
+      return last.endTimestamp ?? last.startTimestamp - first.startTimestamp;
     }
   }
 
