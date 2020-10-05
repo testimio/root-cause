@@ -51,7 +51,7 @@ jobs:
       - set-npm-auth-token
       - checkout
       - yarn-install-and-ensure-dedup:
-          nodeVersion: "12"
+          nodeVersion: '12'
       - lint-and-build
       - run:
           name: Publish version
@@ -66,7 +66,7 @@ jobs:
     steps:
       - checkout
       - yarn-install-and-ensure-dedup:
-          nodeVersion: "12"
+          nodeVersion: '12'
       - lint-and-build
       - run:
           name: Publish version
@@ -88,7 +88,7 @@ jobs:
       - set-npm-auth-token
       - checkout
       - yarn-install-and-ensure-dedup:
-          nodeVersion: "12"
+          nodeVersion: '12'
       - lint-and-build
       - run:
           name: Publish canary version
@@ -102,7 +102,7 @@ jobs:
     steps:
       - checkout
       - yarn-install-and-ensure-dedup:
-          nodeVersion: "12"
+          nodeVersion: '12'
       - lint-and-build
       - run:
           name: Publish canary version
@@ -122,13 +122,13 @@ workflows:
       - build-and-test:
           matrix:
             parameters:
-              executor: ["node12", "node14"]
-              nodeVersion: ["12", "14"]
+              executor: ['node12', 'node14']
+              nodeVersion: ['12', '14']
             exclude:
               - executor: node12
-                nodeVersion: "14"
+                nodeVersion: '14'
               - executor: node14
-                nodeVersion: "12"
+                nodeVersion: '12'
 
           filters:
             tags:
@@ -155,12 +155,14 @@ workflows:
 commands:
   set-npm-auth-token:
     steps:
-      - run: |
-          if [ -z "${NPM_TOKENAA}" ]; then
-              echo "This job should run only when NPM_TOKEN is available"
-              echo "Exit gracefully"
-              circleci-agent step halt
-          fi
+      - run:
+          name: Ensure we have NPM_TOKEN token
+          command: |
+            if [ -z "${NPM_TOKEN}" ]; then
+                echo "This job should run only when NPM_TOKEN is available"
+                echo "Exit gracefully"
+                circleci-agent step halt
+            fi
       - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
 
   yarn-install-and-ensure-dedup:
@@ -186,7 +188,7 @@ commands:
           # (see: https://github.com/yarnpkg/yarn/issues/4098)
           # we use a regular `yarn` and add an explicit test that the yarn.lock file is unchanged
           name: ensure yarn.lock file is up to date
-          command: "! git diff --name-only | grep yarn.lock"
+          command: '! git diff --name-only | grep yarn.lock'
 
       # running yarn deduplicate & yarn install should fix these errors
       # if it's not working as expected, feel free to comment this out and ping Bnaya
