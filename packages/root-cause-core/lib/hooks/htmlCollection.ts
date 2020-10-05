@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { BeforeHook, RootCausePage } from '../interfaces';
-import { getChromeCDPSession, sendCDPCommand } from '../utils';
+import { getChromeCDPSession, sendCDPMessage } from '../utils';
 
 export async function createHtmlCollectionHook(page: RootCausePage): Promise<BeforeHook> {
   const session = await getChromeCDPSession(page);
@@ -11,7 +11,7 @@ export async function createHtmlCollectionHook(page: RootCausePage): Promise<Bef
   }
 
   return async function htmlCollectionHook({ testContext }) {
-    const { data: mhtmlContent } = await sendCDPCommand(session, 'Page.captureSnapshot', {
+    const { data: mhtmlContent } = await sendCDPMessage(session, 'Page.captureSnapshot', {
       format: 'mhtml',
     });
 

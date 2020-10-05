@@ -6,21 +6,17 @@ import fs from 'fs-extra';
 import path from 'path';
 import type {
   BrowserContext,
-  CDPSession as PlaywrightCDPSession,
   ChromiumBrowser,
   ChromiumBrowserContext,
   Page as PlaywrightPage,
 } from 'playwright';
-import type {
-  CDPSession as PuppeteerCDPSession,
-  Page as PuppeteerPage,
-  PageEventObj as PuppeteerPageEventObj,
-} from 'puppeteer';
+import type { Page as PuppeteerPage, PageEventObj as PuppeteerPageEventObj } from 'puppeteer';
 import type { CallSite, StackLineData } from 'stack-utils';
 import StackUtils from 'stack-utils';
 import type { StartTestParams } from './attachInterfaces';
 import { RESULTS_DIR_NAME, RUNS_DIR_NAME } from './consts';
 import type { RootCausePage } from './interfaces';
+import type { CommandParams, CommandReturnType, EventParams } from './nicerChromeDevToolsTypes';
 
 const USER_CODE_BEFORE_AFTER_TO_SHOW = 3;
 
@@ -82,16 +78,26 @@ export function testUniqueIdentifierFromStartParams(startParams: {
   const str = `${onlyInterestingPath}-${startParams.fullName}`;
   return crypto.createHash('md5').update(str).digest('hex');
 }
+export interface CDPSessionLike {
+  send(method: string, ...args: any[]): Promise<any>;
+}
 
-export async function sendCDPCommand<C extends keyof ProtocolMapping.Commands>(
-  session: PuppeteerCDPSession | PlaywrightCDPSession,
+export async function sendCDPMessage<E extends keyof ProtocolMapping.Events>(
+  session: CDPSessionLike,
+  event: E,
+  ...args: EventParams[E]
+): Promise<void>;
+export async function sendCDPMessage<C extends keyof ProtocolMapping.Commands>(
+  session: CDPSessionLike,
   command: C,
-  ...params: ProtocolMapping.Commands[C]['paramsType']
-): Promise<ProtocolMapping.Commands[C]['returnType']> {
-  // Casting because otherwise it errors on mismatch for the first param (command name).
-  // Playwright has their own generated Devtools Protocol typings,
-  // So they may have inconsistencies/not support all the commands.
-  return await (session as PuppeteerCDPSession).send(command, ...params);
+  ...params: CommandParams[C]
+): Promise<CommandReturnType[C]>;
+export async function sendCDPMessage(
+  session: CDPSessionLike,
+  method: string,
+  ...params: any[]
+): Promise<any> {
+  return await session.send(method, ...params);
 }
 
 // find something better? for now we are cool
@@ -152,7 +158,7 @@ export async function getSystemInfoForPlaywrightChromiumPage(
   // @ts-expect-error
   const crBrowser: ChromiumBrowser = context._browser;
   const cdpSession = await crBrowser.newBrowserCDPSession();
-  const { modelName, modelVersion } = await sendCDPCommand(cdpSession, 'SystemInfo.getInfo');
+  const { modelName, modelVersion } = await sendCDPMessage(cdpSession, 'SystemInfo.getInfo');
 
   const browserPlatform = await page.evaluate(() => navigator.platform);
   const pageViewport =
@@ -187,7 +193,7 @@ export async function getSystemInfoForPuppeteerPage(page: PuppeteerPage): Promis
 
   const cdpSession = await browserTarget.createCDPSession();
   // https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo/#type-ProcessInfo
-  const { modelName, modelVersion } = await sendCDPCommand(cdpSession, 'SystemInfo.getInfo');
+  const { modelName, modelVersion } = await sendCDPMessage(cdpSession, 'SystemInfo.getInfo');
 
   return {
     automationFramework: 'puppeteer',
@@ -201,18 +207,16 @@ export async function getSystemInfoForPuppeteerPage(page: PuppeteerPage): Promis
   };
 }
 
-function isChromeCDPSession(session: unknown): session is PuppeteerCDPSession {
-  return session && typeof (session as PuppeteerCDPSession).send === 'function';
+export function isCDPSession(session: unknown): session is CDPSessionLike {
+  return session && typeof (session as CDPSessionLike).send === 'function';
 }
 
-export async function getChromeCDPSession(
-  page: RootCausePage
-): Promise<PuppeteerCDPSession | null> {
+export async function getChromeCDPSession(page: RootCausePage): Promise<CDPSessionLike | null> {
   if (isNotPlaywrightPage(page)) {
     // Benji promised me it's real
     // TODO(giorag): acquire session in playwright, currently only puppeteer
     const session: unknown = (page as any)._client;
-    return isChromeCDPSession(session) ? session : null;
+    return isCDPSession(session) ? session : null;
   }
 
   const playwrightBrowserContext = page.context();
@@ -222,10 +226,7 @@ export async function getChromeCDPSession(
 
   // https://github.com/microsoft/playwright/blob/master/docs/api.md#class-cdpsession
   const session = await playwrightBrowserContext.newCDPSession(page);
-
-  // It doesn't support all methods cause it's not fully an event emitter (like puppeteer's CDPSession)
-  // But it's good enough
-  return session as PuppeteerCDPSession;
+  return session as CDPSessionLike;
 }
 
 /**
