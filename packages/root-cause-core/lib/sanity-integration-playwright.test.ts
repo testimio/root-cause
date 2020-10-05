@@ -1,20 +1,22 @@
-import { attach } from './index';
-import playwright from 'playwright';
-import fs from 'fs-extra';
-import path from 'path';
-import assert from 'assert';
 import {
-  assertNotNullOrUndefined,
-  testUniqueIdentifierFromStartParams,
-  jsonReduceNoiseReviver,
-} from './utils';
-import {
-  getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin,
   getCleanAllPathsPrettyFormatPlugin,
+  getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin,
 } from '@testim/internal-self-tests-helpers';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { registerJasmineReporterToGlobal, getJasmineCurrentTest } from '@testim/root-cause-jest';
+import { getJasmineCurrentTest, registerJasmineReporterToGlobal } from '@testim/root-cause-jest';
 import type { TestResultFile } from '@testim/root-cause-types';
+import assert from 'assert';
+import fs from 'fs-extra';
+import path from 'path';
+import playwright from 'playwright';
+import { attach } from './index';
+import { PossibleUserSettings } from './userSettings/interfaces';
+import { resolveSettings } from './userSettings/userSettings';
+import {
+  assertNotNullOrUndefined,
+  jsonReduceNoiseReviver,
+  testUniqueIdentifierFromStartParams,
+} from './utils';
 
 describe('Sanity integration test playwright', () => {
   jest.setTimeout(30_000);
@@ -68,10 +70,17 @@ describe('Sanity integration test playwright', () => {
       return nowCallsCounter++;
     };
 
+    const overriddenFeatures: PossibleUserSettings = {
+      features: {
+        html: true,
+      },
+    };
+
     const { page: playedPage, endTest } = await attach(
       {
         page,
         startTestParams,
+        activeFeatures: resolveSettings(overriddenFeatures).features,
       },
       mockedDateConstructor
     );
