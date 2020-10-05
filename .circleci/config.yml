@@ -155,6 +155,12 @@ workflows:
 commands:
   set-npm-auth-token:
     steps:
+      - run: |
+          if [ -z "${NPM_TOKENAA}" ]; then
+              echo "This job should run only when NPM_TOKEN is available"
+              echo "Exit gracefully"
+              circleci-agent step halt
+          fi
       - run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc;
 
   yarn-install-and-ensure-dedup:
