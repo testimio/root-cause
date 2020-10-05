@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "integration-examples/todomvc-jest-playwright"
   ],
   "scripts": {
     "lint": "eslint \"packages\" --ext .ts --ext .js --ext .tsx",
