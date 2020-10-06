@@ -26,6 +26,8 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-no-only-tests": "^2.4.0",
     "husky": "^4.2.5",
+    "jest": "^26",
+    "jest-jasmine2": "^26",
     "lerna": "^3.22.1",
     "prettier": "^2.1.1",
     "typescript": "^3.9.2",

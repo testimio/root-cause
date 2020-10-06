@@ -3,6 +3,7 @@ import { fromPromise } from 'mobx-utils';
 import { createContext, useContext } from 'react';
 import type { StepResult, TestResultFile } from '@testim/root-cause-types';
 import type { Har } from 'har-format';
+import { groupAssertionInnerSteps } from '../utils/groupAssertionInnerSteps';
 
 let apiUrl = process.env.REACT_APP_SERVER_PROXY ? window.location.origin : 'http://localhost:9876';
 
@@ -27,7 +28,11 @@ export class MainStore {
     private externalResourceUrl: (resource: string | undefined) => undefined | string
   ) {}
 
+  @observable public hideInnerSteps = true;
+
   @computed get steps(): StepResult[] {
+    let toReturn: StepResult[] = [];
+
     if (this.resultsFile) {
       // if test failed, we add here another step box with the test failure info
       // we no longer add that in the instrumentation side on test end
@@ -66,13 +71,13 @@ export class MainStore {
 
         newArray.push(testFailStep);
 
-        return newArray;
+        toReturn = newArray;
       }
 
-      return this.resultsFile.steps;
+      toReturn = this.resultsFile.steps;
     }
 
-    return [];
+    return groupAssertionInnerSteps(toReturn, this.hideInnerSteps);
   }
 
   @computed get resultsFile(): TestResultFile | undefined {
@@ -149,6 +154,11 @@ export class MainStore {
 
   @computed get selectedStep(): StepResult | undefined {
     return this.steps[this.selectedStepIndex];
+  }
+
+  @action.bound
+  public toggleHideInnerSteps() {
+    this.hideInnerSteps = !this.hideInnerSteps;
   }
 
   @action.bound

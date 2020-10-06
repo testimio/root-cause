@@ -12184,7 +12184,7 @@ jest-jasmine2@^24.9.0:
     pretty-format "^24.9.0"
     throat "^4.0.0"
 
-jest-jasmine2@^26.5.0:
+jest-jasmine2@^26, jest-jasmine2@^26.5.0:
   version "26.5.0"
   resolved "https://registry.yarnpkg.com/jest-jasmine2/-/jest-jasmine2-26.5.0.tgz#49d57db63f49a183813263b41e61e2a5f988e6a3"
   integrity sha512-NOA6PLORHTRTROOp5VysKCUVpFAjMMXUS1Xw7FvTMeYK5Ewx4rpxhFqiJ7JT4pENap9g9OuXo4cWR/MwCDTEeQ==
@@ -12689,7 +12689,7 @@ jest@24.9.0:
     import-local "^2.0.0"
     jest-cli "^24.9.0"
 
-jest@^26.0.1, jest@^26.5.0:
+jest@^26, jest@^26.0.1, jest@^26.5.0:
   version "26.5.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-26.5.0.tgz#d973c13a3843587b89b02dab1fbcd1f3bf111f09"
   integrity sha512-yW1QTkdpxVWTV2M5cOwVdEww8dRGqL5bb7FOG3YQoMtf7oReCEawmU0+tOKkZUSfcOymbXmCfdBQLzuwOLCx0w==

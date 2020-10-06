@@ -1,6 +1,6 @@
 import { harEntriesInTimeRange } from './harEntriesInTimeRange';
-import harContent from './fixtures/forHarEntriesBetweenTimes/networkLogs.har.json';
-import testResults from './fixtures/forHarEntriesBetweenTimes/results.json';
+import harContent from './fixtures/forHarEntriesInTimeRange/networkLogs.har.json';
+import testResults from './fixtures/forHarEntriesInTimeRange/results.json';
 import type { Har, Entry } from 'har-format';
 
 // @ts-ignore

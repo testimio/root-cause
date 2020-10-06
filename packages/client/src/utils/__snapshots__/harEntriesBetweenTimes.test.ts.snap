@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`harEntriesBetweenTimes First step from fixture goto http://jsbin.testim.io/ces 1`] = `
+exports[`harEntriesInTimeRange First step from fixture goto http://jsbin.testim.io/ces 1`] = `
 Array [
   Object {
     "method": "GET",
@@ -33,7 +33,7 @@ Array [
 ]
 `;
 
-exports[`harEntriesBetweenTimes click [data-job=GET_404] 1`] = `
+exports[`harEntriesInTimeRange click [data-job=GET_404] 1`] = `
 Array [
   Object {
     "method": "GET",
@@ -45,7 +45,7 @@ Array [
 ]
 `;
 
-exports[`harEntriesBetweenTimes click [data-job=GET_OK] 1`] = `
+exports[`harEntriesInTimeRange click [data-job=GET_OK] 1`] = `
 Array [
   Object {
     "method": "GET",
@@ -57,7 +57,7 @@ Array [
 ]
 `;
 
-exports[`harEntriesBetweenTimes click [data-job=POST_404] 1`] = `
+exports[`harEntriesInTimeRange click [data-job=POST_404] 1`] = `
 Array [
   Object {
     "method": "POST",
@@ -69,7 +69,7 @@ Array [
 ]
 `;
 
-exports[`harEntriesBetweenTimes click [data-job=POST_OK] 1`] = `
+exports[`harEntriesInTimeRange click [data-job=POST_OK] 1`] = `
 Array [
   Object {
     "method": "POST",

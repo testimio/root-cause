@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { expect } from '@jest/globals';
+import { utils } from '@testim/root-cause-core';
 
 type ExpectType = typeof expect;
 type ExpectReturnType = ReturnType<ExpectType>;
@@ -99,7 +100,9 @@ class ExpectReturnProxyHandler implements ProxyHandler<ExpectReturnType> {
 
     const { matcherStartHandler, currentModifier } = this;
 
-    return function wrappedFunction(...args: any[]) {
+    // if we know a head of time that the matcher we are going to run is async function/promise,
+    // we could be more ambitious. We can have pre-defined list of matches for that. TBD
+    return utils.appendToFunctionName(function wrappedFunction(...args: any[]) {
       const matcherEndHandler = matcherStartHandler(matcherNameOrModifier, args, currentModifier);
 
       try {
@@ -125,7 +128,7 @@ class ExpectReturnProxyHandler implements ProxyHandler<ExpectReturnType> {
         matcherEndHandler.sync({ success: false, error });
         throw error;
       }
-    };
+    }, `_${currentModifier}_${matcherNameOrModifier}`);
   };
 }
 
