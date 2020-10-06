@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "integration-examples/todomvc-jest-playwright",
+    "integration-examples/todomvc-jest-puppeteer"
   ],
   "scripts": {
     "lint": "eslint \"packages\" --ext .ts --ext .js --ext .tsx",
