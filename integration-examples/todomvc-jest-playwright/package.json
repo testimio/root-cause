@@ -10,7 +10,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@testim/root-cause-jest": "*",
-    "jest": "^26",
+    "jest": "^26.5.0",
     "jest-playwright-preset": "^1.3.1"
   }
 }
