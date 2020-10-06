@@ -2,9 +2,6 @@
 describe('Some test suite', () => {
   it('This test should pass', async () => {
     await page.goto('http://jsbin.testim.io/tog');
-    await new Promise((res) => {
-      setTimeout(res, 1000);
-    });
     await page.click('#forwarning');
     // expect-puppeteer
     // await expect(page).toMatchElement('#forlog', { text: 'Make log' });

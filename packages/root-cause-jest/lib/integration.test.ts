@@ -36,7 +36,7 @@ describe('jest integration test', () => {
             112 |           matcherEndHandler.sync({ success: true });
 
             at Proxy.wrappedFunction_root_toHaveText (../../root-cause-jest/lib/hookExpect.ts:109:29)
-            at Object.<anonymous> (example1.test.ts:26:24)'
+            at Object.<anonymous> (example1.test.ts:23:24)'
 
       Test Suites: 1 failed, 1 total
       Tests:       1 failed, 1 passed, 2 total
