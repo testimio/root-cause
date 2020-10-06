@@ -17,7 +17,8 @@
     "puppeteer": "^5.0.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "root-cause": "ts-node ../../packages/root-cause-core/lib/cli.ts"
   },
   "keywords": []
 }
