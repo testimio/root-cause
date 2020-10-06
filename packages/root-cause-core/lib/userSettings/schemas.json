@@ -28,6 +28,11 @@
             }
           ],
           "description": "Take screenshot for every step\n\nDefault to true, with jpeg 85"
+        },
+        "html": {
+          "default": false,
+          "description": "Record the DOM content of the page for every step\n\nDefaults to false",
+          "type": "boolean"
         }
       },
       "type": "object"

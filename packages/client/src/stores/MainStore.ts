@@ -112,7 +112,7 @@ export class MainStore {
       const first = this.resultsFile.steps[0];
       const last = this.resultsFile.steps[this.resultsFile.steps.length - 1];
 
-      return last.endTimestamp ?? last.startTimestamp - first.startTimestamp;
+      return (last.endTimestamp ?? last.startTimestamp) - first.startTimestamp;
     }
   }
 

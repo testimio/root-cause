@@ -62,6 +62,7 @@ describe('user settings', () => {
       Object {
         "features": Object {
           "console": true,
+          "html": false,
           "jestAssertions": false,
           "networkLogs": true,
           "screenshots": Object {
@@ -100,15 +101,16 @@ describe('user settings', () => {
   test('When settings file is valid, merge with defaults', async () => {
     expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid')))
       .toMatchInlineSnapshot(`
-            Object {
-              "features": Object {
-                "console": true,
-                "jestAssertions": true,
-                "networkLogs": true,
-                "screenshots": false,
-              },
-            }
-        `);
+      Object {
+        "features": Object {
+          "console": true,
+          "html": false,
+          "jestAssertions": true,
+          "networkLogs": true,
+          "screenshots": false,
+        },
+      }
+    `);
 
     expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
             Array [
@@ -126,15 +128,16 @@ describe('user settings', () => {
   test('Network logs off in config', async () => {
     expect(await loadSettings(path.resolve(__dirname, './fixtures', 'valid-network-logs-off')))
       .toMatchInlineSnapshot(`
-            Object {
-              "features": Object {
-                "console": true,
-                "jestAssertions": true,
-                "networkLogs": false,
-                "screenshots": false,
-              },
-            }
-        `);
+      Object {
+        "features": Object {
+          "console": true,
+          "html": false,
+          "jestAssertions": true,
+          "networkLogs": false,
+          "screenshots": false,
+        },
+      }
+    `);
 
     expect(loggerFunction?.mock.calls).toMatchInlineSnapshot(`
             Array [

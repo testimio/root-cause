@@ -39,7 +39,7 @@ Object {
             "column": 5,
             "file": "../root-cause-core/lib/attach.ts",
             "function": "endTest",
-            "line": 110,
+            "line": 115,
           },
           Object {
             "column": 5,

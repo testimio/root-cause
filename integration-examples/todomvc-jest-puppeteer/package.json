@@ -1,0 +1,24 @@
+{
+  "name": "todomvc-jest-puppeteer",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@testim/root-cause-jest": "*",
+    "@types/expect-puppeteer": "^4.4.3",
+    "@types/jest": "^26.0.14",
+    "@types/jest-environment-puppeteer": "^4.3.2",
+    "@types/node": "^12.12.55",
+    "expect-puppeteer": "^4.4.0",
+    "jest": "^26.0.1",
+    "jest-puppeteer": "^4.4.0",
+    "jest-puppeteer-preset": "^4.4.0",
+    "puppeteer": "^5.0.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "root-cause": "ts-node ../../packages/root-cause-core/lib/cli.ts"
+  },
+  "keywords": []
+}
