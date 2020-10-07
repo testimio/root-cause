@@ -105,7 +105,7 @@ export async function openServer(port: number, testPath: string): Promise<string
 
   app.get('/new-steps/:laststep', (req, res) => res.send('OK'));
 
-  app.get('/test/html/:path', serveMhtml(testPath));
+  app.get('/test/html/:file', serveMhtml(testPath));
 
   return new Promise((resolve) => {
     server = app.listen(port, () => {
