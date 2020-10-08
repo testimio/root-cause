@@ -25,9 +25,9 @@ Object {
         "callstack": Array [
           Object {
             "column": 29,
-            "file": "../root-cause-core/lib/assortedHooks.ts",
+            "file": "../root-cause-core/lib/hooks/testEndHook.ts",
             "function": "testEndHook",
-            "line": 118,
+            "line": 17,
           },
           Object {
             "column": 15,
@@ -39,7 +39,7 @@ Object {
             "column": 5,
             "file": "../root-cause-core/lib/attach.ts",
             "function": "endTest",
-            "line": 115,
+            "line": 117,
           },
           Object {
             "column": 5,
