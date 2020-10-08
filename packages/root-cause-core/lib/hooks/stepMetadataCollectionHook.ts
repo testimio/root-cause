@@ -28,7 +28,7 @@ const getSelector = (data: ProxiedMethodCallData[]) => {
   return finalSelector;
 };
 
-export const puppeteerMetadata: AfterHook = async function puppeteerMetadata({
+export const stepMetadataCollectionHook: AfterHook = async function stepMetadataCollectionHook({
   fnName,
   testContext,
   methodCallData,
