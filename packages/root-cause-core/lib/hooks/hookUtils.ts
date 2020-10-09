@@ -1,5 +1,7 @@
 import { StepError } from '@testim/root-cause-types';
 
+export const NOOP_HOOK = async () => undefined;
+
 export function unknownErrorToOurRepresentation(error: unknown): StepError {
   if (error instanceof Error) {
     return {
