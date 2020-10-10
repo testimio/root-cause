@@ -7,6 +7,7 @@ Object {
     "endedTimestamp": 15,
     "fileName": "noise_removed/packages/root-cause-core/lib/with-har-record.test.ts",
     "hasNetworkLogs": true,
+    "profilingFile": "profile.cpuprofile",
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
@@ -26,6 +27,7 @@ Object {
     "testFullName": "with har record with har record",
     "testName": "with har record",
     "timestamp": 2,
+    "traceOutputFileName": "performanceTrace.json",
   },
   "steps": Array [
     Object {

@@ -1,19 +1,21 @@
 .tabWrapper {
-  overflow: hidden;
   width: 100%;
   height: 100%;
 }
 
-.screenshotContainer {
+.screenshotContainer,
+.htmlContainer {
   display: flex;
   width: 100%;
   align-items: center;
   height: 100%;
   justify-content: center;
 }
+
 .screenshotContainer .image {
   overflow: hidden;
 }
+
 .loader:before {
   position: absolute;
   content: ' ';
@@ -44,6 +46,7 @@
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
 .stepContents .navButton {
   width: 28px;
   height: 28px;
@@ -54,12 +57,15 @@
   cursor: pointer;
   user-select: none;
 }
+
 .stepContents .navButton:hover {
   background: #dbdfe3;
 }
+
 .stepContents .navButton:nth-child(3) .arrowIconSvg {
   transform: rotate(180deg);
 }
+
 .stepContents .screenshot {
   background: white;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11);
@@ -87,6 +93,7 @@
   height: 100%;
   background: white;
 }
+
 .app:focus {
   outline: none;
 }

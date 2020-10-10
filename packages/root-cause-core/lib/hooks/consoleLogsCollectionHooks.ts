@@ -1,8 +1,8 @@
 import type { ConsoleMessage as PuppeteerConsoleMessage, JSHandle } from 'puppeteer';
 import type { ConsoleMessage as PlaywrightConsoleMessage } from 'playwright';
-import type { AfterAllHook, BeforeAllHook, BeforeHook, AfterHook } from './interfaces';
-import { isNotPlaywrightPage } from './utils';
-import { addDisposer, runAllDisposers } from './hooksHandlersDisposersHelper';
+import type { AfterAllHook, BeforeAllHook, BeforeHook, AfterHook } from '../interfaces';
+import { isNotPlaywrightPage } from '../utils';
+import { addDisposer, runAllDisposers } from '../hooksHandlersDisposersHelper';
 import type { ConsoleException, ConsoleMessage } from '@testim/root-cause-types';
 
 const DISPOSERS_TOPIC = 'console-logs';

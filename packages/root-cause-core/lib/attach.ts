@@ -1,32 +1,35 @@
 /* eslint-disable no-await-in-loop */
-import fs from 'fs-extra';
 import debug from 'debug';
+import fs from 'fs-extra';
 import {
-  logsBeforeAllHook,
-  logsAfterAllHook,
-  logsBeforeEachHook,
-  logsAfterEachHook,
-} from './consoleLogsCollection';
-import { testResultDirFromStartParams, getSelfCallSiteFromStacktrace } from './utils';
-import { errorInStepHook, testSystemInfoHook, testEndHook } from './assortedHooks';
-import { puppeteerScreenshot } from './hooks/screenshotCollection';
-import { puppeteerMetadata } from './hooks/step-metadata-collection';
-import { TestContext } from './TestContext';
-import { PuppeteerPageHooker } from './PuppeteerPageHooker';
-import {
+  ActiveFeatures,
+  AssertionReport,
   AttachParams,
   AttachReturn,
   TestEndStatus,
-  AssertionReport,
-  ActiveFeatures,
 } from './attachInterfaces';
 import { FALLBACK_RUN_ID, IS_NODE_10 } from './consts';
-import { stacktraceHook } from './stacktraceHook';
+import {
+  logsAfterAllHook,
+  logsAfterEachHook,
+  logsBeforeAllHook,
+  logsBeforeEachHook,
+} from './hooks/consoleLogsCollectionHooks';
+import { errorInStepHook } from './hooks/errorInStepHook';
+import { createHtmlCollectionHook } from './hooks/htmlCollection';
+import { networkLogsAfterAllHook, networkLogsBeforeAllHook } from './hooks/networkLogsHooks';
+import { instrumentProfilingHooks } from './hooks/profilingHooks';
+import { puppeteerScreenshot } from './hooks/screenshotCollectionHook';
+import { stacktraceHook } from './hooks/stacktraceHook';
+import { stepMetadataCollectionHook } from './hooks/stepMetadataCollectionHook';
+import { testEndHook } from './hooks/testEndHook';
+import { testSystemInfoHook } from './hooks/testSystemInfoHook';
 import { RootCausePage } from './interfaces';
 import { persist } from './persist';
-import { networkLogsBeforeAllHook, networkLogsAfterAllHook } from './networkLogs';
+import { PuppeteerPageHooker } from './PuppeteerPageHooker';
+import { TestContext } from './TestContext';
 import { resolveSettings } from './userSettings/userSettings';
-import { createHtmlCollectionHook } from './hooks/htmlCollection';
+import { getSelfCallSiteFromStacktrace, testResultDirFromStartParams } from './utils';
 
 const loggerDebug = debug('root-cause:debug');
 // swap with this if you need clear log location for dev time and so
@@ -89,7 +92,7 @@ export async function attach<TPage extends RootCausePage>(
   }
 
   instrumentor.registerAfterHook(errorInStepHook);
-  instrumentor.registerAfterHook(puppeteerMetadata);
+  instrumentor.registerAfterHook(stepMetadataCollectionHook);
   instrumentor.registerBeforeHook(async ({ proxyContext, fnName }) => {
     loggerDebug(`>>${proxyContext.constructor.name}>>${fnName}`);
   });
@@ -105,6 +108,8 @@ export async function attach<TPage extends RootCausePage>(
   if (resolvedActiveFeatures.networkLogs) {
     instrumentor.registerAfterAllHook(networkLogsAfterAllHook);
   }
+
+  await instrumentProfilingHooks(instrumentor, page);
 
   instrumentor.registerAfterAllHook(testEndHook);
 
