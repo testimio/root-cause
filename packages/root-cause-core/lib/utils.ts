@@ -105,6 +105,10 @@ export function isNotPlaywrightPage(page: RootCausePage): page is PuppeteerPage 
   return !('exposeBinding' in page);
 }
 
+export function isPlaywrightPage(page: RootCausePage): page is PlaywrightPage {
+  return !isNotPlaywrightPage(page);
+}
+
 export function isPlaywrightChromiumBrowserContext(
   context: BrowserContext
 ): context is ChromiumBrowserContext {

@@ -40,7 +40,7 @@ Object {
             "column": 5,
             "file": "lib/attach.ts",
             "function": "endTest",
-            "line": 122,
+            "line": 120,
           },
           Object {
             "column": 5,
@@ -74,6 +74,7 @@ Object {
     "testFullName": "Sanity integration test Sanity integration test 1",
     "testName": "Sanity integration test 1",
     "timestamp": 2,
+    "traceOutputFileName": "performanceTrace.json",
   },
   "steps": Array [
     Object {

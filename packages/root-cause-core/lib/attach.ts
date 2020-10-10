@@ -18,7 +18,7 @@ import {
 import { errorInStepHook } from './hooks/errorInStepHook';
 import { createHtmlCollectionHook } from './hooks/htmlCollection';
 import { networkLogsAfterAllHook, networkLogsBeforeAllHook } from './hooks/networkLogsHooks';
-import { createProfilingHooks } from './hooks/profilingHooks';
+import { instrumentProfilingHooks } from './hooks/profilingHooks';
 import { puppeteerScreenshot } from './hooks/screenshotCollectionHook';
 import { stacktraceHook } from './hooks/stacktraceHook';
 import { stepMetadataCollectionHook } from './hooks/stepMetadataCollectionHook';
@@ -109,9 +109,7 @@ export async function attach<TPage extends RootCausePage>(
     instrumentor.registerAfterAllHook(networkLogsAfterAllHook);
   }
 
-  const { startProfilingHook, stopProfilingHook } = await createProfilingHooks(page);
-  instrumentor.registerBeforeAllHook(startProfilingHook);
-  instrumentor.registerAfterAllHook(stopProfilingHook);
+  await instrumentProfilingHooks(instrumentor, page);
 
   instrumentor.registerAfterAllHook(testEndHook);
 
