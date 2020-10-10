@@ -7,6 +7,7 @@ Object {
     "endedTimestamp": 26,
     "fileName": "noise_removed/packages/root-cause-core/lib/launch-api.test.ts",
     "hasNetworkLogs": true,
+    "profilingFile": "profile.cpuprofile",
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
@@ -39,7 +40,7 @@ Object {
             "column": 5,
             "file": "lib/attach.ts",
             "function": "endTest",
-            "line": 117,
+            "line": 120,
           },
           Object {
             "column": 5,
@@ -82,6 +83,7 @@ Object {
     "testFullName": "1-Launch api test Launch api test = failing",
     "testName": "Launch api test Launch api test = failing",
     "timestamp": 3,
+    "traceOutputFileName": "performanceTrace.json",
   },
   "steps": Array [
     Object {
@@ -798,6 +800,7 @@ Object {
     "endedTimestamp": 26,
     "fileName": "noise_removed/packages/root-cause-core/lib/launch-api.test.ts",
     "hasNetworkLogs": true,
+    "profilingFile": "profile.cpuprofile",
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
@@ -817,6 +820,7 @@ Object {
     "testFullName": "1-Launch api test Launch api test passing",
     "testName": "Launch api test Launch api test passing",
     "timestamp": 3,
+    "traceOutputFileName": "performanceTrace.json",
   },
   "steps": Array [
     Object {

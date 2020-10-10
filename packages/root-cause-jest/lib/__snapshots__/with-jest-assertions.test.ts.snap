@@ -7,6 +7,7 @@ Object {
     "endedTimestamp": 32,
     "fileName": "noise_removed/packages/root-cause-jest/lib/with-jest-assertions.test.ts",
     "hasNetworkLogs": true,
+    "profilingFile": "profile.cpuprofile",
     "systemInfo": Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
@@ -39,7 +40,7 @@ Object {
             "column": 5,
             "file": "../root-cause-core/lib/attach.ts",
             "function": "endTest",
-            "line": 117,
+            "line": 120,
           },
           Object {
             "column": 5,
@@ -73,6 +74,7 @@ Object {
     "testFullName": "Sanity integration test with jest assertions",
     "testName": "with jest assertions",
     "timestamp": 2,
+    "traceOutputFileName": "performanceTrace.json",
   },
   "steps": Array [
     Object {

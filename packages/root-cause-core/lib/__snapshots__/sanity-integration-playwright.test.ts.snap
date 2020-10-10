@@ -7,6 +7,7 @@ Object {
     "endedTimestamp": 29,
     "fileName": "noise_removed/packages/root-cause-core/lib/sanity-integration-playwright.test.ts",
     "hasNetworkLogs": true,
+    "profilingFile": "profile.cpuprofile",
     "systemInfo": Object {
       "automationFramework": "playwright",
       "browser": "chromium",
@@ -39,7 +40,7 @@ Object {
             "column": 5,
             "file": "lib/attach.ts",
             "function": "endTest",
-            "line": 117,
+            "line": 120,
           },
           Object {
             "column": 5,
