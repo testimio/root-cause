@@ -7,8 +7,7 @@ import {
 import puppeteer from 'puppeteer';
 import fs from 'fs-extra';
 import path from 'path';
-import { registerJasmineReporterToGlobal, makeHookExpect } from './helpers';
-import { getJasmineCurrentTest } from './expectedToBeCalledFromInsideJasmineJestTest';
+import { ensurePrerequisite, makeHookExpect, getCurrentTest } from './helpers';
 import { TestResultFile } from '@testim/root-cause-types';
 
 const { testUniqueIdentifierFromStartParams, jsonReduceNoiseReviver } = utils;
@@ -23,7 +22,7 @@ describe('Sanity integration test', () => {
   let page: puppeteer.Page;
 
   beforeAll(async () => {
-    registerJasmineReporterToGlobal();
+    ensurePrerequisite();
 
     // https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
     // Not optimal, but didn't work on circle on circleci/node:12.17-stretch-browsers without it
@@ -46,7 +45,7 @@ describe('Sanity integration test', () => {
   });
 
   test('with jest assertions', async () => {
-    const currentTest = getJasmineCurrentTest();
+    const currentTest = getCurrentTest();
 
     const localRunId = new Date().toString();
 
