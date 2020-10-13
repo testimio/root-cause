@@ -53,7 +53,7 @@ export function serveMhtml(testPath: string): RequestHandler {
       }
 
       sendFile(res, result);
-    })().catch(error => {
+    })().catch((error) => {
       return failWith(res, 500, `Error: ${error}<br />${error.stack.replace(/\n/, '<br />')}`);
     });
   };
