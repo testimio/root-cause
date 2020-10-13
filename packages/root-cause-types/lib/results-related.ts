@@ -125,6 +125,7 @@ export type StepResult = {
   selector?: string;
   fnName?: string;
   text?: string;
+  mhtmlFile?: string;
 
   index: number;
   startTimestamp: number;

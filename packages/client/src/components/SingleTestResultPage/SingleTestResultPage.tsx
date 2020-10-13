@@ -4,12 +4,13 @@ import { StackTrace } from '../StackTrace/StackTrace';
 import { Logs } from '../Logs/Logs';
 import { StepsSidebar } from '../StepsSidebar/StepsSidebar';
 import { TestResultTitlebar } from '../TestResultTitlebar/TestResultTitlebar';
-import { StepResultTitlebar } from '../StepResultTitlebar/StepResultTitlebar';
+import { StepResultTab, StepResultTitlebar } from '../StepResultTitlebar/StepResultTitlebar';
 import styles from './styles.module.css';
 import { NetworkViewer } from '../NetworkViewer/NetworkViewer';
 import type { MainStore } from '../../stores/MainStore';
 import { ZeroStepsTest } from '../ZeroStepsTest/ZeroStepsTest';
 import { observer } from 'mobx-react-lite';
+import { HtmlViewer } from '../HtmlViewer/HtmlViewer';
 
 export const SingleTestResultPage = observer(function SingleTestResultPage({
   mainStore,
@@ -18,9 +19,7 @@ export const SingleTestResultPage = observer(function SingleTestResultPage({
   mainStore: MainStore;
   isClickimMode: boolean;
 }) {
-  const [selectedTab, selectTab] = React.useState<
-    'screenshots' | 'stacktrace' | 'logs' | 'network'
-  >('screenshots');
+  const [selectedTab, selectTab] = React.useState<StepResultTab>('screenshots');
 
   const { selectedStep } = mainStore;
 
@@ -44,9 +43,14 @@ export const SingleTestResultPage = observer(function SingleTestResultPage({
       );
     }
 
+    if (selectedTab === 'html') {
+      return <HtmlViewer step={selectedStep} className={styles.htmlContainer} />;
+    }
+
     if (selectedTab === 'stacktrace') {
       return <StackTrace step={selectedStep} />;
     }
+
     if (selectedTab === 'logs') {
       return <Logs step={selectedStep} />;
     }
@@ -78,6 +82,7 @@ export const SingleTestResultPage = observer(function SingleTestResultPage({
           selectedTab={selectedTab}
           selectTab={selectTab}
           harFileContents={mainStore.harFile}
+          hasHtml={!!mainStore.selectedStep.mhtmlFile}
         />
       )}
       <div className={styles.stepContents}>
