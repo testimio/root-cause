@@ -5,6 +5,10 @@
     "scripts": {
         "postinstall": "echo 'you probably want to install @testim/root-cause and not this package'"
     },
+    "bin": {
+      "root-cause": "cli.js",
+      "rc": "cli.js"
+    },
     "keywords": [],
     "author": "Dev <dev@testim.io>",
     "license": "AGPL-3.0-only",

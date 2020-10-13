@@ -13,6 +13,10 @@
     "root-cause": "ts-node ../root-cause-core/lib/cli",
     "rc": "ts-node ../root-cause-core/lib/cli"
   },
+  "bin": {
+    "root-cause": "lib/cli.js",
+    "rc": "lib/cli.js"
+  },
   "main": "./index",
   "license": "AGPL-3.0-only",
   "typesVersions": {
