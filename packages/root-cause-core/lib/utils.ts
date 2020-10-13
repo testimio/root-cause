@@ -399,6 +399,7 @@ const stackFramesToFilter = [
   'PuppeteerPageHooker.makeStep',
   'stacktraceHook',
   'extractCodeLocationDetailsSync',
+  'extractCodeLocationDetailsSyncOrUndefined',
 ];
 
 export function extractCodeLocationDetailsSync(
@@ -420,6 +421,13 @@ export function extractCodeLocationDetailsSync(
 
     return userTestFile.endsWith(callSiteFileName);
   });
+
+  // in some cases, the describe body, or test body won't be in the userTestFile
+  // we don't have good handling for it, so we just bail
+  // extractCodeLocationDetailsSync users will need to manage it, it should not crash anything
+  if (callSitesInUserCode.length === 0) {
+    throw new Error('Callstack does not start in the test file');
+  }
 
   // User code might have more than one lines in the stack
   // we assume that the first line is the actual test code and not helper function

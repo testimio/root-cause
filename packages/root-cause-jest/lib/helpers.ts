@@ -201,9 +201,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: !CONSTS.IS_NODE_10
-                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
-                : undefined,
+              stepCodeLocation: extractCodeLocationDetailsSyncOrUndefined(
+                userTestFile,
+                workingDirectory
+              ),
             };
             attachController.reportAssertion(report);
           } else {
@@ -214,9 +215,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: !CONSTS.IS_NODE_10
-                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
-                : undefined,
+              stepCodeLocation: extractCodeLocationDetailsSyncOrUndefined(
+                userTestFile,
+                workingDirectory
+              ),
               stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResult.error),
             };
             attachController.reportAssertion(report);
@@ -231,9 +233,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: !CONSTS.IS_NODE_10
-                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
-                : undefined,
+              stepCodeLocation: extractCodeLocationDetailsSyncOrUndefined(
+                userTestFile,
+                workingDirectory
+              ),
             };
             attachController.reportAssertion(report);
           } else {
@@ -244,9 +247,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: !CONSTS.IS_NODE_10
-                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
-                : undefined,
+              stepCodeLocation: extractCodeLocationDetailsSyncOrUndefined(
+                userTestFile,
+                workingDirectory
+              ),
               stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResultAsync.error),
             };
             attachController.reportAssertion(report);
@@ -255,4 +259,16 @@ export function makeHookExpect<T extends RootCausePage>(
       };
     };
   });
+}
+
+function extractCodeLocationDetailsSyncOrUndefined(userTestFile: string, workingDirectory: string) {
+  if (CONSTS.IS_NODE_10) {
+    return undefined;
+  }
+
+  try {
+    return utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory);
+  } catch (e) {
+    return undefined;
+  }
 }
