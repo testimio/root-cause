@@ -1,5 +1,5 @@
 import * as helpers from './helpers';
 
-helpers.registerJasmineReporterToGlobal();
+helpers.ensurePrerequisite();
 beforeEach(() => helpers.forBeforeEachOwnGlobals());
 afterEach(helpers.forAfterEachEndTestOwnGlobals);

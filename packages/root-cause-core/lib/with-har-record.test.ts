@@ -14,7 +14,7 @@ import {
 import { guid } from './testim-services-api/guid';
 import { updateHistoryFromRootCauseResultsOnly } from './updateHistoryFromRootCauseResultsOnly';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { registerJasmineReporterToGlobal, getJasmineCurrentTest } from '@testim/root-cause-jest';
+import { ensurePrerequisite, getCurrentTest } from '@testim/root-cause-jest';
 
 describe('with har record', () => {
   jest.setTimeout(30_000);
@@ -28,7 +28,7 @@ describe('with har record', () => {
   let page: puppeteer.Page;
 
   beforeAll(async () => {
-    registerJasmineReporterToGlobal();
+    ensurePrerequisite();
 
     // https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
     // Not optimal, but didn't work on circle on circleci/node:12.17-stretch-browsers without it
@@ -51,7 +51,7 @@ describe('with har record', () => {
   });
 
   test('with har record', async () => {
-    const currentTest = getJasmineCurrentTest();
+    const currentTest = getCurrentTest();
 
     const localRunId = guid();
 

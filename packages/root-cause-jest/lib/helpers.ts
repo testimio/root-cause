@@ -5,34 +5,60 @@ import { expectDataToAssertionReport } from './expectDataToAssertionReport';
 import {
   getJasmineCurrentTest,
   getEndStatusFromJasmineJest,
-} from './expectedToBeCalledFromInsideJasmineJestTest';
+  registerJasmineCurrentTest,
+  isJasmine2,
+} from './jasmine2JestRelated';
+import {
+  isRootCauseCircusEnvActive,
+  getEndStatusFromCircus,
+  getCurrentTestInfoFromCircus,
+} from './circusRelated';
+import type { TestEndStatus } from '@testim/root-cause-types';
+import type { FailedExpectationsSubset, CurrentTestInfo } from './interfaces';
 
 declare const page: RootCausePage;
 let endTest: EndTestFunction;
 let originalPage: RootCausePage;
 let unhookExpect: () => void;
 
-export function registerJasmineReporterToGlobal() {
-  // @ts-ignore
-  if (typeof jasmine === 'undefined') {
-    throw new Error('this file is only expected to be jasmine jest setupFilesAfterEnv');
+export function ensurePrerequisite() {
+  if (isJasmine2()) {
+    registerJasmineCurrentTest();
+    return;
   }
 
-  // https://github.com/facebook/jest/issues/7774#issuecomment-520780088
+  if (isRootCauseCircusEnvActive()) {
+    return;
+  }
 
-  // @ts-ignore
-  jasmine.getEnv().addReporter({
+  throw new Error('Root Cause Integration Error');
+}
+
+export function getCurrentTest(): CurrentTestInfo {
+  if (typeof jasmine !== 'undefined') {
     // @ts-ignore
-    specStarted: (result) => {
-      // @ts-ignore
-      jasmine.currentTest = result;
-    },
-    // @ts-ignore
-    specDone: (result) => {
-      // @ts-ignore
-      jasmine.currentTest = result;
-    },
-  });
+    if (typeof jasmine.currentTest === 'undefined') {
+      throw new Error('global jasmine.currentTest is missing');
+    }
+
+    return getJasmineCurrentTest();
+  }
+
+  if (isRootCauseCircusEnvActive()) {
+    return getCurrentTestInfoFromCircus();
+  }
+
+  throw new Error(
+    'Root Cause integration issue: CurrentTestInfo is not available from jasmine or circus'
+  );
+}
+
+export function getEndStatus(): TestEndStatus<unknown, FailedExpectationsSubset> {
+  if (isRootCauseCircusEnvActive()) {
+    return getEndStatusFromCircus();
+  }
+
+  return getEndStatusFromJasmineJest();
 }
 
 export async function forBeforeEachGivenPage<TPage extends RootCausePage>(page: TPage) {
@@ -83,7 +109,7 @@ export async function forBeforeEachOwnGlobals() {
 
   const userSettings = await loadSettings();
 
-  const currentTest = getJasmineCurrentTest();
+  const currentTest = getCurrentTest();
 
   let runId: string;
 
@@ -140,7 +166,7 @@ export async function forBeforeEachOwnGlobals() {
 
 export async function forAfterEachEndTestOwnGlobals() {
   // @ts-ignore
-  global.endTest(getEndStatusFromJasmineJest());
+  global.endTest(getEndStatus());
 
   // @ts-ignore
   if (global.unhookExpect) {
@@ -153,7 +179,7 @@ export async function forAfterEachEndTestOwnGlobals() {
 }
 
 export async function forAfterEachEndTest(localEndTest: EndTestFunction) {
-  localEndTest(getEndStatusFromJasmineJest());
+  localEndTest(getEndStatus());
 }
 
 export function makeHookExpect<T extends RootCausePage>(
@@ -175,9 +201,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: !CONSTS.IS_NODE_10
-                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
-                : undefined,
+              stepCodeLocation: extractCodeLocationDetailsSyncOrUndefined(
+                userTestFile,
+                workingDirectory
+              ),
             };
             attachController.reportAssertion(report);
           } else {
@@ -188,9 +215,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: !CONSTS.IS_NODE_10
-                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
-                : undefined,
+              stepCodeLocation: extractCodeLocationDetailsSyncOrUndefined(
+                userTestFile,
+                workingDirectory
+              ),
               stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResult.error),
             };
             attachController.reportAssertion(report);
@@ -205,9 +233,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: !CONSTS.IS_NODE_10
-                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
-                : undefined,
+              stepCodeLocation: extractCodeLocationDetailsSyncOrUndefined(
+                userTestFile,
+                workingDirectory
+              ),
             };
             attachController.reportAssertion(report);
           } else {
@@ -218,9 +247,10 @@ export function makeHookExpect<T extends RootCausePage>(
                 matcherName,
                 matcherArgs,
               }),
-              stepCodeLocation: !CONSTS.IS_NODE_10
-                ? utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory)
-                : undefined,
+              stepCodeLocation: extractCodeLocationDetailsSyncOrUndefined(
+                userTestFile,
+                workingDirectory
+              ),
               stepError: utils.unknownValueThatIsProbablyErrorToStepError(matcherResultAsync.error),
             };
             attachController.reportAssertion(report);
@@ -229,4 +259,16 @@ export function makeHookExpect<T extends RootCausePage>(
       };
     };
   });
+}
+
+function extractCodeLocationDetailsSyncOrUndefined(userTestFile: string, workingDirectory: string) {
+  if (CONSTS.IS_NODE_10) {
+    return undefined;
+  }
+
+  try {
+    return utils.extractCodeLocationDetailsSync(userTestFile, workingDirectory);
+  } catch (e) {
+    return undefined;
+  }
 }

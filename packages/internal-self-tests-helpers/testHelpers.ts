@@ -55,6 +55,30 @@ export function getMochaTestTimeZeroPrettyFormatPlugin(): jest.SnapshotSerialize
   return plugin;
 }
 
+export function trimTrailingSpacesPrettyFormatPlugin(): jest.SnapshotSerializerPlugin {
+  const plugin: Plugin = {
+    test(val) {
+      if (typeof val === 'string' && val.match(/ +?\n/m)) {
+        return true;
+      }
+
+      return false;
+    },
+    serialize(valueToSerialize: string, config, indentation, depth, refs, printer) {
+      return printer(
+        valueToSerialize.replace(/ +?\n/gm, '\n'),
+        config,
+        indentation,
+        depth,
+        refs,
+        false
+      );
+    },
+  };
+
+  return plugin;
+}
+
 export function getCleanAllPathsPrettyFormatPlugin(
   processCwd: string
 ): jest.SnapshotSerializerPlugin {

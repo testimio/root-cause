@@ -3,7 +3,7 @@ import {
   getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin,
 } from '@testim/internal-self-tests-helpers';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { getJasmineCurrentTest, registerJasmineReporterToGlobal } from '@testim/root-cause-jest';
+import { ensurePrerequisite, getCurrentTest } from '@testim/root-cause-jest';
 import type { TestResultFile } from '@testim/root-cause-types';
 import assert from 'assert';
 import fs from 'fs-extra';
@@ -28,7 +28,7 @@ describe('Sanity integration test', () => {
   let page: puppeteer.Page;
 
   beforeAll(async () => {
-    registerJasmineReporterToGlobal();
+    ensurePrerequisite();
 
     // https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
     // Not optimal, but didn't work on circle on circleci/node:12.17-stretch-browsers without it
@@ -54,7 +54,7 @@ describe('Sanity integration test', () => {
   });
 
   it('Sanity integration test 1', async () => {
-    const currentTestInfo = getJasmineCurrentTest();
+    const currentTestInfo = getCurrentTest();
 
     const startTestParams = {
       runId: 'mock_invocation_id',

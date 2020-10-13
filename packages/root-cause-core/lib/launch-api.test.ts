@@ -5,7 +5,7 @@ import { readJsonTestSnapshotFile } from './utils';
 import ms from 'ms';
 import { launchImpl } from './launch';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { registerJasmineReporterToGlobal, getJasmineCurrentTest } from '@testim/root-cause-jest';
+import { ensurePrerequisite, getCurrentTest } from '@testim/root-cause-jest';
 import { guid } from './testim-services-api/guid';
 import {
   getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin,
@@ -19,11 +19,11 @@ describe('Launch api test', () => {
   jest.setTimeout(ms('10 seconds'));
 
   beforeAll(() => {
-    registerJasmineReporterToGlobal();
+    ensurePrerequisite();
   });
 
   it('Launch api test passing', async () => {
-    const testInfo = getJasmineCurrentTest();
+    const testInfo = getCurrentTest();
 
     const mockedDateConstructor: typeof Date = Object.create(Date);
 
@@ -103,7 +103,7 @@ describe('Launch api test', () => {
       return nowCallsCounter++;
     };
 
-    const testInfo = getJasmineCurrentTest();
+    const testInfo = getCurrentTest();
 
     const localRunId = guid();
 

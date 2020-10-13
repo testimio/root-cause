@@ -2,6 +2,19 @@ export interface ReporterOptions {
   runId?: string;
 }
 
+/**
+ * We extract this info via jasmine apis in jasmine2 or via our env wrapper in circus
+ */
+export interface CurrentTestInfo {
+  testPath: string;
+  description: string;
+  /**
+   * The name is the concatenated describes stack + description
+   */
+  fullName: string;
+  failedExpectations: FailedExpectationsSubset[];
+}
+
 // https://github.com/facebook/jest/issues/7774#issuecomment-626217091
 // https://jasmine.github.io/api/edge/global.html#SpecResult
 export interface JasmineCurrentTestInfo {
@@ -26,5 +39,11 @@ export interface FailedExpectations {
   matcherName: string;
   message: string;
   passed: boolean;
+  stack: string;
+}
+
+export interface FailedExpectationsSubset {
+  error: Error;
+  message: string;
   stack: string;
 }
