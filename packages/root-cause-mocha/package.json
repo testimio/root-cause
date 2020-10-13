@@ -18,6 +18,10 @@
     "root-cause": "ts-node ../root-cause-core/lib/cli",
     "rc": "ts-node ../root-cause-core/lib/cli"
   },
+  "bin": {
+    "root-cause": "cli",
+    "rc": "cli"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/testimio/root-cause.git"
