@@ -6,8 +6,8 @@
         "postinstall": "echo 'you probably want to install @testim/root-cause and not this package'"
     },
     "bin": {
-      "root-cause": "cli",
-      "rc": "cli"
+      "root-cause": "cli.js",
+      "rc": "cli.js"
     },
     "keywords": [],
     "author": "Dev <dev@testim.io>",

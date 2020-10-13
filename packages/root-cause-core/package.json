@@ -15,8 +15,8 @@
     "node": ">= 10.0.0"
   },
   "bin": {
-    "root-cause": "lib/cli",
-    "rc": "lib/cli"
+    "root-cause": "lib/cli.js",
+    "rc": "lib/cli.js"
   },
   "scripts": {
     "build": "./scripts/build.sh",

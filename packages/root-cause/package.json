@@ -11,8 +11,8 @@
     }
   },
   "bin": {
-    "root-cause": "src/cli",
-    "rc": "src/cli"
+    "root-cause": "src/cli.js",
+    "rc": "src/cli.js"
   },
   "engines": {
     "node": ">= 10.0.0"

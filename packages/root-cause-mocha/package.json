@@ -19,8 +19,8 @@
     "rc": "ts-node ../root-cause-core/lib/cli"
   },
   "bin": {
-    "root-cause": "cli",
-    "rc": "cli"
+    "root-cause": "cli.js",
+    "rc": "cli.js"
   },
   "repository": {
     "type": "git",
