@@ -1,8 +1,6 @@
 {
   "features": {
-    "console": true,
     "jestAssertions": true,
-    "networkLogs": true,
-    "screenshots": true
+    "html": true
   }
 }

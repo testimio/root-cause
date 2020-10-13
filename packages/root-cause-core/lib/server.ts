@@ -1,13 +1,13 @@
-import express from 'express';
-import path from 'path';
-import fs from 'fs-extra';
+import childProcess from 'child_process';
 import cors from 'cors';
 import debug from 'debug';
-import childProcess from 'child_process';
-import http, { ServerResponse, IncomingMessage } from 'http';
+import express from 'express';
+import fs from 'fs-extra';
+import http, { IncomingMessage, ServerResponse } from 'http';
+import path from 'path';
+import { serveMhtml } from './utils/serve-mhtml';
 
 const loggerDebug = debug('root-cause:debug');
-const loggerError = debug('root-cause:error');
 
 const DEV_STATIC_FILES_LOCATION = path.resolve(__dirname, '../../client/build');
 const PROD_STATIC_FILES_LOCATION = path.resolve(__dirname, '../client-static');
@@ -104,6 +104,8 @@ export async function openServer(port: number, testPath: string): Promise<string
   });
 
   app.get('/new-steps/:laststep', (req, res) => res.send('OK'));
+
+  app.get('/test/html/:file', serveMhtml(testPath));
 
   return new Promise((resolve) => {
     server = app.listen(port, () => {
