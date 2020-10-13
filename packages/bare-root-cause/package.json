@@ -1,18 +1,18 @@
 {
     "name": "root-cause",
-    "version": "0.1.22",
+    "version": "0.1.23",
     "description": "Root Cause bare",
     "scripts": {
         "postinstall": "echo 'you probably want to install @testim/root-cause and not this package'"
     },
     "bin": {
-      "root-cause": "cli.js",
-      "rc": "cli.js"
+        "root-cause": "cli.js",
+        "rc": "cli.js"
     },
     "keywords": [],
     "author": "Dev <dev@testim.io>",
     "license": "AGPL-3.0-only",
     "dependencies": {
-        "@testim/root-cause": "0.1.22"
+        "@testim/root-cause": "0.1.23"
     }
 }
