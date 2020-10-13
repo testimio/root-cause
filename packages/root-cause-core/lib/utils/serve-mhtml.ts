@@ -1,5 +1,5 @@
 import debug from 'debug';
-import { RequestHandler, Response } from 'express';
+import type { RequestHandler, Response } from 'express';
 import { IFileResult, Parser } from 'fast-mhtml';
 import fs from 'fs-extra';
 import path from 'path';
@@ -36,25 +36,25 @@ export function serveMhtml(testPath: string): RequestHandler {
     return splitFiles[0];
   }
 
-  return async ({ params: { file } }, res) => {
-    if (file.endsWith('mhtml')) {
-      try {
+  return function serveMhtmlMiddleware({ params: { file } }, res) {
+    (async () => {
+      if (file.endsWith('mhtml')) {
         const indexFromHtml = await processMhtml(file);
         return sendFile(res, indexFromHtml);
-      } catch (err) {
-        return failWith(res, 500, `Error: ${err}<br />${err.stack.replace(/\n/, '<br />')}`);
       }
-    }
 
-    const result = fileCache.get(file);
-    if (!result) {
-      return failWith(
-        res,
-        404,
-        `Missing ${file}, should be one of: ${JSON.stringify(fileCache.keys())}`
-      );
-    }
+      const result = fileCache.get(file);
+      if (!result) {
+        return failWith(
+          res,
+          404,
+          `Missing ${file}, should be one of: ${JSON.stringify(fileCache.keys())}`
+        );
+      }
 
-    sendFile(res, result);
+      sendFile(res, result);
+    })().catch(error => {
+      return failWith(res, 500, `Error: ${error}<br />${error.stack.replace(/\n/, '<br />')}`);
+    });
   };
 }
