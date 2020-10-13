@@ -30,24 +30,40 @@ function Tab({
   );
 }
 
-const SIMPLE_TABS: StepResultTab[] = ['screenshots', 'html', 'stacktrace', 'logs'];
+const ALL_TABS: StepResultTab[] = ['screenshots', 'html', 'stacktrace', 'logs', 'network'];
 
 export const StepResultTitlebar = function StepResultTitlebar({
   selectedStep,
   selectedTab,
   selectTab,
   harFileContents,
+  hasHtml,
   isClickimMode,
 }: {
   selectedStep: StepResult;
   selectedTab: StepResultTab;
   selectTab(tab: StepResultTab): void;
   harFileContents: Har | undefined;
+  hasHtml: boolean;
   isClickimMode: boolean;
 }) {
   const [hover, setHover] = useState<boolean>(false);
   const [toolTipNeeded, setToolTipNeeded] = useState<boolean>(false);
   const stepNameRef = useRef<HTMLSpanElement>(null);
+
+  const actualTabs = React.useMemo(() => {
+    return ALL_TABS.filter((tab) => {
+      if (tab === 'html' && !hasHtml) {
+        return false;
+      }
+
+      if (tab === 'network' && !harFileContents) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [hasHtml, harFileContents]);
 
   const stepErrorStr = selectedStep.stepError?.message
     ? stripAnsi(selectedStep.stepError?.message).substr(0, 100)
@@ -86,10 +102,9 @@ export const StepResultTitlebar = function StepResultTitlebar({
         <span className={styles.stepError}>{stepErrorStr}</span>
       </div>
       <div className={styles.tabs}>
-        {SIMPLE_TABS.map((tabName) => (
+        {actualTabs.map((tabName) => (
           <Tab {...{ key: tabName, tabName, selectedTab, selectTab }} />
         ))}
-        {harFileContents && <Tab {...{ tabName: 'network', selectedTab, selectTab }} />}
       </div>
     </div>
   );

@@ -82,6 +82,7 @@ export const SingleTestResultPage = observer(function SingleTestResultPage({
           selectedTab={selectedTab}
           selectTab={selectTab}
           harFileContents={mainStore.harFile}
+          hasHtml={!!mainStore.selectedStep.mhtmlFile}
         />
       )}
       <div className={styles.stepContents}>
