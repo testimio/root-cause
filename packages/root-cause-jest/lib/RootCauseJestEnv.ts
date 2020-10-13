@@ -5,13 +5,12 @@
  * That's how we can add Root Cause stuff in jest env, but also let the user use his intended env with minimal configurations
  */
 
-import type { Circus, Config, Global } from '@jest/types';
-import type { JestEnvironment, EnvironmentContext } from '@jest/environment';
-import { CurrentTestInfo } from './interfaces';
-import { Script } from 'vm';
+import type { EnvironmentContext, JestEnvironment } from '@jest/environment';
 import type { LegacyFakeTimers, ModernFakeTimers } from '@jest/fake-timers';
-// This import as same as jest source code
-import jestMock = require('jest-mock');
+import type { Circus, Config, Global } from '@jest/types';
+import type { ModuleMocker } from 'jest-mock';
+import { Script } from 'vm';
+import { CurrentTestInfo } from './interfaces';
 
 export default class RootCauseJestEnv implements JestEnvironment {
   private jestContext: EnvironmentContext | undefined;
@@ -55,7 +54,7 @@ export default class RootCauseJestEnv implements JestEnvironment {
     return this.actualEnv.fakeTimersModern;
   }
 
-  get moduleMocker(): jestMock.ModuleMocker | null {
+  get moduleMocker(): ModuleMocker | null {
     return this.actualEnv.moduleMocker;
   }
 
