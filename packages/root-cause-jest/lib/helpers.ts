@@ -21,7 +21,7 @@ let endTest: EndTestFunction;
 let originalPage: RootCausePage;
 let unhookExpect: () => void;
 
-export function ensurePrerequisite() {
+export function ensurePrerequisite(): void {
   if (isJasmine2()) {
     registerJasmineCurrentTest();
     return;
@@ -61,18 +61,23 @@ export function getEndStatus(): TestEndStatus<unknown, FailedExpectationsSubset>
   return getEndStatusFromJasmineJest();
 }
 
-export async function forBeforeEachGivenPage<TPage extends RootCausePage>(page: TPage) {
+export async function forBeforeEachGivenPage<TPage extends RootCausePage>(
+  page: TPage
+): Promise<AttachReturn<TPage>> {
   const currentTest = getJasmineCurrentTest();
 
   const userSettings = await loadSettings();
 
   let runId: string;
 
+  const runIdFromEnvVar = process.env[CONSTS.RUN_ID_ENV_VAR];
   // expected to be configured via
   // https://jestjs.io/docs/en/configuration#globals-object
   if ('runId' in global) {
     // @ts-ignore
     runId = global.runId;
+  } else if (runIdFromEnvVar) {
+    runId = runIdFromEnvVar;
   } else {
     runId = CONSTS.FALLBACK_RUN_ID;
   }
@@ -102,7 +107,7 @@ export async function forBeforeEachGivenPage<TPage extends RootCausePage>(page: 
   return attachController;
 }
 
-export async function forBeforeEachOwnGlobals() {
+export async function forBeforeEachOwnGlobals(): Promise<void> {
   if (typeof page === 'undefined') {
     throw new Error('Global page is missing');
   }
@@ -113,11 +118,14 @@ export async function forBeforeEachOwnGlobals() {
 
   let runId: string;
 
+  const runIdFromEnvVar = process.env[CONSTS.RUN_ID_ENV_VAR];
   // expected to be configured via
   // https://jestjs.io/docs/en/configuration#globals-object
   if ('runId' in global) {
     // @ts-ignore
     runId = global.runId;
+  } else if (runIdFromEnvVar) {
+    runId = runIdFromEnvVar;
   } else {
     runId = CONSTS.FALLBACK_RUN_ID;
   }
@@ -164,7 +172,7 @@ export async function forBeforeEachOwnGlobals() {
   }
 }
 
-export async function forAfterEachEndTestOwnGlobals() {
+export async function forAfterEachEndTestOwnGlobals(): Promise<void> {
   // @ts-ignore
   global.endTest(getEndStatus());
 
@@ -178,7 +186,7 @@ export async function forAfterEachEndTestOwnGlobals() {
   global.page = originalPage;
 }
 
-export async function forAfterEachEndTest(localEndTest: EndTestFunction) {
+export async function forAfterEachEndTest(localEndTest: EndTestFunction): Promise<void> {
   localEndTest(getEndStatus());
 }
 
@@ -186,7 +194,7 @@ export function makeHookExpect<T extends RootCausePage>(
   attachController: AttachReturn<T>,
   userTestFile: string,
   workingDirectory: string
-) {
+): () => void {
   return hookExpect((expectArgs, stacktrace) => {
     return function matcherStartHandler(matcherName, matcherArgs, modifier) {
       return {

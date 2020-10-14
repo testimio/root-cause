@@ -1,3 +1,7 @@
+/**
+ * This is jest reporter that is a wrapper around jest default reporter,
+ * To be used instead of jest default runner
+ */
 import { DefaultReporter, SummaryReporter } from '@jest/reporters';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { formatResultsErrors } from 'jest-message-util';
@@ -10,14 +14,14 @@ import type {
   AggregatedResult,
   ReporterOnStartOptions,
   Context,
-  // eslint-disable-next-line import/no-extraneous-dependencies
 } from '@jest/reporters';
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import type { Config } from '@jest/types';
 import type { ReporterOptions } from '../interfaces';
 import fs from 'fs-extra';
 import { jestResultsToIdMap } from './jestResultsToIdMap';
-import { CONSTS, utils, runConclusionUtils, persist } from '@testim/root-cause-core';
+import { utils, runConclusionUtils, persist } from '@testim/root-cause-core';
+import RunConclusion from './RunConclusion';
 
 /*
  * This reporter is a mix of jest built-in DefaultReporter & SummaryReporter,
@@ -26,10 +30,7 @@ import { CONSTS, utils, runConclusionUtils, persist } from '@testim/root-cause-c
  *
  * We use it to inject our message of 'To open in Root Cause viewer, run: root-cause show ID'
  */
-class EnhancedDefault implements Reporter {
-  private rootDir = process.cwd();
-
-  private runId = this.reporterOptions.runId || CONSTS.FALLBACK_RUN_ID;
+export default class EnhancedDefault extends RunConclusion implements Reporter {
   private defaultReporter: DefaultReporter;
   private summaryReporter: SummaryReporter;
 
@@ -37,11 +38,17 @@ class EnhancedDefault implements Reporter {
     protected globalConfig: Config.GlobalConfig,
     protected reporterOptions: ReporterOptions = {}
   ) {
+    super(globalConfig, reporterOptions);
+
     this.defaultReporter = new DefaultReporter(globalConfig);
     this.summaryReporter = new SummaryReporter(globalConfig);
   }
 
-  async onTestResult(test: Test, testResult: TestResult, aggregatedResult: AggregatedResult) {
+  async onTestResult(
+    test: Test,
+    testResult: TestResult,
+    aggregatedResult: AggregatedResult
+  ): Promise<void> {
     /*
             What we do here in hight level
             If the jest test has Root Cause result associated with it,
@@ -98,22 +105,23 @@ class EnhancedDefault implements Reporter {
   // onTestFileResult(test: Test, testResult: TestResult, aggregatedResult: AggregatedResult) {
   // }
 
-  onTestCaseResult(test: Test, testCaseResult: any) {
+  onTestCaseResult(test: Test, testCaseResult: any): void {
     this.summaryReporter.onTestCaseResult(test, testCaseResult);
     this.defaultReporter.onTestCaseResult(test, testCaseResult);
   }
 
-  onRunStart(results: AggregatedResult, options: ReporterOnStartOptions) {
+  onRunStart(results: AggregatedResult, options: ReporterOnStartOptions): void {
     this.defaultReporter.onRunStart(results, options);
     this.summaryReporter.onRunStart(results, options);
   }
 
-  onTestStart(test: Test) {
+  onTestStart(test: Test): void {
     this.defaultReporter.onTestStart(test);
     this.summaryReporter.onTestStart(test);
   }
 
-  async onRunComplete(contexts: Set<Context>, results: AggregatedResult) {
+  async onRunComplete(contexts: Set<Context>, results: AggregatedResult): Promise<void> {
+    await super.onRunComplete(contexts, results);
     this.defaultReporter.onRunComplete();
     this.summaryReporter.onRunComplete(contexts, results);
 
@@ -150,7 +158,7 @@ class EnhancedDefault implements Reporter {
     }
   }
 
-  getLastError() {
+  getLastError(): Error | undefined {
     const errorFromDefaultReporter = this.defaultReporter.getLastError();
     if (errorFromDefaultReporter) {
       return errorFromDefaultReporter;
@@ -159,5 +167,3 @@ class EnhancedDefault implements Reporter {
     return this.summaryReporter.getLastError();
   }
 }
-
-module.exports = EnhancedDefault;
