@@ -1,6 +1,6 @@
 {
     "name": "root-cause",
-    "version": "0.1.23",
+    "version": "0.1.24",
     "description": "Root Cause bare",
     "scripts": {
         "postinstall": "echo 'you probably want to install @testim/root-cause and not this package'"
@@ -13,6 +13,6 @@
     "author": "Dev <dev@testim.io>",
     "license": "AGPL-3.0-only",
     "dependencies": {
-        "@testim/root-cause": "0.1.23"
+        "@testim/root-cause": "0.1.24"
     }
 }
