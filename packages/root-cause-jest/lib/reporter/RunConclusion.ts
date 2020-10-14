@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /**
  * This is a "silent" reporter,
- * To be used as a secondary reporter to his main reporter if the user does not use our default reporter
+ * To be used as a secondary reporter. if the user does not use our default reporter
+ * (Jest supports multiple reporters)
  */
 import type {
   Reporter,
