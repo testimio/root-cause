@@ -24,15 +24,10 @@ npm install testim/root-cause-jest
 ```js
 const puppeteerPreset = require('jest-puppeteer-preset/jest-preset.json');
 
-const runId = Date.now().toString();
-
 module.exports = {
   ...puppeteerPreset,
   testEnvironment: '@testim/root-cause-jest/lib/RootCauseJestEnv',
-  reporters: [['@testim/root-cause-jest/lib/reporter/default', { runId }]],
-  globals: {
-    runId,
-  },
+  reporters: ['@testim/root-cause-jest/lib/reporter/default'],
 };
 ```
 
@@ -66,15 +61,10 @@ Assuming you are using the popular jest-playwright package, your jest config sho
 ```js
 const playwrightPreset = require('jest-playwright-preset/jest-preset.json');
 
-const runId = Date.now().toString();
-
 module.exports = {
   ...playwrightPreset,
   testEnvironment: '@testim/root-cause-jest/lib/RootCauseJestEnv',
-  reporters: [['@testim/root-cause-jest/lib/reporter/default', { runId }]],
-  globals: {
-    runId,
-  },
+  reporters: ['@testim/root-cause-jest/lib/reporter/default'],
 };
 ```
 
