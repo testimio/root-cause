@@ -3,7 +3,7 @@ import type { Page as PlaywrightPage, CDPSession as PlaywrightCDPSession } from 
 import type { TestContext } from './TestContext';
 import type { BeforeAllHook, AfterAllHook } from './interfaces';
 import { isNotPlaywrightPage, isPlaywrightChromiumBrowserContext } from './utils';
-import chromeHar, { ChromeHarMessage } from 'chrome-har';
+import chromeHar, { ChromeHarMessage } from '@testim/chrome-har';
 import { addDisposer, runAllDisposers } from './hooksHandlersDisposersHelper';
 import fs from 'fs-extra';
 import path from 'path';

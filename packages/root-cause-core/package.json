@@ -36,11 +36,11 @@
   },
   "homepage": "https://help.testim.io/docs/testim-root-cause-overview",
   "dependencies": {
+    "@testim/chrome-har": "^0.0.0-6a7c1f3",
     "abort-controller": "^3.0.0",
     "ajv": "^6.12.4",
     "better-ajv-errors": "^0.6.7",
     "chalk": "^4.1.0",
-    "chrome-har": "git+https://github.com/testimio/chrome-har.git#v0.11.3-testim",
     "commander": "^6.1.0",
     "cors": "^2.8.5",
     "cosmiconfig": "^7.0.0",

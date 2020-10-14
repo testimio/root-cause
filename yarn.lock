@@ -3348,6 +3348,16 @@
     "@svgr/plugin-svgo" "^5.4.0"
     loader-utils "^2.0.0"
 
+"@testim/chrome-har@^0.0.0-6a7c1f3":
+  version "0.0.0-6a7c1f3"
+  resolved "https://registry.yarnpkg.com/@testim/chrome-har/-/chrome-har-0.0.0-6a7c1f3.tgz#07a26fba537def6a315c191a810bee7609368f07"
+  integrity sha512-PeUPasht5INWg2rOQb9ZDMapxun4xmPWabKZXuhvX0SUPC3dHZurD/pG2Iv7h9VM3j0ZHbz7uMpyUyxTCP767w==
+  dependencies:
+    dayjs "1.8.16"
+    debug "4.1.1"
+    tough-cookie "4.0.0"
+    uuid "3.3.3"
+
 "@testim/testim-cli@^3.108.0":
   version "3.108.0"
   resolved "https://registry.yarnpkg.com/@testim/testim-cli/-/testim-cli-3.108.0.tgz#59f69ee246117781086f7452c96a36b121aa10a0"
@@ -6520,15 +6530,6 @@ chrome-dompath@^1.0.2:
   dependencies:
     css.escape "^1.5.1"
     jsdom "^15.1.1"
-
-"chrome-har@git+https://github.com/testimio/chrome-har.git#v0.11.3-testim":
-  version "0.11.3"
-  resolved "git+https://github.com/testimio/chrome-har.git#eacaa884983e353a690dd5a681c17c64cd79e781"
-  dependencies:
-    dayjs "1.8.16"
-    debug "4.1.1"
-    tough-cookie "4.0.0"
-    uuid "3.3.3"
 
 chrome-trace-event@^1.0.2:
   version "1.0.2"
