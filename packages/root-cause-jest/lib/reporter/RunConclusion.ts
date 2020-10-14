@@ -1,3 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-function */
+/**
+ * This is a "silent" reporter,
+ * To be used as a secondary reporter. if the user does not use our default reporter
+ * (Jest supports multiple reporters)
+ */
 import type {
   Reporter,
   TestResult,
@@ -16,13 +23,13 @@ import { utils, CONSTS, runConclusionUtils, persist } from '@testim/root-cause-c
 
 // https://jestjs.io/docs/en/configuration#reporters-arraymodulename--modulename-options
 
-class JestReporter implements Reporter {
+export default class JestReporter implements Reporter {
   // That's very likely to match process.cwd() in the test files themselves
 
   // private rootDir = this.globalConfig.rootDir;
-  private rootDir = process.cwd();
+  protected rootDir = process.cwd();
 
-  private runId = this.reporterOptions.runId || CONSTS.FALLBACK_RUN_ID;
+  protected runId: string;
 
   constructor(
     protected globalConfig: Config.GlobalConfig,
@@ -33,15 +40,24 @@ class JestReporter implements Reporter {
     // this.globalConfig.testEnvironment
     // this.globalConfig.testEnvironmentOptions
     // And avoid using reporterOptions
+
+    if (this.reporterOptions.runId) {
+      this.runId = this.reporterOptions.runId;
+    } else {
+      const now = Date.now();
+      // reporters are loaded into jest main process before workers are spawned, so we can pass our run id as env var from here
+      process.env[CONSTS.RUN_ID_ENV_VAR] = now.toString();
+      this.runId = now.toString();
+    }
   }
 
-  onTestResult(test: Test, testResult: TestResult, aggregatedResult: AggregatedResult) {}
+  onTestResult(test: Test, testResult: TestResult, aggregatedResult: AggregatedResult): void {}
 
-  onRunStart(results: AggregatedResult, options: ReporterOnStartOptions) {}
+  onRunStart(results: AggregatedResult, options: ReporterOnStartOptions): void {}
 
-  onTestStart(test: Test) {}
+  onTestStart(test: Test): void {}
 
-  async onRunComplete(contexts: Set<Context>, results: AggregatedResult) {
+  async onRunComplete(contexts: Set<Context>, results: AggregatedResult): Promise<void> {
     // console.log('onRunComplete start');
     const rootCausePath = utils.constructResultDir(this.rootDir);
     const rootCauseRunResultsPath = utils.constructTestInvocationResultDir(
@@ -74,9 +90,8 @@ class JestReporter implements Reporter {
     }
   }
 
-  getLastError() {}
+  getLastError(): Error | undefined {
+    // eslint-disable-next-line no-useless-return
+    return;
+  }
 }
-
-// export { JestReporter as default };
-// make jest happy. explicit commonjs
-module.exports = JestReporter;

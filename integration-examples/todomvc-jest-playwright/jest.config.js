@@ -3,16 +3,10 @@
 // @ts-ignore
 const playwrightPreset = require('jest-playwright-preset/jest-preset.json');
 
-// The run id should be unique across runs
-const runId = Date.now().toString();
-
 const config = {
   ...playwrightPreset,
-  reporters: [['./reporter', { runId }]],
+  reporters: ['./reporter'],
   setupFilesAfterEnv: [...playwrightPreset.setupFilesAfterEnv, './setViewportSizeBeforeEach'],
-  globals: {
-    runId,
-  },
   maxWorkers: '50%',
 };
 

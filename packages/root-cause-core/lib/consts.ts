@@ -10,3 +10,4 @@ export const HISTORY_RUNS_TO_RETAIN = 5;
 export const NODE_VERSION = parseFloat(process.versions.node);
 
 export const IS_NODE_10 = NODE_VERSION < 12 && NODE_VERSION > 9;
+export const RUN_ID_ENV_VAR = 'ROOT_CAUSE_RUN_ID';
