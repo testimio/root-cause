@@ -11,7 +11,7 @@ Object {
       "automationFramework": "puppeteer",
       "browser": "chromium",
       "browserPlatform": "noise_removed:browserPlatform",
-      "browserVersion": "HeadlessChrome/85.0.4182.0",
+      "browserVersion": "HeadlessChrome/86.0.4240.0",
       "modelName": "noise_removed:modelName",
       "modelVersion": "noise_removed:modelVersion",
       "pageViewport": Object {

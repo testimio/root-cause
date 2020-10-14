@@ -32,17 +32,17 @@
   "homepage": "https://help.testim.io/docs/testim-root-cause-overview",
   "devDependencies": {
     "@types/debug": "^4.1.5",
-    "@types/fs-extra": "^9.0.1",
+    "@types/fs-extra": "^9.0.2",
     "@types/jest": "^26.0.14",
     "@types/mocha": "^8.0.3",
     "@types/uuid": "^8.3.0",
     "mocha": "^8.1.1",
-    "ts-node": "^8.10.2",
+    "ts-node": "^9.0.0",
     "typescript": "^3.9.7"
   },
   "dependencies": {
     "@testim/root-cause-core": "0.1.23",
-    "debug": "^4.1.1",
+    "debug": "^4.2.0",
     "fs-extra": "^9.0.1",
     "uuid": "^8.3.0"
   },
