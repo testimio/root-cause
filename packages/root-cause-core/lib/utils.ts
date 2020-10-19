@@ -186,7 +186,15 @@ export async function getSystemInfoForPlaywrightChromiumPage(
 export async function getSystemInfoForPuppeteerPage(page: PuppeteerPage): Promise<TestSystemInfo> {
   const browser = page.browser();
   const browserPlatform = await page.evaluate(() => navigator.platform);
-  const pageViewport = page.viewport();
+
+  // While the types of viewport() tells that it always return good value, IRL we got here null
+  // So we also try to extract the viewport from page as fallback like we do for playwright
+  const pageViewport =
+    page.viewport() ||
+    (await page.evaluate(() => ({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })));
   const userAgent = await browser.userAgent();
   const browserVersion = await browser.version();
   const browserTarget = browser.target();
