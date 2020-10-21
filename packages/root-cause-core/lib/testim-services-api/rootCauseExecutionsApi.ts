@@ -1,7 +1,4 @@
-import {
-  runConclusionToTestimExecution,
-  getRunConclusionFiles,
-} from './runConclusionToTestimExecution';
+import { runConclusionToTestimExecution } from './runConclusionToTestimExecution';
 import type { TestimUserMetadata, GitMetadata } from './runConclusionToTestimExecution';
 import { TestimExecutionsApi } from './testimExecutionsApi';
 import { TestimAssetsApi } from './testimAssetsApi';
@@ -11,6 +8,7 @@ import { TestimBackendExecutionInputFormat } from './interfaces';
 import * as fse from 'fs-extra';
 import type { AbortSignal } from 'abort-controller';
 import { RunConclusionFile, TestResultFile } from '@testim/root-cause-types';
+import { getFilesInDirectoryRecursive } from '../utils';
 
 type ProgressCallback = (progress: number) => void;
 
@@ -33,7 +31,7 @@ export class RootCauseExecutionsApi {
     //TODO(benji)
     // zip - maybe zip multiple photos
 
-    const filesToUpload = await getRunConclusionFiles(conclusionFolderPath);
+    const filesToUpload = await getFilesInDirectoryRecursive(conclusionFolderPath);
     const arbitraryResultsFilePath = filesToUpload.find((file) => file.endsWith('results.json'));
     const gitMetadata = arbitraryResultsFilePath
       ? extractGitMetadata(arbitraryResultsFilePath)

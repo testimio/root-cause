@@ -3,6 +3,7 @@ import type { AbortSignal } from 'abort-controller';
 import crypto from 'crypto';
 import ProtocolMapping from 'devtools-protocol/types/protocol-mapping';
 import fs from 'fs-extra';
+import glob from 'glob';
 import path from 'path';
 import type {
   BrowserContext,
@@ -11,8 +12,9 @@ import type {
   Page as PlaywrightPage,
 } from 'playwright';
 import type { Page as PuppeteerPage, PageEventObj as PuppeteerPageEventObj } from 'puppeteer';
-import type { CallSite, StackLineData } from 'stack-utils';
 import StackUtils from 'stack-utils';
+import type { CallSite, StackLineData } from 'stack-utils';
+import { promisify } from 'util';
 import type { StartTestParams } from './attachInterfaces';
 import { RESULTS_DIR_NAME, RUNS_DIR_NAME } from './consts';
 import type { RootCausePage } from './interfaces';
@@ -495,7 +497,7 @@ export function puppeteerAddEventReturnDisposer<TEventName extends keyof Puppete
   page: PuppeteerPage,
   eventName: TEventName,
   handler: (e: PuppeteerPageEventObj[TEventName], ...args: any[]) => unknown
-) {
+): () => void {
   page.on(eventName, handler);
 
   return function dispose() {
@@ -526,11 +528,11 @@ export function getSelfCallSiteFromStacktrace(howManyBack = 1): CallSite | null 
   return noneInternalLines[howManyBack];
 }
 
-export function getLast<T>(items: T[]) {
+export function getLast<T>(items: T[]): T {
   return items[items.length - 1];
 }
 
-export function setFunctionName(func: Function, newName: string) {
+export function setFunctionName<T extends Function>(func: T, newName: string): T {
   Object.defineProperty(func, 'name', {
     value: newName,
     writable: false,
@@ -539,6 +541,13 @@ export function setFunctionName(func: Function, newName: string) {
   return func;
 }
 
-export function appendToFunctionName(func: Function, append: string) {
+export function appendToFunctionName<T extends Function>(func: T, append: string): T {
   return setFunctionName(func, `${func.name}${append}`);
+}
+
+export async function getFilesInDirectoryRecursive(dirToList: string): Promise<string[]> {
+  const files = (await promisify((cb) =>
+    glob(`${dirToList}/**/*`, { nodir: true }, cb)
+  )()) as string[];
+  return files;
 }

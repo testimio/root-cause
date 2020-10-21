@@ -16,6 +16,7 @@ export * as utils from './lib/utils';
 export * as CONSTS from './lib/consts';
 export * as runConclusionUtils from './lib/runConclusion/runConclusionUtils';
 export * as runConclusionInterfaces from './lib/runConclusion/interfaces';
+export { sendFailureSuggestionRequestIfApplicable } from './lib/failureSuggestionsRequest';
 export { persist } from './lib/persist';
 export { guid as utilGuid } from './lib/testim-services-api/guid';
 export { loadSettings } from './lib/userSettings/userSettings';

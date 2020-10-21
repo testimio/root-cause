@@ -7,6 +7,7 @@ import {
   runConclusionInterfaces,
   persist,
   utilGuid,
+  sendFailureSuggestionRequestIfApplicable,
 } from '@testim/root-cause-core';
 import type { Runner, MochaOptions, Test, Stats } from 'mocha';
 import Mocha, { reporters } from 'mocha';
@@ -162,6 +163,20 @@ export default class RootCauseMochaReporter implements reporters.Base {
         startTime.getTime(),
         inputForPrepareRunConclusion
       );
+
+      try {
+        const filesList = await utils.getFilesInDirectoryRecursive(
+          reporterInstance.runTestResultsDir
+        );
+
+        const failedTestsCount = [...inputForPrepareRunConclusion.values()].filter(
+          (t) => t.runner.testResult.status === 'failed'
+        ).length;
+
+        await sendFailureSuggestionRequestIfApplicable(failedTestsCount, filesList.length);
+      } catch (e) {
+        debugLogger(e);
+      }
 
       if (process.env.TESTIM_PERSIST_RESULTS_TO_CLOUD) {
         await persist(reporterInstance.runId, {

@@ -20,7 +20,7 @@ import type { Config } from '@jest/types';
 import type { ReporterOptions } from '../interfaces';
 import fs from 'fs-extra';
 import { jestResultsToIdMap } from './jestResultsToIdMap';
-import { utils, runConclusionUtils, persist } from '@testim/root-cause-core';
+import { utils, runConclusionUtils } from '@testim/root-cause-core';
 import RunConclusion from './RunConclusion';
 
 /*
@@ -149,13 +149,6 @@ export default class EnhancedDefault extends RunConclusion implements Reporter {
       results.startTime,
       finalResults
     );
-
-    if (process.env.TESTIM_PERSIST_RESULTS_TO_CLOUD) {
-      await persist(this.runId, {
-        projectRoot: this.rootDir,
-        resultLabel: (global as any).resultLabels ?? null,
-      });
-    }
   }
 
   getLastError(): Error | undefined {
