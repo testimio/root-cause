@@ -64,7 +64,7 @@ export function getEndStatus(): TestEndStatus<unknown, FailedExpectationsSubset>
 export async function forBeforeEachGivenPage<TPage extends RootCausePage>(
   page: TPage
 ): Promise<AttachReturn<TPage>> {
-  const currentTest = getJasmineCurrentTest();
+  const currentTest = getCurrentTest();
 
   const userSettings = await loadSettings();
 
