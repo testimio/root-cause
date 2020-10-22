@@ -119,13 +119,6 @@ function getDetaultTestConfig(
   };
 }
 
-export async function getRunConclusionFiles(rootCauseRunDir: string): Promise<string[]> {
-  const files = (await promisify((cb) =>
-    glob(`${rootCauseRunDir}/**/*`, { nodir: true }, cb)
-  )()) as string[];
-  return files;
-}
-
 export function runConclusionToTestimExecution(
   conclusion: RunConclusionFile,
   testimUserMetadata: TestimUserMetadata,

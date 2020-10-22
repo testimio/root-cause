@@ -25,7 +25,7 @@ export async function persist(
     token?: string;
     jUnitReportPath?: string;
   }
-) {
+): Promise<void> {
   if (!runId) {
     console.log('Please pass a valid runId');
     return;
@@ -112,7 +112,7 @@ export function generateJunitReport({
 }: {
   testimExecution: TestimBackendExecutionFormatSubsetForReporting;
   projectId: string;
-}) {
+}): string {
   const actualTests = Object.values(testimExecution.execution).filter(
     (test) => !test.isTestsContainer
   );

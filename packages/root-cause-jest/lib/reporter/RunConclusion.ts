@@ -19,7 +19,13 @@ import type { Config } from '@jest/types';
 import type { ReporterOptions } from '../interfaces';
 import fs from 'fs-extra';
 import { jestResultsToIdMap } from './jestResultsToIdMap';
-import { utils, CONSTS, runConclusionUtils, persist } from '@testim/root-cause-core';
+import {
+  utils,
+  CONSTS,
+  runConclusionUtils,
+  persist,
+  sendFailureSuggestionRequestIfApplicable,
+} from '@testim/root-cause-core';
 
 // https://jestjs.io/docs/en/configuration#reporters-arraymodulename--modulename-options
 
@@ -81,6 +87,18 @@ export default class JestReporter implements Reporter {
       results.startTime,
       finalResults
     );
+
+    try {
+      const filesList = await utils.getFilesInDirectoryRecursive(rootCauseRunResultsPath);
+
+      const failedTestsCount = [...jestSide.values()].filter(
+        (t) => t.testResult.status === 'failed'
+      ).length;
+
+      await sendFailureSuggestionRequestIfApplicable(failedTestsCount, filesList.length);
+    } catch (e) {
+      // ignore errors
+    }
 
     if (process.env.TESTIM_PERSIST_RESULTS_TO_CLOUD) {
       await persist(this.runId, {

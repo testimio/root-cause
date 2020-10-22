@@ -16,3 +16,4 @@ yarn-error.log
 packages/root-cause/api-reference
 verdaccio/verdaccio-storage
 lerna-debug.log
+guid_container
