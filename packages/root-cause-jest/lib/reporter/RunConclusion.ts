@@ -95,3 +95,8 @@ export default class JestReporter implements Reporter {
     return;
   }
 }
+
+// The jest setup in projects like https://github.com/Microsoft/fluentui
+// wasn't able to load the reporter with esm export default, but only using this
+// Not Sure why
+module.exports = JestReporter;
