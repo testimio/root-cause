@@ -2,9 +2,9 @@
 
 As part of an incubating feature, we are collection some basic telemetry & usage statistics.
 
-We don't collect any personal or business data.
+We don't collect any personal/business data nor information about the application under test or the test code itself.
 
-The data we collect per root cause execution
+The data we collect per root cause execution:
 
 - Operating system name (windows/linux/darwin)
 - uid - randomly generated local project identifier
