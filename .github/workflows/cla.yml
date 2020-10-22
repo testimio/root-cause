@@ -23,7 +23,7 @@ jobs:
           path-to-document: 'https://docs.google.com/document/d/1X-EoFIW1PMe8H-DJyZDScsTolPKm22-9P1JgSuiFNfE/edit?usp=sharing' # e.g. a CLA or a DCO document
           # branch should not be protected
           branch: 'cla-signatures'
-          allowlist: benjamingr
+          allowlist: benjamingr,ShawntheGriz
           use-dco-flag: false #'Set this to true if you want to use a dco instead of a cla'
 
 
