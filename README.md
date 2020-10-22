@@ -9,7 +9,7 @@ Please see the [contributing guide](CONTRIBUTING.md) and note this project has a
 
 ## Getting Started
 
-Please check out the getting started guide with [Jest](https://help.testim.io/docs/root-cause-jest-integration-guide), [Mocha](https://help.testim.io/docs/root-cause-mocha-integration) or [without Jest or Mocha](https://help.testim.io/docs/getting-started-with-root-cause).
+Please check out the getting started [guide](https://help.testim.io/docs/getting-started-with-root-cause) to integrate with Jest, Mocha, or to run standalone.
 
 
 ## Testim Root Cause
