@@ -34,6 +34,8 @@ export class MainStore {
     let toReturn: StepResult[] = [];
 
     if (this.resultsFile) {
+      toReturn = this.resultsFile.steps;
+
       // if test failed, we add here another step box with the test failure info
       // we no longer add that in the instrumentation side on test end
       // todo: maybe move that to inside the react component
@@ -73,8 +75,6 @@ export class MainStore {
 
         toReturn = newArray;
       }
-
-      toReturn = this.resultsFile.steps;
     }
 
     return groupAssertionInnerSteps(toReturn, this.hideInnerSteps);
