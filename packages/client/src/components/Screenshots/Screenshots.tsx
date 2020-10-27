@@ -20,14 +20,14 @@ export function Screenshot({
   screenshotClassName?: string;
   showHighlightRect?: boolean;
 }) {
-  const image = useRef<HTMLImageElement>(null);
   const container = useRef<HTMLDivElement>(null);
   const getExternalResourceUrl = useExternalResourceUrl();
   const screenshotResource = getExternalResourceUrl(step.screenshot);
+  const [imageElement, setImageElement] = React.useState<HTMLImageElement | null>(null);
 
   const [screenshotDimensions, highlightCoordinates, imageOffset] = useBackgroundHighlight(
     step,
-    image,
+    imageElement,
     container,
     imageStretchBehavior
   );
@@ -50,11 +50,18 @@ export function Screenshot({
           style={{ ...screenshotDimensions, ...getBackgroundStyle(imageOffset) }}
           className={classNames(styles.screenshotInner)}
         >
-          <img ref={image} loading="lazy" alt={step?.screenshot ?? ''} src={screenshotResource} />
+          <img
+            ref={(mountedImageElement) => {
+              setImageElement(mountedImageElement);
+            }}
+            loading="lazy"
+            alt={step?.screenshot ?? ''}
+            src={screenshotResource}
+          />
           {highlightCoordinates && (
             <div className={styles.screenshotHighlight} style={highlightCoordinates}></div>
           )}
-          {showHighlightRect && (
+          {highlightCoordinates && showHighlightRect && (
             <div
               className={styles.highlightRect}
               style={

@@ -1,21 +1,25 @@
 import { useState, useLayoutEffect } from 'react';
 
-export function useImageDimensions(imageRef: React.RefObject<HTMLImageElement>) {
+export function useImageDimensions(imageElement: HTMLImageElement | null) {
   const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null);
+
   useLayoutEffect(() => {
     (async () => {
-      if (!imageRef?.current) {
+      if (!imageElement) {
         return;
       }
-      await imageLoaded(imageRef.current);
-      if (imageRef.current) {
+
+      await imageLoaded(imageElement);
+
+      if (imageElement) {
         setImageSize({
-          width: imageRef.current.naturalWidth,
-          height: imageRef.current.naturalHeight,
+          width: imageElement.naturalWidth,
+          height: imageElement.naturalHeight,
         });
       }
     })();
-  }, [imageRef]);
+  }, [imageElement]);
+
   return imageSize;
 }
 
