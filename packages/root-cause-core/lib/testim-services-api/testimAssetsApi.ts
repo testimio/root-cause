@@ -3,7 +3,7 @@ import { TestimAuthApi } from './testimAuthApi';
 import { TestimApiError, TestimNotFoundError } from './apiErrors';
 import FormData from 'form-data';
 import type { AbortSignal } from 'abort-controller';
-import { BASE_SERVICES_URL } from '../consts';
+import { BASE_BACKEND_URL } from '../consts';
 
 type StorageRequest = {
   asset: Uint8Array | NodeJS.ReadableStream;
@@ -15,7 +15,7 @@ type StorageRequest = {
 };
 export class TestimAssetsApi {
   constructor(
-    private baseUrl = BASE_SERVICES_URL,
+    private baseUrl = BASE_BACKEND_URL,
     private testimAuthApi: TestimAuthApi = new TestimAuthApi(baseUrl),
     private bucket: string = 'test-result-artifacts',
     private fetch: typeof nodeFetch = nodeFetch

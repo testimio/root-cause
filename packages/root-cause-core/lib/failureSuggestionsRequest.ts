@@ -5,7 +5,7 @@ import os from 'os';
 // import type { Response } from 'node-fetch';
 import nodeFetch, { Headers } from 'node-fetch';
 import debug from 'debug';
-import { BASE_SERVICES_URL } from './consts';
+import { BASE_BACKEND_URL } from './consts';
 // import URL from 'url';
 // import https from 'https';
 // import http from 'http';
@@ -75,7 +75,7 @@ async function buildRequest(crashes: number, artifacts: number): Promise<Failure
 async function sendRequest(body: unknown) {
   const headers = new Headers();
   headers.set('content-type', 'application/json');
-  return nodeFetch(`${BASE_SERVICES_URL}/suggestions/failureReason`, {
+  return nodeFetch(`${BASE_BACKEND_URL}/suggestions/failureReason`, {
     method: 'POST',
     headers,
     body: JSON.stringify(body),

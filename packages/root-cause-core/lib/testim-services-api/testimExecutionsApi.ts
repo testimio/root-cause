@@ -3,11 +3,11 @@ import nodeFetch, { Headers } from 'node-fetch';
 import { TestimApiError } from './apiErrors';
 import { TestimBackendExecutionInputFormat } from './interfaces';
 import type { AbortSignal } from 'abort-controller';
-import { BASE_SERVICES_URL } from '../consts';
+import { BASE_BACKEND_URL } from '../consts';
 
 export class TestimExecutionsApi {
   constructor(
-    private baseUrl = BASE_SERVICES_URL,
+    private baseUrl = BASE_BACKEND_URL,
     private testimAuthApi: TestimAuthApi = new TestimAuthApi(baseUrl),
     private fetch: typeof nodeFetch = nodeFetch
   ) {}
