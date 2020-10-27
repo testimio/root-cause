@@ -18,10 +18,15 @@ export const StepsSidebar = observer(() => {
   React.useLayoutEffect(() => {
     const selectedElement = sideBarRef.current?.children[selectedStepIndex];
     if (selectedElement && selectedElement instanceof HTMLElement) {
-      // Non-standard, works in chrome
-      // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoViewIfNeeded
       // @ts-expect-error
-      selectedElement.scrollIntoViewIfNeeded(false);
+      if (selectedElement.scrollIntoViewIfNeeded) {
+        // Non-standard, works in chrome
+        // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoViewIfNeeded
+        // @ts-expect-error
+        selectedElement.scrollIntoViewIfNeeded(false);
+      } else {
+        selectedElement.scrollIntoView();
+      }
     }
   }, [selectedStepIndex]);
 
