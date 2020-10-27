@@ -11,3 +11,4 @@ export const NODE_VERSION = parseFloat(process.versions.node);
 
 export const IS_NODE_10 = NODE_VERSION < 12 && NODE_VERSION > 9;
 export const RUN_ID_ENV_VAR = 'ROOT_CAUSE_RUN_ID';
+export const BASE_BACKEND_URL = process.env.BASE_BACKEND_URL || 'https://services.testim.io';
