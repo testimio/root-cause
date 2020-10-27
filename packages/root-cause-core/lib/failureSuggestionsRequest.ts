@@ -5,14 +5,12 @@ import os from 'os';
 // import type { Response } from 'node-fetch';
 import nodeFetch, { Headers } from 'node-fetch';
 import debug from 'debug';
+import { BASE_SERVICES_URL } from './consts';
 // import URL from 'url';
 // import https from 'https';
 // import http from 'http';
 
 const loggerError = debug('root-cause:error');
-
-const baseUrl = 'https://services.testim.io';
-// const baseUrl = 'http://localhost:8080';
 
 const GUID_FILE = 'guid_container';
 
@@ -77,7 +75,7 @@ async function buildRequest(crashes: number, artifacts: number): Promise<Failure
 async function sendRequest(body: unknown) {
   const headers = new Headers();
   headers.set('content-type', 'application/json');
-  return nodeFetch(`${baseUrl}/suggestions/failureReason`, {
+  return nodeFetch(`${BASE_SERVICES_URL}/suggestions/failureReason`, {
     method: 'POST',
     headers,
     body: JSON.stringify(body),

@@ -2,6 +2,7 @@ import nodeFetch, { Headers } from 'node-fetch';
 import { decode as jwtDecode } from 'jsonwebtoken';
 import { TestimApiError } from './apiErrors';
 import type { AbortSignal } from 'abort-controller';
+import { BASE_SERVICES_URL } from '../consts';
 
 type ServerTokenState = {
   serverToken: string;
@@ -20,7 +21,7 @@ export class TestimAuthApi {
   tokenState?: ServerTokenState;
 
   constructor(
-    private baseUrl: string = 'https://services.testim.io',
+    private baseUrl: string = BASE_SERVICES_URL,
     private fetch: typeof nodeFetch = nodeFetch
   ) {
     this.getToken = (ensureOnlyOneRequestAtATime(
