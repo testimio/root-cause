@@ -8,11 +8,18 @@ export function groupAssertionInnerSteps(rawSteps: StepResult[], removeGrouped: 
       const belonging = getBelongingStepsIndexes(rawSteps, index);
       indexesToRemove.push(...belonging);
 
-      if (belonging.length > 0 && rawSteps[belonging.length - 1].screenshot) {
+      const belongingSteps = rawSteps.filter((s, i) => belonging.includes(i));
+      const belongingStepWithScreenshot = belongingSteps.filter((s) => s.screenshot);
+      const belongingStepWithRect = belongingStepWithScreenshot.filter((s) => s.rect);
+      const injectFromStep =
+        belongingStepWithRect[belongingStepWithRect.length - 1] ||
+        belongingStepWithScreenshot[belongingStepWithScreenshot.length - 1];
+
+      if (belonging.length > 0) {
         return {
           ...step,
-          screenshot: rawSteps[belonging.length - 1].screenshot,
-          rect: rawSteps[belonging.length - 1].rect,
+          screenshot: injectFromStep?.screenshot,
+          rect: injectFromStep?.rect,
         };
       }
     }
