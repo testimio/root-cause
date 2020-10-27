@@ -1,6 +1,6 @@
 {
   "name": "@testim/root-cause",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "",
   "main": "index",
   "typesVersions": {
@@ -32,8 +32,8 @@
   },
   "homepage": "https://help.testim.io/docs/testim-root-cause-overview",
   "dependencies": {
-    "@testim/root-cause-core": "0.1.26",
-    "@testim/root-cause-jest": "0.1.26"
+    "@testim/root-cause-core": "0.1.27",
+    "@testim/root-cause-jest": "0.1.27"
   },
   "peerDependencies": {
     "playwright": ">= 1.1.1 < 2",

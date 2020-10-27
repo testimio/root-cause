@@ -1,7 +1,7 @@
 {
   "name": "@testim/root-cause-mocha",
   "license": "AGPL-3.0-only",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "author": "Testim.io <dev@testim.io>",
   "engines": {
     "node": ">= 10.0.0"
@@ -41,7 +41,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@testim/root-cause-core": "0.1.26",
+    "@testim/root-cause-core": "0.1.27",
     "debug": "^4.2.0",
     "fs-extra": "^9.0.1",
     "uuid": "^8.3.0"
