@@ -7,7 +7,7 @@ import { HasRectangle } from '@testim/root-cause-types';
 export type ImageStretchBehavior = 'content-fit' | 'zoom';
 export function useBackgroundHighlight(
   step: HasRectangle,
-  image: React.RefObject<HTMLImageElement>,
+  image: HTMLImageElement | null,
   container: React.RefObject<HTMLDivElement>,
   imageStretchBehavior: ImageStretchBehavior
 ) {
