@@ -1,6 +1,6 @@
 {
   "name": "@testim/root-cause-jest",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "author": "Testim.io <dev@testim.io>",
   "engines": {
     "node": ">= 10.0.0"
@@ -41,7 +41,7 @@
     "@jest/fake-timers": "^26.5.2",
     "@jest/reporters": "^26.5.0",
     "@jest/types": "^26.5.2",
-    "@testim/root-cause-types": "0.1.27",
+    "@testim/root-cause-types": "0.1.28",
     "@types/debug": "^4.1.5",
     "@types/fs-extra": "^9.0.2",
     "@types/jest": "^26.0.14",
@@ -51,7 +51,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@testim/root-cause-core": "0.1.27",
+    "@testim/root-cause-core": "0.1.28",
     "chalk": "^4.1.0",
     "debug": "^4.2.0",
     "fs-extra": "^9.0.1"
