@@ -318,7 +318,7 @@ Array [
       "x": 199.375,
       "y": 8,
     },
-    "screenshot": "3.page-waitForSelector.jpg",
+    "screenshot": "5.elementhandle-evaluate.jpg",
     "startTimestamp": 1601853854701,
     "stepCodeLocation": Object {
       "callstack": Array [
@@ -566,7 +566,7 @@ Array [
       "x": 199.375,
       "y": 8,
     },
-    "screenshot": "3.page-waitForSelector.jpg",
+    "screenshot": "9.elementhandle-evaluate.jpg",
     "startTimestamp": 1601853855382,
     "stepCodeLocation": Object {
       "callstack": Array [
@@ -740,7 +740,7 @@ Array [
       "x": 199.375,
       "y": 8,
     },
-    "screenshot": "3.page-waitForSelector.jpg",
+    "screenshot": "5.elementhandle-evaluate.jpg",
     "startTimestamp": 1601853854701,
     "stepCodeLocation": Object {
       "callstack": Array [
@@ -796,7 +796,7 @@ Array [
       "x": 199.375,
       "y": 8,
     },
-    "screenshot": "3.page-waitForSelector.jpg",
+    "screenshot": "9.elementhandle-evaluate.jpg",
     "startTimestamp": 1601853855382,
     "stepCodeLocation": Object {
       "callstack": Array [
