@@ -67,7 +67,7 @@ async function buildRequest(crashes: number, artifacts: number): Promise<Failure
     osName: os.type(),
     uid: await getUID(),
     artifacts,
-    age: await getAge(),
+    age: await getAgeInDays(),
     crashes,
   };
 }
@@ -86,47 +86,16 @@ interface LocalResponse {
   status?: number;
 }
 
-// We need to try and send that request also as GET, but with body
-// services thing.
-// async function sendRequestWithGET(body: unknown): Promise<LocalResponse> {
-//   const data = JSON.stringify(body);
-//   const parsedUrl = new URL.URL(`${baseUrl}/suggestions/failureReason`);
-//   const httpModule = parsedUrl.protocol === 'https' ? https : http;
+async function getAgeInDays() {
+  const creationTime = await getCreationTime();
+  const now = Date.now();
+  const diffInMs = now - creationTime;
+  const diffInDays = Math.floor(diffInMs / (24 * 60 * 60 * 1000));
 
-//   const options = {
-//     hostname: parsedUrl.hostname,
-//     port: parsedUrl.port,
-//     path: parsedUrl.pathname,
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Content-Length': data.length,
-//     },
-//   };
+  return diffInDays;
+}
 
-//   return new Promise<LocalResponse>((resolve, reject) => {
-//     const req = httpModule.request(options, (res) => {
-//       resolve({
-//         status: res.statusCode,
-//       });
-
-//       res.on('data', (d) => {
-//         console.info({ d });
-//       });
-//     });
-
-//     req.on('error', (error) => {
-//       reject(error);
-//       // console.error(error);
-//     });
-
-//     req.write(data, () => {
-//       req.end();
-//     });
-//   });
-// }
-
-async function getAge() {
+async function getCreationTime() {
   try {
     const statsInfo = fs.stat(path.resolve(__dirname, GUID_FILE));
     return (await statsInfo).birthtimeMs;
