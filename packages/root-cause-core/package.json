@@ -67,6 +67,14 @@
     "playwright": ">= 1.1.1 < 2",
     "puppeteer": "^3.0.4 | ^4.0.0 | ^5.0.0"
   },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    },
+    "puppeteer": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@jest/reporters": "^26.5.0",
     "@jest/types": "^26.5.0",
