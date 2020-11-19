@@ -1,6 +1,6 @@
 import type { Page as PuppeteerPage, CDPSession } from 'puppeteer';
 import type { Page as PlaywrightPage, CDPSession as PlaywrightCDPSession } from 'playwright';
-import type { TestContext } from './TestContext';
+import type { TestContextInterface } from './TestContext';
 import type { BeforeAllHook, AfterAllHook } from './interfaces';
 import { isNotPlaywrightPage, isPlaywrightChromiumBrowserContext } from './utils';
 import chromeHar, { ChromeHarMessage } from '@testim/chrome-har';
@@ -8,7 +8,7 @@ import { addDisposer, runAllDisposers } from './hooksHandlersDisposersHelper';
 import fs from 'fs-extra';
 import path from 'path';
 
-const messagesForPageMap = new WeakMap<TestContext, Array<ChromeHarMessage>>();
+const messagesForPageMap = new WeakMap<TestContextInterface, Array<ChromeHarMessage>>();
 
 const cdpEventsToListenOn = [
   'Network.loadingFailed',
@@ -27,7 +27,7 @@ const cdpEventsToListenOn = [
   // 'Network.dataReceived', // very verbose, and not very informative. hide for now
 ] as const;
 
-function getMessagesForTestContextMap(textContext: TestContext) {
+function getMessagesForTestContextMap(textContext: TestContextInterface) {
   let messages = messagesForPageMap.get(textContext);
 
   if (!messages) {
@@ -61,7 +61,7 @@ async function networkLogsBeforeAllHookPuppeteer({
   testContext,
   page,
 }: {
-  testContext: TestContext;
+  testContext: TestContextInterface;
   page: PuppeteerPage;
 }) {
   // We may create new CDP session, and activate the needed events
@@ -89,7 +89,7 @@ function networkLogsBeforeAllHookPlaywright({
   testContext,
   page,
 }: {
-  testContext: TestContext;
+  testContext: TestContextInterface;
   page: PlaywrightPage;
 }) {
   const context = page.context();

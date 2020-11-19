@@ -40,6 +40,7 @@ const commonSelectorMapping: Record<string, SelectorMapper> = {
   type: firstArg,
   tap: firstArg,
   select: firstArg,
+  evaluateHandle: firstArgIfString,
 };
 
 const selectorMapping: SelectorMapping = {

@@ -1,9 +1,4 @@
 import { StepResultWithName } from './StepResultWithName';
-import fs from 'fs-extra';
-import { TEST_RESULTS_FILE_NAME } from './consts';
-import path from 'path';
-
-import debug from 'debug';
 import type {
   StepResult,
   TestMetadata,
@@ -11,27 +6,9 @@ import type {
   ConsoleException,
 } from '@testim/root-cause-types';
 import { ActiveFeatures } from './attachInterfaces';
+import { TestContextInterface } from './TestContext';
 
-const loggerError = debug('root-cause:error');
-
-export interface TestContextInterface {
-  consoleEntries: ConsoleMessage[];
-  unhandledExceptions: ConsoleException[];
-  testArtifactsFolder: string;
-  testFilePath: string;
-  featuresSettings: ActiveFeatures;
-  dateConstructor: typeof Date;
-  currentStep: Readonly<StepResult> | undefined;
-  stepStarted(): void;
-  getStepIndex(): number;
-  stepEnded(): Promise<void>;
-  testEnded(): Promise<void>;
-  addTestMetadata(metadata: any): void;
-  addStepMetadata(metadata: any): void;
-  addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>): void;
-}
-
-export class TestContext implements TestContextInterface {
+export class TestContextMemory implements TestContextInterface {
   private stepIndex = 0;
   private stepResults: StepResult[] = [];
   private testMetadata: TestMetadata = {
@@ -80,13 +57,10 @@ export class TestContext implements TestContextInterface {
       this.stepResults.push(this._currentStep);
       this._currentStep = undefined;
     }
-
-    await this.persistResults();
   }
 
   async testEnded() {
     this.testMetadata.endedTimestamp = this.dateConstructor.now();
-    await this.persistResults();
   }
 
   addTestMetadata(metadata: any) {
@@ -109,24 +83,5 @@ export class TestContext implements TestContextInterface {
       ...partialStep,
     };
     this.stepResults.push(stepWithIndex);
-  }
-
-  private async persistResults() {
-    try {
-      await fs.writeFile(
-        path.resolve(this.testArtifactsFolder, TEST_RESULTS_FILE_NAME),
-        JSON.stringify(this.getResultsForPersistency(), null, 2)
-      );
-    } catch (error) {
-      loggerError('persistResults error');
-      loggerError(error);
-    }
-  }
-
-  private getResultsForPersistency() {
-    return {
-      metadata: this.testMetadata,
-      steps: this.stepResults,
-    };
   }
 }

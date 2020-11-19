@@ -551,3 +551,14 @@ export async function getFilesInDirectoryRecursive(dirToList: string): Promise<s
   )()) as string[];
   return files;
 }
+
+export function createDateMocker(): typeof Date {
+  const mockedDateConstructor: typeof Date = Object.create(Date);
+
+  let nowCallsCounter = 1;
+  mockedDateConstructor.now = function mockedNow() {
+    return nowCallsCounter++;
+  };
+
+  return mockedDateConstructor;
+}
