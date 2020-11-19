@@ -39,7 +39,7 @@ describe('assorted page instrumentations', () => {
       await browserContext.close();
     });
 
-    test('evaluateHandle with document', async () => {
+    test('evaluateHandle with document and mainFrame', async () => {
       const {
         beforeAllHook,
         afterAllHook,
@@ -50,6 +50,7 @@ describe('assorted page instrumentations', () => {
         __filename,
         page,
         async (wrappedPage) => {
+          await wrappedPage.mainFrame().focus('body');
           const elementHandle = await wrappedPage.evaluateHandle('document.body');
 
           await elementHandle.asElement()?.click();
@@ -82,6 +83,29 @@ describe('assorted page instrumentations', () => {
 
       expect(beforeEachHook.mock.calls.map(cleanJestMockFunctionCalls)).toMatchInlineSnapshot(`
         Array [
+          Array [
+            Object {
+              "args": Array [
+                "body",
+              ],
+              "fnName": "focus",
+              "methodCallData": Array [
+                Object {
+                  "creationFunction": "mainFrame",
+                  "selector": undefined,
+                  "text": undefined,
+                },
+                Object {
+                  "creationFunction": "focus",
+                  "selector": "body",
+                  "text": "body",
+                },
+              ],
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
           Array [
             Object {
               "args": Array [
@@ -131,6 +155,30 @@ describe('assorted page instrumentations', () => {
 
       expect(afterEachHook.mock.calls.map(cleanJestMockFunctionCalls)).toMatchInlineSnapshot(`
         Array [
+          Array [
+            Object {
+              "args": Array [
+                "body",
+              ],
+              "fnName": "focus",
+              "instrumentedFunctionResult": "cleaned",
+              "methodCallData": Array [
+                Object {
+                  "creationFunction": "mainFrame",
+                  "selector": undefined,
+                  "text": undefined,
+                },
+                Object {
+                  "creationFunction": "focus",
+                  "selector": "body",
+                  "text": "body",
+                },
+              ],
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
           Array [
             Object {
               "args": Array [
@@ -210,7 +258,7 @@ describe('assorted page instrumentations', () => {
       await browserContext.close();
     });
 
-    test('evaluateHandle with document', async () => {
+    test('evaluateHandle with document and mainFrame', async () => {
       const {
         beforeAllHook,
         afterAllHook,
@@ -221,6 +269,7 @@ describe('assorted page instrumentations', () => {
         __filename,
         page,
         async (wrappedPage) => {
+          await wrappedPage.mainFrame().focus('body');
           const elementHandle = await wrappedPage.evaluateHandle('document.body');
 
           await elementHandle.asElement()?.click();
@@ -253,6 +302,29 @@ describe('assorted page instrumentations', () => {
 
       expect(beforeEachHook.mock.calls.map(cleanJestMockFunctionCalls)).toMatchInlineSnapshot(`
         Array [
+          Array [
+            Object {
+              "args": Array [
+                "body",
+              ],
+              "fnName": "focus",
+              "methodCallData": Array [
+                Object {
+                  "creationFunction": "mainFrame",
+                  "selector": undefined,
+                  "text": undefined,
+                },
+                Object {
+                  "creationFunction": "focus",
+                  "selector": "body",
+                  "text": "body",
+                },
+              ],
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
           Array [
             Object {
               "args": Array [
@@ -302,6 +374,30 @@ describe('assorted page instrumentations', () => {
 
       expect(afterEachHook.mock.calls.map(cleanJestMockFunctionCalls)).toMatchInlineSnapshot(`
         Array [
+          Array [
+            Object {
+              "args": Array [
+                "body",
+              ],
+              "fnName": "focus",
+              "instrumentedFunctionResult": "cleaned",
+              "methodCallData": Array [
+                Object {
+                  "creationFunction": "mainFrame",
+                  "selector": undefined,
+                  "text": undefined,
+                },
+                Object {
+                  "creationFunction": "focus",
+                  "selector": "body",
+                  "text": "body",
+                },
+              ],
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
           Array [
             Object {
               "args": Array [

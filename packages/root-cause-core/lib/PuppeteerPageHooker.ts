@@ -23,7 +23,6 @@ const loggerError = debug('root-cause:error');
 const omittedPageMethods = [
   'then',
   'setViewport',
-  'mainFrame',
   'screenshot',
   'close',
   'removeListener',
