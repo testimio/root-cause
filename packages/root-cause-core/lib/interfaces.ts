@@ -1,6 +1,6 @@
 import type { Page as PuppeteerPage } from 'puppeteer';
 import type { Page as PlaywrightPage } from 'playwright';
-import { TestContext } from './TestContext';
+import type { TestContextInterface } from './TestContext';
 import type { TestEndStatus } from './attachInterfaces';
 import type { InstrumentedFunctionResult } from '@testim/root-cause-types';
 
@@ -13,7 +13,7 @@ export interface AttachOptions {
 }
 
 export interface CommonEachHookArgs {
-  testContext: TestContext;
+  testContext: TestContextInterface;
   fnName: string;
   proxyContext: any;
   rootPage: RootCausePage;
@@ -32,7 +32,7 @@ export interface AfterHookArgs extends CommonEachHookArgs {
 export type AfterHook = (args: AfterHookArgs) => Promise<void>;
 
 export interface BeforeAllHookArgs {
-  testContext: TestContext;
+  testContext: TestContextInterface;
   proxyContext: any;
   rootPage: RootCausePage;
 }
@@ -40,7 +40,7 @@ export interface BeforeAllHookArgs {
 export type BeforeAllHook = (args: BeforeAllHookArgs) => Promise<void>;
 
 export interface AfterAllHookArgs {
-  testContext: TestContext;
+  testContext: TestContextInterface;
   endStatus: TestEndStatus<unknown, unknown>;
 }
 

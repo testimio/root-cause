@@ -1,4 +1,3 @@
-/* eslint-disable no-await-in-loop */
 import debug from 'debug';
 import { TestEndStatus } from './attachInterfaces';
 import type {
@@ -11,7 +10,7 @@ import type {
   ProxiedMethodCallData,
   RootCausePage,
 } from './interfaces';
-import type { TestContext } from './TestContext';
+import type { TestContextInterface } from './TestContext';
 import { appendToFunctionName } from './utils';
 import { extractPuppeteerSelector } from './utils/puppeteer-selector-mapping';
 import { extractPuppeteerText } from './utils/puppeteer-text-mapping';
@@ -33,14 +32,14 @@ const omittedPageMethods = [
   'viewport',
 ];
 
-const returningElementHandlesViaPromise = new Set(['$', '$$', 'waitForSelector']);
+const returningElementHandlesViaPromise = new Set(['$', '$$', 'waitForSelector', 'evaluateHandle']);
 const flatGetters = new Set(['keyboard', 'mouse']);
-const gettersViaFunction = new Set(['frames']);
+const gettersViaFunction = new Set(['frames', 'asElement', 'mainFrame']);
 
 export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   public paused = false;
 
-  constructor(private testContext: TestContext, private rootPage: RootCausePage) {}
+  constructor(private testContext: TestContextInterface, private rootPage: RootCausePage) {}
 
   pause(): void {
     this.paused = true;
@@ -168,7 +167,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
     return new Proxy(proxiedObject, handler) as T;
   }
 
-  async start() {
+  async start(): Promise<void> {
     for (const beforeAllHook of this.beforeAllHooks) {
       try {
         await beforeAllHook({
@@ -182,7 +181,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
     }
   }
 
-  async end(endStatus: TestEndStatus<unknown, unknown>) {
+  async end(endStatus: TestEndStatus<unknown, unknown>): Promise<void> {
     for (const afterAllHook of this.afterAllHooks) {
       try {
         await afterAllHook({ testContext: this.testContext, endStatus });
