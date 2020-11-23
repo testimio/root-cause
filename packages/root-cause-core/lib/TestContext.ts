@@ -70,7 +70,7 @@ export class TestContext implements TestContextInterface {
     this._currentStep = new StepResultWithName(this.stepIndex, this.dateConstructor);
   }
 
-  getStepIndex() {
+  getStepIndex(): number {
     return this.stepIndex;
   }
 
@@ -84,20 +84,20 @@ export class TestContext implements TestContextInterface {
     await this.persistResults();
   }
 
-  async testEnded() {
+  async testEnded(): Promise<void> {
     this.testMetadata.endedTimestamp = this.dateConstructor.now();
     await this.persistResults();
   }
 
-  addTestMetadata(metadata: any) {
+  addTestMetadata(metadata: Record<string | number, any>): void {
     Object.assign(this.testMetadata, metadata);
   }
 
-  addStepMetadata(metadata: any) {
+  addStepMetadata(metadata: Record<string | number, any>): void {
     Object.assign(this._currentStep, metadata);
   }
 
-  addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>) {
+  addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>): void {
     if (this._currentStep) {
       throw new Error("invariant: Can't add assertion in a middle of step");
     }
