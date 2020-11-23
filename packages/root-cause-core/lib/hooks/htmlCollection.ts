@@ -10,14 +10,15 @@ export async function createHtmlCollectionHook(page: RootCausePage): Promise<Bef
     return async () => undefined;
   }
 
-  return async function htmlCollectionHook({ testContext }) {
+  // @todo need to use the specific page of the step
+  return async function htmlCollectionHook({ testContext, stepResult }) {
     const { data: mhtmlContent } = await sendCDPMessage(session, 'Page.captureSnapshot', {
       format: 'mhtml',
     });
 
-    const mhtmlFile = `${testContext.currentStep?.index}.document.mhtml`;
+    const mhtmlFile = `${stepResult.index}.document.mhtml`;
     const outputFilePath = join(testContext.testArtifactsFolder, mhtmlFile);
     await fs.writeFile(outputFilePath, mhtmlContent);
-    testContext.addStepMetadata({ mhtmlFile });
+    stepResult.mhtmlFile = mhtmlFile;
   };
 }

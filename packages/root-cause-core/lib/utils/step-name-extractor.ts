@@ -1,6 +1,6 @@
 import type { StepResult } from '@testim/root-cause-types';
 
-export function extractStepName(result: StepResult) {
+export function extractStepName(result: StepResult): string {
   const name = result.fnName ?? 'Run Command';
   const selector = result.selector;
   const text = result.text;

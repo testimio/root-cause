@@ -218,7 +218,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   ) {
     const { beforeHooks, afterHooks, testContext, rootPage } = this;
 
-    testContext.stepStarted();
+    const runningStep = testContext.stepStarted();
 
     const newMethodCallData: ProxiedMethodCallData = {
       selector: extractPuppeteerSelector(proxyContext, fnName, args),
@@ -234,6 +234,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
       rootPage,
       args,
       methodCallData,
+      stepResult: runningStep,
     };
 
     for (const beforeHook of beforeHooks) {
@@ -281,7 +282,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
 
       throw err;
     } finally {
-      await testContext.stepEnded();
+      await testContext.stepEnded(runningStep);
     }
   }
 }

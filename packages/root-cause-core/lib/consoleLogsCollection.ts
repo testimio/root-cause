@@ -83,19 +83,17 @@ export const logsAfterAllHook: AfterAllHook = async function logsAfterAllHook({ 
 
 export const logsBeforeEachHook: BeforeHook = async function logsBeforeEachHook() {};
 
-export const logsAfterEachHook: AfterHook = async function logsAfterEachHook({ testContext }) {
-  const stepContext = testContext.currentStep;
-  if (!stepContext) {
-    return;
-  }
-
+export const logsAfterEachHook: AfterHook = async function logsAfterEachHook({
+  testContext,
+  stepResult,
+}) {
   const consoleEntries = testContext.consoleEntries.filter(
-    (e) => e.timestamp > stepContext.startTimestamp
+    (e) => e.timestamp > stepResult.startTimestamp
   );
   const unhandledExceptions = testContext.unhandledExceptions.filter(
-    (e) => e.timestamp > stepContext.startTimestamp
+    (e) => e.timestamp > stepResult.startTimestamp
   );
-  testContext.addStepMetadata({ consoleEntries, unhandledExceptions });
+  Object.assign(stepResult, { consoleEntries, unhandledExceptions });
 };
 
 async function puppeteerOrPlaywrightConsoleMessageToOurRepresentation(

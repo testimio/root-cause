@@ -6,7 +6,7 @@ declare const document: any;
 declare const window: any;
 
 export const puppeteerScreenshot: BeforeHook = async function puppeteerScreenshot(hookArgs) {
-  const { proxyContext, testContext, fnName, rootPage } = hookArgs;
+  const { proxyContext, testContext, fnName, rootPage, stepResult } = hookArgs;
   if (!testContext.featuresSettings.screenshots) {
     return;
   }
@@ -17,7 +17,7 @@ export const puppeteerScreenshot: BeforeHook = async function puppeteerScreensho
 
   const rect = await getElementRect(hookArgs);
   if (rect) {
-    testContext.addStepMetadata({ rect });
+    stepResult.rect = rect;
   }
 
   await rootPage.screenshot({
@@ -29,7 +29,7 @@ export const puppeteerScreenshot: BeforeHook = async function puppeteerScreensho
         : undefined,
     fullPage: testContext.featuresSettings.screenshots.fullPage,
   });
-  testContext.addStepMetadata({ screenshot: filename });
+  stepResult.screenshot = filename;
 };
 
 async function getElementRect({ proxyContext, methodCallData }: BeforeHookArgs): Promise<any> {

@@ -1,4 +1,3 @@
-import { StepResultWithName } from './StepResultWithName';
 import fs from 'fs-extra';
 import { TEST_RESULTS_FILE_NAME } from './consts';
 import path from 'path';
@@ -11,6 +10,7 @@ import type {
   ConsoleException,
 } from '@testim/root-cause-types';
 import { ActiveFeatures } from './attachInterfaces';
+import { extractStepName } from './utils/step-name-extractor';
 
 const loggerError = debug('root-cause:error');
 
@@ -61,25 +61,28 @@ export class TestContext implements TestContextInterface {
     this.testMetadata.timestamp = dateConstructor.now();
   }
 
-  get currentStep(): Readonly<StepResult> | undefined {
-    return this._currentStep;
-  }
-
-  stepStarted(): void {
+  stepStarted(): StepResult {
     this.stepIndex++;
-    this._currentStep = new StepResultWithName(this.stepIndex, this.dateConstructor);
+    const startedStep: StepResult = {
+      index: this.stepIndex,
+      startTimestamp: this.dateConstructor.now(),
+    };
+    return startedStep;
   }
 
   getStepIndex(): number {
     return this.stepIndex;
   }
 
-  async stepEnded(): Promise<void> {
-    if (this._currentStep) {
-      this._currentStep.endTimestamp = this.dateConstructor.now();
-      this.stepResults.push(this._currentStep);
-      this._currentStep = undefined;
-    }
+  async stepEnded(stepResult: StepResult): Promise<void> {
+    stepResult.endTimestamp = this.dateConstructor.now();
+    this.stepResults.push(stepResult);
+    // Due to the concurrent steps support, stepIndex and the position in the stepResults array might not be synced,
+    // (Later step might end before earlier one)
+    // So we want to ensure it is
+    this.stepResults.sort((stepA, stepB) => {
+      return stepA.index - stepB.index;
+    });
 
     await this.persistResults();
   }
@@ -93,9 +96,9 @@ export class TestContext implements TestContextInterface {
     Object.assign(this.testMetadata, metadata);
   }
 
-  addStepMetadata(metadata: Record<string | number, any>): void {
-    Object.assign(this._currentStep, metadata);
-  }
+  // addStepMetadata(metadata: Record<string | number, any>): void {
+  //   Object.assign(this._currentStep, metadata);
+  // }
 
   addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>): void {
     if (this._currentStep) {
@@ -126,7 +129,12 @@ export class TestContext implements TestContextInterface {
   private getResultsForPersistency() {
     return {
       metadata: this.testMetadata,
-      steps: this.stepResults,
+      steps: this.stepResults.map((result) => {
+        return {
+          ...result,
+          name: extractStepName(result),
+        };
+      }),
     };
   }
 }
