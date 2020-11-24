@@ -84,7 +84,13 @@ export async function setupPageInstrumentorForTesting<TPage extends RootCausePag
   };
 }
 
-const objPropToClean = ['testContext', 'proxyContext', 'rootPage', 'instrumentedFunctionResult'];
+const objPropToClean = [
+  'testContext',
+  'proxyContext',
+  'rootPage',
+  'instrumentedFunctionResult',
+  'stepResult',
+];
 export function cleanJestMockFunctionCalls(calls: any[]): any[] {
   return calls.map((callArg) => {
     const cloned = { ...callArg };

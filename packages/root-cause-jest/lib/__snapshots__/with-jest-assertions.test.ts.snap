@@ -27,7 +27,7 @@ Object {
             "column": 29,
             "file": "../root-cause-core/lib/assortedHooks.ts",
             "function": "testEndHook",
-            "line": 118,
+            "line": 116,
           },
           Object {
             "column": 15,

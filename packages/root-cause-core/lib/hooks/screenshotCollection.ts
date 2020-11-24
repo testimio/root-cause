@@ -11,7 +11,7 @@ export const puppeteerScreenshot: BeforeHook = async function puppeteerScreensho
     return;
   }
 
-  const filename = `${testContext.getStepIndex()}.${proxyContext.constructor.name.toLowerCase()}-${fnName}.${
+  const filename = `${stepResult.index}.${proxyContext.constructor.name.toLowerCase()}-${fnName}.${
     testContext.featuresSettings.screenshots.format === 'png' ? 'png' : 'jpg'
   }`;
 

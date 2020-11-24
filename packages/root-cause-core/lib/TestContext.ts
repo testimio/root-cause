@@ -21,13 +21,10 @@ export interface TestContextInterface {
   testFilePath: string;
   featuresSettings: ActiveFeatures;
   dateConstructor: typeof Date;
-  currentStep: Readonly<StepResult> | undefined;
-  stepStarted(): void;
-  getStepIndex(): number;
-  stepEnded(): Promise<void>;
+  stepStarted(): StepResult;
+  stepEnded(stepResult: StepResult): Promise<void>;
   testEnded(): Promise<void>;
   addTestMetadata(metadata: any): void;
-  addStepMetadata(metadata: any): void;
   addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>): void;
 }
 
@@ -132,7 +129,7 @@ export class TestContext implements TestContextInterface {
       steps: this.stepResults.map((result) => {
         return {
           ...result,
-          name: extractStepName(result),
+          name: result.name ? result.name : extractStepName(result),
         };
       }),
     };

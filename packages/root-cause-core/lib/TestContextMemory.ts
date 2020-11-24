@@ -1,4 +1,3 @@
-import { StepResultWithName } from './StepResultWithName';
 import type {
   StepResult,
   TestMetadata,
@@ -38,17 +37,14 @@ export class TestContextMemory implements TestContextInterface {
     this.testMetadata.timestamp = dateConstructor.now();
   }
 
-  get currentStep(): Readonly<StepResult> | undefined {
-    return this._currentStep;
-  }
-
-  stepStarted(): void {
+  stepStarted(): StepResult {
     this.stepIndex++;
-    this._currentStep = new StepResultWithName(this.stepIndex, this.dateConstructor);
-  }
+    const step: StepResult = {
+      index: this.stepIndex,
+      startTimestamp: this.dateConstructor.now(),
+    };
 
-  getStepIndex() {
-    return this.stepIndex;
+    return step;
   }
 
   async stepEnded(): Promise<void> {
@@ -59,19 +55,15 @@ export class TestContextMemory implements TestContextInterface {
     }
   }
 
-  async testEnded() {
+  async testEnded(): Promise<void> {
     this.testMetadata.endedTimestamp = this.dateConstructor.now();
   }
 
-  addTestMetadata(metadata: any) {
+  addTestMetadata(metadata: Record<string | number, unknown>): void {
     Object.assign(this.testMetadata, metadata);
   }
 
-  addStepMetadata(metadata: any) {
-    Object.assign(this._currentStep, metadata);
-  }
-
-  addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>) {
+  addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>): void {
     if (this._currentStep) {
       throw new Error("invariant: Can't add assertion in a middle of step");
     }

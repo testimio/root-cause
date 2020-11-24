@@ -103,6 +103,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -121,6 +122,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -147,6 +149,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -176,6 +179,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -195,6 +199,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -222,6 +227,152 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
+        ]
+      `);
+    });
+
+    test('Parallel steps', async () => {
+      const {
+        beforeAllHook,
+        afterAllHook,
+        beforeEachHook,
+        afterEachHook,
+      } = await runPageInstrumentorTest(
+        'assorted page instrumentations 1',
+        __filename,
+        page,
+        async (wrappedPage) => {
+          // these are parallel steps
+          // the second step will be finished before the first one
+          await Promise.all([
+            wrappedPage.evaluate(`() => {
+              return new Promise((resolve) => {
+                setTimeout(resolve, 500);
+              });
+            }`),
+            wrappedPage.click('body'),
+          ]);
+        }
+      );
+
+      expect(beforeAllHook.mock.calls.map(cleanJestMockFunctionCalls)).toMatchInlineSnapshot(`
+        Array [
+          Array [
+            Object {
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
+        ]
+      `);
+      expect(afterAllHook.mock.calls.map(cleanJestMockFunctionCalls)).toMatchInlineSnapshot(`
+        Array [
+          Array [
+            Object {
+              "endStatus": Object {
+                "success": true,
+              },
+              "testContext": "cleaned",
+            },
+          ],
+        ]
+      `);
+
+      expect(beforeEachHook.mock.calls.map(cleanJestMockFunctionCalls)).toMatchInlineSnapshot(`
+        Array [
+          Array [
+            Object {
+              "args": Array [
+                "() => {
+                      return new Promise((resolve) => {
+                        setTimeout(resolve, 500);
+                      });
+                    }",
+              ],
+              "fnName": "evaluate",
+              "methodCallData": Array [
+                Object {
+                  "creationFunction": "evaluate",
+                  "selector": undefined,
+                  "text": undefined,
+                },
+              ],
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "stepResult": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
+          Array [
+            Object {
+              "args": Array [
+                "body",
+              ],
+              "fnName": "click",
+              "methodCallData": Array [
+                Object {
+                  "creationFunction": "click",
+                  "selector": "body",
+                  "text": undefined,
+                },
+              ],
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "stepResult": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
+        ]
+      `);
+
+      expect(afterEachHook.mock.calls.map(cleanJestMockFunctionCalls)).toMatchInlineSnapshot(`
+        Array [
+          Array [
+            Object {
+              "args": Array [
+                "() => {
+                      return new Promise((resolve) => {
+                        setTimeout(resolve, 500);
+                      });
+                    }",
+              ],
+              "fnName": "evaluate",
+              "instrumentedFunctionResult": "cleaned",
+              "methodCallData": Array [
+                Object {
+                  "creationFunction": "evaluate",
+                  "selector": undefined,
+                  "text": undefined,
+                },
+              ],
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "stepResult": "cleaned",
+              "testContext": "cleaned",
+            },
+          ],
+          Array [
+            Object {
+              "args": Array [
+                "body",
+              ],
+              "fnName": "click",
+              "instrumentedFunctionResult": "cleaned",
+              "methodCallData": Array [
+                Object {
+                  "creationFunction": "click",
+                  "selector": "body",
+                  "text": undefined,
+                },
+              ],
+              "proxyContext": "cleaned",
+              "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -322,6 +473,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -340,6 +492,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -366,6 +519,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -395,6 +549,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -414,6 +569,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
@@ -441,6 +597,7 @@ describe('assorted page instrumentations', () => {
               ],
               "proxyContext": "cleaned",
               "rootPage": "cleaned",
+              "stepResult": "cleaned",
               "testContext": "cleaned",
             },
           ],
