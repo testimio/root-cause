@@ -562,3 +562,29 @@ export function createDateMocker(): typeof Date {
 
   return mockedDateConstructor;
 }
+
+const rootCausePagesConstructorNames = new Set(['Page', 'CRPage', 'FFPage', 'WKPage'] as const);
+export function isRootCausePage(maybeRootCausePage: unknown): maybeRootCausePage is RootCausePage {
+  if (typeof maybeRootCausePage !== 'object' || maybeRootCausePage === null) {
+    return false;
+  }
+
+  const { name: constructorName } = maybeRootCausePage.constructor;
+
+  return rootCausePagesConstructorNames.has(constructorName as any);
+}
+
+export async function getPageFromProxyContext(
+  proxyContext: unknown
+): Promise<RootCausePage | undefined> {
+  if (isRootCausePage(proxyContext)) {
+    return proxyContext;
+  }
+  if (typeof proxyContext === 'object' && proxyContext !== null && 'ownerFrame' in proxyContext) {
+    // @ts-expect-error can't narrow types
+    const ownerFrame = await proxyContext.ownerFrame();
+    if (ownerFrame !== null) {
+      return ownerFrame.page();
+    }
+  }
+}

@@ -33,7 +33,7 @@ Object {
             "column": 15,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "PuppeteerPageHooker.end",
-            "line": 186,
+            "line": 229,
           },
           Object {
             "column": 5,
@@ -82,6 +82,7 @@ Object {
       "index": 1,
       "mhtmlFile": "1.document.mhtml",
       "name": "goto \\"http://jsbin.testim.io/ner/1\\"",
+      "pageId": 0,
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 3,
       "stepCodeLocation": Object {
@@ -90,7 +91,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_goto",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -124,6 +125,7 @@ Object {
       "index": 2,
       "mhtmlFile": "2.document.mhtml",
       "name": "click \\"#test\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -146,7 +148,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -179,6 +181,7 @@ Object {
       "index": 3,
       "mhtmlFile": "3.document.mhtml",
       "name": "click \\"#test\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -201,7 +204,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -241,6 +244,7 @@ Object {
       "index": 4,
       "mhtmlFile": "4.document.mhtml",
       "name": "click \\"#test\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -263,7 +267,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -308,6 +312,7 @@ Object {
       "index": 5,
       "mhtmlFile": "5.document.mhtml",
       "name": "click \\"#test\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -330,7 +335,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -363,6 +368,7 @@ Object {
       "index": 6,
       "mhtmlFile": "6.document.mhtml",
       "name": "$ \\"#counter\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -385,7 +391,7 @@ Object {
             "column": 30,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_$",
-            "line": 120,
+            "line": 159,
           },
           Object {
             "column": 23,
@@ -418,6 +424,7 @@ Object {
       "index": 7,
       "mhtmlFile": "7.document.mhtml",
       "name": "getProperty \\"innerText\\" on \\"#counter\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -440,7 +447,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 25,
@@ -474,6 +481,7 @@ Object {
       "index": 8,
       "mhtmlFile": "8.document.mhtml",
       "name": "click \\"#reset\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -496,7 +504,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -529,6 +537,7 @@ Object {
       "index": 9,
       "mhtmlFile": "9.document.mhtml",
       "name": "getProperty \\"innerText\\" on \\"#counter\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -551,7 +560,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 26,
@@ -585,6 +594,7 @@ Object {
       "index": 10,
       "mhtmlFile": "10.document.mhtml",
       "name": "$$ \\"button\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -607,7 +617,7 @@ Object {
             "column": 30,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.returningElementHandlesViaPromiseWrappedFunction_Page_$$",
-            "line": 120,
+            "line": 159,
           },
           Object {
             "column": 24,
@@ -640,6 +650,7 @@ Object {
       "index": 11,
       "mhtmlFile": "11.document.mhtml",
       "name": "click \\"button[0]\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -662,7 +673,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_ElementHandle_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -695,6 +706,7 @@ Object {
       "index": 12,
       "mhtmlFile": "12.document.mhtml",
       "name": "getProperty \\"innerText\\" on \\"#counter\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -717,7 +729,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_ElementHandle_getProperty",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 26,

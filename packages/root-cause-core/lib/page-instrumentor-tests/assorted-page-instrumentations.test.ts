@@ -92,11 +92,13 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "mainFrame",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "focus",
+                  "pageId": 0,
                   "selector": "body",
                   "text": "body",
                 },
@@ -116,6 +118,7 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluateHandle",
+                  "pageId": 0,
                   "selector": "document.body",
                   "text": undefined,
                 },
@@ -133,16 +136,19 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluateHandle",
+                  "pageId": 0,
                   "selector": "document.body",
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "asElement",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "click",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
@@ -168,11 +174,13 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "mainFrame",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "focus",
+                  "pageId": 0,
                   "selector": "body",
                   "text": "body",
                 },
@@ -193,6 +201,7 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluateHandle",
+                  "pageId": 0,
                   "selector": "document.body",
                   "text": undefined,
                 },
@@ -211,16 +220,19 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluateHandle",
+                  "pageId": 0,
                   "selector": "document.body",
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "asElement",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "click",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
@@ -298,6 +310,7 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluate",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
@@ -317,6 +330,7 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "click",
+                  "pageId": 0,
                   "selector": "body",
                   "text": undefined,
                 },
@@ -346,6 +360,7 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluate",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
@@ -366,6 +381,7 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "click",
+                  "pageId": 0,
                   "selector": "body",
                   "text": undefined,
                 },
@@ -462,11 +478,13 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "mainFrame",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "focus",
+                  "pageId": 0,
                   "selector": "body",
                   "text": "body",
                 },
@@ -486,6 +504,7 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluateHandle",
+                  "pageId": 0,
                   "selector": "document.body",
                   "text": undefined,
                 },
@@ -503,16 +522,19 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluateHandle",
+                  "pageId": 0,
                   "selector": "document.body",
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "asElement",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "click",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
@@ -538,11 +560,13 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "mainFrame",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "focus",
+                  "pageId": 0,
                   "selector": "body",
                   "text": "body",
                 },
@@ -563,6 +587,7 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluateHandle",
+                  "pageId": 0,
                   "selector": "document.body",
                   "text": undefined,
                 },
@@ -581,16 +606,19 @@ describe('assorted page instrumentations', () => {
               "methodCallData": Array [
                 Object {
                   "creationFunction": "evaluateHandle",
+                  "pageId": 0,
                   "selector": "document.body",
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "asElement",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },
                 Object {
                   "creationFunction": "click",
+                  "pageId": 0,
                   "selector": undefined,
                   "text": undefined,
                 },

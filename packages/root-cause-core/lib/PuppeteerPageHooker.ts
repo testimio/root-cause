@@ -11,7 +11,7 @@ import type {
   RootCausePage,
 } from './interfaces';
 import type { TestContextInterface } from './TestContext';
-import { appendToFunctionName } from './utils';
+import { appendToFunctionName, isRootCausePage } from './utils';
 import { extractPuppeteerSelector } from './utils/puppeteer-selector-mapping';
 import { extractPuppeteerText } from './utils/puppeteer-text-mapping';
 
@@ -445,15 +445,4 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
 
     mapOfEvent.set(userHandler, ourHandler);
   }
-}
-
-const rootCausePagesConstructorNames = new Set(['Page', 'CRPage', 'FFPage', 'WKPage'] as const);
-function isRootCausePage(maybeRootCausePage: unknown): maybeRootCausePage is RootCausePage {
-  if (typeof maybeRootCausePage !== 'object' || maybeRootCausePage === null) {
-    return false;
-  }
-
-  const { name: constructorName } = maybeRootCausePage.constructor;
-
-  return rootCausePagesConstructorNames.has(constructorName as any);
 }

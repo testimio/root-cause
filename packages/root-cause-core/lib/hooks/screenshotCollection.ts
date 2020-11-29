@@ -1,12 +1,16 @@
 import path from 'path';
 import { BeforeHook, BeforeHookArgs } from '../interfaces';
-import { getLast } from '../utils';
+import { getLast, getPageFromProxyContext } from '../utils';
 
 declare const document: any;
 declare const window: any;
 
 export const puppeteerScreenshot: BeforeHook = async function puppeteerScreenshot(hookArgs) {
   const { proxyContext, testContext, fnName, rootPage, stepResult } = hookArgs;
+
+  // for multi page page support
+  const pageToScreenshot = (await getPageFromProxyContext(proxyContext)) ?? rootPage;
+
   if (!testContext.featuresSettings.screenshots) {
     return;
   }
@@ -20,7 +24,7 @@ export const puppeteerScreenshot: BeforeHook = async function puppeteerScreensho
     stepResult.rect = rect;
   }
 
-  await rootPage.screenshot({
+  await pageToScreenshot.screenshot({
     path: path.join(testContext.testArtifactsFolder, filename),
     type: testContext.featuresSettings.screenshots.format,
     quality:

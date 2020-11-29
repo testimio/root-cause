@@ -35,6 +35,7 @@ Object {
       "index": 1,
       "mhtmlFile": "1.document.mhtml",
       "name": "goto \\"http://jsbin.testim.io/ces\\"",
+      "pageId": 0,
       "screenshot": "1.page-goto.jpg",
       "startTimestamp": 3,
       "stepCodeLocation": Object {
@@ -43,7 +44,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_goto",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -77,6 +78,7 @@ Object {
       "index": 2,
       "mhtmlFile": "2.document.mhtml",
       "name": "click \\"[data-job=GET_OK]\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -99,7 +101,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -140,6 +142,7 @@ Object {
       "index": 3,
       "mhtmlFile": "3.document.mhtml",
       "name": "click \\"[data-job=GET_404]\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -162,7 +165,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -195,6 +198,7 @@ Object {
       "index": 4,
       "mhtmlFile": "4.document.mhtml",
       "name": "click \\"[data-job=POST_OK]\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -217,7 +221,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
@@ -258,6 +262,7 @@ Object {
       "index": 5,
       "mhtmlFile": "5.document.mhtml",
       "name": "click \\"[data-job=POST_404]\\"",
+      "pageId": 0,
       "rect": Object {
         "bottom": "possible noise removed",
         "devicePixelRatio": "possible noise removed",
@@ -280,7 +285,7 @@ Object {
             "column": 18,
             "file": "lib/PuppeteerPageHooker.ts",
             "function": "Proxy.rootCauseWrappedFunction_Page_click",
-            "line": 154,
+            "line": 196,
           },
           Object {
             "column": 5,
