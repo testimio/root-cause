@@ -93,10 +93,6 @@ export class TestContext implements TestContextInterface {
     Object.assign(this.testMetadata, metadata);
   }
 
-  // addStepMetadata(metadata: Record<string | number, any>): void {
-  //   Object.assign(this._currentStep, metadata);
-  // }
-
   addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>): void {
     if (this._currentStep) {
       throw new Error("invariant: Can't add assertion in a middle of step");
