@@ -14,7 +14,7 @@ import { PossibleUserSettings } from './userSettings/interfaces';
 import { resolveSettings } from './userSettings/userSettings';
 import { jsonReduceNoiseReviver, testUniqueIdentifierFromStartParams } from './utils';
 
-describe('Sanity integration test', () => {
+describe('integration multi page test', () => {
   jest.setTimeout(30_000);
   expect.addSnapshotSerializer(getCleanAllPathsPrettyFormatPlugin(process.cwd()));
   expect.addSnapshotSerializer(getCleanProcessTicksAndRejectionsStackFramePrettyFormatPlugin());
@@ -49,7 +49,7 @@ describe('Sanity integration test', () => {
     await browserContext.close();
   });
 
-  it(__filename, async () => {
+  it('integration multi page test', async () => {
     const currentTestInfo = getCurrentTest();
 
     const startTestParams = {

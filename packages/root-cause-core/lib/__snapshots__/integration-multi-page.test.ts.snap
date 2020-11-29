@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sanity integration test /Users/bnaya/dev/clients/testim.io/dev-first/root-cause/packages/root-cause-core/lib/integration-multi-page.test.ts 1`] = `
+exports[`integration multi page test integration multi page test 1`] = `
 Object {
   "metadata": Object {
     "branchInfo": "noise_removed:branchInfo",
@@ -70,8 +70,8 @@ Object {
       },
       "success": false,
     },
-    "testFullName": "Sanity integration test noise_removed/packages/root-cause-core/lib/integration-multi-page.test.ts",
-    "testName": "noise_removed/packages/root-cause-core/lib/integration-multi-page.test.ts",
+    "testFullName": "integration multi page test integration multi page test",
+    "testName": "integration multi page test",
     "timestamp": 2,
   },
   "steps": Array [
