@@ -26,7 +26,6 @@ const omittedPageMethods = [
   'screenshot',
   'close',
   'removeListener',
-  'off',
   'constructor',
   'viewport',
 ];
@@ -35,8 +34,15 @@ const returningElementHandlesViaPromise = new Set(['$', '$$', 'waitForSelector',
 const flatGetters = new Set(['keyboard', 'mouse']);
 const gettersViaFunction = new Set(['frames', 'asElement', 'mainFrame']);
 
+type EventsHandlersRegistry = WeakMap<
+  {},
+  Map<string, WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>>
+>;
+
 export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   public paused = false;
+  private wrappedEventsHandlersRegistry: EventsHandlersRegistry = new WeakMap();
+  private pageIdsCounter = 0;
 
   constructor(private testContext: TestContextInterface, private rootPage: RootCausePage) {}
 
@@ -69,12 +75,13 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   private afterHooks: Array<AfterHook> = [];
 
   wrapWithProxy<T extends object>(proxiedObject: T): T {
-    return this.innerWrapWithProxy(proxiedObject, []);
+    return this.innerWrapWithProxy(proxiedObject, [], 0);
   }
 
   private innerWrapWithProxy<T extends object>(
     proxiedObject: T,
-    methodCallData: ProxiedMethodCallData[]
+    methodCallData: ProxiedMethodCallData[],
+    pageId: number
   ): T {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const pauseStateHolder: { paused: boolean } = this;
@@ -83,6 +90,32 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
     const pageHookerThis = this;
     const handler: ProxyHandler<T> = {
       get(target, prop, receiver) {
+        // wrap event handlers only on pages objects only
+        if (isRootCausePage(target)) {
+          if (prop === 'on' || prop === 'addListener') {
+            return pageHookerThis.onMethodMiddleman.bind(pageHookerThis, target);
+          }
+
+          if (prop === 'off' || prop === 'removeListener') {
+            return pageHookerThis.offMethodMiddleman.bind(pageHookerThis, target);
+          }
+
+          if (prop === 'once') {
+            return pageHookerThis.onceMethodMiddleman.bind(pageHookerThis, target);
+          }
+
+          // playwright only
+          if (prop === 'waitForEvent') {
+            if (!('waitForEvent' in target)) {
+              return undefined;
+            }
+
+            return pageHookerThis.waitForEventMiddleman.bind(pageHookerThis, target);
+          }
+        }
+
+        // end wrap event handlers
+
         const reflectedProperty = Reflect.get(target, prop, receiver);
         const accessedPropAsString = prop.toString();
 
@@ -108,9 +141,15 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
               selector: extractPuppeteerSelector(proxiedObject, accessedPropAsString, args),
               creationFunction: accessedPropAsString,
               text: extractPuppeteerText(proxiedObject, accessedPropAsString, args, result),
+              pageId,
             };
 
-            return pageHookerThis.wrapReturnValueInProxy(result, methodCallData, newMethodCallData);
+            return pageHookerThis.wrapReturnValueInProxy(
+              result,
+              methodCallData,
+              newMethodCallData,
+              pageId
+            );
           };
         }
 
@@ -123,7 +162,8 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
                 reflectedProperty,
                 accessedPropAsString,
                 args,
-                methodCallData
+                methodCallData,
+                pageId
               );
 
               if (!result) {
@@ -134,12 +174,14 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
                 selector: extractPuppeteerSelector(proxiedObject, accessedPropAsString, args),
                 creationFunction: accessedPropAsString,
                 text: extractPuppeteerText(proxiedObject, accessedPropAsString, args, result),
+                pageId,
               };
 
               return pageHookerThis.wrapReturnValueInProxy(
                 result,
                 methodCallData,
-                newMethodCallData
+                newMethodCallData,
+                pageId
               );
             },
             `_${proxiedObject.constructor.name}_${accessedPropAsString}`
@@ -157,7 +199,8 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
             reflectedProperty,
             accessedPropAsString,
             args,
-            methodCallData
+            methodCallData,
+            pageId
           );
         }, `_${proxiedObject.constructor.name}_${accessedPropAsString}`);
       },
@@ -194,18 +237,20 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   private wrapReturnValueInProxy(
     result: any,
     previousMethodCallData: ProxiedMethodCallData[],
-    methodCallData: ProxiedMethodCallData
+    methodCallData: ProxiedMethodCallData,
+    pageId: number
   ) {
     if (Array.isArray(result)) {
       return result.map((element: any, index: number) => {
         return this.innerWrapWithProxy(
           element,
-          previousMethodCallData.concat({ ...methodCallData, index })
+          previousMethodCallData.concat({ ...methodCallData, index }),
+          pageId
         );
       });
     }
 
-    return this.innerWrapWithProxy(result, previousMethodCallData.concat(methodCallData));
+    return this.innerWrapWithProxy(result, previousMethodCallData.concat(methodCallData), pageId);
   }
 
   private async makeStep(
@@ -214,15 +259,18 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
     method: any,
     fnName: string,
     args: any[],
-    methodCallData: ProxiedMethodCallData[]
+    methodCallData: ProxiedMethodCallData[],
+    pageId: number
   ) {
     const { beforeHooks, afterHooks, testContext, rootPage } = this;
 
     const runningStep = testContext.stepStarted();
+    runningStep.pageId = pageId;
 
     const newMethodCallData: ProxiedMethodCallData = {
       selector: extractPuppeteerSelector(proxyContext, fnName, args),
       creationFunction: fnName,
+      pageId,
     };
 
     methodCallData = methodCallData.concat(newMethodCallData);
@@ -285,4 +333,127 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
       await testContext.stepEnded(runningStep);
     }
   }
+
+  /**
+   * playwright only
+   */
+  private waitForEventMiddleman = async (
+    target: RootCausePage,
+    eventName: string,
+    optionsOrPredicate?: unknown
+  ) => {
+    if (eventName === 'popup') {
+      // @ts-expect-error we can't ensure types here
+      const newPage = await target.waitForEvent(eventName, optionsOrPredicate);
+      return this.innerWrapWithProxy(newPage, [], ++this.pageIdsCounter);
+    }
+
+    // @ts-expect-error we can't ensure types here
+    return target.waitForEvent(eventName, optionsOrPredicate);
+  };
+
+  private onMethodMiddleman = (
+    target: RootCausePage,
+    eventName: string,
+    userEventHandler: (...args: unknown[]) => unknown
+  ) => {
+    // Wrap only 'popup' event, ignore others
+    if (eventName !== 'popup') {
+      // @ts-expect-error can't ensure types
+      return target.on(eventName, userEventHandler);
+    }
+
+    const ourPopupHandler = (newPage: RootCausePage) => {
+      const wrappedPage = this.innerWrapWithProxy(newPage, [], ++this.pageIdsCounter);
+      userEventHandler(wrappedPage);
+    };
+
+    this.addAssociatedEventHandler(target, 'popup', userEventHandler, ourPopupHandler);
+
+    // @ts-expect-error can't ensure types
+    return target.on('popup', ourPopupHandler);
+  };
+
+  private offMethodMiddleman = (
+    target: RootCausePage,
+    eventName: string,
+    userEventHandler: (...args: []) => unknown
+  ) => {
+    const actualOurHandler = this.getAssociatedEventHandler(target, eventName, userEventHandler);
+
+    if (actualOurHandler) {
+      // @ts-expect-error can't ensure types
+      return target.off(eventName, actualOurHandler);
+    }
+
+    // @ts-expect-error can't ensure types
+    return target.off(eventName, userEventHandler);
+  };
+
+  private onceMethodMiddleman = (
+    target: RootCausePage,
+    eventName: string,
+    userEventHandler: (...args: unknown[]) => unknown
+  ) => {
+    // Wrap only 'popup' event, ignore others
+    if (eventName !== 'popup') {
+      // @ts-expect-error can't ensure types
+      return target.once(eventName, handler);
+    }
+
+    const ourOncePopupHandler = (newPage: RootCausePage) => {
+      const wrappedPage = this.innerWrapWithProxy(newPage, [], ++this.pageIdsCounter);
+      userEventHandler(wrappedPage);
+    };
+
+    this.addAssociatedEventHandler(target, 'popup', userEventHandler, ourOncePopupHandler);
+
+    // @ts-expect-error can't ensure types
+    return target.once(eventName, ourOncePopupHandler);
+  };
+
+  private getAssociatedEventHandler(
+    target: RootCausePage,
+    eventName: string,
+    userHandler: (...args: unknown[]) => unknown
+  ): undefined | ((...args: unknown[]) => unknown) {
+    return this.wrappedEventsHandlersRegistry.get(target)?.get(eventName)?.get(userHandler);
+  }
+
+  private addAssociatedEventHandler(
+    target: RootCausePage,
+    eventName: string,
+    userHandler: (...args: unknown[]) => unknown,
+    ourHandler: (...args: any[]) => unknown
+  ): void {
+    let mapForTarget = this.wrappedEventsHandlersRegistry.get(target);
+
+    if (!mapForTarget) {
+      mapForTarget = new Map<
+        string,
+        WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>
+      >();
+      this.wrappedEventsHandlersRegistry.set(target, mapForTarget);
+    }
+
+    let mapOfEvent = mapForTarget.get(eventName);
+
+    if (!mapOfEvent) {
+      mapOfEvent = new WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>();
+      mapForTarget.set(eventName, mapOfEvent);
+    }
+
+    mapOfEvent.set(userHandler, ourHandler);
+  }
+}
+
+const rootCausePagesConstructorNames = new Set(['Page', 'CRPage', 'FFPage', 'WKPage'] as const);
+function isRootCausePage(maybeRootCausePage: unknown): maybeRootCausePage is RootCausePage {
+  if (typeof maybeRootCausePage !== 'object' || maybeRootCausePage === null) {
+    return false;
+  }
+
+  const { name: constructorName } = maybeRootCausePage.constructor;
+
+  return rootCausePagesConstructorNames.has(constructorName as any);
 }

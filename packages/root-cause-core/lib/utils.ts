@@ -263,7 +263,7 @@ export function nonNullable<T>(value: T): value is NonNullable<T> {
   return value !== undefined && value !== null;
 }
 
-export function sleep(time: number, abortSignal?: AbortSignal) {
+export function sleep(time: number, abortSignal?: AbortSignal): Promise<void> {
   return new Promise<void>((res, rej) => {
     if (abortSignal?.aborted) {
       rej(new AbortError());

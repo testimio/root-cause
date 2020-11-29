@@ -66,4 +66,5 @@ export interface ProxiedMethodCallData {
   selector?: string;
   text?: string;
   index?: number;
+  pageId?: number;
 }
