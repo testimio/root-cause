@@ -34,14 +34,14 @@ const returningElementHandlesViaPromise = new Set(['$', '$$', 'waitForSelector',
 const flatGetters = new Set(['keyboard', 'mouse']);
 const gettersViaFunction = new Set(['frames', 'asElement', 'mainFrame']);
 
-type EventsHandlersRegistry = WeakMap<
+type EventsListenersRegistry = WeakMap<
   {},
   Map<string, WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>>
 >;
 
 export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
   public paused = false;
-  private wrappedEventsHandlersRegistry: EventsHandlersRegistry = new WeakMap();
+  private wrappedEventsListenersRegistry: EventsListenersRegistry = new WeakMap();
   private pageIdsCounter = 0;
 
   constructor(private testContext: TestContextInterface, private rootPage: RootCausePage) {}
@@ -90,7 +90,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
     const pageHookerThis = this;
     const handler: ProxyHandler<T> = {
       get(target, prop, receiver) {
-        // wrap event handlers only on pages objects only
+        // wrap event listeners only on pages objects only
         if (isRootCausePage(target)) {
           if (prop === 'on' || prop === 'addListener') {
             return pageHookerThis.onMethodMiddleman.bind(pageHookerThis, target);
@@ -114,7 +114,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
           }
         }
 
-        // end wrap event handlers
+        // end wrap event listeners
 
         const reflectedProperty = Reflect.get(target, prop, receiver);
         const accessedPropAsString = prop.toString();
@@ -368,7 +368,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
       userEventHandler(wrappedPage);
     };
 
-    this.addAssociatedEventHandler(target, 'popup', userEventHandler, ourPopupHandler);
+    this.addAssociatedEventListener(target, 'popup', userEventHandler, ourPopupHandler);
 
     // @ts-expect-error can't ensure types
     return target.on('popup', ourPopupHandler);
@@ -406,7 +406,7 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
       userEventHandler(wrappedPage);
     };
 
-    this.addAssociatedEventHandler(target, 'popup', userEventHandler, ourOncePopupHandler);
+    this.addAssociatedEventListener(target, 'popup', userEventHandler, ourOncePopupHandler);
 
     // @ts-expect-error can't ensure types
     return target.once(eventName, ourOncePopupHandler);
@@ -417,23 +417,23 @@ export class PuppeteerPageHooker implements IAutomationFrameworkInstrumentor {
     eventName: string,
     userHandler: (...args: unknown[]) => unknown
   ): undefined | ((...args: unknown[]) => unknown) {
-    return this.wrappedEventsHandlersRegistry.get(target)?.get(eventName)?.get(userHandler);
+    return this.wrappedEventsListenersRegistry.get(target)?.get(eventName)?.get(userHandler);
   }
 
-  private addAssociatedEventHandler(
+  private addAssociatedEventListener(
     target: RootCausePage,
     eventName: string,
     userHandler: (...args: unknown[]) => unknown,
     ourHandler: (...args: any[]) => unknown
   ): void {
-    let mapForTarget = this.wrappedEventsHandlersRegistry.get(target);
+    let mapForTarget = this.wrappedEventsListenersRegistry.get(target);
 
     if (!mapForTarget) {
       mapForTarget = new Map<
         string,
         WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>
       >();
-      this.wrappedEventsHandlersRegistry.set(target, mapForTarget);
+      this.wrappedEventsListenersRegistry.set(target, mapForTarget);
     }
 
     let mapOfEvent = mapForTarget.get(eventName);

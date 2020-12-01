@@ -125,7 +125,7 @@ export class TestContext implements TestContextInterface {
       steps: this.stepResults.map((result) => {
         return {
           ...result,
-          name: result.name ? result.name : extractStepName(result),
+          name: result.name ?? extractStepName(result),
         };
       }),
     };
