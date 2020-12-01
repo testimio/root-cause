@@ -1,12 +1,11 @@
 import { extractCodeLocationDetailsSync } from './utils';
 import { BeforeHook } from './interfaces';
 
-export const stacktraceHook: BeforeHook = async function stacktraceHook({ testContext }) {
+export const stacktraceHook: BeforeHook = async function stacktraceHook({
+  stepResult,
+  testContext,
+}) {
   const stepCodeLocation = extractCodeLocationDetailsSync(testContext.testFilePath, process.cwd());
 
-  const metadata = {
-    stepCodeLocation,
-  };
-
-  testContext.addStepMetadata(metadata);
+  stepResult.stepCodeLocation = stepCodeLocation;
 };

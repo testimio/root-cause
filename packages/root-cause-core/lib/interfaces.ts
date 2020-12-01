@@ -2,7 +2,7 @@ import type { Page as PuppeteerPage } from 'puppeteer';
 import type { Page as PlaywrightPage } from 'playwright';
 import type { TestContextInterface } from './TestContext';
 import type { TestEndStatus } from './attachInterfaces';
-import type { InstrumentedFunctionResult } from '@testim/root-cause-types';
+import type { InstrumentedFunctionResult, StepResult } from '@testim/root-cause-types';
 
 export type RootCausePage = PuppeteerPage | PlaywrightPage;
 
@@ -19,6 +19,7 @@ export interface CommonEachHookArgs {
   rootPage: RootCausePage;
   args: any[];
   methodCallData: ProxiedMethodCallData[];
+  stepResult: StepResult;
 }
 
 export type BeforeHookArgs = CommonEachHookArgs;
@@ -65,4 +66,5 @@ export interface ProxiedMethodCallData {
   selector?: string;
   text?: string;
   index?: number;
+  pageId?: number;
 }

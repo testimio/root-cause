@@ -75,6 +75,21 @@
   justify-content: center;
 }
 
+.stepItem .stepPageNumber {
+  right: 0px;
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  height: 35px;
+  width: 35px;
+  border: 1px solid #000;
+  border-radius: 100px;
+  background: #d8dae5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .stepItem.stepFailed .stepIcon {
   background: #ef6478;
 }

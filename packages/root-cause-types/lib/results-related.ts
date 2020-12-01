@@ -127,6 +127,13 @@ export type StepResult = {
   text?: string;
   mhtmlFile?: string;
 
+  /**
+   * Multiple tabs/pages support (that were opened from the main page)
+   * id = 0 on the attached page
+   * This is optional for backward compatibility
+   */
+  pageId?: number;
+
   index: number;
   startTimestamp: number;
   endTimestamp?: number;

@@ -30,19 +30,19 @@ const getSelector = (data: ProxiedMethodCallData[]) => {
 
 export const puppeteerMetadata: AfterHook = async function puppeteerMetadata({
   fnName,
-  testContext,
+  stepResult,
   methodCallData,
 }) {
   const selector = getSelector(methodCallData);
   const text = methodCallData[methodCallData.length - 1]?.text;
 
   if (selector) {
-    testContext.addStepMetadata({ selector });
+    stepResult.selector = selector;
   }
   if (fnName) {
-    testContext.addStepMetadata({ fnName });
+    stepResult.fnName = fnName;
   }
   if (text) {
-    testContext.addStepMetadata({ text });
+    stepResult.text = text;
   }
 };

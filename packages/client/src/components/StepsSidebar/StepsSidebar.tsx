@@ -56,6 +56,11 @@ export const StepsSidebar = observer(() => {
           <div className={styles.stepIcon}>
             <div className={getIcon(step)}></div>
           </div>
+          {step.pageId !== undefined && (
+            <div className={styles.stepPageNumber} title={`Page number ${step.pageId + 1}`}>
+              {step.pageId + 1}
+            </div>
+          )}
           <div className={styles.title}>
             <span>{step.name ? stripAnsi(step.name) : undefined}</span>
           </div>

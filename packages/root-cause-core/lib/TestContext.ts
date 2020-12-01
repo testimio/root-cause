@@ -1,4 +1,3 @@
-import { StepResultWithName } from './StepResultWithName';
 import fs from 'fs-extra';
 import { TEST_RESULTS_FILE_NAME } from './consts';
 import path from 'path';
@@ -11,6 +10,7 @@ import type {
   ConsoleException,
 } from '@testim/root-cause-types';
 import { ActiveFeatures } from './attachInterfaces';
+import { extractStepName } from './utils/step-name-extractor';
 
 const loggerError = debug('root-cause:error');
 
@@ -21,13 +21,10 @@ export interface TestContextInterface {
   testFilePath: string;
   featuresSettings: ActiveFeatures;
   dateConstructor: typeof Date;
-  currentStep: Readonly<StepResult> | undefined;
-  stepStarted(): void;
-  getStepIndex(): number;
-  stepEnded(): Promise<void>;
+  stepStarted(): StepResult;
+  stepEnded(stepResult: StepResult): Promise<void>;
   testEnded(): Promise<void>;
   addTestMetadata(metadata: any): void;
-  addStepMetadata(metadata: any): void;
   addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>): void;
 }
 
@@ -61,43 +58,42 @@ export class TestContext implements TestContextInterface {
     this.testMetadata.timestamp = dateConstructor.now();
   }
 
-  get currentStep(): Readonly<StepResult> | undefined {
-    return this._currentStep;
-  }
-
-  stepStarted(): void {
+  stepStarted(): StepResult {
     this.stepIndex++;
-    this._currentStep = new StepResultWithName(this.stepIndex, this.dateConstructor);
+    const startedStep: StepResult = {
+      index: this.stepIndex,
+      startTimestamp: this.dateConstructor.now(),
+    };
+    return startedStep;
   }
 
-  getStepIndex() {
+  getStepIndex(): number {
     return this.stepIndex;
   }
 
-  async stepEnded(): Promise<void> {
-    if (this._currentStep) {
-      this._currentStep.endTimestamp = this.dateConstructor.now();
-      this.stepResults.push(this._currentStep);
-      this._currentStep = undefined;
-    }
+  async stepEnded(stepResult: StepResult): Promise<void> {
+    stepResult.endTimestamp = this.dateConstructor.now();
+    this.stepResults.push(stepResult);
+    // Due to the concurrent steps support, stepIndex and the position in the stepResults array might not be synced,
+    // (Later step might end before earlier one)
+    // So we want to ensure it is
+    this.stepResults.sort((stepA, stepB) => {
+      return stepA.index - stepB.index;
+    });
 
     await this.persistResults();
   }
 
-  async testEnded() {
+  async testEnded(): Promise<void> {
     this.testMetadata.endedTimestamp = this.dateConstructor.now();
     await this.persistResults();
   }
 
-  addTestMetadata(metadata: any) {
+  addTestMetadata(metadata: Record<string | number, any>): void {
     Object.assign(this.testMetadata, metadata);
   }
 
-  addStepMetadata(metadata: any) {
-    Object.assign(this._currentStep, metadata);
-  }
-
-  addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>) {
+  addAssertionStep(partialStep: Omit<StepResult, 'index' | 'startTimestamp'>): void {
     if (this._currentStep) {
       throw new Error("invariant: Can't add assertion in a middle of step");
     }
@@ -126,7 +122,12 @@ export class TestContext implements TestContextInterface {
   private getResultsForPersistency() {
     return {
       metadata: this.testMetadata,
-      steps: this.stepResults,
+      steps: this.stepResults.map((result) => {
+        return {
+          ...result,
+          name: result.name ?? extractStepName(result),
+        };
+      }),
     };
   }
 }

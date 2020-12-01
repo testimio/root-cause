@@ -13,12 +13,10 @@ import { extractCodeLocationDetailsSync, getSystemInfoForPage } from './utils';
 
 export const errorInStepHook: AfterHook = async function errorInStepHook({
   instrumentedFunctionResult,
-  testContext,
+  stepResult,
 }: AfterHookArgs) {
   if (!instrumentedFunctionResult.success) {
-    testContext.addStepMetadata({
-      stepError: unknownErrorToOurRepresentation(instrumentedFunctionResult.error),
-    });
+    stepResult.stepError = unknownErrorToOurRepresentation(instrumentedFunctionResult.error);
   }
 };
 

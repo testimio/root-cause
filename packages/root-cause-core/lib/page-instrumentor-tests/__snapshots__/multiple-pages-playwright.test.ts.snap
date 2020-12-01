@@ -1,0 +1,317 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Multiple pages Playwright chromium page.addListener("popup") method: afterAllHook 1`] = `
+Array [
+  Array [
+    Object {
+      "endStatus": Object {
+        "success": true,
+      },
+      "testContext": "cleaned",
+    },
+  ],
+]
+`;
+
+exports[`Multiple pages Playwright chromium page.addListener("popup") method: afterEachHook 1`] = `
+Array [
+  Array [
+    Object {
+      "args": Array [
+        "<a href=\\"about:blank\\" target=\\"blank\\">CLICK HERE</a>",
+      ],
+      "fnName": "setContent",
+      "instrumentedFunctionResult": "cleaned",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "setContent",
+          "pageId": 0,
+          "selector": undefined,
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+  Array [
+    Object {
+      "args": Array [
+        "a",
+      ],
+      "fnName": "click",
+      "instrumentedFunctionResult": "cleaned",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "click",
+          "pageId": 0,
+          "selector": "a",
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+  Array [
+    Object {
+      "args": Array [
+        "body",
+      ],
+      "fnName": "click",
+      "instrumentedFunctionResult": "cleaned",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "click",
+          "pageId": 1,
+          "selector": "body",
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+]
+`;
+
+exports[`Multiple pages Playwright chromium page.addListener("popup") method: beforeAllHook 1`] = `
+Array [
+  Array [
+    Object {
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+]
+`;
+
+exports[`Multiple pages Playwright chromium page.addListener("popup") method: beforeEachHook 1`] = `
+Array [
+  Array [
+    Object {
+      "args": Array [
+        "<a href=\\"about:blank\\" target=\\"blank\\">CLICK HERE</a>",
+      ],
+      "fnName": "setContent",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "setContent",
+          "pageId": 0,
+          "selector": undefined,
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+  Array [
+    Object {
+      "args": Array [
+        "a",
+      ],
+      "fnName": "click",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "click",
+          "pageId": 0,
+          "selector": "a",
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+  Array [
+    Object {
+      "args": Array [
+        "body",
+      ],
+      "fnName": "click",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "click",
+          "pageId": 1,
+          "selector": "body",
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+]
+`;
+
+exports[`Multiple pages Playwright chromium page.on("popup") method: afterAllHook 1`] = `
+Array [
+  Array [
+    Object {
+      "endStatus": Object {
+        "success": true,
+      },
+      "testContext": "cleaned",
+    },
+  ],
+]
+`;
+
+exports[`Multiple pages Playwright chromium page.on("popup") method: afterEachHook 1`] = `
+Array [
+  Array [
+    Object {
+      "args": Array [
+        "<a href=\\"about:blank\\" target=\\"blank\\">CLICK HERE</a>",
+      ],
+      "fnName": "setContent",
+      "instrumentedFunctionResult": "cleaned",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "setContent",
+          "pageId": 0,
+          "selector": undefined,
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+  Array [
+    Object {
+      "args": Array [
+        "a",
+      ],
+      "fnName": "click",
+      "instrumentedFunctionResult": "cleaned",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "click",
+          "pageId": 0,
+          "selector": "a",
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+  Array [
+    Object {
+      "args": Array [
+        "body",
+      ],
+      "fnName": "click",
+      "instrumentedFunctionResult": "cleaned",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "click",
+          "pageId": 1,
+          "selector": "body",
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+]
+`;
+
+exports[`Multiple pages Playwright chromium page.on("popup") method: beforeAllHook 1`] = `
+Array [
+  Array [
+    Object {
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+]
+`;
+
+exports[`Multiple pages Playwright chromium page.on("popup") method: beforeEachHook 1`] = `
+Array [
+  Array [
+    Object {
+      "args": Array [
+        "<a href=\\"about:blank\\" target=\\"blank\\">CLICK HERE</a>",
+      ],
+      "fnName": "setContent",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "setContent",
+          "pageId": 0,
+          "selector": undefined,
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+  Array [
+    Object {
+      "args": Array [
+        "a",
+      ],
+      "fnName": "click",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "click",
+          "pageId": 0,
+          "selector": "a",
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+  Array [
+    Object {
+      "args": Array [
+        "body",
+      ],
+      "fnName": "click",
+      "methodCallData": Array [
+        Object {
+          "creationFunction": "click",
+          "pageId": 1,
+          "selector": "body",
+          "text": undefined,
+        },
+      ],
+      "proxyContext": "cleaned",
+      "rootPage": "cleaned",
+      "stepResult": "cleaned",
+      "testContext": "cleaned",
+    },
+  ],
+]
+`;

@@ -1,26 +1,30 @@
 import path from 'path';
 import { BeforeHook, BeforeHookArgs } from '../interfaces';
-import { getLast } from '../utils';
+import { getLast, getPageFromProxyContext } from '../utils';
 
 declare const document: any;
 declare const window: any;
 
 export const puppeteerScreenshot: BeforeHook = async function puppeteerScreenshot(hookArgs) {
-  const { proxyContext, testContext, fnName, rootPage } = hookArgs;
+  const { proxyContext, testContext, fnName, rootPage, stepResult } = hookArgs;
+
+  // for multi page page support
+  const pageToScreenshot = (await getPageFromProxyContext(proxyContext)) ?? rootPage;
+
   if (!testContext.featuresSettings.screenshots) {
     return;
   }
 
-  const filename = `${testContext.getStepIndex()}.${proxyContext.constructor.name.toLowerCase()}-${fnName}.${
+  const filename = `${stepResult.index}.${proxyContext.constructor.name.toLowerCase()}-${fnName}.${
     testContext.featuresSettings.screenshots.format === 'png' ? 'png' : 'jpg'
   }`;
 
   const rect = await getElementRect(hookArgs);
   if (rect) {
-    testContext.addStepMetadata({ rect });
+    stepResult.rect = rect;
   }
 
-  await rootPage.screenshot({
+  await pageToScreenshot.screenshot({
     path: path.join(testContext.testArtifactsFolder, filename),
     type: testContext.featuresSettings.screenshots.format,
     quality:
@@ -29,7 +33,7 @@ export const puppeteerScreenshot: BeforeHook = async function puppeteerScreensho
         : undefined,
     fullPage: testContext.featuresSettings.screenshots.fullPage,
   });
-  testContext.addStepMetadata({ screenshot: filename });
+  stepResult.screenshot = filename;
 };
 
 async function getElementRect({ proxyContext, methodCallData }: BeforeHookArgs): Promise<any> {
