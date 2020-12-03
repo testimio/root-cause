@@ -43,7 +43,7 @@ describe('Mocha integration test', () => {
              Test that should fail:
            Error: No node found for selector: #not-found-element
             at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
-            at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
+            at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:276:21)
             at PuppeteerPageHooker.makeStep (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:297:22)
             at Proxy.rootCauseWrappedFunction_Page_click (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:196:18)
             at Context.<anonymous> (src/example-tests/for-parallel.test.ts:20:5)
@@ -52,7 +52,7 @@ describe('Mocha integration test', () => {
              Test that should fail:
            Error: No node found for selector: #not-found-element
             at Object.exports.assert (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/assert.js:26:15)
-            at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:273:21)
+            at DOMWorld.click (noise_removed/node_modules/puppeteer/lib/cjs/puppeteer/common/DOMWorld.js:276:21)
             at PuppeteerPageHooker.makeStep (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:297:22)
             at Proxy.rootCauseWrappedFunction_Page_click (noise_removed/packages/root-cause-core/lib/PuppeteerPageHooker.ts:196:18)
             at Context.<anonymous> (src/example-tests/some.test.ts:36:5)",
