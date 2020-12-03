@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/testimio/root-cause/issues"
   },
-  "homepage": "https://help.testim.io/docs/testim-root-cause-overview",
+  "homepage": "https://help.testim.io/docs/root-cause",
   "devDependencies": {
     "typescript": "^3.9.7"
   },
