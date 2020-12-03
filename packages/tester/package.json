@@ -13,7 +13,7 @@
   "author": "",
   "dependencies": {
     "@testim/root-cause": "*",
-    "playwright": "^1.2.1",
+    "playwright": "^1.6.2",
     "puppeteer": "^5.0.0",
     "ts-node": "^9.0.0"
   },
