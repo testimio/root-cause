@@ -1,6 +1,7 @@
 import { attach } from './index';
 import type { TestResultFile } from '@testim/root-cause-types';
 import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 import fs from 'fs-extra';
 import path from 'path';
 import { testUniqueIdentifierFromStartParams, jsonReduceNoiseReviver } from './utils';
@@ -43,6 +44,116 @@ describe('with har record', () => {
 
     beforeEach(async () => {
       browserContext = await browser.createIncognitoBrowserContext();
+      page = await browserContext.newPage();
+    });
+
+    afterEach(async () => {
+      await page.close();
+      await browserContext.close();
+    });
+
+    it('should generate har file with contents matching snapshot', async () => {
+      const currentTest = getCurrentTest();
+
+      const localRunId = guid();
+
+      const startTestParams = {
+        runId: localRunId,
+        projectRoot: process.cwd(),
+        fullName: currentTest.fullName,
+        description: currentTest.description,
+        fullSuitePath: currentTest.testPath,
+      };
+
+      const mockedDateConstructor: typeof Date = Object.create(Date);
+
+      let nowCallsCounter = 1;
+      mockedDateConstructor.now = function mockedNow() {
+        return nowCallsCounter++;
+      };
+
+      const attachController = await attach(
+        {
+          page,
+          startTestParams,
+          activeFeatures: {
+            screenshots: {
+              format: 'jpeg',
+              quality: 85,
+              fullPage: false,
+            },
+            console: true,
+            networkLogs: true,
+            jestAssertions: false,
+            html: true,
+          },
+        },
+        mockedDateConstructor
+      );
+
+      const { page: playedPage, endTest } = attachController;
+      // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test
+      // Still, it might be flaky
+      await playedPage.goto('http://jsbin.testim.io/ces');
+      await playedPage.click('[data-job=GET_OK]', { delay: 800 });
+      await playedPage.click('[data-job=GET_404]', { delay: 800 });
+      await playedPage.click('[data-job=POST_OK]', { delay: 800 });
+      await playedPage.click('[data-job=POST_404]', { delay: 800 });
+
+      await endTest({
+        success: true,
+      });
+
+      updateHistoryFromRootCauseResultsOnly(localRunId);
+
+      const expectedResultsPath = path.resolve(
+        process.cwd(),
+        '.root-cause',
+        'runs',
+        localRunId,
+        testUniqueIdentifierFromStartParams(startTestParams)
+      );
+      const testResults: TestResultFile = JSON.parse(
+        await fs.readFile(path.resolve(expectedResultsPath, 'results.json'), 'utf-8'),
+        jsonReduceNoiseReviver
+      );
+
+      expect(testResults).toMatchSnapshot('Test results.json');
+
+      for (const stepResult of testResults.steps) {
+        // Do also images blob comparison? TBH
+        if (stepResult.screenshot) {
+          expect(
+            fs.pathExists(path.resolve(expectedResultsPath, stepResult.screenshot))
+          ).resolves.toBe(true);
+        }
+      }
+
+      const harFileContent = JSON.parse(
+        await fs.readFile(path.resolve(expectedResultsPath, 'networkLogs.har'), 'utf8')
+      );
+      expect(interestingPartsOfHar(harFileContent)).toMatchSnapshot('har file content');
+    });
+  });
+
+  describe('playwright', () => {
+    let browser: playwright.Browser;
+    let browserContext: playwright.BrowserContext;
+    let page: playwright.Page;
+
+    beforeAll(async () => {
+      ensurePrerequisite();
+      browser = await playwright.chromium.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
+    });
+
+    afterAll(async () => {
+      await browser.close();
+    });
+
+    beforeEach(async () => {
+      browserContext = await browser.newContext({});
       page = await browserContext.newPage();
     });
 
