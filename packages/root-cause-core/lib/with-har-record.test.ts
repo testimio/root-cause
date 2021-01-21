@@ -23,113 +23,115 @@ describe('with har record', () => {
   expect.addSnapshotSerializer(getPostmanEchoWorkaround1PrettyFormatPlugin());
   expect.addSnapshotSerializer(getPostmanEchoWorkaround2PrettyFormatPlugin());
 
-  let browser: puppeteer.Browser;
-  let browserContext: puppeteer.BrowserContext;
-  let page: puppeteer.Page;
+  describe('puppeteer', () => {
+    let browser: puppeteer.Browser;
+    let browserContext: puppeteer.BrowserContext;
+    let page: puppeteer.Page;
 
-  beforeAll(async () => {
-    ensurePrerequisite();
+    beforeAll(async () => {
+      ensurePrerequisite();
 
-    // https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
-    // Not optimal, but didn't work on circle on circleci/node:12.17-stretch-browsers without it
-    // Need to revisit
-    browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-  });
-
-  afterAll(async () => {
-    await browser.close();
-  });
-
-  beforeEach(async () => {
-    browserContext = await browser.createIncognitoBrowserContext();
-    page = await browserContext.newPage();
-  });
-
-  afterEach(async () => {
-    await page.close();
-    await browserContext.close();
-  });
-
-  test('with har record', async () => {
-    const currentTest = getCurrentTest();
-
-    const localRunId = guid();
-
-    const startTestParams = {
-      runId: localRunId,
-      projectRoot: process.cwd(),
-      fullName: currentTest.fullName,
-      description: currentTest.description,
-      fullSuitePath: currentTest.testPath,
-    };
-
-    const mockedDateConstructor: typeof Date = Object.create(Date);
-
-    let nowCallsCounter = 1;
-    mockedDateConstructor.now = function mockedNow() {
-      return nowCallsCounter++;
-    };
-
-    const attachController = await attach(
-      {
-        page,
-        startTestParams,
-        activeFeatures: {
-          screenshots: {
-            format: 'jpeg',
-            quality: 85,
-            fullPage: false,
-          },
-          console: true,
-          networkLogs: true,
-          jestAssertions: false,
-          html: true,
-        },
-      },
-      mockedDateConstructor
-    );
-
-    const { page: playedPage, endTest } = attachController;
-    // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test
-    // Still, it might be flaky
-    await playedPage.goto('http://jsbin.testim.io/ces');
-    await playedPage.click('[data-job=GET_OK]', { delay: 800 });
-    await playedPage.click('[data-job=GET_404]', { delay: 800 });
-    await playedPage.click('[data-job=POST_OK]', { delay: 800 });
-    await playedPage.click('[data-job=POST_404]', { delay: 800 });
-
-    await endTest({
-      success: true,
+      // https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
+      // Not optimal, but didn't work on circle on circleci/node:12.17-stretch-browsers without it
+      // Need to revisit
+      browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     });
 
-    updateHistoryFromRootCauseResultsOnly(localRunId);
+    afterAll(async () => {
+      await browser.close();
+    });
 
-    const expectedResultsPath = path.resolve(
-      process.cwd(),
-      '.root-cause',
-      'runs',
-      localRunId,
-      testUniqueIdentifierFromStartParams(startTestParams)
-    );
-    const testResults: TestResultFile = JSON.parse(
-      await fs.readFile(path.resolve(expectedResultsPath, 'results.json'), 'utf-8'),
-      jsonReduceNoiseReviver
-    );
+    beforeEach(async () => {
+      browserContext = await browser.createIncognitoBrowserContext();
+      page = await browserContext.newPage();
+    });
 
-    expect(testResults).toMatchSnapshot('Test results.json');
+    afterEach(async () => {
+      await page.close();
+      await browserContext.close();
+    });
 
-    for (const stepResult of testResults.steps) {
-      // Do also images blob comparison? TBH
-      if (stepResult.screenshot) {
-        expect(
-          fs.pathExists(path.resolve(expectedResultsPath, stepResult.screenshot))
-        ).resolves.toBe(true);
+    it('should generate har file with contents matching snapshot', async () => {
+      const currentTest = getCurrentTest();
+
+      const localRunId = guid();
+
+      const startTestParams = {
+        runId: localRunId,
+        projectRoot: process.cwd(),
+        fullName: currentTest.fullName,
+        description: currentTest.description,
+        fullSuitePath: currentTest.testPath,
+      };
+
+      const mockedDateConstructor: typeof Date = Object.create(Date);
+
+      let nowCallsCounter = 1;
+      mockedDateConstructor.now = function mockedNow() {
+        return nowCallsCounter++;
+      };
+
+      const attachController = await attach(
+        {
+          page,
+          startTestParams,
+          activeFeatures: {
+            screenshots: {
+              format: 'jpeg',
+              quality: 85,
+              fullPage: false,
+            },
+            console: true,
+            networkLogs: true,
+            jestAssertions: false,
+            html: true,
+          },
+        },
+        mockedDateConstructor
+      );
+
+      const { page: playedPage, endTest } = attachController;
+      // The delay + mousedown handler inside jsbin is to make sure the requests will stay under specific test
+      // Still, it might be flaky
+      await playedPage.goto('http://jsbin.testim.io/ces');
+      await playedPage.click('[data-job=GET_OK]', { delay: 800 });
+      await playedPage.click('[data-job=GET_404]', { delay: 800 });
+      await playedPage.click('[data-job=POST_OK]', { delay: 800 });
+      await playedPage.click('[data-job=POST_404]', { delay: 800 });
+
+      await endTest({
+        success: true,
+      });
+
+      updateHistoryFromRootCauseResultsOnly(localRunId);
+
+      const expectedResultsPath = path.resolve(
+        process.cwd(),
+        '.root-cause',
+        'runs',
+        localRunId,
+        testUniqueIdentifierFromStartParams(startTestParams)
+      );
+      const testResults: TestResultFile = JSON.parse(
+        await fs.readFile(path.resolve(expectedResultsPath, 'results.json'), 'utf-8'),
+        jsonReduceNoiseReviver
+      );
+
+      expect(testResults).toMatchSnapshot('Test results.json');
+
+      for (const stepResult of testResults.steps) {
+        // Do also images blob comparison? TBH
+        if (stepResult.screenshot) {
+          expect(
+            fs.pathExists(path.resolve(expectedResultsPath, stepResult.screenshot))
+          ).resolves.toBe(true);
+        }
       }
-    }
 
-    const harFileContent = JSON.parse(
-      await fs.readFile(path.resolve(expectedResultsPath, 'networkLogs.har'), 'utf8')
-    );
-    expect(interestingPartsOfHar(harFileContent)).toMatchSnapshot('har file content');
+      const harFileContent = JSON.parse(
+        await fs.readFile(path.resolve(expectedResultsPath, 'networkLogs.har'), 'utf8')
+      );
+      expect(interestingPartsOfHar(harFileContent)).toMatchSnapshot('har file content');
+    });
   });
 });
