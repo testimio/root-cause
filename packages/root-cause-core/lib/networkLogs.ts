@@ -116,7 +116,7 @@ async function networkLogsBeforeAllHookPlaywright({
     }
 
     addDisposer(testContext, DISPOSERS_TOPIC, () => {
-      cdpSession.detach();
+      cdpSession.detach().catch(() => {/* ignored */});
     });
   }
 }
