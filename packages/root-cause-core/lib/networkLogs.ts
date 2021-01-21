@@ -99,8 +99,7 @@ async function networkLogsBeforeAllHookPlaywright({
     // and if not, listen on all frames (Including frames that were added on the fly)
 
     const cdpSession: PlaywrightCDPSession = await context.newCDPSession(page);
-    cdpSession.send('Page.enable');
-    cdpSession.send('Network.enable');
+    await Promise.all([cdpSession.send('Page.enable'), cdpSession.send('Network.enable')]);
 
     for (const eventToListenOn of cdpEventsToListenOn) {
       const listener = function listener(params: any) {
@@ -115,6 +114,10 @@ async function networkLogsBeforeAllHookPlaywright({
         cdpSession.off(eventToListenOn, listener);
       });
     }
+
+    addDisposer(testContext, DISPOSERS_TOPIC, () => {
+      cdpSession.detach();
+    });
   }
 }
 
