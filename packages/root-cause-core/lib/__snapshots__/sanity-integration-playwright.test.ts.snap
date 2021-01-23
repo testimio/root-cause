@@ -232,7 +232,7 @@ Object {
         Object {
           "message": "injected error",
           "stack": "Error: injected error
-    at eval (__playwright_evaluation_script__45:3:23)",
+    at eval (eval at callFunction (:307:29), <anonymous>:3:23)",
           "timestamp": 8,
         },
       ],
@@ -304,7 +304,7 @@ Object {
           "line": 3,
           "text": "injected console",
           "timestamp": 13,
-          "url": "__playwright_evaluation_script__119",
+          "url": "",
         },
       ],
       "endTimestamp": 14,

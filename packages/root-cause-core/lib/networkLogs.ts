@@ -85,7 +85,7 @@ async function networkLogsBeforeAllHookPuppeteer({
   }
 }
 
-function networkLogsBeforeAllHookPlaywright({
+async function networkLogsBeforeAllHookPlaywright({
   testContext,
   page,
 }: {
@@ -98,23 +98,28 @@ function networkLogsBeforeAllHookPlaywright({
     // TODO validate we see events from all of the frames,
     // and if not, listen on all frames (Including frames that were added on the fly)
 
-    // @ts-ignore
-    const cdpSession: PlaywrightCDPSession = page._delegate._mainFrameSession._client;
+    const cdpSession: PlaywrightCDPSession = await context.newCDPSession(page);
+    await Promise.all([cdpSession.send('Page.enable'), cdpSession.send('Network.enable')]);
 
     for (const eventToListenOn of cdpEventsToListenOn) {
-      // eslint-disable-next-line no-inner-declarations
-      function listener(params: any) {
+      const listener = function listener(params: any) {
         getMessagesForTestContextMap(testContext).push({
           method: eventToListenOn,
           params,
         });
-      }
+      };
 
       cdpSession.on(eventToListenOn, listener);
       addDisposer(testContext, DISPOSERS_TOPIC, () => {
         cdpSession.off(eventToListenOn, listener);
       });
     }
+
+    addDisposer(testContext, DISPOSERS_TOPIC, () => {
+      cdpSession.detach().catch(() => {
+        /* ignored */
+      });
+    });
   }
 }
 
