@@ -1,6 +1,6 @@
 {
   "name": "@testim/root-cause-jest",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "author": "Testim.io <dev@testim.io>",
   "engines": {
     "node": ">= 10.0.0"
@@ -51,7 +51,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@testim/root-cause-core": "0.1.32",
+    "@testim/root-cause-core": "0.1.33",
     "chalk": "^4.1.0",
     "debug": "^4.2.0",
     "fs-extra": "^9.0.1"

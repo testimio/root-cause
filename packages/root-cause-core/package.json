@@ -1,6 +1,6 @@
 {
   "name": "@testim/root-cause-core",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "license": "AGPL-3.0-only",
   "description": "Core component of Testim Root Cause",
   "main": "index",
