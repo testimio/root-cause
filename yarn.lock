@@ -1608,6 +1608,40 @@
     slash "^3.0.0"
     strip-ansi "^6.0.0"
 
+"@jest/core@^26.6.3":
+  version "26.6.3"
+  resolved "https://registry.yarnpkg.com/@jest/core/-/core-26.6.3.tgz#7639fcb3833d748a4656ada54bde193051e45fad"
+  integrity sha512-xvV1kKbhfUqFVuZ8Cyo+JPpipAHHAV3kcDBftiduK8EICXmTFddryy3P7NfZt8Pv37rA9nEJBKCCkglCPt/Xjw==
+  dependencies:
+    "@jest/console" "^26.6.2"
+    "@jest/reporters" "^26.6.2"
+    "@jest/test-result" "^26.6.2"
+    "@jest/transform" "^26.6.2"
+    "@jest/types" "^26.6.2"
+    "@types/node" "*"
+    ansi-escapes "^4.2.1"
+    chalk "^4.0.0"
+    exit "^0.1.2"
+    graceful-fs "^4.2.4"
+    jest-changed-files "^26.6.2"
+    jest-config "^26.6.3"
+    jest-haste-map "^26.6.2"
+    jest-message-util "^26.6.2"
+    jest-regex-util "^26.0.0"
+    jest-resolve "^26.6.2"
+    jest-resolve-dependencies "^26.6.3"
+    jest-runner "^26.6.3"
+    jest-runtime "^26.6.3"
+    jest-snapshot "^26.6.2"
+    jest-util "^26.6.2"
+    jest-validate "^26.6.2"
+    jest-watcher "^26.6.2"
+    micromatch "^4.0.2"
+    p-each-series "^2.1.0"
+    rimraf "^3.0.0"
+    slash "^3.0.0"
+    strip-ansi "^6.0.0"
+
 "@jest/environment@^24.3.0", "@jest/environment@^24.9.0":
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-24.9.0.tgz#21e3afa2d65c0586cbd6cbefe208bafade44ab18"
@@ -1714,6 +1748,38 @@
     string-length "^4.0.1"
     terminal-link "^2.0.0"
     v8-to-istanbul "^6.0.1"
+  optionalDependencies:
+    node-notifier "^8.0.0"
+
+"@jest/reporters@^26.6.2":
+  version "26.6.2"
+  resolved "https://registry.yarnpkg.com/@jest/reporters/-/reporters-26.6.2.tgz#1f518b99637a5f18307bd3ecf9275f6882a667f6"
+  integrity sha512-h2bW53APG4HvkOnVMo8q3QXa6pcaNt1HkwVsOPMBV6LD/q9oSpxNSYZQYkAnjdMjrJ86UuYeLo+aEZClV6opnw==
+  dependencies:
+    "@bcoe/v8-coverage" "^0.2.3"
+    "@jest/console" "^26.6.2"
+    "@jest/test-result" "^26.6.2"
+    "@jest/transform" "^26.6.2"
+    "@jest/types" "^26.6.2"
+    chalk "^4.0.0"
+    collect-v8-coverage "^1.0.0"
+    exit "^0.1.2"
+    glob "^7.1.2"
+    graceful-fs "^4.2.4"
+    istanbul-lib-coverage "^3.0.0"
+    istanbul-lib-instrument "^4.0.3"
+    istanbul-lib-report "^3.0.0"
+    istanbul-lib-source-maps "^4.0.0"
+    istanbul-reports "^3.0.2"
+    jest-haste-map "^26.6.2"
+    jest-resolve "^26.6.2"
+    jest-util "^26.6.2"
+    jest-worker "^26.6.2"
+    slash "^3.0.0"
+    source-map "^0.6.0"
+    string-length "^4.0.1"
+    terminal-link "^2.0.0"
+    v8-to-istanbul "^7.0.0"
   optionalDependencies:
     node-notifier "^8.0.0"
 
@@ -12074,6 +12140,15 @@ jest-changed-files@^26.5.2:
     execa "^4.0.0"
     throat "^5.0.0"
 
+jest-changed-files@^26.6.2:
+  version "26.6.2"
+  resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-26.6.2.tgz#f6198479e1cc66f22f9ae1e22acaa0b429c042d0"
+  integrity sha512-fDS7szLcY9sCtIip8Fjry9oGf3I2ht/QT21bAHm5Dmf0mD4X3ReNUf17y+bO6fR8WgbIZTlbyG1ak/53cbRzKQ==
+  dependencies:
+    "@jest/types" "^26.6.2"
+    execa "^4.0.0"
+    throat "^5.0.0"
+
 jest-circus@^26.6.3:
   version "26.6.3"
   resolved "https://registry.yarnpkg.com/jest-circus/-/jest-circus-26.6.3.tgz#3cc7ef2a6a3787e5d7bfbe2c72d83262154053e7"
@@ -12136,6 +12211,25 @@ jest-cli@^26.5.3:
     jest-config "^26.5.3"
     jest-util "^26.5.2"
     jest-validate "^26.5.3"
+    prompts "^2.0.1"
+    yargs "^15.4.1"
+
+jest-cli@^26.6.3:
+  version "26.6.3"
+  resolved "https://registry.yarnpkg.com/jest-cli/-/jest-cli-26.6.3.tgz#43117cfef24bc4cd691a174a8796a532e135e92a"
+  integrity sha512-GF9noBSa9t08pSyl3CY4frMrqp+aQXFGFkf5hEPbh/pIUFYWMK6ZLTfbmadxJVcJrdRoChlWQsA2VkJcDFK8hg==
+  dependencies:
+    "@jest/core" "^26.6.3"
+    "@jest/test-result" "^26.6.2"
+    "@jest/types" "^26.6.2"
+    chalk "^4.0.0"
+    exit "^0.1.2"
+    graceful-fs "^4.2.4"
+    import-local "^3.0.2"
+    is-ci "^2.0.0"
+    jest-config "^26.6.3"
+    jest-util "^26.6.2"
+    jest-validate "^26.6.2"
     prompts "^2.0.1"
     yargs "^15.4.1"
 
@@ -12607,6 +12701,15 @@ jest-resolve-dependencies@^26.5.3:
     jest-regex-util "^26.0.0"
     jest-snapshot "^26.5.3"
 
+jest-resolve-dependencies@^26.6.3:
+  version "26.6.3"
+  resolved "https://registry.yarnpkg.com/jest-resolve-dependencies/-/jest-resolve-dependencies-26.6.3.tgz#6680859ee5d22ee5dcd961fe4871f59f4c784fb6"
+  integrity sha512-pVwUjJkxbhe4RY8QEWzN3vns2kqyuldKpxlxJlzEYfKSvY6/bMvxoFrYYzUO1Gx28yKWN37qyV7rIoIp2h8fTg==
+  dependencies:
+    "@jest/types" "^26.6.2"
+    jest-regex-util "^26.0.0"
+    jest-snapshot "^26.6.2"
+
 jest-resolve@24.9.0, jest-resolve@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-resolve/-/jest-resolve-24.9.0.tgz#dff04c7687af34c4dd7e524892d9cf77e5d17321"
@@ -12899,6 +13002,19 @@ jest-watcher@^26.5.2:
     jest-util "^26.5.2"
     string-length "^4.0.1"
 
+jest-watcher@^26.6.2:
+  version "26.6.2"
+  resolved "https://registry.yarnpkg.com/jest-watcher/-/jest-watcher-26.6.2.tgz#a5b683b8f9d68dbcb1d7dae32172d2cca0592975"
+  integrity sha512-WKJob0P/Em2csiVthsI68p6aGKTIcsfjH9Gsx1f0A3Italz43e3ho0geSAVsmj09RWOELP1AZ/DXyJgOgDKxXQ==
+  dependencies:
+    "@jest/test-result" "^26.6.2"
+    "@jest/types" "^26.6.2"
+    "@types/node" "*"
+    ansi-escapes "^4.2.1"
+    chalk "^4.0.0"
+    jest-util "^26.6.2"
+    string-length "^4.0.1"
+
 jest-worker@^24.6.0, jest-worker@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-24.9.0.tgz#5dbfdb5b2d322e98567898238a9697bcce67b3e5"
@@ -12940,6 +13056,15 @@ jest@^26.0.1, jest@^26.5.0, jest@^26.5.3:
     "@jest/core" "^26.5.3"
     import-local "^3.0.2"
     jest-cli "^26.5.3"
+
+jest@^26.6.3:
+  version "26.6.3"
+  resolved "https://registry.yarnpkg.com/jest/-/jest-26.6.3.tgz#40e8fdbe48f00dfa1f0ce8121ca74b88ac9148ef"
+  integrity sha512-lGS5PXGAzR4RF7V5+XObhqz2KZIDUA1yD0DG6pBVmy10eh0ZIXQImRuzocsI/N2XZ1GrLFwTS27In2i2jlpq1Q==
+  dependencies:
+    "@jest/core" "^26.6.3"
+    import-local "^3.0.2"
+    jest-cli "^26.6.3"
 
 jimp@0.2.28:
   version "0.2.28"
@@ -21049,6 +21174,15 @@ v8-to-istanbul@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-6.0.1.tgz#7ef0e32faa10f841fe4c1b0f8de96ed067c0be1e"
   integrity sha512-PzM1WlqquhBvsV+Gco6WSFeg1AGdD53ccMRkFeyHRE/KRZaVacPOmQYP3EeVgDBtKD2BJ8kgynBQ5OtKiHCH+w==
+  dependencies:
+    "@types/istanbul-lib-coverage" "^2.0.1"
+    convert-source-map "^1.6.0"
+    source-map "^0.7.3"
+
+v8-to-istanbul@^7.0.0:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-7.1.2.tgz#30898d1a7fa0c84d225a2c1434fb958f290883c1"
+  integrity sha512-TxNb7YEUwkLXCQYeudi6lgQ/SZrzNO4kMdlqVxaZPUIUjCv6iSSypUQX70kNBSERpQ8fk48+d61FXk+tgqcWow==
   dependencies:
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^1.6.0"
