@@ -1,3 +1,5 @@
+## [DEPRECATED] - This repository is no longer maintained and should not be used
+
 # Testim Root Cause
 
 This is the [Testim Root Cause](https://www.testim.io/root-cause/) monorepo. Please check out [the documentation](https://help.testim.io/docs/root-cause).
