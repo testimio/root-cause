@@ -28,7 +28,7 @@ Note that this project is a yarn workspace and packages inside have specific REA
 
 ![Testim Logo](https://www.testim.io/wp-content/uploads/2019/11/testim-logo.svg)
 
-This project is maintained and supported with ❤️ by [Testim.io](https://testim.io).
+~~This project is maintained and supported with ❤️ by [Testim.io](https://testim.io).~~
 
 # License
 
